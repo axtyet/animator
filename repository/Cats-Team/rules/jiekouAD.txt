@@ -1,8 +1,8 @@
 [Adblock Plus 2.0]
 ! Title: 轻量广告拦截规则
 ! Homepage: https://github.com/damengzhu/banad
-! Update Time: 2024-08-06 20:31:35（北京时间）
-! Total Count: 5396
+! Update Time: 2024-08-13 21:46:46（北京时间）
+! Total Count: 5400
 ! by: 酷安@大萌主
 ||sikaq.top^
 ||ufvauj.cn^
@@ -4388,6 +4388,7 @@
 .xyz/svelte?$third-party
 .xyz/alpine?$third-party
 ||iyinghua.io/bar/
+/_xa/ads
 ||boshishuwu.com/js/middlestyle.js
 ||boshishuwu.com/js/zhuanhua.js
 ||www.288txt.com/da/*.js
@@ -4616,6 +4617,8 @@ Mplay/kk1.js
 *.lijie.*/*_*?$third-party
 .xyz/hm.html?s=
 :8007/*/*?is_not=
+/delivery/afr.
+||rmhfrtnd.com^$third-party
 mobi*.*.cyou/*_$third-party
 mobi*.*.cam/*_$third-party
 mobi*.*.xyz/*_$third-party
@@ -5304,6 +5307,7 @@ javbus.com##.container-fluid:nth-child(9) > .row > .ad-list:nth-child(3)
 ##[style^='position: fixed; color: transparent; line-height: 100vh; width: 100vw; z-index: '][style*='; top: 0px; left: 0px;']
 ##a[href*=".com?s="]
 ##div.my-ad > a
+##[src$='anyhosthub-480x90.gif']
 ##div#playlistbtn > A[href='/ht.html']
 ##INS[status='done'] A.external
 ##body > div#bottommob.bottommob
