@@ -1,7 +1,7 @@
 #########################################
 # Sukka's Ruleset - Domestic Domains
-# Last Updated: 2024-08-07T09:59:58.708Z
-# Size: 778
+# Last Updated: 2024-08-21T05:57:25.630Z
+# Size: 781
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
 # GitHub: https://github.com/SukkaW/Surge
@@ -9,8 +9,6 @@
 # This file contains known addresses that are avaliable in the Mainland China.
 #########################################
 DOMAIN,this_ruleset_is_made_by_sukkaw.ruleset.skk.moe
-DOMAIN,cdn.bootcdn.net
-DOMAIN,cdn.bootcss.com
 DOMAIN,www.layuicdn.com
 DOMAIN,xboxlive.cn
 DOMAIN,lv.queniujq.cn
@@ -237,8 +235,6 @@ DOMAIN-SUFFIX,ourdvs.com
 DOMAIN-SUFFIX,staticdn.net
 DOMAIN-SUFFIX,sevencdn.com
 DOMAIN-SUFFIX,wangsu.com
-DOMAIN-SUFFIX,staticfile.org
-DOMAIN-SUFFIX,staticfile.net
 DOMAIN-SUFFIX,steam.clngaa.com
 DOMAIN-SUFFIX,steam.ksyna.com
 DOMAIN-SUFFIX,dl.bscstorage.net
@@ -323,12 +319,14 @@ DOMAIN-SUFFIX,bendibao.com
 DOMAIN-SUFFIX,benghuai.com
 DOMAIN-SUFFIX,bh3.com
 DOMAIN-SUFFIX,bosszhipin.com
+DOMAIN-SUFFIX,c-t.work
 DOMAIN-SUFFIX,cailianpress.com
 DOMAIN-SUFFIX,cls.cn
 DOMAIN-SUFFIX,camera360.com
 DOMAIN-SUFFIX,camscanner.com
 DOMAIN-SUFFIX,cdnjtzy.com
 DOMAIN-SUFFIX,cowcs.com
+DOMAIN-SUFFIX,cowtransfer.com
 DOMAIN-SUFFIX,changyan.com
 DOMAIN-SUFFIX,chaoxing.cc
 DOMAIN-SUFFIX,chaoxing.com
@@ -351,11 +349,13 @@ DOMAIN-SUFFIX,csdnimg.cn
 DOMAIN-SUFFIX,ctfile.com
 DOMAIN-SUFFIX,ctrip.com
 DOMAIN-SUFFIX,c-ctrip.com
+DOMAIN-SUFFIX,dancf.com
 DOMAIN-SUFFIX,dangdang.com
 DOMAIN-SUFFIX,dewu.com
 DOMAIN-SUFFIX,dfcfw.com
 DOMAIN-SUFFIX,dida365.com
 DOMAIN-SUFFIX,digicert.cn
+DOMAIN-SUFFIX,dizzylab.net
 DOMAIN-SUFFIX,docin.com
 DOMAIN-SUFFIX,docschina.org
 DOMAIN-SUFFIX,douban.com
@@ -400,6 +400,7 @@ DOMAIN-SUFFIX,infinitynewtab.com
 DOMAIN-SUFFIX,ithome.com
 DOMAIN-SUFFIX,jianshu.com
 DOMAIN-SUFFIX,jianshu.io
+DOMAIN-SUFFIX,jiemian.com
 DOMAIN-SUFFIX,jiguang.cn
 DOMAIN-SUFFIX,jb51.net
 DOMAIN-SUFFIX,jpush.cn
@@ -494,6 +495,7 @@ DOMAIN-SUFFIX,tianyancha.com
 DOMAIN-SUFFIX,tripcdn.cn
 DOMAIN-SUFFIX,tvmao.com
 DOMAIN-SUFFIX,tvzhe.com
+DOMAIN-SUFFIX,udesk.cn
 DOMAIN-SUFFIX,upyun.com
 DOMAIN-SUFFIX,vip.com
 DOMAIN-SUFFIX,weather.com.cn
@@ -516,6 +518,7 @@ DOMAIN-SUFFIX,ys7.com
 DOMAIN-SUFFIX,yuanshen.com
 DOMAIN-SUFFIX,yuewen.com
 DOMAIN-SUFFIX,yumchina.com
+DOMAIN-SUFFIX,yupoo.com
 DOMAIN-SUFFIX,yy.com
 DOMAIN-SUFFIX,zdmimg.com
 DOMAIN-SUFFIX,zdic.net

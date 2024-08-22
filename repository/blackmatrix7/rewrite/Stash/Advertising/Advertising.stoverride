@@ -1,11 +1,11 @@
 name: 复写去广告
-desc: 最后更新时间 2024-08-11 02:14:26
+desc: 最后更新时间 2024-08-21 02:15:18
 # author: blackmatrix7
 # repo: https://github.com/blackmatrix7/ios_rule_script
-# reject: 712
-# mitm: 668
+# reject: 715
+# mitm: 671
 # force-http-engine-hosts: 6
-# total: 1386
+# total: 1392
 
 
 
@@ -188,6 +188,7 @@ http:
     - ^https?:\/\/adv\.ccb\.com\/ebda\/ctm_adv - reject
     - ^https?:\/\/adx-cn\.anythinktech\.com\/bid - reject
     - ^https?:\/\/agent-count\.pconline\.com\.cn\/counter\/adAnalyse\/ - reject
+    - ^https?:\/\/aikanvod\.miguvideo\.com\/video\/p\/i_adverseInterface\.jsp - reject
     - ^https?:\/\/amap\-aos\-info\-nogw\.amap\.com\/ws\/aos\/alimama\/ - reject
     - ^https?:\/\/ap\.dongqiudi\.com\/plat\/v - reject
     - ^https?:\/\/api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/sdk\/get_ads - reject
@@ -491,6 +492,7 @@ http:
     - ^https?:\/\/m-adphone\.wenhua\.com\.cn\/ - reject
     - ^https?:\/\/m5\.amap\.com\/ws\/valueadded\/ - reject
     - ^https?:\/\/m\.ads\.8le8le\.com\/adShow - reject
+    - ^https?:\/\/m\.api\.shaoxing\.com\.cn\/v\d\/start - reject
     - ^https?:\/\/m\.caijing\.com\.cn\/startup_ad_ios\.html$ - reject
     - ^https?:\/\/m\.client\.10010\.com\/mobileService\/(activity|customer)\/(accountListData|get_client_adv|get_startadv) - reject
     - ^https?:\/\/m\.client\.10010\.com\/uniAdmsInterface\/(getHomePageAd|getWelcomeAd) - reject
@@ -557,6 +559,7 @@ http:
     - ^https?:\/\/nuc\.api\.mgtv.com\/Logout - reject
     - ^https?:\/\/open3\.vistastory\.com\/v3\/api.*get_popup - reject
     - ^https?:\/\/open3\.vistastory\.com\/v3\/api\/index\/loading_ad - reject
+    - ^https?:\/\/open\.78dm\.net\/v\d\/site\/ad\/ - reject
     - ^https?:\/\/open\.e\.kuaishou\.com\/rest\/e\/v3\/open\/univ - reject
     - ^https?:\/\/open\.fitdays\.cn\/uploads\/ad\/ - reject
     - ^https?:\/\/open\.qyer\.com\/qyer\/config\/get - reject
@@ -773,6 +776,7 @@ http:
     - "*.xmcdn.*"
     - "*.yuanfudao.com"
     - "*.yuxueyuan.cn"
+    - "*.zdmimg.com"
     - "*api.oray.net"
     - "*cupid.iqiyi.com"
     - "*gaoqingdianshi.com"
@@ -824,6 +828,7 @@ http:
     - "advertise.bczeducation.cn"
     - "afd.baidu.com"
     - "agent-count.pconline.com.cn"
+    - "aikanvod.miguvideo.com"
     - "alittle-tea.oss-cn-shanghai.aliyuncs.com"
     - "amap-aos-info-nogw.amap.com"
     - "ap.dongqiudi.com"
@@ -1154,6 +1159,7 @@ http:
     - "m*.amap.com"
     - "m-adphone.wenhua.com.cn"
     - "m.ads.8le8le.com"
+    - "m.api.shaoxing.com.cn"
     - "m.caijing.com.cn"
     - "m.client.10010.com"
     - "m.ctrip.com"
@@ -1223,6 +1229,7 @@ http:
     - "nuc.api.mgtv.com"
     - "open-cms-api.quark.cn"
     - "open-cms-api.uc.cn"
+    - "open.78dm.net"
     - "open.e.kuaishou.com"
     - "open.fitdays.cn"
     - "open.qyer.com"
@@ -1275,7 +1282,6 @@ http:
     - "richmanapi.jxedt.com"
     - "router-app-api.jdcloud.com"
     - "rtbapi.douyucdn.cn"
-    - "s*.zdmimg.com"
     - "s.jiediankeji.com"
     - "s1.api.tv.itc.cn"
     - "s3plus.meituan.net"

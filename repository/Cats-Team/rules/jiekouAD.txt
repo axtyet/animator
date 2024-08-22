@@ -1,9 +1,11 @@
 [Adblock Plus 2.0]
 ! Title: 轻量广告拦截规则
 ! Homepage: https://github.com/damengzhu/banad
-! Update Time: 2024-08-13 21:46:46（北京时间）
-! Total Count: 5400
+! Update Time: 2024-08-22 10:39:16（北京时间）
+! Total Count: 5405
 ! by: 酷安@大萌主
+||iqgessh.icu^
+||clkwnl.xyz^
 ||sikaq.top^
 ||ufvauj.cn^
 ||xdns.asia^
@@ -4318,7 +4320,6 @@
 ||tsearch.snssdk.com^
 ||fclick.baidu.com^
 ||ssp.qq.com^
-||ecmb.bdimg.com^
 ||appc.baidu.com^
 ||d.toutiao.com^
 ||log-sdk.ksapisrv.com^
@@ -4347,6 +4348,8 @@
 ||sugar.zhihu.com^
 ||stat.meitudata.com^
 ! url
+@@||ecmb.bdimg.com/*.jpg
+@@||ecmb.bdimg.com/*.png
 @@.cn:8005/$domain=www.ntdm9.com|www.mxdm9.com|mxdm6.com|ntdm6.com
 @@.com/o.js$domain=2biqu.com
 @@||/template/conch/asset/js/hlhtml.js$domain=www.lldm.net|1anime.me
@@ -4673,6 +4676,7 @@ _/bigREDcat.css?
 .xyz/?token=
 .shop:*/bid?url=
 .shop:*/ack?s=
+x.com/*/videoads/
 ||addthis.com/live/
 ||xn--*.xn--fiqs8s:
 /template/piankuwap/js/afoot.js
@@ -4700,6 +4704,7 @@ template/m1938pc/ads/*.js
 @@||developer.apple.com$generichide
 18-comic.work,18-comicfreedom.org,18-comicfreedom.xyz,18-comicstellar.art,18comic.org,18comic.vip,jm-comic1.cc,jm-comic2.cc,jmcomic.me,jmcomic1.me,jmcomic2.me#@#.col-lg-3.col-xs-6 > .well
 manwa.me#@#.ad-area
+greasyfork.org#@#body .ad
 myqqjd.com##.adsbygoogl
 www.jianshu.com#@#div[class$="_0"]
 m.baidu.com#@##results > div[class]:not(.result):not(.result-op):not(.sp-rslt-bar):not(.s-group-result):not(.hint-unsafe)

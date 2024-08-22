@@ -33,7 +33,6 @@ DOMAIN,api.web3.storage
 DOMAIN,app-api.vidjet.io
 DOMAIN,app-spm.com
 DOMAIN,app-static.turtl.co
-DOMAIN,app-updates.agilebits.com
 DOMAIN,app.backinstock.org
 DOMAIN,app.chatwoot.com
 DOMAIN,app.cookieyes.com
@@ -246,6 +245,7 @@ DOMAIN,cdn-txweb.transifex.com
 DOMAIN,cdn-uicons.flaticon.com
 DOMAIN,cdn-www.bluestacks.com
 DOMAIN,cdn-yotpo-images-production.yotpo.com
+DOMAIN,cdn.18jav.tv
 DOMAIN,cdn.9to5terminal.com
 DOMAIN,cdn.accounts.nintendo.com
 DOMAIN,cdn.adguard.com
@@ -357,6 +357,7 @@ DOMAIN,cdn.nerdschalk.com
 DOMAIN,cdn.neverbounce.com
 DOMAIN,cdn.now.gg
 DOMAIN,cdn.onesignal.com
+DOMAIN,cdn.onetime.dog
 DOMAIN,cdn.osxdaily.com
 DOMAIN,cdn.paddle.com
 DOMAIN,cdn.pagefly.io
@@ -546,9 +547,7 @@ DOMAIN,dl2.nwjs.io
 DOMAIN,docs.rs
 DOMAIN,doppler-config.cbsivideo.com
 DOMAIN,doujin-assets.dmm.co.jp
-DOMAIN,download.maxmind.com
 DOMAIN,downloads.coindesk.com
-DOMAIN,downloads.wordpress.org
 DOMAIN,drscdn.500px.org
 DOMAIN,dynamic-assets.mobilius.top
 DOMAIN,e.deviantart.net
@@ -588,6 +587,7 @@ DOMAIN,f002.backblazeb2.com
 DOMAIN,f003.backblazeb2.com
 DOMAIN,f004.backblazeb2.com
 DOMAIN,fast.wistia.com
+DOMAIN,fastporndelivery.hqporner.com
 DOMAIN,favicon.yandex.net
 DOMAIN,favicons.nextdns.io
 DOMAIN,favicons.teams.cloudflare.com
@@ -687,6 +687,7 @@ DOMAIN,image.freepik.com
 DOMAIN,image.ibb.co
 DOMAIN,image.lichess1.org
 DOMAIN,image.nmb.best
+DOMAIN,image.p-c2-x.abema-tv.com
 DOMAIN,image.send.grammarly.com
 DOMAIN,image.ship.vercel.com
 DOMAIN,image.shutterstock.com
@@ -713,6 +714,7 @@ DOMAIN,images.freeimages.com
 DOMAIN,images.g2crowd.com
 DOMAIN,images.idgesg.net
 DOMAIN,images.macrumors.com
+DOMAIN,images.moegoat.com
 DOMAIN,images.moovitapp.com
 DOMAIN,images.now-tv.com
 DOMAIN,images.nvidia.com
@@ -761,6 +763,7 @@ DOMAIN,img.itch.zone
 DOMAIN,img.javstore.net
 DOMAIN,img.jsdelivr.com
 DOMAIN,img.kbhgames.com
+DOMAIN,img.kemono.su
 DOMAIN,img.ltyears.com
 DOMAIN,img.m.mw
 DOMAIN,img.merch.cameo.com
@@ -782,6 +785,7 @@ DOMAIN,img.vim-cn.com
 DOMAIN,img.xhacgn.com
 DOMAIN,img.xjh.me
 DOMAIN,img.youtube.com
+DOMAIN,img1.ak.crunchyroll.com
 DOMAIN,img2.tnaflix.com
 DOMAIN,img2.xiangbinjun.com
 DOMAIN,img3.lltaohuaxiang.com
@@ -792,6 +796,7 @@ DOMAIN,imgrs.apkcombo.com
 DOMAIN,imgs.plurk.com
 DOMAIN,imgs.search.brave.com
 DOMAIN,imgs.xkcd.com
+DOMAIN,imgsrv.crunchyroll.com
 DOMAIN,imgssl.constantcontact.com
 DOMAIN,imgur.dcard.tw
 DOMAIN,info.cloudflare.com
@@ -879,6 +884,7 @@ DOMAIN,media.ra.kroll.com
 DOMAIN,media.shopimind.com
 DOMAIN,media.smooch.io
 DOMAIN,media.tenor.com
+DOMAIN,media.themoviedb.org
 DOMAIN,media.theporndude.com
 DOMAIN,media.user.com
 DOMAIN,media.webtoo.ls
@@ -945,6 +951,8 @@ DOMAIN,oss-binaries.phusionpassenger.com
 DOMAIN,oss.moe.cat
 DOMAIN,ovo.wxw.moe
 DOMAIN,p-smith.com
+DOMAIN,p.inari.site
+DOMAIN,p.sda1.dev
 DOMAIN,p.typekit.com
 DOMAIN,p.typekit.net
 DOMAIN,pacdn.500px.org
@@ -1114,6 +1122,7 @@ DOMAIN,scripts.dailymail.co.uk
 DOMAIN,scripts.webeo.com
 DOMAIN,sdk.qikify.com
 DOMAIN,sdk.snapkit.com
+DOMAIN,sdk.split.io
 DOMAIN,seal-newyork.bbb.org
 DOMAIN,searchanise-ef84.kxcdn.com
 DOMAIN,searchserverapi.com
@@ -1200,11 +1209,13 @@ DOMAIN,static.agilebits.com
 DOMAIN,static.apkpure.com
 DOMAIN,static.arxiv.org
 DOMAIN,static.assetlab.io
+DOMAIN,static.bangumi.moe
 DOMAIN,static.bit.cloud
 DOMAIN,static.bit.dev
 DOMAIN,static.bitfinex.com
 DOMAIN,static.buffer.com
 DOMAIN,static.bytepan.com
+DOMAIN,static.chaika.moe
 DOMAIN,static.change.org
 DOMAIN,static.cloud.coveo.com
 DOMAIN,static.codepen.io
@@ -1213,6 +1224,7 @@ DOMAIN,static.coingecko.com
 DOMAIN,static.corp.google.com
 DOMAIN,static.cracked.io
 DOMAIN,static.cracked.to
+DOMAIN,static.crunchyroll.com
 DOMAIN,static.crypto.com
 DOMAIN,static.dash.cloudflare.com
 DOMAIN,static.deepl.com
@@ -1256,8 +1268,10 @@ DOMAIN,static.maxmind.com
 DOMAIN,static.mediafire.com
 DOMAIN,static.meiguo.com
 DOMAIN,static.mendeley.com
+DOMAIN,static.mikuclub.fun
 DOMAIN,static.missav.com
 DOMAIN,static.mocortech.com
+DOMAIN,static.moegoat.com
 DOMAIN,static.monei.net
 DOMAIN,static.mysph.sph.com.sg
 DOMAIN,static.mytonwallet.io
@@ -1353,6 +1367,7 @@ DOMAIN,store-images.microsoft.com
 DOMAIN,store-images.s-microsoft.com
 DOMAIN,stories.freepiklabs.com
 DOMAIN,storybook.js.org
+DOMAIN,streaming.split.io
 DOMAIN,stubdownloader.services.mozilla.com
 DOMAIN,t.betterstack.com
 DOMAIN,t.nhentai.net
@@ -1374,6 +1389,7 @@ DOMAIN,thumbs2.sendvid.com
 DOMAIN,thumbsnap.com
 DOMAIN,tiles.stadiamaps.com
 DOMAIN,time.cloudflare.com
+DOMAIN,tn.vjav.com
 DOMAIN,ton.local.twitter.com
 DOMAIN,topbar-static.piano.io
 DOMAIN,torrindex.net
@@ -1389,7 +1405,6 @@ DOMAIN,ubistatic2-a.ubisoft.com
 DOMAIN,ui-cdn.digitalocean.com
 DOMAIN,ui.trailhead.com
 DOMAIN,unlimited-cdn.waifu2x.net
-DOMAIN,updates.istatmenus.app
 DOMAIN,updates.signal.org
 DOMAIN,updates2.signal.org
 DOMAIN,upload.filebase.com
@@ -1430,6 +1445,7 @@ DOMAIN,viu-static.akamaized.net
 DOMAIN,vjs.zencdn.net
 DOMAIN,vscode-sync-insiders.trafficmanager.net
 DOMAIN,vscode-sync.trafficmanager.net
+DOMAIN,vscodeexperiments.azureedge.net
 DOMAIN,vuejs.org
 DOMAIN,w.chatlio.com
 DOMAIN,w.soundcloud.com
@@ -1931,6 +1947,7 @@ DOMAIN-SUFFIX,placewaifu.com
 DOMAIN-SUFFIX,pnpm.io
 DOMAIN-SUFFIX,poecdn.net
 DOMAIN-SUFFIX,polyfill-fastly.io
+DOMAIN-SUFFIX,porn5.asia
 DOMAIN-SUFFIX,porndudecdn.com
 DOMAIN-SUFFIX,pornimg.xyz
 DOMAIN-SUFFIX,postimg.cc
@@ -1955,6 +1972,7 @@ DOMAIN-SUFFIX,qooqlevideo.com
 DOMAIN-SUFFIX,quoracdn.net
 DOMAIN-SUFFIX,qy0.ru
 DOMAIN-SUFFIX,r2.dev
+DOMAIN-SUFFIX,randomuser.me
 DOMAIN-SUFFIX,ravencoinipfs-gateway.com
 DOMAIN-SUFFIX,ravenjs.com
 DOMAIN-SUFFIX,rawgit.com
@@ -2037,6 +2055,7 @@ DOMAIN-SUFFIX,storage.yandexcloud.net
 DOMAIN-SUFFIX,storjipfs-gateway.com
 DOMAIN-SUFFIX,stream.publicradio.org
 DOMAIN-SUFFIX,streamhentai.org
+DOMAIN-SUFFIX,streamhk.com
 DOMAIN-SUFFIX,stripcdn.com
 DOMAIN-SUFFIX,stripecdn.com
 DOMAIN-SUFFIX,stripst.com
@@ -2156,11 +2175,15 @@ DOMAIN-WILDCARD,cdn-msp?.18comic.vip
 DOMAIN-WILDCARD,cdn-msp?.jmcomic.me
 DOMAIN-WILDCARD,cdn?-dl.pornhost.com
 DOMAIN-WILDCARD,cdn?-thumbs.pornhost.com
+DOMAIN-WILDCARD,cdn?.mikuclub.fun
+DOMAIN-WILDCARD,file?.mikuclub.fun
 DOMAIN-WILDCARD,i?.nhentai.net
 DOMAIN-WILDCARD,ocsp.*.amazontrust.com
 DOMAIN-WILDCARD,proxy-*.dailymotion.com
+DOMAIN-WILDCARD,rr1---??.ouo.si
 DOMAIN-WILDCARD,s3.*.wasabisys.com
 DOMAIN-WILDCARD,static*.tgstat.ru
+DOMAIN-WILDCARD,static-??-cdn.eporner.com
 DOMAIN-WILDCARD,t?.nhentai.net
 DOMAIN-WILDCARD,video?-thumbnail?.fc2.com
 DOMAIN-WILDCARD,vip-videoprem*-thumbnail?.fc2.com
