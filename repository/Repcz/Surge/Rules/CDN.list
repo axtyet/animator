@@ -45,6 +45,7 @@ DOMAIN,artworks.thetvdb.com
 DOMAIN,asset-cdn.uscardforum.com
 DOMAIN,asset.booth.pm
 DOMAIN,asset.mansionglobal.com
+DOMAIN,assets-cdn.123rf.com
 DOMAIN,assets-cdn.abcnews.com
 DOMAIN,assets-cdn.jable.tv
 DOMAIN,assets-cms.kraken.com
@@ -145,6 +146,7 @@ DOMAIN,assets.vercel.com
 DOMAIN,assets.video.yahoo.net
 DOMAIN,assets.videowise.com
 DOMAIN,assets.vidyard.com
+DOMAIN,assets.visioncritical.net
 DOMAIN,assets.vogue.com
 DOMAIN,assets.volvo.com
 DOMAIN,assets.xbox.com
@@ -294,6 +296,7 @@ DOMAIN,cdn.dribbble.com
 DOMAIN,cdn.dynamicyield.com
 DOMAIN,cdn.ecomm.ui.com
 DOMAIN,cdn.embed.ly
+DOMAIN,cdn.embedly.com
 DOMAIN,cdn.equalweb.com
 DOMAIN,cdn.european-alternatives.eu
 DOMAIN,cdn.faire.com
@@ -415,6 +418,7 @@ DOMAIN,cdn.tailwindcss.com
 DOMAIN,cdn.termius.com
 DOMAIN,cdn.thisav.com
 DOMAIN,cdn.tinypass.com
+DOMAIN,cdn.tolt.io
 DOMAIN,cdn.transcend.io
 DOMAIN,cdn.transifex.com
 DOMAIN,cdn.travis-ci.com
@@ -1010,6 +1014,7 @@ DOMAIN,pomf2.lain.la
 DOMAIN,pool.jortage.com
 DOMAIN,practicaldev-herokuapp-com.freetls.fastly.net
 DOMAIN,prego-cache.prod.sketch.com
+DOMAIN,previews.123rf.com
 DOMAIN,previews.fleek.co
 DOMAIN,pro2-ui-assets-s3-fy.myportfolio.com
 DOMAIN,prod-packager-packages.codesandbox.io
@@ -1029,6 +1034,7 @@ DOMAIN,publicsuffix.org
 DOMAIN,quriobot.com
 DOMAIN,r.r10s.jp
 DOMAIN,raw.github.com
+DOMAIN,rawmarkdown.cloudflareaccess.org
 DOMAIN,re.reimu.net
 DOMAIN,rebound.postmarkapp.com
 DOMAIN,redircdn.com
@@ -1078,6 +1084,7 @@ DOMAIN,s.w-x.co
 DOMAIN,s.w.org
 DOMAIN,s.wsj.net
 DOMAIN,s0.wp.com
+DOMAIN,s1.divhunt.com
 DOMAIN,s1.feedly.com
 DOMAIN,s1.qwant.com
 DOMAIN,s1.wp.com
@@ -1178,6 +1185,7 @@ DOMAIN,static-assets.mapbox.com
 DOMAIN,static-assets.npr.org
 DOMAIN,static-cache.fboom.me
 DOMAIN,static-cache.k2s.cc
+DOMAIN,static-cdn.123rf.com
 DOMAIN,static-cdn.jtvnw.net
 DOMAIN,static-cdn.mastodon.social
 DOMAIN,static-cdn.osdn.net
@@ -1247,6 +1255,7 @@ DOMAIN,static.freeimages.com
 DOMAIN,static.frostming.com
 DOMAIN,static.getbutton.io
 DOMAIN,static.gettyimages.com
+DOMAIN,static.global.visioncritical.com
 DOMAIN,static.gnome.org
 DOMAIN,static.gopro.com
 DOMAIN,static.grammarly.com
@@ -1326,6 +1335,7 @@ DOMAIN,static.v2ex.com
 DOMAIN,static.vocadb.net
 DOMAIN,static.whatsapp.net
 DOMAIN,static.zaobao.com
+DOMAIN,static.zaobao.com.sg
 DOMAIN,static0.lottiefiles.com
 DOMAIN,static01.nyt.com
 DOMAIN,static02.nyt.com
@@ -1769,6 +1779,8 @@ DOMAIN-SUFFIX,imgix.net
 DOMAIN-SUFFIX,imglink.win
 DOMAIN-SUFFIX,imgmrplay.xyz
 DOMAIN-SUFFIX,imgsmail.ru
+DOMAIN-SUFFIX,imgtbl.com
+DOMAIN-SUFFIX,imgtp.com
 DOMAIN-SUFFIX,imgyzzy.com
 DOMAIN-SUFFIX,in.applicationinsights.azure.com
 DOMAIN-SUFFIX,infura-ipfs.io
@@ -1835,6 +1847,7 @@ DOMAIN-SUFFIX,jdbstatic.com
 DOMAIN-SUFFIX,jinyingimage.com
 DOMAIN-SUFFIX,jisuimage.com
 DOMAIN-SUFFIX,jitpack.io
+DOMAIN-SUFFIX,js.hubspot.com
 DOMAIN-SUFFIX,js.hubspotfeedback.com
 DOMAIN-SUFFIX,js.usemessages.com
 DOMAIN-SUFFIX,jscloud.net
@@ -2092,6 +2105,7 @@ DOMAIN-SUFFIX,typography.com
 DOMAIN-SUFFIX,ubembed.com
 DOMAIN-SUFFIX,uber-assets.com
 DOMAIN-SUFFIX,ucarecdn.com
+DOMAIN-SUFFIX,ungh.cc
 DOMAIN-SUFFIX,ungrounded.net
 DOMAIN-SUFFIX,unpkg.co
 DOMAIN-SUFFIX,unpkg.com
@@ -2102,6 +2116,7 @@ DOMAIN-SUFFIX,usercontent.dev
 DOMAIN-SUFFIX,usercontent.goog
 DOMAIN-SUFFIX,usercontent.google.com
 DOMAIN-SUFFIX,usercontent.one
+DOMAIN-SUFFIX,ut-assets.com
 DOMAIN-SUFFIX,uvcdn.com
 DOMAIN-SUFFIX,v-cdn.net
 DOMAIN-SUFFIX,v-corp.staticblitz.com

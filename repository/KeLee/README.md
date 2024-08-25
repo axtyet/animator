@@ -185,7 +185,7 @@ Plus 流量 1024G 月付 120
     <th>名称</th>
   </tr>
   <tr>
-    <td rowspan="93"><strong>去广告插件</strong></td>
+    <td rowspan="94"><strong>去广告插件</strong></td>
   <tr>
     <td>001</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/BlockAdvertisers.plugin">广告平台拦截器</a></td>
@@ -554,6 +554,10 @@ Plus 流量 1024G 月付 120
     <td>092</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/MaiMai_remove_ads.plugin">脉脉去广告</a></td>
   </tr>
+  <tr>
+    <td>093</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/YoudaoDict_remove_ads.plugin">网易有道词典去广告</a></td>
+  </tr>
     <td></td>
     <td></td>
     <td></td>
@@ -571,11 +575,11 @@ Plus 流量 1024G 月付 120
   <tr>
     <td>02</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/DouBan_remove_ads.plugin">豆瓣去广告</a></td>
-  <tr>
+  </tr>
   <tr>
     <td>03</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/BaiduMap_remove_ads.plugin">百度地图去广告</a></td>
-  <tr>
+  </tr>
     <td></td>
     <td></td>
     <td></td>

@@ -2,7 +2,7 @@
 //
 // Clash Verge Rev (Version ≥ 17.2) & Mihomo-Party (Version ≥ 0.5.8)
 //
-// 最后更新时间: 2024-08-17 20:10
+// 最后更新时间: 2024-8-24 22:00
 
 // 规则集通用配置
 const ruleProviderCommon = {
@@ -14,7 +14,7 @@ const ruleProviderCommon = {
 // 策略组通用配置
 const groupBaseOption = {
   "interval": 300,
-  "url": "http://latency-test.skk.moe/endpoint",
+  "url": "http://connectivitycheck.gstatic.com/generate_204",
   "max-failed-times": 3,
 };
 
@@ -46,7 +46,7 @@ function main(config) {
     "ipv6": false,
     "enhanced-mode": "fake-ip",
     "fake-ip-range": "198.18.0.1/16",
-    "fake-ip-filter": ["+.lan", "*", "+.local"],
+    "fake-ip-filter": ["*", "+.lan", "+.local", "+.direct", "+.msftconnecttest.com", "+.msftncsi.com"],
     "default-nameserver": ["223.5.5.5", "119.29.29.29", "system"],
     "nameserver": ["223.5.5.5", "119.29.29.29"],
     "nameserver-policy": {
