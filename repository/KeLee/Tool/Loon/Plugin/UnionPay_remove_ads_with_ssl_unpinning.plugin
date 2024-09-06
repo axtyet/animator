@@ -5,7 +5,7 @@
 #!tag = 去广告
 #!system = 
 #!system_version = 
-#!loon_version = 3.2.1(732)
+#!loon_version = 3.2.1(745)
 #!homepage = https://getupnote.com/share/notes/zSn1ShBmzNYISKcTgjXE5oHMrNf2/34bf3aad-7872-497d-b239-198e27e8c84c
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/main/App_icon/120px/UnionPay.png
 #!date = 2023-12-07 18:25:47
@@ -24,5 +24,5 @@ http-response ^https:\/\/base\.95516\.com\/app\/inApp\/sys\/appShowGroup\/ scrip
 http-response ^https:\/\/account\.95516\.com\/fortune\/inApp\/common\/ script-path = https://gitlab.com/lodepuly/vpn_tool/raw/master/Resource/Script/UnionPay/UnionPay_remove_ads_with_ssl_unpinning.js, requires-body = true, tag = 移除云闪付推广
 http-response ^https:\/\/content\.95516\.com\/koala-pre\/koala\/(recommend\/hotList|right\/queryAllRights) script-path = https://gitlab.com/lodepuly/vpn_tool/raw/master/Resource/Script/UnionPay/UnionPay_remove_ads_with_ssl_unpinning.js, requires-body = true, tag = 移除云闪付推广
 
-[Mitm]
+[MitM]
 hostname = account.95516.com, base.95516.com, content.95516.com

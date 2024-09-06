@@ -20,10 +20,8 @@
 
 */
 
-/* jshint esversion:11 */
+/* eslint-disable indent */
 /* global cloneInto */
-
-'use strict';
 
 // ruleset: swe-1
 
@@ -40,11 +38,11 @@
 // Start of code to inject
 const uBOL_addEventListenerDefuser = function() {
 
-const scriptletGlobals = {}; // jshint ignore: line
+const scriptletGlobals = {}; // eslint-disable-line
 
-const argsList = [["blur","i.focusPlayerElement"],["scroll","t.view.updateBounds"],["/adblockDetector|adsInserted|partnerExternalLinkClick/"],["click"],["contextmenu","","showCopyrightBox"],["/contextmenu|keydown/","e.preventDefault"],["/^(?:adBlocker|contextmenu)$/"],["scroll","helpers.scroll(id)"],["/contextmenu|cut|copy|paste/"],["contextmenu"],["contextmenu",".disabled"],["wheel"],["/mousewheel|DOMMouseScroll/","smoothScrollEvent"]];
+const argsList = [["blur","i.focusPlayerElement"],["scroll","t.view.updateBounds"],["/adblockDetector|adsInserted|partnerExternalLinkClick/"],["contextmenu","","showCopyrightBox"],["/contextmenu|keydown/","e.preventDefault"],["/^(?:adBlocker|contextmenu)$/"],["scroll","helpers.scroll(id)"],["/contextmenu|cut|copy|paste/"],["contextmenu"],["contextmenu",".disabled"],["wheel"],["/mousewheel|DOMMouseScroll/","smoothScrollEvent"]];
 
-const hostnamesMap = new Map([["allas.se",[0,1]],["elle.se",[0,1]],["femina.se",[0,1]],["hant.se",[0,1]],["mabra.com",[0,1]],["residencemagazine.se",[0,1]],["svenskdam.se",[0,1]],["motherhood.se",[0,1]],["byggahus.se",2],["devote.se",3],["fotosidan.se",4],["internetodontologi.se",5],["lwcdn.com",6],["mitti.se",7],["cafe.se",7],["praktisktbatagande.se",7],["sexpacket.se",8],["streamio.com",9],["nyan.ax",9],["spelhubben.se",9],["illvet.se",9],["varldenshistoria.se",9],["www.expressen.se",10],["di.se",10],["lundagard.se",11],["boktugg.se",11],["morotsliv.com",11],["affarsstaden.se",11],["kurera.se",11],["nyfiknainvesterare.se",11],["home2tiny.se",12]]);
+const hostnamesMap = new Map([["allas.se",[0,1]],["elle.se",[0,1]],["femina.se",[0,1]],["hant.se",[0,1]],["mabra.com",[0,1]],["residencemagazine.se",[0,1]],["svenskdam.se",[0,1]],["motherhood.se",[0,1]],["byggahus.se",2],["fotosidan.se",3],["internetodontologi.se",4],["lwcdn.com",5],["mitti.se",6],["cafe.se",6],["praktisktbatagande.se",6],["sexpacket.se",7],["streamio.com",8],["nyan.ax",8],["spelhubben.se",8],["illvet.se",8],["varldenshistoria.se",8],["www.expressen.se",9],["di.se",9],["lundagard.se",10],["boktugg.se",10],["morotsliv.com",10],["affarsstaden.se",10],["kurera.se",10],["nyfiknainvesterare.se",10],["home2tiny.se",11]]);
 
 const entitiesMap = new Map([]);
 
@@ -102,45 +100,67 @@ function addEventListenerDefuser(
         }
         return matchesBoth;
     };
-    const trapEddEventListeners = ( ) => {
-        const eventListenerHandler = {
-            apply: function(target, thisArg, args) {
-                let t, h;
-                try {
-                    t = String(args[0]);
-                    if ( typeof args[1] === 'function' ) {
-                        h = String(safe.Function_toString(args[1]));
-                    } else if ( typeof args[1] === 'object' && args[1] !== null ) {
-                        if ( typeof args[1].handleEvent === 'function' ) {
-                            h = String(safe.Function_toString(args[1].handleEvent));
-                        }
-                    } else {
-                        h = String(args[1]);
+    runAt(( ) => {
+        proxyApplyFn('EventTarget.prototype.addEventListener', function(target, thisArg, args) {
+            let t, h;
+            try {
+                t = String(args[0]);
+                if ( typeof args[1] === 'function' ) {
+                    h = String(safe.Function_toString(args[1]));
+                } else if ( typeof args[1] === 'object' && args[1] !== null ) {
+                    if ( typeof args[1].handleEvent === 'function' ) {
+                        h = String(safe.Function_toString(args[1].handleEvent));
                     }
-                } catch(ex) {
+                } else {
+                    h = String(args[1]);
                 }
-                if ( type === '' && pattern === '' ) {
-                    safe.uboLog(logPrefix, `Called: ${t}\n${h}\n${elementDetails(thisArg)}`);
-                } else if ( shouldPrevent(thisArg, t, h) ) {
-                    return safe.uboLog(logPrefix, `Prevented: ${t}\n${h}\n${elementDetails(thisArg)}`);
-                }
-                return Reflect.apply(target, thisArg, args);
-            },
+            } catch(ex) {
+            }
+            if ( type === '' && pattern === '' ) {
+                safe.uboLog(logPrefix, `Called: ${t}\n${h}\n${elementDetails(thisArg)}`);
+            } else if ( shouldPrevent(thisArg, t, h) ) {
+                return safe.uboLog(logPrefix, `Prevented: ${t}\n${h}\n${elementDetails(thisArg)}`);
+            }
+            return Reflect.apply(target, thisArg, args);
+        });
+    }, extraArgs.runAt);
+}
+
+function proxyApplyFn(
+    target = '',
+    handler = ''
+) {
+    let context = globalThis;
+    let prop = target;
+    for (;;) {
+        const pos = prop.indexOf('.');
+        if ( pos === -1 ) { break; }
+        context = context[prop.slice(0, pos)];
+        if ( context instanceof Object === false ) { return; }
+        prop = prop.slice(pos+1);
+    }
+    const fn = context[prop];
+    if ( typeof fn !== 'function' ) { return; }
+    const fnStr = fn.toString();
+    const toString = (function toString() { return fnStr; }).bind(null);
+    if ( fn.prototype && fn.prototype.constructor === fn ) {
+        context[prop] = new Proxy(fn, {
+            construct: handler,
             get(target, prop, receiver) {
-                if ( prop === 'toString' ) {
-                    return target.toString.bind(target);
-                }
+                if ( prop === 'toString' ) { return toString; }
                 return Reflect.get(target, prop, receiver);
             },
-        };
-        self.EventTarget.prototype.addEventListener = new Proxy(
-            self.EventTarget.prototype.addEventListener,
-            eventListenerHandler
-        );
-    };
-    runAt(( ) => {
-        trapEddEventListeners();
-    }, extraArgs.runAt);
+        });
+        return (...args) => Reflect.construct(...args);
+    }
+    context[prop] = new Proxy(fn, {
+        apply: handler,
+        get(target, prop, receiver) {
+            if ( prop === 'toString' ) { return toString; }
+            return Reflect.get(target, prop, receiver);
+        },
+    });
+    return (...args) => Reflect.apply(...args);
 }
 
 function runAt(fn, when) {
@@ -345,7 +365,19 @@ function shouldDebug(details) {
 /******************************************************************************/
 
 const hnParts = [];
-try { hnParts.push(...document.location.hostname.split('.')); }
+try {
+    let origin = document.location.origin;
+    if ( origin === 'null' ) {
+        const origins = document.location.ancestorOrigins;
+        for ( let i = 0; i < origins.length; i++ ) {
+            origin = origins[i];
+            if ( origin !== 'null' ) { break; }
+        }
+    }
+    const pos = origin.lastIndexOf('://');
+    if ( pos === -1 ) { return; }
+    hnParts.push(...origin.slice(pos+3).split('.'));
+}
 catch(ex) { }
 const hnpartslen = hnParts.length;
 if ( hnpartslen === 0 ) { return; }

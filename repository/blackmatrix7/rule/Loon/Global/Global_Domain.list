@@ -1,14 +1,14 @@
 # NAME: Global
 # AUTHOR: blackmatrix7
 # REPO: https://github.com/blackmatrix7/ios_rule_script
-# UPDATED: 2024-08-16 02:12:19
-# DOMAIN: 82
+# UPDATED: 2024-09-05 02:12:15
+# DOMAIN: 83
 # DOMAIN-KEYWORD: 36
-# DOMAIN-SUFFIX: 24980
+# DOMAIN-SUFFIX: 24989
 # IP-CIDR: 112
 # IP-CIDR6: 4
 # USER-AGENT: 46
-# TOTAL: 25260
+# TOTAL: 25270
 .000webhost.com
 .01.org
 .02weqj32.com
@@ -646,6 +646,7 @@
 .abema-tv.com
 .abema.io
 .abema.tv
+.abematv.co.jp
 .abgsp1.buzz
 .abigass.com
 .ablwang.com
@@ -973,6 +974,7 @@
 .ahxxx.club
 .ai-kan.net
 .ai-wen.net
+.ai.com
 .ai7995.site
 .ai91porn.cc
 .aiasahi.jp
@@ -5220,6 +5222,7 @@
 .clinicalkey.com
 .clip16.com
 .clipcake.com
+.clipdrop.co
 .clipfish.de
 .cliphayho.com
 .cliphunter.com
@@ -6107,6 +6110,7 @@
 .didilist.com
 .dierectv.com
 .difangwenge.org
+.dify.ai
 .digicert-cn.com
 .digicert-validation.com
 .digicert.com
@@ -6437,6 +6441,7 @@
 .doceapower.com
 .docker.com
 .docker.io
+.dockerhub.com
 .dockerizer.com
 .docleradn.com
 .doclercdn.com
@@ -12248,6 +12253,7 @@
 .ivacy.com
 .iverycd.com
 .ivintageporn.com
+.ivonblog.com
 .ivpn.net
 .iw8j.cc
 .iwank.tv
@@ -12289,6 +12295,7 @@
 .jambotube.com
 .jamestown.org
 .jamyangnorbu.com
+.jan.ai
 .jandyx.com
 .janor6.net
 .janwongphoto.com
@@ -12313,6 +12320,7 @@
 .jasa3dmax.com
 .jasaautocad.com
 .jasmin.com
+.jasper.ai
 .jav-1080.com
 .jav-angel.net
 .jav-legend.com
@@ -16515,6 +16523,7 @@
 .openamt.com
 .openapiplatform.com
 .openapiservice.com
+.openart.ai
 .opencollective.com
 .opencreate.org
 .opendemocracy.net
@@ -23097,7 +23106,6 @@
 .wballiance.com
 .wbd.ms
 .wbdnbo.net
-.wbrks.com
 .wbvm4s.com
 .wd.bible
 .wd.com
@@ -23596,6 +23604,7 @@
 .x-caprice.com
 .x-fetish.org
 .x-wall.org
+.x.ai
 .x.co
 .x.com
 .x.company
@@ -25061,6 +25070,7 @@ public-us-pingsx.api.clonoth.com
 push-apple.com.akadns.net
 qualcomm.sc.omtrdc.net
 self.events.data.microsoft.com
+servd-anthropic-website.b-cdn.net
 tesla-cdn.thron.com
 translomatic.foxfortmobile.com
 vmware.tt.omtrdc.net

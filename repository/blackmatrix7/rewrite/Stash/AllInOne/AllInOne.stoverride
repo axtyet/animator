@@ -1,15 +1,15 @@
 name: AllInOne
-desc: 最后更新时间 2024-08-25 02:14:30
+desc: 最后更新时间 2024-09-03 02:15:35
 # author: blackmatrix7
 # repo: https://github.com/blackmatrix7/ios_rule_script
 # domain: 5
 # http-request-script: 1
 # http-response-script: 25
 # redirect: 8
-# reject: 684
-# mitm: 719
+# reject: 686
+# mitm: 721
 # force-http-engine-hosts: 6
-# total: 1448
+# total: 1452
 
 
 
@@ -397,6 +397,7 @@ http:
     - ^https?:\/\/evs\.500\.com\/esinfo\/loading\/loading - reject
     - ^https?:\/\/explorer\.tratao\.com\/api\/client\/v4\/xtransfer\/ad\/ - reject
     - ^https?:\/\/fbchina\.flipchina\.cn\/v2\/ad\/query\/* - reject
+    - ^https?:\/\/file\.mylyg\.net\/banner\/(fc[a-f0-9]{30})\.jpg - reject
     - ^https?:\/\/flowplus\.meituan\.net\/v\d\/\w+\/linglong\/\d+\.(gif|jpg|mp4) - reject
     - ^https?:\/\/fmapp\.chinafamilymart\.com\.cn\/api\/app\/biz\/base\/appversion\/latest - reject
     - ^https?:\/\/foodie-api\.yiruikecorp\.com\/v\d\/(banner|notice)\/overview - reject
@@ -477,6 +478,7 @@ http:
     - ^https?:\/\/lban\.spdb\.com\.cn\/mspmk-web-component\/(getAdvList|prefetchAdvList)\.ah - reject
     - ^https?:\/\/lchttpapi\.xczim\.com\/1\.1\/functions\/getLaunchImageForIOS - reject
     - ^https?:\/\/learn\.chaoxing\.com\/apis\/service\/appConfig\? - reject
+    - ^https?:\/\/lens\.leoao\.com\/lens\/.+(getUserScheme|queryAppBanners|Advert|popup) - reject
     - ^https?:\/\/list-app-m\.i4\.cn\/getopfstadinfo\.xhtml - reject
     - ^https?:\/\/m-adphone\.wenhua\.com\.cn\/ - reject
     - ^https?:\/\/m5\.amap\.com\/ws\/valueadded\/ - reject
@@ -1226,6 +1228,7 @@ http:
     - "explorer.tratao.com"
     - "fbchina.flipchina.cn"
     - "file.dian.so"
+    - "file.mylyg.net"
     - "flowplus.meituan.net"
     - "fmapp.chinafamilymart.com.cn"
     - "foodie-api.yiruikecorp.com"
@@ -1317,6 +1320,7 @@ http:
     - "lcen.xiaote.net"
     - "lchttpapi.xczim.com"
     - "learn.chaoxing.com"
+    - "lens.leoao.com"
     - "list-app-m.i4.cn"
     - "logoshejishi.mairuan.com"
     - "m*.amap.com"

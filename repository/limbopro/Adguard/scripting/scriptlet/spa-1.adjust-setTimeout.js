@@ -20,10 +20,8 @@
 
 */
 
-/* jshint esversion:11 */
+/* eslint-disable indent */
 /* global cloneInto */
-
-'use strict';
 
 // ruleset: spa-1
 
@@ -40,13 +38,13 @@
 // Start of code to inject
 const uBOL_adjustSetTimeout = function() {
 
-const scriptletGlobals = {}; // jshint ignore: line
+const scriptletGlobals = {}; // eslint-disable-line
 
-const argsList = [[".html(","*","0.001"],["playFunction","*","0.001"],["resumeVideoFromAd","*","0.001"],["atualizar","*","0.02"],[".delay","*","0.001"],["videoliberado","*","0.02"],["PLAYER","*","0.02"],["liberaDownload","*","0.02"],["contador","","0.02"],["PLAYER LIBERADO","10000","0.02"],["redirect","*","0.02"]];
+const argsList = [["contador","*","0.001"],["counter","*","0.001"],[".html(","*","0.001"],["playFunction","*","0.001"],["e(!0)","*","0.001"],["resumeVideoFromAd","*","0.001"],["/atualizar|hided/","*","0.001"],[".delay","*","0.001"],["videoliberado","*","0.02"],["PLAYER","*","0.02"],["liberaDownload","*","0.02"],["contador","","0.02"],["PLAYER LIBERADO","10000","0.02"],["redirect","*","0.02"],["conta"]];
 
-const hostnamesMap = new Map([["sabornutritivo.com",0],["guiacripto.online",1],["terra.com.br",2],["modsimuladores.com",3],["assistirfilmesdaluna.com",3],["vejaideias.com.br",3],["jogoscompleto.xyz",3],["fazercurriculo.online",4],["usandoapp.com",4],["arnolds.com.br",5],["receitasoncaseiras.online",6],["automotivocarros.com",7],["portecnologia.com",7],["cartaocreditoplatinum.org",7],["criarjogosandroid.com",8],["adrenalinagames.com",8],["nutricaohoje.website",9]]);
+const hostnamesMap = new Map([["dicasdereceitas.net",0],["dicasgeeks.net",0],["boafinancas.com",1],["sabornutritivo.com",2],["guiacripto.online",3],["mundodeportivo.com",4],["terra.com.br",5],["receitasnatural.com",6],["financastop.online",6],["cryptobr.biz",6],["modsimuladores.com",6],["assistirfilmesdaluna.com",6],["vejaideias.com.br",6],["jogoscompleto.xyz",6],["fazercurriculo.online",7],["usandoapp.com",7],["arnolds.com.br",8],["receitasoncaseiras.online",9],["automotivocarros.com",10],["portecnologia.com",10],["cartaocreditoplatinum.org",10],["criarjogosandroid.com",11],["adrenalinagames.com",11],["nutricaohoje.website",12],["peliculasyserieslatino.me",14]]);
 
-const entitiesMap = new Map([["lectulandia",10]]);
+const entitiesMap = new Map([["lectulandia",13]]);
 
 const exceptionsMap = new Map([]);
 
@@ -248,7 +246,19 @@ function safeSelf() {
 /******************************************************************************/
 
 const hnParts = [];
-try { hnParts.push(...document.location.hostname.split('.')); }
+try {
+    let origin = document.location.origin;
+    if ( origin === 'null' ) {
+        const origins = document.location.ancestorOrigins;
+        for ( let i = 0; i < origins.length; i++ ) {
+            origin = origins[i];
+            if ( origin !== 'null' ) { break; }
+        }
+    }
+    const pos = origin.lastIndexOf('://');
+    if ( pos === -1 ) { return; }
+    hnParts.push(...origin.slice(pos+3).split('.'));
+}
 catch(ex) { }
 const hnpartslen = hnParts.length;
 if ( hnpartslen === 0 ) { return; }

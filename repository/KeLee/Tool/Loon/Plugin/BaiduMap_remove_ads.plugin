@@ -5,7 +5,7 @@
 #!tag = 去广告
 #!system = 
 #!system_version = 
-#!loon_version = 3.2.1(732)
+#!loon_version = 3.2.1(745)
 #!homepage = https://gitlab.com/lodepuly/vpn_tool/-/blob/master/README.md
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/main/App_icon/120px/BaiduMap.png
 #!date = 2024-08-18 01:36:08
@@ -47,5 +47,5 @@ IP-CIDR, 186.76.76.200/32, REJECT, no-resolve
 # 周边 - 盲盒卡Result.cards[1] / 搜索热词Result.cards[4] / 每周优惠券卡Result.cards[5] / 推送Result.cards[9]
 ^https:\/\/newclient\.map\.baidu\.com\/living\/nearby\/api\? response-body-json-del Result.cards[1] Result.cards[4] Result.cards[5] Result.cards[9]
 
-[Mitm]
+[MitM]
 hostname = afd.baidu.com, newclient.map.baidu.com, yongche.baidu.com, ecom.map.baidu.com

@@ -20,10 +20,8 @@
 
 */
 
-/* jshint esversion:11 */
+/* eslint-disable indent */
 /* global cloneInto */
-
-'use strict';
 
 // ruleset: chn-0
 
@@ -40,15 +38,15 @@
 // Start of code to inject
 const uBOL_jsonPrune = function() {
 
-const scriptletGlobals = {}; // jshint ignore: line
+const scriptletGlobals = {}; // eslint-disable-line
 
-const argsList = [["*","nativeConfig"],["*.*","adFeedbackData adType adServedUrls"],["*","list.*.link.ad list.*.link.kicker"],["configs.*.properties.slideshowWCSettings.interstitialNativeAds configs.*.properties.fullScreenSlideshowSettings.interstitialNativeAds properties.componentConfigs.slideshowConfigs.interstitialNativeAds properties.componentConfigs.slideshowConfigs.slideshowSettings.interstitialNativeAds"],["ads"],["ad"]];
+const argsList = [["*","nativeConfig"],["*.*","adFeedbackData adType adServedUrls"],["*","list.*.link.ad list.*.link.kicker"],["configs.*.properties.slideshowWCSettings.interstitialNativeAds configs.*.properties.fullScreenSlideshowSettings.interstitialNativeAds properties.componentConfigs.slideshowConfigs.interstitialNativeAds properties.componentConfigs.slideshowConfigs.slideshowSettings.interstitialNativeAds"],["data.cm_info.ads"],["ads"],["ad"]];
 
-const hostnamesMap = new Map([["moorzon.com",0],["msn.cn",[1,2,3]],["news.qq.com",4],["www.qq.com",4],["v.qq.com",4],["new.qq.com",4],["qq.com",5]]);
+const hostnamesMap = new Map([["moorzon.com",0],["msn.cn",[1,2,3]],["bilibili.com",4],["news.qq.com",5],["www.qq.com",5],["v.qq.com",5],["new.qq.com",5],["qq.com",6]]);
 
 const entitiesMap = new Map([]);
 
-const exceptionsMap = new Map([["sports.qq.com",[5]],["work.weixin.qq.com",[5]]]);
+const exceptionsMap = new Map([["sports.qq.com",[6]],["work.weixin.qq.com",[6]]]);
 
 /******************************************************************************/
 
@@ -420,7 +418,19 @@ function getRandomToken() {
 /******************************************************************************/
 
 const hnParts = [];
-try { hnParts.push(...document.location.hostname.split('.')); }
+try {
+    let origin = document.location.origin;
+    if ( origin === 'null' ) {
+        const origins = document.location.ancestorOrigins;
+        for ( let i = 0; i < origins.length; i++ ) {
+            origin = origins[i];
+            if ( origin !== 'null' ) { break; }
+        }
+    }
+    const pos = origin.lastIndexOf('://');
+    if ( pos === -1 ) { return; }
+    hnParts.push(...origin.slice(pos+3).split('.'));
+}
 catch(ex) { }
 const hnpartslen = hnParts.length;
 if ( hnpartslen === 0 ) { return; }

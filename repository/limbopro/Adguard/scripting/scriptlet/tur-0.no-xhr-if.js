@@ -20,10 +20,8 @@
 
 */
 
-/* jshint esversion:11 */
+/* eslint-disable indent */
 /* global cloneInto */
-
-'use strict';
 
 // ruleset: tur-0
 
@@ -40,7 +38,7 @@
 // Start of code to inject
 const uBOL_noXhrIf = function() {
 
-const scriptletGlobals = {}; // jshint ignore: line
+const scriptletGlobals = {}; // eslint-disable-line
 
 const argsList = [["pagead2.googlesyndication.com"],["/advert.js"],["static.doubleclick.net/instream/ad_status.js"],["spotxchange.com"]];
 
@@ -67,6 +65,13 @@ function noXhrIf(
         'content-type': '',
         'content-length': '',
     };
+    const safeDispatchEvent = (xhr, type) => {
+        try {
+            xhr.dispatchEvent(new Event(type));
+        } catch(_) {
+        }
+    };
+    const XHRBefore = XMLHttpRequest.prototype;
     self.XMLHttpRequest = class extends self.XMLHttpRequest {
         open(method, url, ...args) {
             xhrInstances.delete(this);
@@ -93,27 +98,26 @@ function noXhrIf(
             let promise = Promise.resolve({
                 xhr: this,
                 directive,
-                props: {
-                    readyState: { value: 4 },
+                response: {
                     response: { value: '' },
                     responseText: { value: '' },
                     responseXML: { value: null },
                     responseURL: { value: haystack.url },
-                    status: { value: 200 },
-                    statusText: { value: 'OK' },
-                },
+                }
             });
             switch ( this.responseType ) {
             case 'arraybuffer':
                 promise = promise.then(details => {
-                    details.props.response.value = new ArrayBuffer(0);
+                    const response = details.response;
+                    response.response.value = new ArrayBuffer(0);
                     return details;
                 });
                 haystack.headers['content-type'] = 'application/octet-stream';
                 break;
             case 'blob':
                 promise = promise.then(details => {
-                    details.props.response.value = new Blob([]);
+                    const response = details.response;
+                    response.response.value = new Blob([]);
                     return details;
                 });
                 haystack.headers['content-type'] = 'application/octet-stream';
@@ -122,8 +126,9 @@ function noXhrIf(
                 promise = promise.then(details => {
                     const parser = new DOMParser();
                     const doc = parser.parseFromString('', 'text/html');
-                    details.props.response.value = doc;
-                    details.props.responseXML.value = doc;
+                    const response = details.response;
+                    response.response.value = doc;
+                    response.responseXML.value = doc;
                     return details;
                 });
                 haystack.headers['content-type'] = 'text/html';
@@ -131,8 +136,9 @@ function noXhrIf(
             }
             case 'json':
                 promise = promise.then(details => {
-                    details.props.response.value = {};
-                    details.props.responseText.value = '{}';
+                    const response = details.response;
+                    response.response.value = {};
+                    response.responseText.value = '{}';
                     return details;
                 });
                 haystack.headers['content-type'] = 'application/json';
@@ -141,8 +147,9 @@ function noXhrIf(
                 if ( directive === '' ) { break; }
                 promise = promise.then(details => {
                     return generateContentFn(details.directive).then(text => {
-                        details.props.response.value = text;
-                        details.props.responseText.value = text;
+                        const response = details.response;
+                        response.response.value = text;
+                        response.responseText.value = text;
                         return details;
                     });
                 });
@@ -150,11 +157,35 @@ function noXhrIf(
                 break;
             }
             promise.then(details => {
-                haystack.headers['content-length'] = `${details.props.response.value}`.length;
-                Object.defineProperties(details.xhr, details.props);
-                details.xhr.dispatchEvent(new Event('readystatechange'));
-                details.xhr.dispatchEvent(new Event('load'));
-                details.xhr.dispatchEvent(new Event('loadend'));
+                Object.defineProperties(details.xhr, {
+                    readyState: { value: 1, configurable: true },
+                });
+                safeDispatchEvent(details.xhr, 'readystatechange');
+                return details;
+            }).then(details => {
+                const response = details.response;
+                haystack.headers['content-length'] = `${response.response.value}`.length;
+                Object.defineProperties(details.xhr, {
+                    readyState: { value: 2, configurable: true },
+                    status: { value: 200 },
+                    statusText: { value: 'OK' },
+                });
+                safeDispatchEvent(details.xhr, 'readystatechange');
+                return details;
+            }).then(details => {
+                Object.defineProperties(details.xhr, {
+                    readyState: { value: 3, configurable: true },
+                });
+                Object.defineProperties(details.xhr, details.response);
+                safeDispatchEvent(details.xhr, 'readystatechange');
+                return details;
+            }).then(details => {
+                Object.defineProperties(details.xhr, {
+                    readyState: { value: 4 },
+                });
+                safeDispatchEvent(details.xhr, 'readystatechange');
+                safeDispatchEvent(details.xhr, 'load');
+                safeDispatchEvent(details.xhr, 'loadend');
                 safe.uboLog(logPrefix, `Prevented with response:\n${details.xhr.response}`);
             });
         }
@@ -180,6 +211,18 @@ function noXhrIf(
             if ( out.length !== 0 ) { out.push(''); }
             return out.join('\r\n');
         }
+    };
+    self.XMLHttpRequest.prototype.open.toString = function() {
+        return XHRBefore.open.toString();
+    };
+    self.XMLHttpRequest.prototype.send.toString = function() {
+        return XHRBefore.send.toString();
+    };
+    self.XMLHttpRequest.prototype.getResponseHeader.toString = function() {
+        return XHRBefore.getResponseHeader.toString();
+    };
+    self.XMLHttpRequest.prototype.getAllResponseHeaders.toString = function() {
+        return XHRBefore.getAllResponseHeaders.toString();
     };
 }
 
@@ -454,7 +497,19 @@ function safeSelf() {
 /******************************************************************************/
 
 const hnParts = [];
-try { hnParts.push(...document.location.hostname.split('.')); }
+try {
+    let origin = document.location.origin;
+    if ( origin === 'null' ) {
+        const origins = document.location.ancestorOrigins;
+        for ( let i = 0; i < origins.length; i++ ) {
+            origin = origins[i];
+            if ( origin !== 'null' ) { break; }
+        }
+    }
+    const pos = origin.lastIndexOf('://');
+    if ( pos === -1 ) { return; }
+    hnParts.push(...origin.slice(pos+3).split('.'));
+}
 catch(ex) { }
 const hnpartslen = hnParts.length;
 if ( hnpartslen === 0 ) { return; }

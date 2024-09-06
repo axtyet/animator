@@ -1,4 +1,18 @@
 /* README: https://github.com/VirgilClyne/iRingo */
+console.log(' iRingo: 📍 GeoServices β Response')
+const $platform = platform();
+function platform() {
+    if ("undefined" !== typeof $environment && $environment["surge-version"])
+        return "Surge"
+    if ("undefined" !== typeof $environment && $environment["stash-version"])
+        return "Stash"
+    if ("undefined" !== typeof module && !!module.exports) return "Node.js"
+    if ("undefined" !== typeof $task) return "Quantumult X"
+    if ("undefined" !== typeof $loon) return "Loon"
+    if ("undefined" !== typeof $rocket) return "Shadowrocket"
+    if ("undefined" !== typeof Egern) return "Egern"
+}
+
 /* https://www.lodashjs.com */
 class Lodash {
 	static name = "Lodash";
@@ -71,25 +85,13 @@ class Lodash {
 }
 
 /* https://developer.mozilla.org/zh-CN/docs/Web/API/Storage/setItem */
-class $Storage {
-	static name = "$Storage";
-	static version = "1.0.9";
-	static about() { return console.log(`\n🟧 ${this.name} v${this.version}\n`) };
-	static data = null
-	static dataFile = 'box.dat'
+class Storage {
+	static name = "Storage";
+	static version = "1.1.0";
+	static about () { return log("", `🟧 ${this.name} v${this.version}`, "") };
+	static data = null;
+	static dataFile = 'box.dat';
 	static #nameRegex = /^@(?<key>[^.]+)(?:\.(?<path>.*))?$/;
-
-	static #platform() {
-		if ('undefined' !== typeof $environment && $environment['surge-version'])
-			return 'Surge'
-		if ('undefined' !== typeof $environment && $environment['stash-version'])
-			return 'Stash'
-		if ('undefined' !== typeof module && !!module.exports) return 'Node.js'
-		if ('undefined' !== typeof $task) return 'Quantumult X'
-		if ('undefined' !== typeof $loon) return 'Loon'
-		if ('undefined' !== typeof $rocket) return 'Shadowrocket'
-		if ('undefined' !== typeof Egern) return 'Egern'
-	}
 
     static getItem(keyName = new String, defaultValue = null) {
         let keyValue = defaultValue;
@@ -97,22 +99,22 @@ class $Storage {
 		switch (keyName.startsWith('@')) {
 			case true:
 				const { key, path } = keyName.match(this.#nameRegex)?.groups;
-				//console.log(`1: ${key}, ${path}`);
+				//log(`1: ${key}, ${path}`);
 				keyName = key;
 				let value = this.getItem(keyName, {});
-				//console.log(`2: ${JSON.stringify(value)}`)
+				//log(`2: ${JSON.stringify(value)}`)
 				if (typeof value !== "object") value = {};
-				//console.log(`3: ${JSON.stringify(value)}`)
+				//log(`3: ${JSON.stringify(value)}`)
 				keyValue = Lodash.get(value, path);
-				//console.log(`4: ${JSON.stringify(keyValue)}`)
+				//log(`4: ${JSON.stringify(keyValue)}`)
 				try {
 					keyValue = JSON.parse(keyValue);
 				} catch (e) {
 					// do nothing
-				}				//console.log(`5: ${JSON.stringify(keyValue)}`)
+				}				//log(`5: ${JSON.stringify(keyValue)}`)
 				break;
 			default:
-				switch (this.#platform()) {
+				switch ($platform) {
 					case 'Surge':
 					case 'Loon':
 					case 'Stash':
@@ -140,7 +142,7 @@ class $Storage {
 
 	static setItem(keyName = new String, keyValue = new String) {
 		let result = false;
-		//console.log(`0: ${typeof keyValue}`);
+		//log(`0: ${typeof keyValue}`);
 		switch (typeof keyValue) {
 			case "object":
 				keyValue = JSON.stringify(keyValue);
@@ -151,19 +153,19 @@ class $Storage {
 		}		switch (keyName.startsWith('@')) {
 			case true:
 				const { key, path } = keyName.match(this.#nameRegex)?.groups;
-				//console.log(`1: ${key}, ${path}`);
+				//log(`1: ${key}, ${path}`);
 				keyName = key;
 				let value = this.getItem(keyName, {});
-				//console.log(`2: ${JSON.stringify(value)}`)
+				//log(`2: ${JSON.stringify(value)}`)
 				if (typeof value !== "object") value = {};
-				//console.log(`3: ${JSON.stringify(value)}`)
+				//log(`3: ${JSON.stringify(value)}`)
 				Lodash.set(value, path, keyValue);
-				//console.log(`4: ${JSON.stringify(value)}`)
+				//log(`4: ${JSON.stringify(value)}`)
 				result = this.setItem(keyName, value);
-				//console.log(`5: ${result}`)
+				//log(`5: ${result}`)
 				break;
 			default:
-				switch (this.#platform()) {
+				switch ($platform) {
 					case 'Surge':
 					case 'Loon':
 					case 'Stash':
@@ -199,7 +201,7 @@ class $Storage {
 				result = this.setItem(keyName, value);
 				break;
 			default:
-				switch (this.#platform()) {
+				switch ($platform) {
 					case 'Surge':
 					case 'Loon':
 					case 'Stash':
@@ -222,7 +224,7 @@ class $Storage {
 
     static clear() {
 		let result = false;
-		switch (this.#platform()) {
+		switch ($platform) {
 			case 'Surge':
 			case 'Loon':
 			case 'Stash':
@@ -292,458 +294,78 @@ class $Storage {
 
 }
 
-class ENV {
-	static name = "ENV"
-	static version = '1.8.3'
-	static about() { return console.log(`\n🟧 ${this.name} v${this.version}\n`) }
+function logError(error) {
+    switch ($platform) {
+        case "Surge":
+        case "Loon":
+        case "Stash":
+        case "Egern":
+        case "Shadowrocket":
+        case "Quantumult X":
+        default:
+            log("", `❗️执行错误!`, error, "");
+            break
+        case "Node.js":
+            log("", `❗️执行错误!`, error.stack, "");
+            break
+    }}
 
-	constructor(name, opts) {
-		console.log(`\n🟧 ${ENV.name} v${ENV.version}\n`);
-		this.name = name;
-		this.logs = [];
-		this.isMute = false;
-		this.isMuteLog = false;
-		this.logSeparator = '\n';
-		this.encoding = 'utf-8';
-		this.startTime = new Date().getTime();
-		Object.assign(this, opts);
-		this.log(`\n🚩 开始!\n${name}\n`);
-	}
-	
-	environment() {
-		switch (this.platform()) {
-			case 'Surge':
-				$environment.app = 'Surge';
-				return $environment
-			case 'Stash':
-				$environment.app = 'Stash';
-				return $environment
-			case 'Egern':
-				$environment.app = 'Egern';
-				return $environment
-			case 'Loon':
-				let environment = $loon.split(' ');
-				return {
-					"device": environment[0],
-					"ios": environment[1],
-					"loon-version": environment[2],
-					"app": "Loon"
-				};
-			case 'Quantumult X':
-				return {
-					"app": "Quantumult X"
-				};
-			case 'Node.js':
-				process.env.app = 'Node.js';
-				return process.env
-			default:
-				return {}
-		}
-	}
-
-	platform() {
-		if ('undefined' !== typeof $environment && $environment['surge-version'])
-			return 'Surge'
-		if ('undefined' !== typeof $environment && $environment['stash-version'])
-			return 'Stash'
-		if ('undefined' !== typeof module && !!module.exports) return 'Node.js'
-		if ('undefined' !== typeof $task) return 'Quantumult X'
-		if ('undefined' !== typeof $loon) return 'Loon'
-		if ('undefined' !== typeof $rocket) return 'Shadowrocket'
-		if ('undefined' !== typeof Egern) return 'Egern'
-	}
-
-	isNode() {
-		return 'Node.js' === this.platform()
-	}
-
-	isQuanX() {
-		return 'Quantumult X' === this.platform()
-	}
-
-	isSurge() {
-		return 'Surge' === this.platform()
-	}
-
-	isLoon() {
-		return 'Loon' === this.platform()
-	}
-
-	isShadowrocket() {
-		return 'Shadowrocket' === this.platform()
-	}
-
-	isStash() {
-		return 'Stash' === this.platform()
-	}
-
-	isEgern() {
-		return 'Egern' === this.platform()
-	}
-
-	async getScript(url) {
-		return await this.fetch(url).then(response => response.body);
-	}
-
-	async runScript(script, runOpts) {
-		let httpapi = $Storage.getItem('@chavy_boxjs_userCfgs.httpapi');
-		httpapi = httpapi?.replace?.(/\n/g, '')?.trim();
-		let httpapi_timeout = $Storage.getItem('@chavy_boxjs_userCfgs.httpapi_timeout');
-		httpapi_timeout = (httpapi_timeout * 1) ?? 20;
-		httpapi_timeout = runOpts?.timeout ?? httpapi_timeout;
-		const [password, address] = httpapi.split('@');
-		const request = {
-			url: `http://${address}/v1/scripting/evaluate`,
-			body: {
-				script_text: script,
-				mock_type: 'cron',
-				timeout: httpapi_timeout
-			},
-			headers: { 'X-Key': password, 'Accept': '*/*' },
-			timeout: httpapi_timeout
-		};
-		await this.fetch(request).then(response => response.body, error => this.logErr(error));
-	}
-
-	initGotEnv(opts) {
-		this.got = this.got ? this.got : require('got');
-		this.cktough = this.cktough ? this.cktough : require('tough-cookie');
-		this.ckjar = this.ckjar ? this.ckjar : new this.cktough.CookieJar();
-		if (opts) {
-			opts.headers = opts.headers ? opts.headers : {};
-			if (undefined === opts.headers.Cookie && undefined === opts.cookieJar) {
-				opts.cookieJar = this.ckjar;
-			}
-		}
-	}
-
-	async fetch(request = {} || "", option = {}) {
-		// 初始化参数
-		switch (request.constructor) {
-			case Object:
-				request = { ...option, ...request };
-				break;
-			case String:
-				request = { ...option, "url": request };
-				break;
-		}		// 自动判断请求方法
-		if (!request.method) {
-			request.method = "GET";
-			if (request.body ?? request.bodyBytes) request.method = "POST";
-		}		// 移除请求头中的部分参数, 让其自动生成
-		delete request.headers?.Host;
-		delete request.headers?.[":authority"];
-		delete request.headers?.['Content-Length'];
-		delete request.headers?.['content-length'];
-		// 定义请求方法（小写）
-		const method = request.method.toLocaleLowerCase();
-		// 判断平台
-		switch (this.platform()) {
-			case 'Loon':
-			case 'Surge':
-			case 'Stash':
-			case 'Egern':
-			case 'Shadowrocket':
-			default:
-				// 转换请求参数
-				if (request.timeout) {
-					request.timeout = parseInt(request.timeout, 10);
-					if (this.isSurge()) ; else request.timeout = request.timeout * 1000;
-				}				if (request.policy) {
-					if (this.isLoon()) request.node = request.policy;
-					if (this.isStash()) Lodash.set(request, "headers.X-Stash-Selected-Proxy", encodeURI(request.policy));
-					if (this.isShadowrocket()) Lodash.set(request, "headers.X-Surge-Proxy", request.policy);
-				}				if (typeof request.redirection === "boolean") request["auto-redirect"] = request.redirection;
-				// 转换请求体
-				if (request.bodyBytes && !request.body) {
-					request.body = request.bodyBytes;
-					delete request.bodyBytes;
-				}				// 发送请求
-				return await new Promise((resolve, reject) => {
-					$httpClient[method](request, (error, response, body) => {
-						if (error) reject(error);
-						else {
-							response.ok = /^2\d\d$/.test(response.status);
-							response.statusCode = response.status;
-							if (body) {
-								response.body = body;
-								if (request["binary-mode"] == true) response.bodyBytes = body;
-							}							resolve(response);
-						}
-					});
-				});
-			case 'Quantumult X':
-				// 转换请求参数
-				if (request.policy) Lodash.set(request, "opts.policy", request.policy);
-				if (typeof request["auto-redirect"] === "boolean") Lodash.set(request, "opts.redirection", request["auto-redirect"]);
-				// 转换请求体
-				if (request.body instanceof ArrayBuffer) {
-					request.bodyBytes = request.body;
-					delete request.body;
-				} else if (ArrayBuffer.isView(request.body)) {
-					request.bodyBytes = request.body.buffer.slice(request.body.byteOffset, request.body.byteLength + request.body.byteOffset);
-					delete object.body;
-				} else if (request.body) delete request.bodyBytes;
-				// 发送请求
-				return await $task.fetch(request).then(
-					response => {
-						response.ok = /^2\d\d$/.test(response.statusCode);
-						response.status = response.statusCode;
-						return response;
-					},
-					reason => Promise.reject(reason.error));
-			case 'Node.js':
-				let iconv = require('iconv-lite');
-				this.initGotEnv(request);
-				const { url, ...option } = request;
-				return await this.got[method](url, option)
-					.on('redirect', (response, nextOpts) => {
-						try {
-							if (response.headers['set-cookie']) {
-								const ck = response.headers['set-cookie']
-									.map(this.cktough.Cookie.parse)
-									.toString();
-								if (ck) {
-									this.ckjar.setCookieSync(ck, null);
-								}
-								nextOpts.cookieJar = this.ckjar;
-							}
-						} catch (e) {
-							this.logErr(e);
-						}
-						// this.ckjar.setCookieSync(response.headers['set-cookie'].map(Cookie.parse).toString())
-					})
-					.then(
-						response => {
-							response.statusCode = response.status;
-							response.body = iconv.decode(response.rawBody, this.encoding);
-							response.bodyBytes = response.rawBody;
-							return response;
-						},
-						error => Promise.reject(error.message));
-		}	};
-
-	/**
-	 *
-	 * 示例:$.time('yyyy-MM-dd qq HH:mm:ss.S')
-	 *    :$.time('yyyyMMddHHmmssS')
-	 *    y:年 M:月 d:日 q:季 H:时 m:分 s:秒 S:毫秒
-	 *    其中y可选0-4位占位符、S可选0-1位占位符，其余可选0-2位占位符
-	 * @param {string} format 格式化参数
-	 * @param {number} ts 可选: 根据指定时间戳返回格式化日期
-	 *
-	 */
-	time(format, ts = null) {
-		const date = ts ? new Date(ts) : new Date();
-		let o = {
-			'M+': date.getMonth() + 1,
-			'd+': date.getDate(),
-			'H+': date.getHours(),
-			'm+': date.getMinutes(),
-			's+': date.getSeconds(),
-			'q+': Math.floor((date.getMonth() + 3) / 3),
-			'S': date.getMilliseconds()
-		};
-		if (/(y+)/.test(format))
-			format = format.replace(
-				RegExp.$1,
-				(date.getFullYear() + '').substr(4 - RegExp.$1.length)
-			);
-		for (let k in o)
-			if (new RegExp('(' + k + ')').test(format))
-				format = format.replace(
-					RegExp.$1,
-					RegExp.$1.length == 1
-						? o[k]
-						: ('00' + o[k]).substr(('' + o[k]).length)
-				);
-		return format
-	}
-
-	/**
-	 * 系统通知
-	 *
-	 * > 通知参数: 同时支持 QuanX 和 Loon 两种格式, EnvJs根据运行环境自动转换, Surge 环境不支持多媒体通知
-	 *
-	 * 示例:
-	 * $.msg(title, subt, desc, 'twitter://')
-	 * $.msg(title, subt, desc, { 'open-url': 'twitter://', 'media-url': 'https://github.githubassets.com/images/modules/open_graph/github-mark.png' })
-	 * $.msg(title, subt, desc, { 'open-url': 'https://bing.com', 'media-url': 'https://github.githubassets.com/images/modules/open_graph/github-mark.png' })
-	 *
-	 * @param {*} title 标题
-	 * @param {*} subt 副标题
-	 * @param {*} desc 通知详情
-	 * @param {*} opts 通知参数
-	 *
-	 */
-	msg(title = name, subt = '', desc = '', opts) {
-		const toEnvOpts = (rawopts) => {
-			switch (typeof rawopts) {
-				case undefined:
-					return rawopts
-				case 'string':
-					switch (this.platform()) {
-						case 'Surge':
-						case 'Stash':
-						case 'Egern':
-						default:
-							return { url: rawopts }
-						case 'Loon':
-						case 'Shadowrocket':
-							return rawopts
-						case 'Quantumult X':
-							return { 'open-url': rawopts }
-						case 'Node.js':
-							return undefined
-					}
-				case 'object':
-					switch (this.platform()) {
-						case 'Surge':
-						case 'Stash':
-						case 'Egern':
-						case 'Shadowrocket':
-						default: {
-							let openUrl =
-								rawopts.url || rawopts.openUrl || rawopts['open-url'];
-							return { url: openUrl }
-						}
-						case 'Loon': {
-							let openUrl =
-								rawopts.openUrl || rawopts.url || rawopts['open-url'];
-							let mediaUrl = rawopts.mediaUrl || rawopts['media-url'];
-							return { openUrl, mediaUrl }
-						}
-						case 'Quantumult X': {
-							let openUrl =
-								rawopts['open-url'] || rawopts.url || rawopts.openUrl;
-							let mediaUrl = rawopts['media-url'] || rawopts.mediaUrl;
-							let updatePasteboard =
-								rawopts['update-pasteboard'] || rawopts.updatePasteboard;
-							return {
-								'open-url': openUrl,
-								'media-url': mediaUrl,
-								'update-pasteboard': updatePasteboard
-							}
-						}
-						case 'Node.js':
-							return undefined
-					}
-				default:
-					return undefined
-			}
-		};
-		if (!this.isMute) {
-			switch (this.platform()) {
-				case 'Surge':
-				case 'Loon':
-				case 'Stash':
-				case 'Egern':
-				case 'Shadowrocket':
-				default:
-					$notification.post(title, subt, desc, toEnvOpts(opts));
-					break
-				case 'Quantumult X':
-					$notify(title, subt, desc, toEnvOpts(opts));
-					break
-				case 'Node.js':
-					break
-			}
-		}
-		if (!this.isMuteLog) {
-			let logs = ['', '==============📣系统通知📣=============='];
-			logs.push(title);
-			subt ? logs.push(subt) : '';
-			desc ? logs.push(desc) : '';
-			console.log(logs.join('\n'));
-			this.logs = this.logs.concat(logs);
-		}
-	}
-
-	log(...logs) {
-		if (logs.length > 0) {
-			this.logs = [...this.logs, ...logs];
-		}
-		console.log(logs.join(this.logSeparator));
-	}
-
-	logErr(error) {
-		switch (this.platform()) {
-			case 'Surge':
-			case 'Loon':
-			case 'Stash':
-			case 'Egern':
-			case 'Shadowrocket':
-			case 'Quantumult X':
-			default:
-				this.log('', `❗️ ${this.name}, 错误!`, error);
-				break
-			case 'Node.js':
-				this.log('', `❗️${this.name}, 错误!`, error.stack);
-				break
-		}
-	}
-
-	wait(time) {
-		return new Promise((resolve) => setTimeout(resolve, time))
-	}
-
-	done(object = {}) {
-		const endTime = new Date().getTime();
-		const costTime = (endTime - this.startTime) / 1000;
-		this.log("", `🚩 ${this.name}, 结束! 🕛 ${costTime} 秒`, "");
-		switch (this.platform()) {
-			case 'Surge':
-				if (object.policy) Lodash.set(object, "headers.X-Surge-Policy", object.policy);
-				$done(object);
-				break;
-			case 'Loon':
-				if (object.policy) object.node = object.policy;
-				$done(object);
-				break;
-			case 'Stash':
-				if (object.policy) Lodash.set(object, "headers.X-Stash-Selected-Proxy", encodeURI(object.policy));
-				$done(object);
-				break;
-			case 'Egern':
-				$done(object);
-				break;
-			case 'Shadowrocket':
-			default:
-				$done(object);
-				break;
-			case 'Quantumult X':
-				if (object.policy) Lodash.set(object, "opts.policy", object.policy);
-				// 移除不可写字段
-				delete object["auto-redirect"];
-				delete object["auto-cookie"];
-				delete object["binary-mode"];
-				delete object.charset;
-				delete object.host;
-				delete object.insecure;
-				delete object.method; // 1.4.x 不可写
-				delete object.opt; // $task.fetch() 参数, 不可写
-				delete object.path; // 可写, 但会与 url 冲突
-				delete object.policy;
-				delete object["policy-descriptor"];
-				delete object.scheme;
-				delete object.sessionIndex;
-				delete object.statusCode;
-				delete object.timeout;
-				if (object.body instanceof ArrayBuffer) {
-					object.bodyBytes = object.body;
-					delete object.body;
-				} else if (ArrayBuffer.isView(object.body)) {
-					object.bodyBytes = object.body.buffer.slice(object.body.byteOffset, object.body.byteLength + object.body.byteOffset);
-					delete object.body;
-				} else if (object.body) delete object.bodyBytes;
-				$done(object);
-				break;
-			case 'Node.js':
-				process.exit(1);
-				break;
-		}
-	}
+function done(object = {}) {
+    log("", `🚩 执行结束!`, "");
+    switch ($platform) {
+        case "Surge":
+            if (object.policy) Lodash.set(object, "headers.X-Surge-Policy", object.policy);
+            $done(object);
+            break;
+        case "Loon":
+            if (object.policy) object.node = object.policy;
+            $done(object);
+            break;
+        case "Stash":
+            if (object.policy) Lodash.set(object, "headers.X-Stash-Selected-Proxy", encodeURI(object.policy));
+            $done(object);
+            break;
+        case "Egern":
+            $done(object);
+            break;
+        case "Shadowrocket":
+        default:
+            $done(object);
+            break;
+        case "Quantumult X":
+            if (object.policy) Lodash.set(object, "opts.policy", object.policy);
+            // 移除不可写字段
+            delete object["auto-redirect"];
+            delete object["auto-cookie"];
+            delete object["binary-mode"];
+            delete object.charset;
+            delete object.host;
+            delete object.insecure;
+            delete object.method; // 1.4.x 不可写
+            delete object.opt; // $task.fetch() 参数, 不可写
+            delete object.path; // 可写, 但会与 url 冲突
+            delete object.policy;
+            delete object["policy-descriptor"];
+            delete object.scheme;
+            delete object.sessionIndex;
+            delete object.statusCode;
+            delete object.timeout;
+            if (object.body instanceof ArrayBuffer) {
+                object.bodyBytes = object.body;
+                delete object.body;
+            } else if (ArrayBuffer.isView(object.body)) {
+                object.bodyBytes = object.body.buffer.slice(object.body.byteOffset, object.body.byteLength + object.body.byteOffset);
+                delete object.body;
+            } else if (object.body) delete object.bodyBytes;
+            $done(object);
+            break;
+        case "Node.js":
+            process.exit(1);
+            break;
+    }
 }
+
+const log = (...logs) => console.log(logs.join("\n"));
 
 // refer: https://github.com/Peng-YM/QuanX/blob/master/Tools/XMLParser/xml-parser.js
 // refer: https://goessner.net/download/prj/jsonxml/
@@ -1174,10 +796,10 @@ class XML {
 		}	};
 }
 
-var Settings$7 = {
+var Settings$8 = {
 	Switch: true
 };
-var Configs$3 = {
+var Configs$4 = {
 	Storefront: [
 		[
 			"AE",
@@ -1894,34 +1516,34 @@ var Configs$3 = {
 	]
 };
 var Default = {
-	Settings: Settings$7,
-	Configs: Configs$3
+	Settings: Settings$8,
+	Configs: Configs$4
 };
 
 var Default$1 = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	Configs: Configs$3,
-	Settings: Settings$7,
-	default: Default
+    __proto__: null,
+    Configs: Configs$4,
+    Settings: Settings$8,
+    default: Default
 });
 
-var Settings$6 = {
+var Settings$7 = {
 	Switch: true,
 	PEP: {
 		GCC: "US"
 	}
 };
 var Location = {
-	Settings: Settings$6
+	Settings: Settings$7
 };
 
 var Location$1 = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	Settings: Settings$6,
-	default: Location
+    __proto__: null,
+    Settings: Settings$7,
+    default: Location
 });
 
-var Settings$5 = {
+var Settings$6 = {
 	Switch: true,
 	UrlInfoSet: {
 		Dispatcher: "AutoNavi",
@@ -1962,7 +1584,7 @@ var Settings$5 = {
 		}
 	}
 };
-var Configs$2 = {
+var Configs$3 = {
 	CN: {
 		attribution: [
 			{
@@ -14095,48 +13717,48 @@ var Configs$2 = {
 	}
 };
 var Maps = {
-	Settings: Settings$5,
-	Configs: Configs$2
+	Settings: Settings$6,
+	Configs: Configs$3
 };
 
 var Maps$1 = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	Configs: Configs$2,
-	Settings: Settings$5,
-	default: Maps
+    __proto__: null,
+    Configs: Configs$3,
+    Settings: Settings$6,
+    default: Maps
 });
 
-var Settings$4 = {
+var Settings$5 = {
 	Switch: true,
 	CountryCode: "US",
 	NewsPlusUser: true
 };
 var News = {
-	Settings: Settings$4
+	Settings: Settings$5
 };
 
 var News$1 = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	Settings: Settings$4,
-	default: News
+    __proto__: null,
+    Settings: Settings$5,
+    default: News
 });
 
-var Settings$3 = {
+var Settings$4 = {
 	Switch: true,
 	CountryCode: "US",
 	canUse: true
 };
 var PrivateRelay = {
-	Settings: Settings$3
+	Settings: Settings$4
 };
 
 var PrivateRelay$1 = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	Settings: Settings$3,
-	default: PrivateRelay
+    __proto__: null,
+    Settings: Settings$4,
+    default: PrivateRelay
 });
 
-var Settings$2 = {
+var Settings$3 = {
 	Switch: true,
 	CountryCode: "SG",
 	Domains: [
@@ -14160,7 +13782,7 @@ var Settings$2 = {
 	],
 	Safari_Smart_History: true
 };
-var Configs$1 = {
+var Configs$2 = {
 	VisualIntelligence: {
 		enabled_domains: [
 			"pets",
@@ -14197,34 +13819,34 @@ var Configs$1 = {
 	}
 };
 var Siri = {
-	Settings: Settings$2,
-	Configs: Configs$1
+	Settings: Settings$3,
+	Configs: Configs$2
 };
 
 var Siri$1 = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	Configs: Configs$1,
-	Settings: Settings$2,
-	default: Siri
+    __proto__: null,
+    Configs: Configs$2,
+    Settings: Settings$3,
+    default: Siri
 });
 
-var Settings$1 = {
+var Settings$2 = {
 	Switch: "true",
 	CountryCode: "US",
 	MultiAccount: "false",
 	Universal: "true"
 };
 var TestFlight = {
-	Settings: Settings$1
+	Settings: Settings$2
 };
 
 var TestFlight$1 = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	Settings: Settings$1,
-	default: TestFlight
+    __proto__: null,
+    Settings: Settings$2,
+    default: TestFlight
 });
 
-var Settings = {
+var Settings$1 = {
 	Switch: true,
 	"Third-Party": false,
 	HLSUrl: "play-edge.itunes.apple.com",
@@ -14262,7 +13884,7 @@ var Settings = {
 		Others: "AUTO"
 	}
 };
-var Configs = {
+var Configs$1 = {
 	Locale: [
 		[
 			"AU",
@@ -14611,15 +14233,90 @@ var Configs = {
 	}
 };
 var TV = {
+	Settings: Settings$1,
+	Configs: Configs$1
+};
+
+var TV$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    Configs: Configs$1,
+    Settings: Settings$1,
+    default: TV
+});
+
+var Settings = {
+	Switch: true,
+	NextHour: {
+		Provider: "ColorfulClouds"
+	},
+	AQI: {
+		Provider: "ColorfulClouds",
+		ReplaceProviders: [
+		],
+		Local: {
+			Scale: "WAQI_InstantCast",
+			ReplaceScales: [
+				"HJ6332012"
+			],
+			ConvertUnits: false
+		}
+	},
+	API: {
+		WAQI: {
+			Token: null,
+			Header: {
+				"Content-Type": "application/json"
+			}
+		},
+		QWeather: {
+			Token: null,
+			Header: {
+				"Content-Type": "application/json"
+			},
+			Host: "devapi.qweather.com"
+		},
+		ColorfulClouds: {
+			Token: null,
+			Header: {
+				"Content-Type": "application/json"
+			}
+		}
+	}
+};
+var Configs = {
+	Availability: {
+		v1: [
+			"currentWeather",
+			"dailyForecast",
+			"hourlyForecast",
+			"minuteForecast",
+			"weatherAlerts"
+		],
+		v2: [
+			"airQuality",
+			"currentWeather",
+			"forecastDaily",
+			"forecastHourly",
+			"forecastPeriodic",
+			"forecastNextHour",
+			"historicalComparisons",
+			"news",
+			"weatherAlerts",
+			"weatherAlertNotifications",
+			"weatherChange"
+		]
+	}
+};
+var WeatherKit = {
 	Settings: Settings,
 	Configs: Configs
 };
 
-var TV$1 = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	Configs: Configs,
-	Settings: Settings,
-	default: TV
+var WeatherKit$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    Configs: Configs,
+    Settings: Settings,
+    default: WeatherKit
 });
 
 var Database$1 = Database = {
@@ -14631,11 +14328,12 @@ var Database$1 = Database = {
 	"Siri": Siri$1,
 	"TestFlight": TestFlight$1,
 	"TV": TV$1,
+	"WeatherKit": WeatherKit$1
 };
 
 /**
  * Get Storage Variables
- * @link https://github.com/NanoCat-Me/ENV/blob/main/getStorage.mjs
+ * @link https://github.com/NanoCat-Me/utils/blob/main/getStorage.mjs
  * @author VirgilClyne
  * @param {String} key - Persistent Store Key
  * @param {Array} names - Platform Names
@@ -14643,41 +14341,41 @@ var Database$1 = Database = {
  * @return {Object} { Settings, Caches, Configs }
  */
 function getStorage(key, names, database) {
-    //console.log(`☑️ ${this.name}, Get Environment Variables`, "");
+    //log(`☑️ ${this.name}, Get Environment Variables`, "");
     /***************** BoxJs *****************/
     // 包装为局部变量，用完释放内存
     // BoxJs的清空操作返回假值空字符串, 逻辑或操作符会在左侧操作数为假值时返回右侧操作数。
-    let BoxJs = $Storage.getItem(key, database);
-    //console.log(`🚧 ${this.name}, Get Environment Variables`, `BoxJs类型: ${typeof BoxJs}`, `BoxJs内容: ${JSON.stringify(BoxJs)}`, "");
+    let BoxJs = Storage.getItem(key, database);
+    //log(`🚧 ${this.name}, Get Environment Variables`, `BoxJs类型: ${typeof BoxJs}`, `BoxJs内容: ${JSON.stringify(BoxJs)}`, "");
     /***************** Argument *****************/
     let Argument = {};
     if (typeof $argument !== "undefined") {
         if (Boolean($argument)) {
-            //console.log(`🎉 ${this.name}, $Argument`);
+            //log(`🎉 ${this.name}, $Argument`);
             let arg = Object.fromEntries($argument.split("&").map((item) => item.split("=").map(i => i.replace(/\"/g, ''))));
-            //console.log(JSON.stringify(arg));
+            //log(JSON.stringify(arg));
             for (let item in arg) Lodash.set(Argument, item, arg[item]);
-            //console.log(JSON.stringify(Argument));
-        }        //console.log(`✅ ${this.name}, Get Environment Variables`, `Argument类型: ${typeof Argument}`, `Argument内容: ${JSON.stringify(Argument)}`, "");
+            //log(JSON.stringify(Argument));
+        }        //log(`✅ ${this.name}, Get Environment Variables`, `Argument类型: ${typeof Argument}`, `Argument内容: ${JSON.stringify(Argument)}`, "");
     }    /***************** Store *****************/
     const Store = { Settings: database?.Default?.Settings || {}, Configs: database?.Default?.Configs || {}, Caches: {} };
     if (!Array.isArray(names)) names = [names];
-    //console.log(`🚧 ${this.name}, Get Environment Variables`, `names类型: ${typeof names}`, `names内容: ${JSON.stringify(names)}`, "");
+    //log(`🚧 ${this.name}, Get Environment Variables`, `names类型: ${typeof names}`, `names内容: ${JSON.stringify(names)}`, "");
     for (let name of names) {
         Store.Settings = { ...Store.Settings, ...database?.[name]?.Settings, ...Argument, ...BoxJs?.[name]?.Settings };
         Store.Configs = { ...Store.Configs, ...database?.[name]?.Configs };
         if (BoxJs?.[name]?.Caches && typeof BoxJs?.[name]?.Caches === "string") BoxJs[name].Caches = JSON.parse(BoxJs?.[name]?.Caches);
         Store.Caches = { ...Store.Caches, ...BoxJs?.[name]?.Caches };
-    }    //console.log(`🚧 ${this.name}, Get Environment Variables`, `Store.Settings类型: ${typeof Store.Settings}`, `Store.Settings: ${JSON.stringify(Store.Settings)}`, "");
+    }    //log(`🚧 ${this.name}, Get Environment Variables`, `Store.Settings类型: ${typeof Store.Settings}`, `Store.Settings: ${JSON.stringify(Store.Settings)}`, "");
     traverseObject(Store.Settings, (key, value) => {
-        //console.log(`🚧 ${this.name}, traverseObject`, `${key}: ${typeof value}`, `${key}: ${JSON.stringify(value)}`, "");
+        //log(`🚧 ${this.name}, traverseObject`, `${key}: ${typeof value}`, `${key}: ${JSON.stringify(value)}`, "");
         if (value === "true" || value === "false") value = JSON.parse(value); // 字符串转Boolean
         else if (typeof value === "string") {
             if (value.includes(",")) value = value.split(",").map(item => string2number(item)); // 字符串转数组转数字
             else value = string2number(value); // 字符串转数字
         }        return value;
     });
-    //console.log(`✅ ${this.name}, Get Environment Variables`, `Store: ${typeof Store.Caches}`, `Store内容: ${JSON.stringify(Store)}`, "");
+    //log(`✅ ${this.name}, Get Environment Variables`, `Store: ${typeof Store.Caches}`, `Store内容: ${JSON.stringify(Store)}`, "");
     return Store;
 
     /***************** function *****************/
@@ -14688,22 +14386,33 @@ function getStorage(key, names, database) {
 /**
  * Set Environment Variables
  * @author VirgilClyne
- * @param {Object} $ - ENV
  * @param {String} name - Persistent Store Key
  * @param {Array} platforms - Platform Names
  * @param {Object} database - Default DataBase
  * @return {Object} { Settings, Caches, Configs }
  */
 function setENV(name, platforms, database) {
-	console.log(`☑️ Set Environment Variables`, "");
+	log(`☑️ Set Environment Variables`, "");
 	let { Settings, Caches, Configs } = getStorage(name, platforms, database);
 	/***************** Settings *****************/
-	if (Settings?.Tabs && !Array.isArray(Settings?.Tabs)) Lodash.set(Settings, "Tabs", (Settings?.Tabs) ? [Settings.Tabs.toString()] : []);
-	if (Settings?.Domains && !Array.isArray(Settings?.Domains)) Lodash.set(Settings, "Domains", (Settings?.Domains) ? [Settings.Domains.toString()] : []);
-	if (Settings?.Functions && !Array.isArray(Settings?.Functions)) Lodash.set(Settings, "Functions", (Settings?.Functions) ? [Settings.Functions.toString()] : []);
-	console.log(`✅ Set Environment Variables, Settings: ${typeof Settings}, Settings内容: ${JSON.stringify(Settings)}`, "");
+	switch (platforms) {
+		case "WeatherKit":
+			if (!Array.isArray(Settings?.AQI?.ReplaceProviders)) Lodash.set(Settings, "AQI.ReplaceProviders", (Settings?.AQI?.ReplaceProviders) ? [Settings.AQI.ReplaceProviders.toString()] : []);
+			if (Settings.AQI.ReplaceProviders.includes("TWC")) Settings.AQI.ReplaceProviders.push("The Weather Channel");
+			if (Settings.AQI.ReplaceProviders.includes("QWeather")) Settings.AQI.ReplaceProviders.push("和风天气");
+			Settings.AQI.ReplaceProviders.push(undefined);
+			if (!Array.isArray(Settings?.AQI?.Local?.ReplaceScales)) Lodash.set(Settings, "AQI.Local.ReplaceScales", (Settings?.AQI?.Local?.ReplaceScales) ? [Settings.AQI.Local.ReplaceScales.toString()] : []);
+			break;
+		case "Siri":
+			if (!Array.isArray(Settings?.Domains)) Lodash.set(Settings, "Domains", (Settings?.Domains) ? [Settings.Domains.toString()] : []);
+			if (!Array.isArray(Settings?.Functions)) Lodash.set(Settings, "Functions", (Settings?.Functions) ? [Settings.Functions.toString()] : []);
+			break;
+		case "TV":
+			if (!Array.isArray(Settings?.Tabs)) Lodash.set(Settings, "Tabs", (Settings?.Tabs) ? [Settings.Tabs.toString()] : []);
+			break;
+	}	log(`✅ Set Environment Variables, Settings: ${typeof Settings}, Settings内容: ${JSON.stringify(Settings)}`, "");
 	/***************** Caches *****************/
-	//console.log(`✅ Set Environment Variables, Caches: ${typeof Caches}, Caches内容: ${JSON.stringify(Caches)}`, "");
+	//log(`✅ Set Environment Variables, Caches: ${typeof Caches}, Caches内容: ${JSON.stringify(Caches)}`, "");
 	/***************** Configs *****************/
 	Configs.Storefront = new Map(Configs.Storefront);
 	if (Configs.Locale) Configs.Locale = new Map(Configs.Locale);
@@ -17657,21 +17366,1789 @@ class MessageType {
     }
 }
 
-const $ = new ENV(" iRingo: 📍 GeoServices.framework v3.5.0(4) response.beta");
+// @generated by protobuf-ts 2.9.4 with parameter generate_dependencies,long_type_number,keep_enum_prefix,output_javascript
+// @generated from protobuf file "com.apple.geo.protobuf.geo.proto" (package "com.apple.geo.protobuf.geo", syntax proto2)
+// tslint:disable
+/**
+ * @generated from protobuf enum com.apple.geo.protobuf.geo.TileSet.TileSetVersionUpdateBehavior
+ */
+var TileSet_TileSetVersionUpdateBehavior;
+(function (TileSet_TileSetVersionUpdateBehavior) {
+    /**
+     * @generated from protobuf enum value: TILE_UPDATE_BEHAVIOR_FLUSH = 0;
+     */
+    TileSet_TileSetVersionUpdateBehavior[TileSet_TileSetVersionUpdateBehavior["TILE_UPDATE_BEHAVIOR_FLUSH"] = 0] = "TILE_UPDATE_BEHAVIOR_FLUSH";
+    /**
+     * @generated from protobuf enum value: TILE_UPDATE_BEHAVIOR_ETAG = 1;
+     */
+    TileSet_TileSetVersionUpdateBehavior[TileSet_TileSetVersionUpdateBehavior["TILE_UPDATE_BEHAVIOR_ETAG"] = 1] = "TILE_UPDATE_BEHAVIOR_ETAG";
+})(TileSet_TileSetVersionUpdateBehavior || (TileSet_TileSetVersionUpdateBehavior = {}));
+/**
+ * @generated from protobuf enum com.apple.geo.protobuf.geo.TileSet.TileSetChecksumType
+ */
+var TileSet_TileSetChecksumType;
+(function (TileSet_TileSetChecksumType) {
+    /**
+     * @generated from protobuf enum value: CHECKSUM_TYPE_NONE = 0;
+     */
+    TileSet_TileSetChecksumType[TileSet_TileSetChecksumType["CHECKSUM_TYPE_NONE"] = 0] = "CHECKSUM_TYPE_NONE";
+    /**
+     * @generated from protobuf enum value: CHECKSUM_TYPE_APPENDED_MD5 = 1;
+     */
+    TileSet_TileSetChecksumType[TileSet_TileSetChecksumType["CHECKSUM_TYPE_APPENDED_MD5"] = 1] = "CHECKSUM_TYPE_APPENDED_MD5";
+})(TileSet_TileSetChecksumType || (TileSet_TileSetChecksumType = {}));
+/**
+ * @generated from protobuf enum com.apple.geo.protobuf.geo.TileSet.TileRequestStyle
+ */
+var TileSet_TileRequestStyle;
+(function (TileSet_TileRequestStyle) {
+    /**
+     * @generated from protobuf enum value: REQUEST_STYLE_LEGACY = 0;
+     */
+    TileSet_TileRequestStyle[TileSet_TileRequestStyle["REQUEST_STYLE_LEGACY"] = 0] = "REQUEST_STYLE_LEGACY";
+    /**
+     * @generated from protobuf enum value: REQUEST_STYLE_HEADER_PARAMS_VERSION_BASED_HMAC_AUTH = 1;
+     */
+    TileSet_TileRequestStyle[TileSet_TileRequestStyle["REQUEST_STYLE_HEADER_PARAMS_VERSION_BASED_HMAC_AUTH"] = 1] = "REQUEST_STYLE_HEADER_PARAMS_VERSION_BASED_HMAC_AUTH";
+})(TileSet_TileRequestStyle || (TileSet_TileRequestStyle = {}));
+/**
+ * @generated from protobuf enum com.apple.geo.protobuf.geo.TileSetStyle
+ */
+var TileSetStyle;
+(function (TileSetStyle) {
+    /**
+     * @generated from protobuf enum value: RASTER_STANDARD = 0;
+     */
+    TileSetStyle[TileSetStyle["RASTER_STANDARD"] = 0] = "RASTER_STANDARD";
+    /**
+     * @generated from protobuf enum value: VECTOR_STANDARD = 1;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_STANDARD"] = 1] = "VECTOR_STANDARD";
+    /**
+     * @generated from protobuf enum value: VECTOR_TRAFFIC_SEGMENTS_FOR_RASTER = 2;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_TRAFFIC_SEGMENTS_FOR_RASTER"] = 2] = "VECTOR_TRAFFIC_SEGMENTS_FOR_RASTER";
+    /**
+     * @generated from protobuf enum value: VECTOR_TRAFFIC_INCIDENTS_FOR_RASTER = 3;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_TRAFFIC_INCIDENTS_FOR_RASTER"] = 3] = "VECTOR_TRAFFIC_INCIDENTS_FOR_RASTER";
+    /**
+     * @generated from protobuf enum value: VECTOR_TRAFFIC_SEGMENTS_AND_INCIDENTS_FOR_RASTER = 4;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_TRAFFIC_SEGMENTS_AND_INCIDENTS_FOR_RASTER"] = 4] = "VECTOR_TRAFFIC_SEGMENTS_AND_INCIDENTS_FOR_RASTER";
+    /**
+     * @generated from protobuf enum value: RASTER_STANDARD_BACKGROUND = 5;
+     */
+    TileSetStyle[TileSetStyle["RASTER_STANDARD_BACKGROUND"] = 5] = "RASTER_STANDARD_BACKGROUND";
+    /**
+     * @generated from protobuf enum value: RASTER_HYBRID = 6;
+     */
+    TileSetStyle[TileSetStyle["RASTER_HYBRID"] = 6] = "RASTER_HYBRID";
+    /**
+     * @generated from protobuf enum value: RASTER_SATELLITE = 7;
+     */
+    TileSetStyle[TileSetStyle["RASTER_SATELLITE"] = 7] = "RASTER_SATELLITE";
+    /**
+     * @generated from protobuf enum value: RASTER_TERRAIN = 8;
+     */
+    TileSetStyle[TileSetStyle["RASTER_TERRAIN"] = 8] = "RASTER_TERRAIN";
+    /**
+     * @generated from protobuf enum value: VECTOR_BUILDINGS = 11;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_BUILDINGS"] = 11] = "VECTOR_BUILDINGS";
+    /**
+     * @generated from protobuf enum value: VECTOR_TRAFFIC = 12;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_TRAFFIC"] = 12] = "VECTOR_TRAFFIC";
+    /**
+     * @generated from protobuf enum value: VECTOR_POI = 13;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_POI"] = 13] = "VECTOR_POI";
+    /**
+     * @generated from protobuf enum value: SPUTNIK_METADATA = 14;
+     */
+    TileSetStyle[TileSetStyle["SPUTNIK_METADATA"] = 14] = "SPUTNIK_METADATA";
+    /**
+     * @generated from protobuf enum value: SPUTNIK_C3M = 15;
+     */
+    TileSetStyle[TileSetStyle["SPUTNIK_C3M"] = 15] = "SPUTNIK_C3M";
+    /**
+     * @generated from protobuf enum value: SPUTNIK_DSM = 16;
+     */
+    TileSetStyle[TileSetStyle["SPUTNIK_DSM"] = 16] = "SPUTNIK_DSM";
+    /**
+     * @generated from protobuf enum value: SPUTNIK_DSM_GLOBAL = 17;
+     */
+    TileSetStyle[TileSetStyle["SPUTNIK_DSM_GLOBAL"] = 17] = "SPUTNIK_DSM_GLOBAL";
+    /**
+     * @generated from protobuf enum value: VECTOR_REALISTIC = 18;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_REALISTIC"] = 18] = "VECTOR_REALISTIC";
+    /**
+     * @generated from protobuf enum value: VECTOR_LEGACY_REALISTIC = 19;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_LEGACY_REALISTIC"] = 19] = "VECTOR_LEGACY_REALISTIC";
+    /**
+     * @generated from protobuf enum value: VECTOR_ROADS = 20;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_ROADS"] = 20] = "VECTOR_ROADS";
+    /**
+     * @generated from protobuf enum value: RASTER_VEGETATION = 21;
+     */
+    TileSetStyle[TileSetStyle["RASTER_VEGETATION"] = 21] = "RASTER_VEGETATION";
+    /**
+     * @generated from protobuf enum value: VECTOR_TRAFFIC_SKELETON = 22;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_TRAFFIC_SKELETON"] = 22] = "VECTOR_TRAFFIC_SKELETON";
+    /**
+     * @generated from protobuf enum value: RASTER_COASTLINE_MASK = 23;
+     */
+    TileSetStyle[TileSetStyle["RASTER_COASTLINE_MASK"] = 23] = "RASTER_COASTLINE_MASK";
+    /**
+     * @generated from protobuf enum value: RASTER_HILLSHADE = 24;
+     */
+    TileSetStyle[TileSetStyle["RASTER_HILLSHADE"] = 24] = "RASTER_HILLSHADE";
+    /**
+     * @generated from protobuf enum value: VECTOR_TRAFFIC_WITH_GREEN = 25;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_TRAFFIC_WITH_GREEN"] = 25] = "VECTOR_TRAFFIC_WITH_GREEN";
+    /**
+     * @generated from protobuf enum value: VECTOR_TRAFFIC_STATIC = 26;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_TRAFFIC_STATIC"] = 26] = "VECTOR_TRAFFIC_STATIC";
+    /**
+     * @generated from protobuf enum value: RASTER_COASTLINE_DROP_MASK = 27;
+     */
+    TileSetStyle[TileSetStyle["RASTER_COASTLINE_DROP_MASK"] = 27] = "RASTER_COASTLINE_DROP_MASK";
+    /**
+     * @generated from protobuf enum value: VECTOR_TRAFFIC_SKELETON_WITH_HISTORICAL = 28;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_TRAFFIC_SKELETON_WITH_HISTORICAL"] = 28] = "VECTOR_TRAFFIC_SKELETON_WITH_HISTORICAL";
+    /**
+     * @generated from protobuf enum value: VECTOR_SPEED_PROFILES = 29;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_SPEED_PROFILES"] = 29] = "VECTOR_SPEED_PROFILES";
+    /**
+     * @generated from protobuf enum value: VECTOR_VENUES = 30;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_VENUES"] = 30] = "VECTOR_VENUES";
+    /**
+     * @generated from protobuf enum value: RASTER_DOWN_SAMPLED = 31;
+     */
+    TileSetStyle[TileSetStyle["RASTER_DOWN_SAMPLED"] = 31] = "RASTER_DOWN_SAMPLED";
+    /**
+     * @generated from protobuf enum value: RASTER_COLOR_BALANCED = 32;
+     */
+    TileSetStyle[TileSetStyle["RASTER_COLOR_BALANCED"] = 32] = "RASTER_COLOR_BALANCED";
+    /**
+     * @generated from protobuf enum value: RASTER_SATELLITE_NIGHT = 33;
+     */
+    TileSetStyle[TileSetStyle["RASTER_SATELLITE_NIGHT"] = 33] = "RASTER_SATELLITE_NIGHT";
+    /**
+     * @generated from protobuf enum value: SPUTNIK_VECTOR_BORDER = 34;
+     */
+    TileSetStyle[TileSetStyle["SPUTNIK_VECTOR_BORDER"] = 34] = "SPUTNIK_VECTOR_BORDER";
+    /**
+     * @generated from protobuf enum value: RASTER_SATELLITE_DIGITIZE = 35;
+     */
+    TileSetStyle[TileSetStyle["RASTER_SATELLITE_DIGITIZE"] = 35] = "RASTER_SATELLITE_DIGITIZE";
+    /**
+     * @generated from protobuf enum value: RASTER_HILLSHADE_PARKS = 36;
+     */
+    TileSetStyle[TileSetStyle["RASTER_HILLSHADE_PARKS"] = 36] = "RASTER_HILLSHADE_PARKS";
+    /**
+     * @generated from protobuf enum value: VECTOR_TRANSIT = 37;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_TRANSIT"] = 37] = "VECTOR_TRANSIT";
+    /**
+     * @generated from protobuf enum value: RASTER_STANDARD_BASE = 38;
+     */
+    TileSetStyle[TileSetStyle["RASTER_STANDARD_BASE"] = 38] = "RASTER_STANDARD_BASE";
+    /**
+     * @generated from protobuf enum value: RASTER_STANDARD_LABELS = 39;
+     */
+    TileSetStyle[TileSetStyle["RASTER_STANDARD_LABELS"] = 39] = "RASTER_STANDARD_LABELS";
+    /**
+     * @generated from protobuf enum value: RASTER_HYBRID_ROADS = 40;
+     */
+    TileSetStyle[TileSetStyle["RASTER_HYBRID_ROADS"] = 40] = "RASTER_HYBRID_ROADS";
+    /**
+     * @generated from protobuf enum value: RASTER_HYBRID_LABELS = 41;
+     */
+    TileSetStyle[TileSetStyle["RASTER_HYBRID_LABELS"] = 41] = "RASTER_HYBRID_LABELS";
+    /**
+     * @generated from protobuf enum value: FLYOVER_C3M_MESH = 42;
+     */
+    TileSetStyle[TileSetStyle["FLYOVER_C3M_MESH"] = 42] = "FLYOVER_C3M_MESH";
+    /**
+     * @generated from protobuf enum value: FLYOVER_C3M_JPEG_TEXTURE = 43;
+     */
+    TileSetStyle[TileSetStyle["FLYOVER_C3M_JPEG_TEXTURE"] = 43] = "FLYOVER_C3M_JPEG_TEXTURE";
+    /**
+     * @generated from protobuf enum value: FLYOVER_C3M_ASTC_TEXTURE = 44;
+     */
+    TileSetStyle[TileSetStyle["FLYOVER_C3M_ASTC_TEXTURE"] = 44] = "FLYOVER_C3M_ASTC_TEXTURE";
+    /**
+     * @generated from protobuf enum value: RASTER_SATELLITE_ASTC = 45;
+     */
+    TileSetStyle[TileSetStyle["RASTER_SATELLITE_ASTC"] = 45] = "RASTER_SATELLITE_ASTC";
+    /**
+     * @generated from protobuf enum value: RASTER_HYBRID_ROADS_AND_LABELS = 46;
+     */
+    TileSetStyle[TileSetStyle["RASTER_HYBRID_ROADS_AND_LABELS"] = 46] = "RASTER_HYBRID_ROADS_AND_LABELS";
+    /**
+     * @generated from protobuf enum value: VECTOR_TRANSIT_SELECTION = 47;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_TRANSIT_SELECTION"] = 47] = "VECTOR_TRANSIT_SELECTION";
+    /**
+     * @generated from protobuf enum value: VECTOR_COVERAGE = 48;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_COVERAGE"] = 48] = "VECTOR_COVERAGE";
+    /**
+     * @generated from protobuf enum value: FLYOVER_VISIBILITY = 49;
+     */
+    TileSetStyle[TileSetStyle["FLYOVER_VISIBILITY"] = 49] = "FLYOVER_VISIBILITY";
+    /**
+     * @generated from protobuf enum value: FLYOVER_SKYBOX = 50;
+     */
+    TileSetStyle[TileSetStyle["FLYOVER_SKYBOX"] = 50] = "FLYOVER_SKYBOX";
+    /**
+     * @generated from protobuf enum value: FLYOVER_NAVGRAPH = 51;
+     */
+    TileSetStyle[TileSetStyle["FLYOVER_NAVGRAPH"] = 51] = "FLYOVER_NAVGRAPH";
+    /**
+     * @generated from protobuf enum value: FLYOVER_METADATA = 52;
+     */
+    TileSetStyle[TileSetStyle["FLYOVER_METADATA"] = 52] = "FLYOVER_METADATA";
+    /**
+     * @generated from protobuf enum value: VECTOR_ROAD_NETWORK = 53;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_ROAD_NETWORK"] = 53] = "VECTOR_ROAD_NETWORK";
+    /**
+     * @generated from protobuf enum value: VECTOR_LAND_COVER = 54;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_LAND_COVER"] = 54] = "VECTOR_LAND_COVER";
+    /**
+     * @generated from protobuf enum value: VECTOR_DEBUG = 55;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_DEBUG"] = 55] = "VECTOR_DEBUG";
+    /**
+     * @generated from protobuf enum value: VECTOR_STREET_POI = 56;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_STREET_POI"] = 56] = "VECTOR_STREET_POI";
+    /**
+     * @generated from protobuf enum value: MUNIN_METADATA = 57;
+     */
+    TileSetStyle[TileSetStyle["MUNIN_METADATA"] = 57] = "MUNIN_METADATA";
+    /**
+     * @generated from protobuf enum value: VECTOR_SPR_MERCATOR = 58;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_SPR_MERCATOR"] = 58] = "VECTOR_SPR_MERCATOR";
+    /**
+     * @generated from protobuf enum value: VECTOR_SPR_MODELS = 59;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_SPR_MODELS"] = 59] = "VECTOR_SPR_MODELS";
+    /**
+     * @generated from protobuf enum value: VECTOR_SPR_MATERIALS = 60;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_SPR_MATERIALS"] = 60] = "VECTOR_SPR_MATERIALS";
+    /**
+     * @generated from protobuf enum value: VECTOR_SPR_METADATA = 61;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_SPR_METADATA"] = 61] = "VECTOR_SPR_METADATA";
+    /**
+     * @generated from protobuf enum value: VECTOR_TRACKS = 62;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_TRACKS"] = 62] = "VECTOR_TRACKS";
+    /**
+     * @generated from protobuf enum value: VECTOR_RESERVED_2 = 63;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_RESERVED_2"] = 63] = "VECTOR_RESERVED_2";
+    /**
+     * @generated from protobuf enum value: VECTOR_STREET_LANDMARKS = 64;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_STREET_LANDMARKS"] = 64] = "VECTOR_STREET_LANDMARKS";
+    /**
+     * @generated from protobuf enum value: COARSE_LOCATION_POLYGONS = 65;
+     */
+    TileSetStyle[TileSetStyle["COARSE_LOCATION_POLYGONS"] = 65] = "COARSE_LOCATION_POLYGONS";
+    /**
+     * @generated from protobuf enum value: VECTOR_SPR_ROADS = 66;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_SPR_ROADS"] = 66] = "VECTOR_SPR_ROADS";
+    /**
+     * @generated from protobuf enum value: VECTOR_SPR_STANDARD = 67;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_SPR_STANDARD"] = 67] = "VECTOR_SPR_STANDARD";
+    /**
+     * @generated from protobuf enum value: VECTOR_POI_V2 = 68;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_POI_V2"] = 68] = "VECTOR_POI_V2";
+    /**
+     * @generated from protobuf enum value: VECTOR_POLYGON_SELECTION = 69;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_POLYGON_SELECTION"] = 69] = "VECTOR_POLYGON_SELECTION";
+    /**
+     * @generated from protobuf enum value: VL_METADATA = 70;
+     */
+    TileSetStyle[TileSetStyle["VL_METADATA"] = 70] = "VL_METADATA";
+    /**
+     * @generated from protobuf enum value: VL_DATA = 71;
+     */
+    TileSetStyle[TileSetStyle["VL_DATA"] = 71] = "VL_DATA";
+    /**
+     * @generated from protobuf enum value: PROACTIVE_APP_CLIP = 72;
+     */
+    TileSetStyle[TileSetStyle["PROACTIVE_APP_CLIP"] = 72] = "PROACTIVE_APP_CLIP";
+    /**
+     * @generated from protobuf enum value: VECTOR_BUILDINGS_V2 = 73;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_BUILDINGS_V2"] = 73] = "VECTOR_BUILDINGS_V2";
+    /**
+     * @generated from protobuf enum value: POI_BUSYNESS = 74;
+     */
+    TileSetStyle[TileSetStyle["POI_BUSYNESS"] = 74] = "POI_BUSYNESS";
+    /**
+     * @generated from protobuf enum value: POI_DP_BUSYNESS = 75;
+     */
+    TileSetStyle[TileSetStyle["POI_DP_BUSYNESS"] = 75] = "POI_DP_BUSYNESS";
+    /**
+     * @generated from protobuf enum value: SMART_INTERFACE_SELECTION = 76;
+     */
+    TileSetStyle[TileSetStyle["SMART_INTERFACE_SELECTION"] = 76] = "SMART_INTERFACE_SELECTION";
+    /**
+     * @generated from protobuf enum value: VECTOR_ASSETS = 77;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_ASSETS"] = 77] = "VECTOR_ASSETS";
+    /**
+     * @generated from protobuf enum value: SPR_ASSET_METADATA = 78;
+     */
+    TileSetStyle[TileSetStyle["SPR_ASSET_METADATA"] = 78] = "SPR_ASSET_METADATA";
+    /**
+     * @generated from protobuf enum value: VECTOR_SPR_POLAR = 79;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_SPR_POLAR"] = 79] = "VECTOR_SPR_POLAR";
+    /**
+     * @generated from protobuf enum value: SMART_DATA_MODE = 80;
+     */
+    TileSetStyle[TileSetStyle["SMART_DATA_MODE"] = 80] = "SMART_DATA_MODE";
+    /**
+     * @generated from protobuf enum value: CELLULAR_PERFORMANCE_SCORE = 81;
+     */
+    TileSetStyle[TileSetStyle["CELLULAR_PERFORMANCE_SCORE"] = 81] = "CELLULAR_PERFORMANCE_SCORE";
+    /**
+     * @generated from protobuf enum value: VECTOR_SPR_MODELS_OCCLUSION = 82;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_SPR_MODELS_OCCLUSION"] = 82] = "VECTOR_SPR_MODELS_OCCLUSION";
+    /**
+     * @generated from protobuf enum value: VECTOR_TOPOGRAPHIC = 83;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_TOPOGRAPHIC"] = 83] = "VECTOR_TOPOGRAPHIC";
+    /**
+     * @generated from protobuf enum value: VECTOR_POI_V2_UPDATE = 84;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_POI_V2_UPDATE"] = 84] = "VECTOR_POI_V2_UPDATE";
+    /**
+     * @generated from protobuf enum value: VECTOR_LIVE_DATA_UPDATES = 85;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_LIVE_DATA_UPDATES"] = 85] = "VECTOR_LIVE_DATA_UPDATES";
+    /**
+     * @generated from protobuf enum value: VECTOR_TRAFFIC_V2 = 86;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_TRAFFIC_V2"] = 86] = "VECTOR_TRAFFIC_V2";
+    /**
+     * @generated from protobuf enum value: VECTOR_ROAD_SELECTION = 87;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_ROAD_SELECTION"] = 87] = "VECTOR_ROAD_SELECTION";
+    /**
+     * @generated from protobuf enum value: VECTOR_REGION_METADATA = 88;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_REGION_METADATA"] = 88] = "VECTOR_REGION_METADATA";
+    /**
+     * @generated from protobuf enum value: RAY_TRACING = 89;
+     */
+    TileSetStyle[TileSetStyle["RAY_TRACING"] = 89] = "RAY_TRACING";
+    /**
+     * @generated from protobuf enum value: VECTOR_CONTOURS = 90;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_CONTOURS"] = 90] = "VECTOR_CONTOURS";
+    /**
+     * @generated from protobuf enum value: UNUSED_91 = 91;
+     */
+    TileSetStyle[TileSetStyle["UNUSED_91"] = 91] = "UNUSED_91";
+    /**
+     * @generated from protobuf enum value: UNUSED_92 = 92;
+     */
+    TileSetStyle[TileSetStyle["UNUSED_92"] = 92] = "UNUSED_92";
+    /**
+     * @generated from protobuf enum value: UNUSED_93 = 93;
+     */
+    TileSetStyle[TileSetStyle["UNUSED_93"] = 93] = "UNUSED_93";
+    /**
+     * @generated from protobuf enum value: UNUSED_94 = 94;
+     */
+    TileSetStyle[TileSetStyle["UNUSED_94"] = 94] = "UNUSED_94";
+    /**
+     * @generated from protobuf enum value: UNUSED_95 = 95;
+     */
+    TileSetStyle[TileSetStyle["UNUSED_95"] = 95] = "UNUSED_95";
+    /**
+     * @generated from protobuf enum value: UNUSED_96 = 96;
+     */
+    TileSetStyle[TileSetStyle["UNUSED_96"] = 96] = "UNUSED_96";
+    /**
+     * @generated from protobuf enum value: UNUSED_97 = 97;
+     */
+    TileSetStyle[TileSetStyle["UNUSED_97"] = 97] = "UNUSED_97";
+    /**
+     * @generated from protobuf enum value: UNUSED_98 = 98;
+     */
+    TileSetStyle[TileSetStyle["UNUSED_98"] = 98] = "UNUSED_98";
+    /**
+     * @generated from protobuf enum value: UNUSED_99 = 99;
+     */
+    TileSetStyle[TileSetStyle["UNUSED_99"] = 99] = "UNUSED_99";
+    /**
+     * @generated from protobuf enum value: VECTOR_SPR_MERCATOR = 58;
+     */
+    TileSetStyle[TileSetStyle["DAVINCI_DEV1"] = 58] = "DAVINCI_DEV1";
+    /**
+     * @generated from protobuf enum value: VECTOR_SPR_MODELS = 59;
+     */
+    TileSetStyle[TileSetStyle["DAVINCI_DEV2"] = 59] = "DAVINCI_DEV2";
+    /**
+     * @generated from protobuf enum value: VECTOR_SPR_MATERIALS = 60;
+     */
+    TileSetStyle[TileSetStyle["DAVINCI_DEV3"] = 60] = "DAVINCI_DEV3";
+    /**
+     * @generated from protobuf enum value: VECTOR_SPR_METADATA = 61;
+     */
+    TileSetStyle[TileSetStyle["DAVINCI_DEV4"] = 61] = "DAVINCI_DEV4";
+    /**
+     * @generated from protobuf enum value: VECTOR_RESERVED_2 = 63;
+     */
+    TileSetStyle[TileSetStyle["DAVINCI_DEV6"] = 63] = "DAVINCI_DEV6";
+    /**
+     * @generated from protobuf enum value: VECTOR_SPR_ROADS = 66;
+     */
+    TileSetStyle[TileSetStyle["DAVINCI_DEV7"] = 66] = "DAVINCI_DEV7";
+    /**
+     * @generated from protobuf enum value: VECTOR_SPR_STANDARD = 67;
+     */
+    TileSetStyle[TileSetStyle["DAVINCI_DEV8"] = 67] = "DAVINCI_DEV8";
+    /**
+     * @generated from protobuf enum value: VECTOR_POI_V2 = 68;
+     */
+    TileSetStyle[TileSetStyle["DAVINCI_DEV9"] = 68] = "DAVINCI_DEV9";
+    /**
+     * @generated from protobuf enum value: VECTOR_BUILDINGS_V2 = 73;
+     */
+    TileSetStyle[TileSetStyle["DAVINCI_BUILDINGS"] = 73] = "DAVINCI_BUILDINGS";
+    /**
+     * @generated from protobuf enum value: VECTOR_TRACKS = 62;
+     */
+    TileSetStyle[TileSetStyle["VECTOR_RESERVED_1"] = 62] = "VECTOR_RESERVED_1";
+})(TileSetStyle || (TileSetStyle = {}));
+/**
+ * @generated from protobuf enum com.apple.geo.protobuf.geo.TileScale
+ */
+var TileScale;
+(function (TileScale) {
+    /**
+     * @generated from protobuf enum value: NODPI = 0;
+     */
+    TileScale[TileScale["NODPI"] = 0] = "NODPI";
+    /**
+     * @generated from protobuf enum value: LODPI = 1;
+     */
+    TileScale[TileScale["LODPI"] = 1] = "LODPI";
+    /**
+     * @generated from protobuf enum value: HIDPI = 2;
+     */
+    TileScale[TileScale["HIDPI"] = 2] = "HIDPI";
+})(TileScale || (TileScale = {}));
+/**
+ * @generated from protobuf enum com.apple.geo.protobuf.geo.TileSize
+ */
+var TileSize;
+(function (TileSize) {
+    /**
+     * @generated from protobuf enum value: PX128 = 0;
+     */
+    TileSize[TileSize["PX128"] = 0] = "PX128";
+    /**
+     * @generated from protobuf enum value: PX256 = 1;
+     */
+    TileSize[TileSize["PX256"] = 1] = "PX256";
+    /**
+     * @generated from protobuf enum value: PX512 = 2;
+     */
+    TileSize[TileSize["PX512"] = 2] = "PX512";
+})(TileSize || (TileSize = {}));
+/**
+ * @generated from protobuf enum com.apple.geo.protobuf.geo.GenericTileType
+ */
+var GenericTileType;
+(function (GenericTileType) {
+    /**
+     * @generated from protobuf enum value: UNKNOWN = 0;
+     */
+    GenericTileType[GenericTileType["UNKNOWN"] = 0] = "UNKNOWN";
+    /**
+     * @generated from protobuf enum value: WATER = 1;
+     */
+    GenericTileType[GenericTileType["WATER"] = 1] = "WATER";
+    /**
+     * @generated from protobuf enum value: NO_TILE = 2;
+     */
+    GenericTileType[GenericTileType["NO_TILE"] = 2] = "NO_TILE";
+})(GenericTileType || (GenericTileType = {}));
+// @generated message type with reflection information, may provide speed optimized methods
+class GenericTile$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.GenericTile", [
+            { no: 1, name: "tileType", kind: "enum", opt: true, T: () => ["com.apple.geo.protobuf.geo.GenericTileType", GenericTileType] },
+            { no: 2, name: "textureIndex", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
+            { no: 3, name: "resourceIndex", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* optional com.apple.geo.protobuf.geo.GenericTileType tileType */ 1:
+                    message.tileType = reader.int32();
+                    break;
+                case /* optional uint32 textureIndex */ 2:
+                    message.textureIndex = reader.uint32();
+                    break;
+                case /* optional uint32 resourceIndex */ 3:
+                    message.resourceIndex = reader.uint32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* optional com.apple.geo.protobuf.geo.GenericTileType tileType = 1; */
+        if (message.tileType !== undefined)
+            writer.tag(1, WireType.Varint).int32(message.tileType);
+        /* optional uint32 textureIndex = 2; */
+        if (message.textureIndex !== undefined)
+            writer.tag(2, WireType.Varint).uint32(message.textureIndex);
+        /* optional uint32 resourceIndex = 3; */
+        if (message.resourceIndex !== undefined)
+            writer.tag(3, WireType.Varint).uint32(message.resourceIndex);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.GenericTile
+ */
+const GenericTile = new GenericTile$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class TileSetRegion$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.TileSetRegion", [
+            { no: 1, name: "minX", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+            { no: 2, name: "minY", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+            { no: 3, name: "maxX", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+            { no: 4, name: "maxY", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+            { no: 5, name: "minZ", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+            { no: 6, name: "maxZ", kind: "scalar", T: 13 /*ScalarType.UINT32*/ }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.minX = 0;
+        message.minY = 0;
+        message.maxX = 0;
+        message.maxY = 0;
+        message.minZ = 0;
+        message.maxZ = 0;
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* uint32 minX */ 1:
+                    message.minX = reader.uint32();
+                    break;
+                case /* uint32 minY */ 2:
+                    message.minY = reader.uint32();
+                    break;
+                case /* uint32 maxX */ 3:
+                    message.maxX = reader.uint32();
+                    break;
+                case /* uint32 maxY */ 4:
+                    message.maxY = reader.uint32();
+                    break;
+                case /* uint32 minZ */ 5:
+                    message.minZ = reader.uint32();
+                    break;
+                case /* uint32 maxZ */ 6:
+                    message.maxZ = reader.uint32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* uint32 minX = 1; */
+        if (message.minX !== 0)
+            writer.tag(1, WireType.Varint).uint32(message.minX);
+        /* uint32 minY = 2; */
+        if (message.minY !== 0)
+            writer.tag(2, WireType.Varint).uint32(message.minY);
+        /* uint32 maxX = 3; */
+        if (message.maxX !== 0)
+            writer.tag(3, WireType.Varint).uint32(message.maxX);
+        /* uint32 maxY = 4; */
+        if (message.maxY !== 0)
+            writer.tag(4, WireType.Varint).uint32(message.maxY);
+        /* uint32 minZ = 5; */
+        if (message.minZ !== 0)
+            writer.tag(5, WireType.Varint).uint32(message.minZ);
+        /* uint32 maxZ = 6; */
+        if (message.maxZ !== 0)
+            writer.tag(6, WireType.Varint).uint32(message.maxZ);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.TileSetRegion
+ */
+const TileSetRegion = new TileSetRegion$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class TileSetVersion$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.TileSetVersion", [
+            { no: 1, name: "identifier", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+            { no: 2, name: "availableTiles", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => TileSetRegion },
+            { no: 3, name: "timeToLiveSeconds", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
+            { no: 4, name: "genericTile", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => GenericTile },
+            { no: 5, name: "supportedLanguagesVersion", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.identifier = 0;
+        message.availableTiles = [];
+        message.genericTile = [];
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* uint32 identifier */ 1:
+                    message.identifier = reader.uint32();
+                    break;
+                case /* repeated com.apple.geo.protobuf.geo.TileSetRegion availableTiles */ 2:
+                    message.availableTiles.push(TileSetRegion.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* optional uint32 timeToLiveSeconds */ 3:
+                    message.timeToLiveSeconds = reader.uint32();
+                    break;
+                case /* repeated com.apple.geo.protobuf.geo.GenericTile genericTile */ 4:
+                    message.genericTile.push(GenericTile.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* optional uint32 supportedLanguagesVersion */ 5:
+                    message.supportedLanguagesVersion = reader.uint32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* uint32 identifier = 1; */
+        if (message.identifier !== 0)
+            writer.tag(1, WireType.Varint).uint32(message.identifier);
+        /* repeated com.apple.geo.protobuf.geo.TileSetRegion availableTiles = 2; */
+        for (let i = 0; i < message.availableTiles.length; i++)
+            TileSetRegion.internalBinaryWrite(message.availableTiles[i], writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        /* optional uint32 timeToLiveSeconds = 3; */
+        if (message.timeToLiveSeconds !== undefined)
+            writer.tag(3, WireType.Varint).uint32(message.timeToLiveSeconds);
+        /* repeated com.apple.geo.protobuf.geo.GenericTile genericTile = 4; */
+        for (let i = 0; i < message.genericTile.length; i++)
+            GenericTile.internalBinaryWrite(message.genericTile[i], writer.tag(4, WireType.LengthDelimited).fork(), options).join();
+        /* optional uint32 supportedLanguagesVersion = 5; */
+        if (message.supportedLanguagesVersion !== undefined)
+            writer.tag(5, WireType.Varint).uint32(message.supportedLanguagesVersion);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.TileSetVersion
+ */
+const TileSetVersion = new TileSetVersion$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class TileSet$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.TileSet", [
+            { no: 1, name: "baseURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 2, name: "multiTileURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "style", kind: "enum", T: () => ["com.apple.geo.protobuf.geo.TileSetStyle", TileSetStyle] },
+            { no: 5, name: "validVersion", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => TileSetVersion },
+            { no: 6, name: "scale", kind: "enum", T: () => ["com.apple.geo.protobuf.geo.TileScale", TileScale] },
+            { no: 7, name: "size", kind: "enum", T: () => ["com.apple.geo.protobuf.geo.TileSize", TileSize] },
+            { no: 9, name: "localizationURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 10, name: "supportedLanguage", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => TileSet_Language },
+            { no: 11, name: "multiTileURLUsesStatusCodes", kind: "scalar", opt: true, T: 8 /*ScalarType.BOOL*/ },
+            { no: 12, name: "updateBehavior", kind: "enum", opt: true, T: () => ["com.apple.geo.protobuf.geo.TileSet.TileSetVersionUpdateBehavior", TileSet_TileSetVersionUpdateBehavior] },
+            { no: 13, name: "countryRegionWhitelist", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => TileSet_CountryRegionTuple },
+            { no: 14, name: "checksumType", kind: "enum", opt: true, T: () => ["com.apple.geo.protobuf.geo.TileSet.TileSetChecksumType", TileSet_TileSetChecksumType] },
+            { no: 15, name: "dataSet", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
+            { no: 16, name: "requestStyle", kind: "enum", opt: true, T: () => ["com.apple.geo.protobuf.geo.TileSet.TileRequestStyle", TileSet_TileRequestStyle] },
+            { no: 17, name: "useAuthProxy", kind: "scalar", opt: true, T: 8 /*ScalarType.BOOL*/ },
+            { no: 18, name: "supportsMultipathTCP", kind: "scalar", opt: true, T: 8 /*ScalarType.BOOL*/ },
+            { no: 19, name: "alternativeMultipathTCPPort", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
+            { no: 20, name: "deviceSKUWhitelist", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.style = 0;
+        message.validVersion = [];
+        message.scale = 0;
+        message.size = 0;
+        message.supportedLanguage = [];
+        message.countryRegionWhitelist = [];
+        message.deviceSKUWhitelist = [];
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* optional string baseURL */ 1:
+                    message.baseURL = reader.string();
+                    break;
+                case /* optional string multiTileURL */ 2:
+                    message.multiTileURL = reader.string();
+                    break;
+                case /* com.apple.geo.protobuf.geo.TileSetStyle style */ 3:
+                    message.style = reader.int32();
+                    break;
+                case /* repeated com.apple.geo.protobuf.geo.TileSetVersion validVersion */ 5:
+                    message.validVersion.push(TileSetVersion.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* com.apple.geo.protobuf.geo.TileScale scale */ 6:
+                    message.scale = reader.int32();
+                    break;
+                case /* com.apple.geo.protobuf.geo.TileSize size */ 7:
+                    message.size = reader.int32();
+                    break;
+                case /* optional string localizationURL */ 9:
+                    message.localizationURL = reader.string();
+                    break;
+                case /* repeated com.apple.geo.protobuf.geo.TileSet.Language supportedLanguage */ 10:
+                    message.supportedLanguage.push(TileSet_Language.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* optional bool multiTileURLUsesStatusCodes */ 11:
+                    message.multiTileURLUsesStatusCodes = reader.bool();
+                    break;
+                case /* optional com.apple.geo.protobuf.geo.TileSet.TileSetVersionUpdateBehavior updateBehavior */ 12:
+                    message.updateBehavior = reader.int32();
+                    break;
+                case /* repeated com.apple.geo.protobuf.geo.TileSet.CountryRegionTuple countryRegionWhitelist */ 13:
+                    message.countryRegionWhitelist.push(TileSet_CountryRegionTuple.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* optional com.apple.geo.protobuf.geo.TileSet.TileSetChecksumType checksumType */ 14:
+                    message.checksumType = reader.int32();
+                    break;
+                case /* optional uint32 dataSet */ 15:
+                    message.dataSet = reader.uint32();
+                    break;
+                case /* optional com.apple.geo.protobuf.geo.TileSet.TileRequestStyle requestStyle */ 16:
+                    message.requestStyle = reader.int32();
+                    break;
+                case /* optional bool useAuthProxy */ 17:
+                    message.useAuthProxy = reader.bool();
+                    break;
+                case /* optional bool supportsMultipathTCP */ 18:
+                    message.supportsMultipathTCP = reader.bool();
+                    break;
+                case /* optional uint32 alternativeMultipathTCPPort */ 19:
+                    message.alternativeMultipathTCPPort = reader.uint32();
+                    break;
+                case /* repeated string deviceSKUWhitelist */ 20:
+                    message.deviceSKUWhitelist.push(reader.string());
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* optional string baseURL = 1; */
+        if (message.baseURL !== undefined)
+            writer.tag(1, WireType.LengthDelimited).string(message.baseURL);
+        /* optional string multiTileURL = 2; */
+        if (message.multiTileURL !== undefined)
+            writer.tag(2, WireType.LengthDelimited).string(message.multiTileURL);
+        /* com.apple.geo.protobuf.geo.TileSetStyle style = 3; */
+        if (message.style !== 0)
+            writer.tag(3, WireType.Varint).int32(message.style);
+        /* repeated com.apple.geo.protobuf.geo.TileSetVersion validVersion = 5; */
+        for (let i = 0; i < message.validVersion.length; i++)
+            TileSetVersion.internalBinaryWrite(message.validVersion[i], writer.tag(5, WireType.LengthDelimited).fork(), options).join();
+        /* com.apple.geo.protobuf.geo.TileScale scale = 6; */
+        if (message.scale !== 0)
+            writer.tag(6, WireType.Varint).int32(message.scale);
+        /* com.apple.geo.protobuf.geo.TileSize size = 7; */
+        if (message.size !== 0)
+            writer.tag(7, WireType.Varint).int32(message.size);
+        /* optional string localizationURL = 9; */
+        if (message.localizationURL !== undefined)
+            writer.tag(9, WireType.LengthDelimited).string(message.localizationURL);
+        /* repeated com.apple.geo.protobuf.geo.TileSet.Language supportedLanguage = 10; */
+        for (let i = 0; i < message.supportedLanguage.length; i++)
+            TileSet_Language.internalBinaryWrite(message.supportedLanguage[i], writer.tag(10, WireType.LengthDelimited).fork(), options).join();
+        /* optional bool multiTileURLUsesStatusCodes = 11; */
+        if (message.multiTileURLUsesStatusCodes !== undefined)
+            writer.tag(11, WireType.Varint).bool(message.multiTileURLUsesStatusCodes);
+        /* optional com.apple.geo.protobuf.geo.TileSet.TileSetVersionUpdateBehavior updateBehavior = 12; */
+        if (message.updateBehavior !== undefined)
+            writer.tag(12, WireType.Varint).int32(message.updateBehavior);
+        /* repeated com.apple.geo.protobuf.geo.TileSet.CountryRegionTuple countryRegionWhitelist = 13; */
+        for (let i = 0; i < message.countryRegionWhitelist.length; i++)
+            TileSet_CountryRegionTuple.internalBinaryWrite(message.countryRegionWhitelist[i], writer.tag(13, WireType.LengthDelimited).fork(), options).join();
+        /* optional com.apple.geo.protobuf.geo.TileSet.TileSetChecksumType checksumType = 14; */
+        if (message.checksumType !== undefined)
+            writer.tag(14, WireType.Varint).int32(message.checksumType);
+        /* optional uint32 dataSet = 15; */
+        if (message.dataSet !== undefined)
+            writer.tag(15, WireType.Varint).uint32(message.dataSet);
+        /* optional com.apple.geo.protobuf.geo.TileSet.TileRequestStyle requestStyle = 16; */
+        if (message.requestStyle !== undefined)
+            writer.tag(16, WireType.Varint).int32(message.requestStyle);
+        /* optional bool useAuthProxy = 17; */
+        if (message.useAuthProxy !== undefined)
+            writer.tag(17, WireType.Varint).bool(message.useAuthProxy);
+        /* optional bool supportsMultipathTCP = 18; */
+        if (message.supportsMultipathTCP !== undefined)
+            writer.tag(18, WireType.Varint).bool(message.supportsMultipathTCP);
+        /* optional uint32 alternativeMultipathTCPPort = 19; */
+        if (message.alternativeMultipathTCPPort !== undefined)
+            writer.tag(19, WireType.Varint).uint32(message.alternativeMultipathTCPPort);
+        /* repeated string deviceSKUWhitelist = 20; */
+        for (let i = 0; i < message.deviceSKUWhitelist.length; i++)
+            writer.tag(20, WireType.LengthDelimited).string(message.deviceSKUWhitelist[i]);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.TileSet
+ */
+const TileSet = new TileSet$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class TileSet_Language$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.TileSet.Language", [
+            { no: 1, name: "identifier", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+            { no: 2, name: "language", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.identifier = 0;
+        message.language = [];
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* uint32 identifier */ 1:
+                    message.identifier = reader.uint32();
+                    break;
+                case /* repeated string language */ 2:
+                    message.language.push(reader.string());
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* uint32 identifier = 1; */
+        if (message.identifier !== 0)
+            writer.tag(1, WireType.Varint).uint32(message.identifier);
+        /* repeated string language = 2; */
+        for (let i = 0; i < message.language.length; i++)
+            writer.tag(2, WireType.LengthDelimited).string(message.language[i]);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.TileSet.Language
+ */
+const TileSet_Language = new TileSet_Language$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class TileSet_CountryRegionTuple$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.TileSet.CountryRegionTuple", [
+            { no: 1, name: "countryCode", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 2, name: "region", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* optional string countryCode */ 1:
+                    message.countryCode = reader.string();
+                    break;
+                case /* optional string region */ 2:
+                    message.region = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* optional string countryCode = 1; */
+        if (message.countryCode !== undefined)
+            writer.tag(1, WireType.LengthDelimited).string(message.countryCode);
+        /* optional string region = 2; */
+        if (message.region !== undefined)
+            writer.tag(2, WireType.LengthDelimited).string(message.region);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.TileSet.CountryRegionTuple
+ */
+const TileSet_CountryRegionTuple = new TileSet_CountryRegionTuple$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class SupportedTileSets$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.SupportedTileSets", [
+            { no: 1, name: "SupportedTileSets", kind: "message", jsonName: "SupportedTileSets", repeat: 2 /*RepeatType.UNPACKED*/, T: () => TileSet }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.supportedTileSets = [];
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* repeated com.apple.geo.protobuf.geo.TileSet SupportedTileSets = 1 [json_name = "SupportedTileSets"];*/ 1:
+                    message.supportedTileSets.push(TileSet.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* repeated com.apple.geo.protobuf.geo.TileSet SupportedTileSets = 1 [json_name = "SupportedTileSets"]; */
+        for (let i = 0; i < message.supportedTileSets.length; i++)
+            TileSet.internalBinaryWrite(message.supportedTileSets[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.SupportedTileSets
+ */
+new SupportedTileSets$Type();
 
+// @generated by protobuf-ts 2.9.4 with parameter generate_dependencies,long_type_number,keep_enum_prefix,output_javascript
+// @generated from protobuf file "GEOResourceManifestDownload.proto" (package "com.apple.geo.protobuf.geo", syntax proto3)
+// tslint:disable
+// @generated by protobuf-ts 2.9.4 with parameter generate_dependencies,long_type_number,keep_enum_prefix,output_javascript
+// @generated from protobuf file "GEOResourceManifestDownload.proto" (package "com.apple.geo.protobuf.geo", syntax proto3)
+// tslint:disable
+/**
+ * @generated from protobuf enum com.apple.geo.protobuf.geo.ResourceFilter.Scale
+ */
+var ResourceFilter_Scale;
+(function (ResourceFilter_Scale) {
+    /**
+     * @generated from protobuf enum value: RESOURCE_FILTER_SCALE_UNKNOWN = 0;
+     */
+    ResourceFilter_Scale[ResourceFilter_Scale["RESOURCE_FILTER_SCALE_UNKNOWN"] = 0] = "RESOURCE_FILTER_SCALE_UNKNOWN";
+    /**
+     * @generated from protobuf enum value: RESOURCE_FILTER_SCALE_1X = 1;
+     */
+    ResourceFilter_Scale[ResourceFilter_Scale["RESOURCE_FILTER_SCALE_1X"] = 1] = "RESOURCE_FILTER_SCALE_1X";
+    /**
+     * @generated from protobuf enum value: RESOURCE_FILTER_SCALE_2X = 2;
+     */
+    ResourceFilter_Scale[ResourceFilter_Scale["RESOURCE_FILTER_SCALE_2X"] = 2] = "RESOURCE_FILTER_SCALE_2X";
+    /**
+     * @generated from protobuf enum value: RESOURCE_FILTER_SCALE_3X = 3;
+     */
+    ResourceFilter_Scale[ResourceFilter_Scale["RESOURCE_FILTER_SCALE_3X"] = 3] = "RESOURCE_FILTER_SCALE_3X";
+})(ResourceFilter_Scale || (ResourceFilter_Scale = {}));
+/**
+ * @generated from protobuf enum com.apple.geo.protobuf.geo.ResourceFilter.Scenario
+ */
+var ResourceFilter_Scenario;
+(function (ResourceFilter_Scenario) {
+    /**
+     * @generated from protobuf enum value: RESOURCE_FILTER_SCENARIO_UNKNOWN = 0;
+     */
+    ResourceFilter_Scenario[ResourceFilter_Scenario["RESOURCE_FILTER_SCENARIO_UNKNOWN"] = 0] = "RESOURCE_FILTER_SCENARIO_UNKNOWN";
+    /**
+     * @generated from protobuf enum value: RESOURCE_FILTER_SCENARIO_CARPLAY = 1;
+     */
+    ResourceFilter_Scenario[ResourceFilter_Scenario["RESOURCE_FILTER_SCENARIO_CARPLAY"] = 1] = "RESOURCE_FILTER_SCENARIO_CARPLAY";
+    /**
+     * @generated from protobuf enum value: RESOURCE_FILTER_SCENARIO_NAVIGATION = 2;
+     */
+    ResourceFilter_Scenario[ResourceFilter_Scenario["RESOURCE_FILTER_SCENARIO_NAVIGATION"] = 2] = "RESOURCE_FILTER_SCENARIO_NAVIGATION";
+    /**
+     * @generated from protobuf enum value: RESOURCE_FILTER_SCENARIO_HIGHVISIBILITY = 3;
+     */
+    ResourceFilter_Scenario[ResourceFilter_Scenario["RESOURCE_FILTER_SCENARIO_HIGHVISIBILITY"] = 3] = "RESOURCE_FILTER_SCENARIO_HIGHVISIBILITY";
+    /**
+     * @generated from protobuf enum value: RESOURCE_FILTER_SCENARIO_EXPLICIT = 4;
+     */
+    ResourceFilter_Scenario[ResourceFilter_Scenario["RESOURCE_FILTER_SCENARIO_EXPLICIT"] = 4] = "RESOURCE_FILTER_SCENARIO_EXPLICIT";
+})(ResourceFilter_Scenario || (ResourceFilter_Scenario = {}));
+/**
+ * @generated from protobuf enum com.apple.geo.protobuf.geo.Resource.ResourceType
+ */
+var Resource_ResourceType;
+(function (Resource_ResourceType) {
+    /**
+     * @generated from protobuf enum value: RESOURCE_TYPE_STYLESHEET = 0;
+     */
+    Resource_ResourceType[Resource_ResourceType["RESOURCE_TYPE_STYLESHEET"] = 0] = "RESOURCE_TYPE_STYLESHEET";
+    /**
+     * @generated from protobuf enum value: RESOURCE_TYPE_TEXTURE = 1;
+     */
+    Resource_ResourceType[Resource_ResourceType["RESOURCE_TYPE_TEXTURE"] = 1] = "RESOURCE_TYPE_TEXTURE";
+    /**
+     * @generated from protobuf enum value: RESOURCE_TYPE_FONT = 2;
+     */
+    Resource_ResourceType[Resource_ResourceType["RESOURCE_TYPE_FONT"] = 2] = "RESOURCE_TYPE_FONT";
+    /**
+     * @generated from protobuf enum value: RESOURCE_TYPE_ICON = 3;
+     */
+    Resource_ResourceType[Resource_ResourceType["RESOURCE_TYPE_ICON"] = 3] = "RESOURCE_TYPE_ICON";
+    /**
+     * @generated from protobuf enum value: RESOURCE_TYPE_XML = 4;
+     */
+    Resource_ResourceType[Resource_ResourceType["RESOURCE_TYPE_XML"] = 4] = "RESOURCE_TYPE_XML";
+    /**
+     * @generated from protobuf enum value: RESOURCE_TYPE_ATTRIBUTION_LOGO = 5;
+     */
+    Resource_ResourceType[Resource_ResourceType["RESOURCE_TYPE_ATTRIBUTION_LOGO"] = 5] = "RESOURCE_TYPE_ATTRIBUTION_LOGO";
+    /**
+     * @generated from protobuf enum value: RESOURCE_TYPE_ATTRIBUTION_BADGE = 6;
+     */
+    Resource_ResourceType[Resource_ResourceType["RESOURCE_TYPE_ATTRIBUTION_BADGE"] = 6] = "RESOURCE_TYPE_ATTRIBUTION_BADGE";
+    /**
+     * @generated from protobuf enum value: RESOURCE_TYPE_OTHER = 7;
+     */
+    Resource_ResourceType[Resource_ResourceType["RESOURCE_TYPE_OTHER"] = 7] = "RESOURCE_TYPE_OTHER";
+})(Resource_ResourceType || (Resource_ResourceType = {}));
+/**
+ * @generated from protobuf enum com.apple.geo.protobuf.geo.Resource.ConnectionType
+ */
+var Resource_ConnectionType;
+(function (Resource_ConnectionType) {
+    /**
+     * @generated from protobuf enum value: RESOURCE_DOWNLOAD_CONNECTION_TYPE_UNKNOWN = 0;
+     */
+    Resource_ConnectionType[Resource_ConnectionType["RESOURCE_DOWNLOAD_CONNECTION_TYPE_UNKNOWN"] = 0] = "RESOURCE_DOWNLOAD_CONNECTION_TYPE_UNKNOWN";
+    /**
+     * @generated from protobuf enum value: RESOURCE_DOWNLOAD_CONNECTION_TYPE_CELLULAR = 1;
+     */
+    Resource_ConnectionType[Resource_ConnectionType["RESOURCE_DOWNLOAD_CONNECTION_TYPE_CELLULAR"] = 1] = "RESOURCE_DOWNLOAD_CONNECTION_TYPE_CELLULAR";
+    /**
+     * @generated from protobuf enum value: RESOURCE_DOWNLOAD_CONNECTION_TYPE_PREFER_WIFI = 2;
+     */
+    Resource_ConnectionType[Resource_ConnectionType["RESOURCE_DOWNLOAD_CONNECTION_TYPE_PREFER_WIFI"] = 2] = "RESOURCE_DOWNLOAD_CONNECTION_TYPE_PREFER_WIFI";
+    /**
+     * @generated from protobuf enum value: RESOURCE_DOWNLOAD_CONNECTION_TYPE_WIFI_ONLY = 3;
+     */
+    Resource_ConnectionType[Resource_ConnectionType["RESOURCE_DOWNLOAD_CONNECTION_TYPE_WIFI_ONLY"] = 3] = "RESOURCE_DOWNLOAD_CONNECTION_TYPE_WIFI_ONLY";
+})(Resource_ConnectionType || (Resource_ConnectionType = {}));
+/**
+ * @generated from protobuf enum com.apple.geo.protobuf.geo.Resource.ValidationMethod
+ */
+var Resource_ValidationMethod;
+(function (Resource_ValidationMethod) {
+    /**
+     * @generated from protobuf enum value: SHA1 = 0;
+     */
+    Resource_ValidationMethod[Resource_ValidationMethod["SHA1"] = 0] = "SHA1";
+    /**
+     * @generated from protobuf enum value: CMS = 1;
+     */
+    Resource_ValidationMethod[Resource_ValidationMethod["CMS"] = 1] = "CMS";
+})(Resource_ValidationMethod || (Resource_ValidationMethod = {}));
+/**
+ * @generated from protobuf enum com.apple.geo.protobuf.geo.Resource.UpdateMethod
+ */
+var Resource_UpdateMethod;
+(function (Resource_UpdateMethod) {
+    /**
+     * @generated from protobuf enum value: VERSIONED = 0;
+     */
+    Resource_UpdateMethod[Resource_UpdateMethod["VERSIONED"] = 0] = "VERSIONED";
+    /**
+     * @generated from protobuf enum value: ETAG = 1;
+     */
+    Resource_UpdateMethod[Resource_UpdateMethod["ETAG"] = 1] = "ETAG";
+})(Resource_UpdateMethod || (Resource_UpdateMethod = {}));
+// @generated message type with reflection information, may provide speed optimized methods
+class RegionalResource$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.RegionalResource", [
+            { no: 1, name: "x", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+            { no: 2, name: "y", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+            { no: 3, name: "z", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+            { no: 4, name: "icon", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
+            { no: 6, name: "attribution", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => Attribution },
+            { no: 7, name: "iconChecksum", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
+            { no: 29, name: "tileRange", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => TileSetRegion },
+            { no: 30, name: "validSubManifestVersion", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 13 /*ScalarType.UINT32*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.RegionalResource
+ */
+const RegionalResource = new RegionalResource$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class RegionalResourceIndex$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.RegionalResourceIndex", []);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.RegionalResourceIndex
+ */
+const RegionalResourceIndex = new RegionalResourceIndex$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class RegionalResourceTile$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.RegionalResourceTile", []);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.RegionalResourceTile
+ */
+new RegionalResourceTile$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class RegionalResourceRegion$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.RegionalResourceRegion", []);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.RegionalResourceRegion
+ */
+new RegionalResourceRegion$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class TileGroup$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.TileGroup", [
+            { no: 1, name: "identifier", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+            { no: 2, name: "tileSet", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => TileGroup_VersionedTileSet },
+            { no: 3, name: "styleSheetIndex", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 13 /*ScalarType.UINT32*/ },
+            { no: 4, name: "textureIndex", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 13 /*ScalarType.UINT32*/ },
+            { no: 5, name: "fontIndex", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 13 /*ScalarType.UINT32*/ },
+            { no: 6, name: "iconIndex", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 13 /*ScalarType.UINT32*/ },
+            { no: 7, name: "regionalResourceIndex", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => RegionalResourceIndex },
+            { no: 8, name: "xmlIndex", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 13 /*ScalarType.UINT32*/ },
+            { no: 10, name: "attributionIndex", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 13 /*ScalarType.UINT32*/ },
+            { no: 11, name: "hybridUnavailableRegion", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => TileSetRegion },
+            { no: 12, name: "resourceIndex", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 13 /*ScalarType.UINT32*/ },
+            { no: 14, name: "muninVersion", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+            { no: 15, name: "offlineMetadataIndex", kind: "scalar", T: 13 /*ScalarType.UINT32*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.TileGroup
+ */
+const TileGroup = new TileGroup$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class TileGroup_VersionedTileSet$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.TileGroup.VersionedTileSet", [
+            { no: 1, name: "tileSetIndex", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+            { no: 2, name: "identifier", kind: "scalar", T: 13 /*ScalarType.UINT32*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.TileGroup.VersionedTileSet
+ */
+const TileGroup_VersionedTileSet = new TileGroup_VersionedTileSet$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ResourceFilter$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.ResourceFilter", [
+            { no: 1, name: "scale", kind: "enum", repeat: 1 /*RepeatType.PACKED*/, T: () => ["com.apple.geo.protobuf.geo.ResourceFilter.Scale", ResourceFilter_Scale] },
+            { no: 2, name: "scenario", kind: "enum", repeat: 1 /*RepeatType.PACKED*/, T: () => ["com.apple.geo.protobuf.geo.ResourceFilter.Scenario", ResourceFilter_Scenario] }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.ResourceFilter
+ */
+const ResourceFilter = new ResourceFilter$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class Resource$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.Resource", [
+            { no: 1, name: "resourceType", kind: "enum", T: () => ["com.apple.geo.protobuf.geo.Resource.ResourceType", Resource_ResourceType] },
+            { no: 2, name: "filename", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "checksum", kind: "scalar", T: 12 /*ScalarType.BYTES*/ },
+            { no: 4, name: "region", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => TileSetRegion },
+            { no: 5, name: "filter", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => ResourceFilter },
+            { no: 6, name: "connectionType", kind: "enum", opt: true, T: () => ["com.apple.geo.protobuf.geo.Resource.ConnectionType", Resource_ConnectionType] },
+            { no: 7, name: "preferWiFiAllowedStaleThreshold", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
+            { no: 8, name: "validationMethod", kind: "enum", T: () => ["com.apple.geo.protobuf.geo.Resource.ValidationMethod", Resource_ValidationMethod] },
+            { no: 9, name: "alternateResourceURLIndex", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
+            { no: 10, name: "updateMethod", kind: "enum", T: () => ["com.apple.geo.protobuf.geo.Resource.UpdateMethod", Resource_UpdateMethod] },
+            { no: 11, name: "timeToLiveSeconds", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.Resource
+ */
+const Resource = new Resource$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class Attribution$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.Attribution", [
+            { no: 1, name: "badge", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 2, name: "logo", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 4, name: "url", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 5, name: "badgeChecksum", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 6, name: "logoChecksum", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 7, name: "resource", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => Resource },
+            { no: 8, name: "region", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => TileSetRegion },
+            { no: 9, name: "dataSet", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
+            { no: 10, name: "linkDisplayStringIndex", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
+            { no: 11, name: "plainTextURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 12, name: "plainTextURLSHA256Checksum", kind: "scalar", opt: true, T: 12 /*ScalarType.BYTES*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.Attribution
+ */
+const Attribution = new Attribution$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ServiceVersion$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.ServiceVersion", [
+            { no: 1, name: "versionDomain", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
+            { no: 2, name: "minimumVersion", kind: "scalar", T: 13 /*ScalarType.UINT32*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.ServiceVersion
+ */
+const ServiceVersion = new ServiceVersion$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class VersionManifest$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.VersionManifest", [
+            { no: 1, name: "serviceVersion", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => ServiceVersion }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.VersionManifest
+ */
+const VersionManifest = new VersionManifest$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class DataSetDescription$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.DataSetDescription", [
+            { no: 1, name: "identifier", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+            { no: 2, name: "dataSetDescription", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.DataSetDescription
+ */
+const DataSetDescription = new DataSetDescription$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class DataSetURLOverride$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.DataSetURLOverride", []);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.DataSetURLOverride
+ */
+const DataSetURLOverride = new DataSetURLOverride$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class MuninVersion$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.MuninVersion", []);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.MuninVersion
+ */
+const MuninVersion = new MuninVersion$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class URLInfo$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.URLInfo", [
+            { no: 1, name: "url", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 2, name: "useAuthProxy", kind: "scalar", opt: true, T: 8 /*ScalarType.BOOL*/ },
+            { no: 3, name: "supportsMultipathTCP", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
+            { no: 4, name: "alternativeMultipathTCPPort", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.URLInfo
+ */
+const URLInfo = new URLInfo$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class URLInfoSet$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.URLInfoSet", [
+            { no: 1, name: "dataSet", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
+            { no: 2, name: "resourcesURL", kind: "message", T: () => URLInfo },
+            { no: 3, name: "searchAttributionManifestURL", kind: "message", T: () => URLInfo },
+            { no: 4, name: "directionsURL", kind: "message", T: () => URLInfo },
+            { no: 5, name: "etaURL", kind: "message", T: () => URLInfo },
+            { no: 6, name: "batchReverseGeocoderURL", kind: "message", T: () => URLInfo },
+            { no: 7, name: "simpleETAURL", kind: "message", T: () => URLInfo },
+            { no: 8, name: "addressCorrectionInitURL", kind: "message", T: () => URLInfo },
+            { no: 9, name: "addressCorrectionUpdateURL", kind: "message", T: () => URLInfo },
+            { no: 10, name: "polyLocationShiftURL", kind: "message", T: () => URLInfo },
+            { no: 11, name: "problemSubmissionURL", kind: "message", T: () => URLInfo },
+            { no: 12, name: "problemStatusURL", kind: "message", T: () => URLInfo },
+            { no: 13, name: "reverseGeocoderVersionsURL", kind: "message", T: () => URLInfo },
+            { no: 14, name: "problemCategoriesURL", kind: "message", T: () => URLInfo },
+            { no: 15, name: "announcementsURL", kind: "message", T: () => URLInfo },
+            { no: 16, name: "dispatcherURL", kind: "message", T: () => URLInfo },
+            { no: 17, name: "problemOptInURL", kind: "message", T: () => URLInfo },
+            { no: 18, name: "abExperimentURL", kind: "message", T: () => URLInfo },
+            { no: 19, name: "businessPortalBaseURL", kind: "message", T: () => URLInfo },
+            { no: 20, name: "logMessageUsageURL", kind: "message", T: () => URLInfo },
+            { no: 21, name: "spatialLookupURL", kind: "message", T: () => URLInfo },
+            { no: 22, name: "realtimeTrafficProbeURL", kind: "message", T: () => URLInfo },
+            { no: 23, name: "batchTrafficProbeURL", kind: "message", T: () => URLInfo },
+            { no: 24, name: "proactiveRoutingURL", kind: "message", T: () => URLInfo },
+            { no: 25, name: "logMessageUsageV3URL", kind: "message", T: () => URLInfo },
+            { no: 26, name: "backgroundDispatcherURL", kind: "message", T: () => URLInfo },
+            { no: 27, name: "bluePOIDispatcherURL", kind: "message", T: () => URLInfo },
+            { no: 28, name: "backgroundRevGeoURL", kind: "message", T: () => URLInfo },
+            { no: 29, name: "wifiConnectionQualityProbeURL", kind: "message", T: () => URLInfo },
+            { no: 30, name: "muninBaseURL", kind: "message", T: () => URLInfo },
+            { no: 31, name: "authProxyURL", kind: "message", T: () => URLInfo },
+            { no: 32, name: "wifiQualityURL", kind: "message", T: () => URLInfo },
+            { no: 33, name: "feedbackSubmissionURL", kind: "message", T: () => URLInfo },
+            { no: 34, name: "feedbackLookupURL", kind: "message", T: () => URLInfo },
+            { no: 35, name: "junctionImageServiceURL", kind: "message", T: () => URLInfo },
+            { no: 36, name: "analyticsCohortSessionURL", kind: "message", T: () => URLInfo },
+            { no: 37, name: "analyticsLongSessionURL", kind: "message", T: () => URLInfo },
+            { no: 38, name: "analyticsShortSessionURL", kind: "message", T: () => URLInfo },
+            { no: 39, name: "analyticsSessionlessURL", kind: "message", T: () => URLInfo },
+            { no: 40, name: "webModuleBaseURL", kind: "message", T: () => URLInfo },
+            { no: 41, name: "wifiQualityTileURL", kind: "message", T: () => URLInfo },
+            { no: 42, name: "alternateResourcesURL", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => URLInfo },
+            { no: 43, name: "tokenAuthenticationURL", kind: "message", T: () => URLInfo },
+            { no: 44, name: "authenticatedClientFeatureFlagURL", kind: "message", T: () => URLInfo },
+            { no: 45, name: "addressCorrectionTaggedLocationURL", kind: "message", T: () => URLInfo },
+            { no: 46, name: "proactiveAppClipURL", kind: "message", T: () => URLInfo },
+            { no: 47, name: "enrichmentSubmissionURL", kind: "message", T: () => URLInfo },
+            { no: 48, name: "ugcLogDiscardURL", kind: "message", T: () => URLInfo },
+            { no: 49, name: "batchReverseGeocoderPlaceRequestURL", kind: "message", T: () => URLInfo },
+            { no: 50, name: "pressureProbeDataURL", kind: "message", T: () => URLInfo },
+            { no: 51, name: "poiBusynessActivityCollectionURL", kind: "message", T: () => URLInfo },
+            { no: 52, name: "rapWebBundleURL", kind: "message", T: () => URLInfo },
+            { no: 53, name: "networkSelectionHarvestURL", kind: "message", T: () => URLInfo },
+            { no: 54, name: "offlineDataBatchListURL", kind: "message", T: () => URLInfo },
+            { no: 55, name: "offlineDataSizeURL", kind: "message", T: () => URLInfo },
+            { no: 56, name: "offlineDataDownloadBaseURL", kind: "message", T: () => URLInfo },
+            { no: 57, name: "bcxDispatcherURL", kind: "message", T: () => URLInfo }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.URLInfoSet
+ */
+const URLInfoSet = new URLInfoSet$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class MuninBucket$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.MuninBucket", [
+            { no: 3, name: "bucketID", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+            { no: 4, name: "bucketURL", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 5, name: "lodLevel", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.MuninBucket
+ */
+const MuninBucket = new MuninBucket$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class DisplayString$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.DisplayString", [
+            { no: 1, name: "localizedString", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => LocalizedString }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.DisplayString
+ */
+const DisplayString = new DisplayString$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class LocalizedString$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.LocalizedString", [
+            { no: 1, name: "locale", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "stringValue", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.LocalizedString
+ */
+const LocalizedString = new LocalizedString$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class MapRegion$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.MapRegion", []);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.MapRegion
+ */
+const MapRegion = new MapRegion$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class OfflineMetadata$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.OfflineMetadata", [
+            { no: 1, name: "dataVersion", kind: "scalar", T: 4 /*ScalarType.UINT64*/, L: 2 /*LongType.NUMBER*/ },
+            { no: 2, name: "regulatoryRegionId", kind: "scalar", T: 13 /*ScalarType.UINT32*/ }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.OfflineMetadata
+ */
+const OfflineMetadata = new OfflineMetadata$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class Resources$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.Resources", [
+            { no: 1, name: "tileGroup", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => TileGroup },
+            { no: 2, name: "tileSet", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => TileSet },
+            { no: 3, name: "styleSheet", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
+            { no: 4, name: "texture", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
+            { no: 5, name: "font", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
+            { no: 6, name: "icon", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
+            { no: 8, name: "regionalResource", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => RegionalResource },
+            { no: 9, name: "xml", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
+            { no: 11, name: "attribution", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => Attribution },
+            { no: 30, name: "authToken", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 31, name: "resourcesURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 32, name: "searchURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 33, name: "searchAttributionManifestURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 34, name: "autocompleteURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 35, name: "reverseGeocoderURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 36, name: "forwardGeocoderURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 37, name: "directionsURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 38, name: "etaURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 39, name: "locationShiftURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 40, name: "releaseInfo", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 41, name: "batchReverseGeocoderURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 42, name: "mapMatchURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 43, name: "simpleETAURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 44, name: "styleSheetChecksum", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
+            { no: 45, name: "textureChecksum", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
+            { no: 46, name: "fontChecksum", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
+            { no: 47, name: "iconChecksum", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
+            { no: 48, name: "xmlChecksum", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
+            { no: 49, name: "addressCorrectionInitURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 50, name: "addressCorrectionUpdateURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 51, name: "polyLocationShiftURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 52, name: "problemSubmissionURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 53, name: "problemStatusURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 54, name: "reverseGeocoderVersionsURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 55, name: "problemCategoriesURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 56, name: "usageURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 58, name: "businessCallerIDURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 59, name: "problemNotificationAvailabilityURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 61, name: "announcementsURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 62, name: "announcementsSupportedLanguage", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
+            { no: 63, name: "businessNameResolutionURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 64, name: "dispatcherURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 65, name: "problemOptInURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 66, name: "versionManifest", kind: "message", T: () => VersionManifest },
+            { no: 67, name: "abExperimentURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 68, name: "businessPortalBaseURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 69, name: "logMessageUsageURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 70, name: "locationShiftEnabledRegion", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => MapRegion },
+            { no: 71, name: "locationShiftVersion", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
+            { no: 72, name: "resource", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => Resource },
+            { no: 73, name: "spatialLookupURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 74, name: "dataSet", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => DataSetDescription },
+            { no: 75, name: "dataSetURLOverride", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => DataSetURLOverride },
+            { no: 77, name: "realtimeTrafficProbeURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 78, name: "batchTrafficProbeURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 79, name: "proactiveRoutingURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 80, name: "logMessageUsageV3URL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 81, name: "backgroundDispatcherURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 82, name: "bluePOIDispatcherURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 83, name: "backgroundRevGeoURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 85, name: "wifiConnectionQualityProbeURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 88, name: "muninBaseURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 89, name: "muninVersion", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => MuninVersion },
+            { no: 91, name: "authProxyURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 92, name: "urlInfoSet", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => URLInfoSet },
+            { no: 93, name: "muninBucket", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => MuninBucket },
+            { no: 94, name: "displayString", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => DisplayString },
+            { no: 95, name: "offlineMetadata", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => OfflineMetadata }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.Resources
+ */
+const Resources = new Resources$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ResourceManifestDownload$Type extends MessageType {
+    constructor() {
+        super("com.apple.geo.protobuf.geo.ResourceManifestDownload", [
+            { no: 1, name: "resources", kind: "message", T: () => Resources }
+        ]);
+    }
+}
+/**
+ * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.ResourceManifestDownload
+ */
+new ResourceManifestDownload$Type();
+
+class GEOResourceManifestDownload {
+    static Name = "GEOResourceManifestDownload";
+    static Version = "1.0.6";
+	static Author = "Virgil Clyne";
+    static decode(rawBody = new Uint8Array([])) {
+        log("☑️ GEOResourceManifestDownload.decode", "");
+        const body = Resources.fromBinary(rawBody);
+        if (body.tileSet) body.tileSet = body.tileSet.map((tile) => {
+            if (typeof tile.style !== "undefined") tile.style = TileSetStyle[tile.style];
+            if (typeof tile.validVersion !== "undefined") tile.validVersion = tile.validVersion.map(version => {
+                if (typeof version.genericTile?.tileType !== "undefined") version.genericTile.tileType = GenericTileType[version.genericTile.tileType];
+                return version;
+            });
+            if (typeof tile.scale !== "undefined") tile.scale = TileScale[tile.scale];
+            if (typeof tile.size !== "undefined") tile.size = TileSize[tile.size];
+            if (typeof tile.updateBehavior !== "undefined") tile.updateBehavior = TileSet_TileSetVersionUpdateBehavior[tile.updateBehavior];
+            if (typeof tile.checksumType !== "undefined") tile.checksumType = TileSet_TileSetChecksumType[tile.checksumType];
+            if (typeof tile.requestStyle !== "undefined") tile.requestStyle = TileSet_TileRequestStyle[tile.requestStyle];
+            return tile;
+        });
+        if (typeof body.attribution !== "undefined") body.attribution = body.attribution.map(attribution => {
+            if (typeof attribution.resource !== "undefined") attribution.resource = attribution.resource.map(resource => {
+                if (typeof resource.resourceType !== "undefined") resource.resourceType = Resource_ResourceType[resource.resourceType];
+                if (typeof resource.filter !== "undefined") resource.filter = resource.filter.map(filter => {
+                    if (typeof filter.scale !== "undefined") filter.scale = filter.scale.map(scale => ResourceFilter_Scale[scale]);
+                    if (typeof filter.scenario !== "undefined") filter.scenario = filter.scenario.map(scenario => ResourceFilter_Scenario[scenario]);
+                    return filter;
+                });
+                if (typeof resource.connectionType !== "undefined") resource.connectionType = Resource_ConnectionType[resource.connectionType];
+                if (typeof resource.validationMethod !== "undefined") resource.validationMethod = Resource_ValidationMethod[resource.validationMethod];
+                if (typeof resource.updateMethod !== "undefined") resource.updateMethod = Resource_UpdateMethod[resource.updateMethod];
+                return resource;
+            });
+            return attribution;
+        });
+        if (typeof body.resource !== "undefined") body.resource = body.resource.map(resource => {
+            if (typeof resource.resourceType !== "undefined") resource.resourceType = Resource_ResourceType[resource.resourceType];
+            if (typeof resource.filter !== "undefined") resource.filter = resource.filter.map(filter => {
+                if (typeof filter.scale !== "undefined") filter.scale = filter.scale.map(scale => ResourceFilter_Scale[scale]);
+                if (typeof filter.scenario !== "undefined") filter.scenario = filter.scenario.map(scenario => ResourceFilter_Scenario[scenario]);
+                return filter;
+            });
+            if (typeof resource.connectionType !== "undefined") resource.connectionType = Resource_ConnectionType[resource.connectionType];
+            if (typeof resource.validationMethod !== "undefined") resource.validationMethod = Resource_ValidationMethod[resource.validationMethod];
+            if (typeof resource.updateMethod !== "undefined") resource.updateMethod = Resource_UpdateMethod[resource.updateMethod];
+            return resource;
+        });
+        log("☑️ GEOResourceManifestDownload.decode", "");
+        return body;
+    };
+
+    static encode(body = {}) {
+        log("☑️ GEOResourceManifestDownload.encode", "");
+        if (body.tileSet) body.tileSet = body.tileSet.map((tile) => {
+            if (typeof tile.style !== "undefined") tile.style = TileSetStyle[tile.style];
+            if (typeof tile.validVersion !== "undefined") tile.validVersion = tile.validVersion.map(version => {
+                if (typeof version.genericTile?.tileType !== "undefined") version.genericTile.tileType = GenericTileType[version.genericTile.tileType];
+                return version;
+            });
+            if (typeof tile.scale !== "undefined") tile.scale = TileScale[tile.scale];
+            if (typeof tile.size !== "undefined") tile.size = TileSize[tile.size];
+            if (typeof tile.updateBehavior !== "undefined") tile.updateBehavior = TileSet_TileSetVersionUpdateBehavior[tile.updateBehavior];
+            if (typeof tile.checksumType !== "undefined") tile.checksumType = TileSet_TileSetChecksumType[tile.checksumType];
+            if (typeof tile.requestStyle !== "undefined") tile.requestStyle = TileSet_TileRequestStyle[tile.requestStyle];
+            return tile;
+        });
+        if (typeof body.attribution !== "undefined") body.attribution = body.attribution.map(attribution => {
+            if (typeof attribution.resource !== "undefined") attribution.resource = attribution.resource.map(resource => {
+                if (typeof resource.resourceType !== "undefined") resource.resourceType = Resource_ResourceType[resource.resourceType];
+                if (typeof resource.filter !== "undefined") resource.filter = resource.filter.map(filter => {
+                    if (typeof filter.scale !== "undefined") filter.scale = filter.scale.map(scale => ResourceFilter_Scale[scale]);
+                    if (typeof filter.scenario !== "undefined") filter.scenario = filter.scenario.map(scenario => ResourceFilter_Scenario[scenario]);
+                    return filter;
+                });
+                if (typeof resource.connectionType !== "undefined") resource.connectionType = Resource_ConnectionType[resource.connectionType];
+                if (typeof resource.validationMethod !== "undefined") resource.validationMethod = Resource_ValidationMethod[resource.validationMethod];
+                if (typeof resource.updateMethod !== "undefined") resource.updateMethod = Resource_UpdateMethod[resource.updateMethod];
+                return resource;
+            });
+            return attribution;
+        });
+        if (typeof body.resource !== "undefined") body.resource = body.resource.map(resource => {
+            if (typeof resource.resourceType !== "undefined") resource.resourceType = Resource_ResourceType[resource.resourceType];
+            if (typeof resource.filter !== "undefined") resource.filter = resource.filter.map(filter => {
+                if (typeof filter.scale !== "undefined") filter.scale = filter.scale.map(scale => ResourceFilter_Scale[scale]);
+                if (typeof filter.scenario !== "undefined") filter.scenario = filter.scenario.map(scenario => ResourceFilter_Scenario[scenario]);
+                return filter;
+            });
+            if (typeof resource.connectionType !== "undefined") resource.connectionType = Resource_ConnectionType[resource.connectionType];
+            if (typeof resource.validationMethod !== "undefined") resource.validationMethod = Resource_ValidationMethod[resource.validationMethod];
+            if (typeof resource.updateMethod !== "undefined") resource.updateMethod = Resource_UpdateMethod[resource.updateMethod];
+            return resource;
+        });
+        const rawBody = Resources.toBinary(body);
+        log("☑️ GEOResourceManifestDownload.encode", "");
+        return rawBody;
+    };
+}
+
+log("v3.6.0(1009)");
 /***************** Processing *****************/
 // 解构URL
 const url = new URL($request.url);
-$.log(`⚠ url: ${url.toJSON()}`, "");
+log(`⚠ url: ${url.toJSON()}`, "");
 // 获取连接参数
 const METHOD = $request.method, HOST = url.hostname, PATH = url.pathname;
-$.log(`⚠ METHOD: ${METHOD}, HOST: ${HOST}, PATH: ${PATH}` , "");
+log(`⚠ METHOD: ${METHOD}, HOST: ${HOST}, PATH: ${PATH}` , "");
 // 解析格式
 const FORMAT = ($response.headers?.["Content-Type"] ?? $response.headers?.["content-type"])?.split(";")?.[0];
-$.log(`⚠ FORMAT: ${FORMAT}`, "");
+log(`⚠ FORMAT: ${FORMAT}`, "");
 !(async () => {
 	const { Settings, Caches, Configs } = setENV("iRingo", ["Location", "Maps"], Database$1);
-	$.log(`⚠ Settings.Switch: ${Settings?.Switch}`, "");
+	log(`⚠ Settings.Switch: ${Settings?.Switch}`, "");
 	switch (Settings.Switch) {
 		case true:
 		default:
@@ -17684,13 +19161,14 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 				case "application/x-www-form-urlencoded":
 				case "text/plain":
 				default:
+					//log(`🚧 body: ${body}`, "");
 					break;
 				case "application/x-mpegURL":
 				case "application/x-mpegurl":
 				case "application/vnd.apple.mpegurl":
 				case "audio/mpegurl":
 					//body = M3U8.parse($response.body);
-					//$.log(`🚧 body: ${JSON.stringify(body)}`, "");
+					//log(`🚧 body: ${JSON.stringify(body)}`, "");
 					//$response.body = M3U8.stringify(body);
 					break;
 				case "text/xml":
@@ -17707,7 +19185,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 							switch (PATH) {
 								case "/pep/gcc":
 									Lodash.set(Caches, "pep.gcc", $response.body);
-									$Storage.setItem("@iRingo.Location.Caches", Caches);
+									Storage.setItem("@iRingo.Location.Caches", Caches);
 									switch (Settings.PEP.GCC) {
 										case "AUTO":
 											break;
@@ -17721,7 +19199,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 							//body = await PLISTs("plist2json", $response.body);
 							BigInt.prototype.toJSON = function () { return this.toString() };
 							body = XML.parse($response.body);
-							$.log(`🚧 body: ${JSON.stringify(body)}`, "");
+							log(`🚧 body: ${JSON.stringify(body)}`, "");
 							// 路径判断
 							switch (PATH) {
 								case "/config/defaults":
@@ -17753,7 +19231,7 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 										PLIST["com.apple.GEO"].CountryProviders.CN.OpticalHeadingEnabled = true; // 举起以查看
 										PLIST["com.apple.GEO"].CountryProviders.CN.UseCLPedestrianMapMatchedLocations = true; // 导航准确性-增强
 									}									break;
-							}							$.log(`🚧 body: ${JSON.stringify(body)}`, "");
+							}							log(`🚧 body: ${JSON.stringify(body)}`, "");
 							//$response.body = await PLISTs("json2plist", body); // json2plist
 							$response.body = XML.stringify(body);
 							break;
@@ -17761,13 +19239,13 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 				case "text/vtt":
 				case "application/vtt":
 					//body = VTT.parse($response.body);
-					//$.log(`🚧 body: ${JSON.stringify(body)}`, "");
+					//log(`🚧 body: ${JSON.stringify(body)}`, "");
 					//$response.body = VTT.stringify(body);
 					break;
 				case "text/json":
 				case "application/json":
 					body = JSON.parse($response.body ?? "{}");
-					$.log(`🚧 body: ${JSON.stringify(body)}`, "");
+					log(`🚧 body: ${JSON.stringify(body)}`, "");
 					$response.body = JSON.stringify(body);
 					break;
 				case "application/protobuf":
@@ -17776,1251 +19254,36 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 				case "application/grpc":
 				case "application/grpc+proto":
 				case "application/octet-stream":
-					//$.log(`🚧 $response: ${JSON.stringify($response, null, 2)}`, "");
-					let rawBody = $.isQuanX() ? new Uint8Array($response.bodyBytes ?? []) : $response.body ?? new Uint8Array();
-					//$.log(`🚧 isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
+					//log(`🚧 $response: ${JSON.stringify($response, null, 2)}`, "");
+					let rawBody = ($platform === "Quantumult X") ? new Uint8Array($response.bodyBytes ?? []) : $response.body ?? new Uint8Array();
+					//log(`🚧 isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody)}`, "");
 					switch (FORMAT) {
 						case "application/protobuf":
 						case "application/x-protobuf":
 						case "application/vnd.google.protobuf":
 						case "application/octet-stream":
-							/******************  initialization start  *******************/
-							/******************  initialization finish  *******************/
 							switch (HOST) {
 								case "gspe35-ssl.ls.apple.com":
 									switch (PATH) {
 										case "/config/announcements":
 											break;
 										case "/geo_manifest/dynamic/config":
-											/******************  initialization start  *******************/
-											// @generated by protobuf-ts 2.9.3 with parameter long_type_string,output_javascript,optimize_code_size
-											/**
-											 * @generated from protobuf enum com.apple.geo.protobuf.geo.TileSet.TileSetVersionUpdateBehavior
-											 */
-											var TileSet_TileSetVersionUpdateBehavior;
-											(function (TileSet_TileSetVersionUpdateBehavior) {
-												/**
-												 * @generated from protobuf enum value: TILE_UPDATE_BEHAVIOR_FLUSH = 0;
-												 */
-												TileSet_TileSetVersionUpdateBehavior[TileSet_TileSetVersionUpdateBehavior["TILE_UPDATE_BEHAVIOR_FLUSH"] = 0] = "TILE_UPDATE_BEHAVIOR_FLUSH";
-												/**
-												 * @generated from protobuf enum value: TILE_UPDATE_BEHAVIOR_ETAG = 1;
-												 */
-												TileSet_TileSetVersionUpdateBehavior[TileSet_TileSetVersionUpdateBehavior["TILE_UPDATE_BEHAVIOR_ETAG"] = 1] = "TILE_UPDATE_BEHAVIOR_ETAG";
-											})(TileSet_TileSetVersionUpdateBehavior || (TileSet_TileSetVersionUpdateBehavior = {}));
-											/**
-											 * @generated from protobuf enum com.apple.geo.protobuf.geo.TileSet.TileSetChecksumType
-											 */
-											var TileSet_TileSetChecksumType;
-											(function (TileSet_TileSetChecksumType) {
-												/**
-												 * @generated from protobuf enum value: CHECKSUM_TYPE_NONE = 0;
-												 */
-												TileSet_TileSetChecksumType[TileSet_TileSetChecksumType["CHECKSUM_TYPE_NONE"] = 0] = "CHECKSUM_TYPE_NONE";
-												/**
-												 * @generated from protobuf enum value: CHECKSUM_TYPE_APPENDED_MD5 = 1;
-												 */
-												TileSet_TileSetChecksumType[TileSet_TileSetChecksumType["CHECKSUM_TYPE_APPENDED_MD5"] = 1] = "CHECKSUM_TYPE_APPENDED_MD5";
-											})(TileSet_TileSetChecksumType || (TileSet_TileSetChecksumType = {}));
-											/**
-											 * @generated from protobuf enum com.apple.geo.protobuf.geo.TileSet.TileRequestStyle
-											 */
-											var TileSet_TileRequestStyle;
-											(function (TileSet_TileRequestStyle) {
-												/**
-												 * @generated from protobuf enum value: REQUEST_STYLE_LEGACY = 0;
-												 */
-												TileSet_TileRequestStyle[TileSet_TileRequestStyle["REQUEST_STYLE_LEGACY"] = 0] = "REQUEST_STYLE_LEGACY";
-												/**
-												 * @generated from protobuf enum value: REQUEST_STYLE_HEADER_PARAMS_VERSION_BASED_HMAC_AUTH = 1;
-												 */
-												TileSet_TileRequestStyle[TileSet_TileRequestStyle["REQUEST_STYLE_HEADER_PARAMS_VERSION_BASED_HMAC_AUTH"] = 1] = "REQUEST_STYLE_HEADER_PARAMS_VERSION_BASED_HMAC_AUTH";
-											})(TileSet_TileRequestStyle || (TileSet_TileRequestStyle = {}));
-											/**
-											 * @generated from protobuf enum com.apple.geo.protobuf.geo.ResourceFilter.Scale
-											 */
-											var ResourceFilter_Scale;
-											(function (ResourceFilter_Scale) {
-												/**
-												 * @generated from protobuf enum value: RESOURCE_FILTER_SCALE_UNKNOWN = 0;
-												 */
-												ResourceFilter_Scale[ResourceFilter_Scale["RESOURCE_FILTER_SCALE_UNKNOWN"] = 0] = "RESOURCE_FILTER_SCALE_UNKNOWN";
-												/**
-												 * @generated from protobuf enum value: RESOURCE_FILTER_SCALE_1X = 1;
-												 */
-												ResourceFilter_Scale[ResourceFilter_Scale["RESOURCE_FILTER_SCALE_1X"] = 1] = "RESOURCE_FILTER_SCALE_1X";
-												/**
-												 * @generated from protobuf enum value: RESOURCE_FILTER_SCALE_2X = 2;
-												 */
-												ResourceFilter_Scale[ResourceFilter_Scale["RESOURCE_FILTER_SCALE_2X"] = 2] = "RESOURCE_FILTER_SCALE_2X";
-												/**
-												 * @generated from protobuf enum value: RESOURCE_FILTER_SCALE_3X = 3;
-												 */
-												ResourceFilter_Scale[ResourceFilter_Scale["RESOURCE_FILTER_SCALE_3X"] = 3] = "RESOURCE_FILTER_SCALE_3X";
-											})(ResourceFilter_Scale || (ResourceFilter_Scale = {}));
-											/**
-											 * @generated from protobuf enum com.apple.geo.protobuf.geo.ResourceFilter.Scenario
-											 */
-											var ResourceFilter_Scenario;
-											(function (ResourceFilter_Scenario) {
-												/**
-												 * @generated from protobuf enum value: RESOURCE_FILTER_SCENARIO_UNKNOWN = 0;
-												 */
-												ResourceFilter_Scenario[ResourceFilter_Scenario["RESOURCE_FILTER_SCENARIO_UNKNOWN"] = 0] = "RESOURCE_FILTER_SCENARIO_UNKNOWN";
-												/**
-												 * @generated from protobuf enum value: RESOURCE_FILTER_SCENARIO_CARPLAY = 1;
-												 */
-												ResourceFilter_Scenario[ResourceFilter_Scenario["RESOURCE_FILTER_SCENARIO_CARPLAY"] = 1] = "RESOURCE_FILTER_SCENARIO_CARPLAY";
-												/**
-												 * @generated from protobuf enum value: RESOURCE_FILTER_SCENARIO_NAVIGATION = 2;
-												 */
-												ResourceFilter_Scenario[ResourceFilter_Scenario["RESOURCE_FILTER_SCENARIO_NAVIGATION"] = 2] = "RESOURCE_FILTER_SCENARIO_NAVIGATION";
-												/**
-												 * @generated from protobuf enum value: RESOURCE_FILTER_SCENARIO_HIGHVISIBILITY = 3;
-												 */
-												ResourceFilter_Scenario[ResourceFilter_Scenario["RESOURCE_FILTER_SCENARIO_HIGHVISIBILITY"] = 3] = "RESOURCE_FILTER_SCENARIO_HIGHVISIBILITY";
-												/**
-												 * @generated from protobuf enum value: RESOURCE_FILTER_SCENARIO_EXPLICIT = 4;
-												 */
-												ResourceFilter_Scenario[ResourceFilter_Scenario["RESOURCE_FILTER_SCENARIO_EXPLICIT"] = 4] = "RESOURCE_FILTER_SCENARIO_EXPLICIT";
-											})(ResourceFilter_Scenario || (ResourceFilter_Scenario = {}));
-											/**
-											 * @generated from protobuf enum com.apple.geo.protobuf.geo.Resource.ResourceType
-											 */
-											var Resource_ResourceType;
-											(function (Resource_ResourceType) {
-												/**
-												 * @generated from protobuf enum value: RESOURCE_TYPE_STYLESHEET = 0;
-												 */
-												Resource_ResourceType[Resource_ResourceType["STYLESHEET"] = 0] = "STYLESHEET";
-												/**
-												 * @generated from protobuf enum value: RESOURCE_TYPE_TEXTURE = 1;
-												 */
-												Resource_ResourceType[Resource_ResourceType["TEXTURE"] = 1] = "TEXTURE";
-												/**
-												 * @generated from protobuf enum value: RESOURCE_TYPE_FONT = 2;
-												 */
-												Resource_ResourceType[Resource_ResourceType["FONT"] = 2] = "FONT";
-												/**
-												 * @generated from protobuf enum value: RESOURCE_TYPE_ICON = 3;
-												 */
-												Resource_ResourceType[Resource_ResourceType["ICON"] = 3] = "ICON";
-												/**
-												 * @generated from protobuf enum value: RESOURCE_TYPE_XML = 4;
-												 */
-												Resource_ResourceType[Resource_ResourceType["XML"] = 4] = "XML";
-												/**
-												 * @generated from protobuf enum value: RESOURCE_TYPE_ATTRIBUTION_LOGO = 5;
-												 */
-												Resource_ResourceType[Resource_ResourceType["ATTRIBUTION_LOGO"] = 5] = "ATTRIBUTION_LOGO";
-												/**
-												 * @generated from protobuf enum value: RESOURCE_TYPE_ATTRIBUTION_BADGE = 6;
-												 */
-												Resource_ResourceType[Resource_ResourceType["ATTRIBUTION_BADGE"] = 6] = "ATTRIBUTION_BADGE";
-												/**
-												 * @generated from protobuf enum value: RESOURCE_TYPE_OTHER = 7;
-												 */
-												Resource_ResourceType[Resource_ResourceType["OTHER"] = 7] = "OTHER";
-											})(Resource_ResourceType || (Resource_ResourceType = {}));
-											/**
-											 * @generated from protobuf enum com.apple.geo.protobuf.geo.Resource.ConnectionType
-											 */
-											var Resource_ConnectionType;
-											(function (Resource_ConnectionType) {
-												/**
-												 * @generated from protobuf enum value: RESOURCE_DOWNLOAD_CONNECTION_TYPE_UNKNOWN = 0;
-												 */
-												Resource_ConnectionType[Resource_ConnectionType["RESOURCE_DOWNLOAD_CONNECTION_TYPE_UNKNOWN"] = 0] = "RESOURCE_DOWNLOAD_CONNECTION_TYPE_UNKNOWN";
-												/**
-												 * @generated from protobuf enum value: RESOURCE_DOWNLOAD_CONNECTION_TYPE_CELLULAR = 1;
-												 */
-												Resource_ConnectionType[Resource_ConnectionType["RESOURCE_DOWNLOAD_CONNECTION_TYPE_CELLULAR"] = 1] = "RESOURCE_DOWNLOAD_CONNECTION_TYPE_CELLULAR";
-												/**
-												 * @generated from protobuf enum value: RESOURCE_DOWNLOAD_CONNECTION_TYPE_PREFER_WIFI = 2;
-												 */
-												Resource_ConnectionType[Resource_ConnectionType["RESOURCE_DOWNLOAD_CONNECTION_TYPE_PREFER_WIFI"] = 2] = "RESOURCE_DOWNLOAD_CONNECTION_TYPE_PREFER_WIFI";
-												/**
-												 * @generated from protobuf enum value: RESOURCE_DOWNLOAD_CONNECTION_TYPE_WIFI_ONLY = 3;
-												 */
-												Resource_ConnectionType[Resource_ConnectionType["RESOURCE_DOWNLOAD_CONNECTION_TYPE_WIFI_ONLY"] = 3] = "RESOURCE_DOWNLOAD_CONNECTION_TYPE_WIFI_ONLY";
-											})(Resource_ConnectionType || (Resource_ConnectionType = {}));
-											/**
-											 * @generated from protobuf enum com.apple.geo.protobuf.geo.Resource.ValidationMethod
-											 */
-											var Resource_ValidationMethod;
-											(function (Resource_ValidationMethod) {
-												/**
-												 * @generated from protobuf enum value: SHA1 = 0;
-												 */
-												Resource_ValidationMethod[Resource_ValidationMethod["SHA1"] = 0] = "SHA1";
-												/**
-												 * @generated from protobuf enum value: CMS = 1;
-												 */
-												Resource_ValidationMethod[Resource_ValidationMethod["CMS"] = 1] = "CMS";
-											})(Resource_ValidationMethod || (Resource_ValidationMethod = {}));
-											/**
-											 * @generated from protobuf enum com.apple.geo.protobuf.geo.Resource.UpdateMethod
-											 */
-											var Resource_UpdateMethod;
-											(function (Resource_UpdateMethod) {
-												/**
-												 * @generated from protobuf enum value: VERSIONED = 0;
-												 */
-												Resource_UpdateMethod[Resource_UpdateMethod["VERSIONED"] = 0] = "VERSIONED";
-												/**
-												 * @generated from protobuf enum value: ETAG = 1;
-												 */
-												Resource_UpdateMethod[Resource_UpdateMethod["ETAG"] = 1] = "ETAG";
-											})(Resource_UpdateMethod || (Resource_UpdateMethod = {}));
-											/**
-											 * @generated from protobuf enum com.apple.geo.protobuf.geo.TileSetStyle
-											 */
-											var TileSetStyle;
-											(function (TileSetStyle) {
-												/**
-												 * @generated from protobuf enum value: RASTER_STANDARD = 0;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_STANDARD"] = 0] = "RASTER_STANDARD";
-												/**
-												 * @generated from protobuf enum value: VECTOR_STANDARD = 1;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_STANDARD"] = 1] = "VECTOR_STANDARD";
-												/**
-												 * @generated from protobuf enum value: VECTOR_TRAFFIC_SEGMENTS_FOR_RASTER = 2;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_TRAFFIC_SEGMENTS_FOR_RASTER"] = 2] = "VECTOR_TRAFFIC_SEGMENTS_FOR_RASTER";
-												/**
-												 * @generated from protobuf enum value: VECTOR_TRAFFIC_INCIDENTS_FOR_RASTER = 3;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_TRAFFIC_INCIDENTS_FOR_RASTER"] = 3] = "VECTOR_TRAFFIC_INCIDENTS_FOR_RASTER";
-												/**
-												 * @generated from protobuf enum value: VECTOR_TRAFFIC_SEGMENTS_AND_INCIDENTS_FOR_RASTER = 4;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_TRAFFIC_SEGMENTS_AND_INCIDENTS_FOR_RASTER"] = 4] = "VECTOR_TRAFFIC_SEGMENTS_AND_INCIDENTS_FOR_RASTER";
-												/**
-												 * @generated from protobuf enum value: RASTER_STANDARD_BACKGROUND = 5;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_STANDARD_BACKGROUND"] = 5] = "RASTER_STANDARD_BACKGROUND";
-												/**
-												 * @generated from protobuf enum value: RASTER_HYBRID = 6;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_HYBRID"] = 6] = "RASTER_HYBRID";
-												/**
-												 * @generated from protobuf enum value: RASTER_SATELLITE = 7;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_SATELLITE"] = 7] = "RASTER_SATELLITE";
-												/**
-												 * @generated from protobuf enum value: RASTER_TERRAIN = 8;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_TERRAIN"] = 8] = "RASTER_TERRAIN";
-												/**
-												 * @generated from protobuf enum value: VECTOR_BUILDINGS = 11;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_BUILDINGS"] = 11] = "VECTOR_BUILDINGS";
-												/**
-												 * @generated from protobuf enum value: VECTOR_TRAFFIC = 12;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_TRAFFIC"] = 12] = "VECTOR_TRAFFIC";
-												/**
-												 * @generated from protobuf enum value: VECTOR_POI = 13;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_POI"] = 13] = "VECTOR_POI";
-												/**
-												 * @generated from protobuf enum value: SPUTNIK_METADATA = 14;
-												 */
-												TileSetStyle[TileSetStyle["SPUTNIK_METADATA"] = 14] = "SPUTNIK_METADATA";
-												/**
-												 * @generated from protobuf enum value: SPUTNIK_C3M = 15;
-												 */
-												TileSetStyle[TileSetStyle["SPUTNIK_C3M"] = 15] = "SPUTNIK_C3M";
-												/**
-												 * @generated from protobuf enum value: SPUTNIK_DSM = 16;
-												 */
-												TileSetStyle[TileSetStyle["SPUTNIK_DSM"] = 16] = "SPUTNIK_DSM";
-												/**
-												 * @generated from protobuf enum value: SPUTNIK_DSM_GLOBAL = 17;
-												 */
-												TileSetStyle[TileSetStyle["SPUTNIK_DSM_GLOBAL"] = 17] = "SPUTNIK_DSM_GLOBAL";
-												/**
-												 * @generated from protobuf enum value: VECTOR_REALISTIC = 18;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_REALISTIC"] = 18] = "VECTOR_REALISTIC";
-												/**
-												 * @generated from protobuf enum value: VECTOR_LEGACY_REALISTIC = 19;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_LEGACY_REALISTIC"] = 19] = "VECTOR_LEGACY_REALISTIC";
-												/**
-												 * @generated from protobuf enum value: VECTOR_ROADS = 20;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_ROADS"] = 20] = "VECTOR_ROADS";
-												/**
-												 * @generated from protobuf enum value: RASTER_VEGETATION = 21;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_VEGETATION"] = 21] = "RASTER_VEGETATION";
-												/**
-												 * @generated from protobuf enum value: VECTOR_TRAFFIC_SKELETON = 22;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_TRAFFIC_SKELETON"] = 22] = "VECTOR_TRAFFIC_SKELETON";
-												/**
-												 * @generated from protobuf enum value: RASTER_COASTLINE_MASK = 23;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_COASTLINE_MASK"] = 23] = "RASTER_COASTLINE_MASK";
-												/**
-												 * @generated from protobuf enum value: RASTER_HILLSHADE = 24;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_HILLSHADE"] = 24] = "RASTER_HILLSHADE";
-												/**
-												 * @generated from protobuf enum value: VECTOR_TRAFFIC_WITH_GREEN = 25;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_TRAFFIC_WITH_GREEN"] = 25] = "VECTOR_TRAFFIC_WITH_GREEN";
-												/**
-												 * @generated from protobuf enum value: VECTOR_TRAFFIC_STATIC = 26;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_TRAFFIC_STATIC"] = 26] = "VECTOR_TRAFFIC_STATIC";
-												/**
-												 * @generated from protobuf enum value: RASTER_COASTLINE_DROP_MASK = 27;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_COASTLINE_DROP_MASK"] = 27] = "RASTER_COASTLINE_DROP_MASK";
-												/**
-												 * @generated from protobuf enum value: VECTOR_TRAFFIC_SKELETON_WITH_HISTORICAL = 28;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_TRAFFIC_SKELETON_WITH_HISTORICAL"] = 28] = "VECTOR_TRAFFIC_SKELETON_WITH_HISTORICAL";
-												/**
-												 * @generated from protobuf enum value: VECTOR_SPEED_PROFILES = 29;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_SPEED_PROFILES"] = 29] = "VECTOR_SPEED_PROFILES";
-												/**
-												 * @generated from protobuf enum value: VECTOR_VENUES = 30;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_VENUES"] = 30] = "VECTOR_VENUES";
-												/**
-												 * @generated from protobuf enum value: RASTER_DOWN_SAMPLED = 31;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_DOWN_SAMPLED"] = 31] = "RASTER_DOWN_SAMPLED";
-												/**
-												 * @generated from protobuf enum value: RASTER_COLOR_BALANCED = 32;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_COLOR_BALANCED"] = 32] = "RASTER_COLOR_BALANCED";
-												/**
-												 * @generated from protobuf enum value: RASTER_SATELLITE_NIGHT = 33;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_SATELLITE_NIGHT"] = 33] = "RASTER_SATELLITE_NIGHT";
-												/**
-												 * @generated from protobuf enum value: SPUTNIK_VECTOR_BORDER = 34;
-												 */
-												TileSetStyle[TileSetStyle["SPUTNIK_VECTOR_BORDER"] = 34] = "SPUTNIK_VECTOR_BORDER";
-												/**
-												 * @generated from protobuf enum value: RASTER_SATELLITE_DIGITIZE = 35;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_SATELLITE_DIGITIZE"] = 35] = "RASTER_SATELLITE_DIGITIZE";
-												/**
-												 * @generated from protobuf enum value: RASTER_HILLSHADE_PARKS = 36;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_HILLSHADE_PARKS"] = 36] = "RASTER_HILLSHADE_PARKS";
-												/**
-												 * @generated from protobuf enum value: VECTOR_TRANSIT = 37;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_TRANSIT"] = 37] = "VECTOR_TRANSIT";
-												/**
-												 * @generated from protobuf enum value: RASTER_STANDARD_BASE = 38;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_STANDARD_BASE"] = 38] = "RASTER_STANDARD_BASE";
-												/**
-												 * @generated from protobuf enum value: RASTER_STANDARD_LABELS = 39;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_STANDARD_LABELS"] = 39] = "RASTER_STANDARD_LABELS";
-												/**
-												 * @generated from protobuf enum value: RASTER_HYBRID_ROADS = 40;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_HYBRID_ROADS"] = 40] = "RASTER_HYBRID_ROADS";
-												/**
-												 * @generated from protobuf enum value: RASTER_HYBRID_LABELS = 41;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_HYBRID_LABELS"] = 41] = "RASTER_HYBRID_LABELS";
-												/**
-												 * @generated from protobuf enum value: FLYOVER_C3M_MESH = 42;
-												 */
-												TileSetStyle[TileSetStyle["FLYOVER_C3M_MESH"] = 42] = "FLYOVER_C3M_MESH";
-												/**
-												 * @generated from protobuf enum value: FLYOVER_C3M_JPEG_TEXTURE = 43;
-												 */
-												TileSetStyle[TileSetStyle["FLYOVER_C3M_JPEG_TEXTURE"] = 43] = "FLYOVER_C3M_JPEG_TEXTURE";
-												/**
-												 * @generated from protobuf enum value: FLYOVER_C3M_ASTC_TEXTURE = 44;
-												 */
-												TileSetStyle[TileSetStyle["FLYOVER_C3M_ASTC_TEXTURE"] = 44] = "FLYOVER_C3M_ASTC_TEXTURE";
-												/**
-												 * @generated from protobuf enum value: RASTER_SATELLITE_ASTC = 45;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_SATELLITE_ASTC"] = 45] = "RASTER_SATELLITE_ASTC";
-												/**
-												 * @generated from protobuf enum value: RASTER_HYBRID_ROADS_AND_LABELS = 46;
-												 */
-												TileSetStyle[TileSetStyle["RASTER_HYBRID_ROADS_AND_LABELS"] = 46] = "RASTER_HYBRID_ROADS_AND_LABELS";
-												/**
-												 * @generated from protobuf enum value: VECTOR_TRANSIT_SELECTION = 47;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_TRANSIT_SELECTION"] = 47] = "VECTOR_TRANSIT_SELECTION";
-												/**
-												 * @generated from protobuf enum value: VECTOR_COVERAGE = 48;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_COVERAGE"] = 48] = "VECTOR_COVERAGE";
-												/**
-												 * @generated from protobuf enum value: FLYOVER_VISIBILITY = 49;
-												 */
-												TileSetStyle[TileSetStyle["FLYOVER_VISIBILITY"] = 49] = "FLYOVER_VISIBILITY";
-												/**
-												 * @generated from protobuf enum value: FLYOVER_SKYBOX = 50;
-												 */
-												TileSetStyle[TileSetStyle["FLYOVER_SKYBOX"] = 50] = "FLYOVER_SKYBOX";
-												/**
-												 * @generated from protobuf enum value: FLYOVER_NAVGRAPH = 51;
-												 */
-												TileSetStyle[TileSetStyle["FLYOVER_NAVGRAPH"] = 51] = "FLYOVER_NAVGRAPH";
-												/**
-												 * @generated from protobuf enum value: FLYOVER_METADATA = 52;
-												 */
-												TileSetStyle[TileSetStyle["FLYOVER_METADATA"] = 52] = "FLYOVER_METADATA";
-												/**
-												 * @generated from protobuf enum value: VECTOR_ROAD_NETWORK = 53;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_ROAD_NETWORK"] = 53] = "VECTOR_ROAD_NETWORK";
-												/**
-												 * @generated from protobuf enum value: VECTOR_LAND_COVER = 54;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_LAND_COVER"] = 54] = "VECTOR_LAND_COVER";
-												/**
-												 * @generated from protobuf enum value: VECTOR_DEBUG = 55;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_DEBUG"] = 55] = "VECTOR_DEBUG";
-												/**
-												 * @generated from protobuf enum value: VECTOR_STREET_POI = 56;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_STREET_POI"] = 56] = "VECTOR_STREET_POI";
-												/**
-												 * @generated from protobuf enum value: MUNIN_METADATA = 57;
-												 */
-												TileSetStyle[TileSetStyle["MUNIN_METADATA"] = 57] = "MUNIN_METADATA";
-												/**
-												 * @generated from protobuf enum value: VECTOR_SPR_MERCATOR = 58;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_SPR_MERCATOR"] = 58] = "VECTOR_SPR_MERCATOR";
-												/**
-												 * @generated from protobuf enum value: VECTOR_SPR_MODELS = 59;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_SPR_MODELS"] = 59] = "VECTOR_SPR_MODELS";
-												/**
-												 * @generated from protobuf enum value: VECTOR_SPR_MATERIALS = 60;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_SPR_MATERIALS"] = 60] = "VECTOR_SPR_MATERIALS";
-												/**
-												 * @generated from protobuf enum value: VECTOR_SPR_METADATA = 61;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_SPR_METADATA"] = 61] = "VECTOR_SPR_METADATA";
-												/**
-												 * @generated from protobuf enum value: VECTOR_TRACKS = 62;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_TRACKS"] = 62] = "VECTOR_TRACKS";
-												/**
-												 * @generated from protobuf enum value: VECTOR_RESERVED_2 = 63;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_RESERVED_2"] = 63] = "VECTOR_RESERVED_2";
-												/**
-												 * @generated from protobuf enum value: VECTOR_STREET_LANDMARKS = 64;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_STREET_LANDMARKS"] = 64] = "VECTOR_STREET_LANDMARKS";
-												/**
-												 * @generated from protobuf enum value: COARSE_LOCATION_POLYGONS = 65;
-												 */
-												TileSetStyle[TileSetStyle["COARSE_LOCATION_POLYGONS"] = 65] = "COARSE_LOCATION_POLYGONS";
-												/**
-												 * @generated from protobuf enum value: VECTOR_SPR_ROADS = 66;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_SPR_ROADS"] = 66] = "VECTOR_SPR_ROADS";
-												/**
-												 * @generated from protobuf enum value: VECTOR_SPR_STANDARD = 67;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_SPR_STANDARD"] = 67] = "VECTOR_SPR_STANDARD";
-												/**
-												 * @generated from protobuf enum value: VECTOR_POI_V2 = 68;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_POI_V2"] = 68] = "VECTOR_POI_V2";
-												/**
-												 * @generated from protobuf enum value: VECTOR_POLYGON_SELECTION = 69;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_POLYGON_SELECTION"] = 69] = "VECTOR_POLYGON_SELECTION";
-												/**
-												 * @generated from protobuf enum value: VL_METADATA = 70;
-												 */
-												TileSetStyle[TileSetStyle["VL_METADATA"] = 70] = "VL_METADATA";
-												/**
-												 * @generated from protobuf enum value: VL_DATA = 71;
-												 */
-												TileSetStyle[TileSetStyle["VL_DATA"] = 71] = "VL_DATA";
-												/**
-												 * @generated from protobuf enum value: PROACTIVE_APP_CLIP = 72;
-												 */
-												TileSetStyle[TileSetStyle["PROACTIVE_APP_CLIP"] = 72] = "PROACTIVE_APP_CLIP";
-												/**
-												 * @generated from protobuf enum value: VECTOR_BUILDINGS_V2 = 73;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_BUILDINGS_V2"] = 73] = "VECTOR_BUILDINGS_V2";
-												/**
-												 * @generated from protobuf enum value: POI_BUSYNESS = 74;
-												 */
-												TileSetStyle[TileSetStyle["POI_BUSYNESS"] = 74] = "POI_BUSYNESS";
-												/**
-												 * @generated from protobuf enum value: POI_DP_BUSYNESS = 75;
-												 */
-												TileSetStyle[TileSetStyle["POI_DP_BUSYNESS"] = 75] = "POI_DP_BUSYNESS";
-												/**
-												 * @generated from protobuf enum value: SMART_INTERFACE_SELECTION = 76;
-												 */
-												TileSetStyle[TileSetStyle["SMART_INTERFACE_SELECTION"] = 76] = "SMART_INTERFACE_SELECTION";
-												/**
-												 * @generated from protobuf enum value: VECTOR_ASSETS = 77;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_ASSETS"] = 77] = "VECTOR_ASSETS";
-												/**
-												 * @generated from protobuf enum value: SPR_ASSET_METADATA = 78;
-												 */
-												TileSetStyle[TileSetStyle["SPR_ASSET_METADATA"] = 78] = "SPR_ASSET_METADATA";
-												/**
-												 * @generated from protobuf enum value: VECTOR_SPR_POLAR = 79;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_SPR_POLAR"] = 79] = "VECTOR_SPR_POLAR";
-												/**
-												 * @generated from protobuf enum value: SMART_DATA_MODE = 80;
-												 */
-												TileSetStyle[TileSetStyle["SMART_DATA_MODE"] = 80] = "SMART_DATA_MODE";
-												/**
-												 * @generated from protobuf enum value: CELLULAR_PERFORMANCE_SCORE = 81;
-												 */
-												TileSetStyle[TileSetStyle["CELLULAR_PERFORMANCE_SCORE"] = 81] = "CELLULAR_PERFORMANCE_SCORE";
-												/**
-												 * @generated from protobuf enum value: VECTOR_SPR_MODELS_OCCLUSION = 82;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_SPR_MODELS_OCCLUSION"] = 82] = "VECTOR_SPR_MODELS_OCCLUSION";
-												/**
-												 * @generated from protobuf enum value: VECTOR_TOPOGRAPHIC = 83;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_TOPOGRAPHIC"] = 83] = "VECTOR_TOPOGRAPHIC";
-												/**
-												 * @generated from protobuf enum value: VECTOR_POI_V2_UPDATE = 84;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_POI_V2_UPDATE"] = 84] = "VECTOR_POI_V2_UPDATE";
-												/**
-												 * @generated from protobuf enum value: VECTOR_LIVE_DATA_UPDATES = 85;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_LIVE_DATA_UPDATES"] = 85] = "VECTOR_LIVE_DATA_UPDATES";
-												/**
-												 * @generated from protobuf enum value: VECTOR_TRAFFIC_V2 = 86;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_TRAFFIC_V2"] = 86] = "VECTOR_TRAFFIC_V2";
-												/**
-												 * @generated from protobuf enum value: VECTOR_ROAD_SELECTION = 87;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_ROAD_SELECTION"] = 87] = "VECTOR_ROAD_SELECTION";
-												/**
-												 * @generated from protobuf enum value: VECTOR_REGION_METADATA = 88;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_REGION_METADATA"] = 88] = "VECTOR_REGION_METADATA";
-												/**
-												 * @generated from protobuf enum value: RAY_TRACING = 89;
-												 */
-												TileSetStyle[TileSetStyle["RAY_TRACING"] = 89] = "RAY_TRACING";
-												/**
-												 * @generated from protobuf enum value: VECTOR_CONTOURS = 90;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_CONTOURS"] = 90] = "VECTOR_CONTOURS";
-												/**
-												 * @generated from protobuf enum value: UNUSED_91 = 91;
-												 */
-												TileSetStyle[TileSetStyle["UNUSED_91"] = 91] = "UNUSED_91";
-												/**
-												 * @generated from protobuf enum value: UNUSED_92 = 92;
-												 */
-												TileSetStyle[TileSetStyle["UNUSED_92"] = 92] = "UNUSED_92";
-												/**
-												 * @generated from protobuf enum value: UNUSED_93 = 93;
-												 */
-												TileSetStyle[TileSetStyle["UNUSED_93"] = 93] = "UNUSED_93";
-												/**
-												 * @generated from protobuf enum value: UNUSED_94 = 94;
-												 */
-												TileSetStyle[TileSetStyle["UNUSED_94"] = 94] = "UNUSED_94";
-												/**
-												 * @generated from protobuf enum value: UNUSED_95 = 95;
-												 */
-												TileSetStyle[TileSetStyle["UNUSED_95"] = 95] = "UNUSED_95";
-												/**
-												 * @generated from protobuf enum value: UNUSED_96 = 96;
-												 */
-												TileSetStyle[TileSetStyle["UNUSED_96"] = 96] = "UNUSED_96";
-												/**
-												 * @generated from protobuf enum value: UNUSED_97 = 97;
-												 */
-												TileSetStyle[TileSetStyle["UNUSED_97"] = 97] = "UNUSED_97";
-												/**
-												 * @generated from protobuf enum value: UNUSED_98 = 98;
-												 */
-												TileSetStyle[TileSetStyle["UNUSED_98"] = 98] = "UNUSED_98";
-												/**
-												 * @generated from protobuf enum value: UNUSED_99 = 99;
-												 */
-												TileSetStyle[TileSetStyle["UNUSED_99"] = 99] = "UNUSED_99";
-												/**
-												 * @generated from protobuf enum value: VECTOR_SPR_MERCATOR = 58;
-												 */
-												TileSetStyle[TileSetStyle["DAVINCI_DEV1"] = 58] = "DAVINCI_DEV1";
-												/**
-												 * @generated from protobuf enum value: VECTOR_SPR_MODELS = 59;
-												 */
-												TileSetStyle[TileSetStyle["DAVINCI_DEV2"] = 59] = "DAVINCI_DEV2";
-												/**
-												 * @generated from protobuf enum value: VECTOR_SPR_MATERIALS = 60;
-												 */
-												TileSetStyle[TileSetStyle["DAVINCI_DEV3"] = 60] = "DAVINCI_DEV3";
-												/**
-												 * @generated from protobuf enum value: VECTOR_SPR_METADATA = 61;
-												 */
-												TileSetStyle[TileSetStyle["DAVINCI_DEV4"] = 61] = "DAVINCI_DEV4";
-												/**
-												 * @generated from protobuf enum value: VECTOR_RESERVED_2 = 63;
-												 */
-												TileSetStyle[TileSetStyle["DAVINCI_DEV6"] = 63] = "DAVINCI_DEV6";
-												/**
-												 * @generated from protobuf enum value: VECTOR_SPR_ROADS = 66;
-												 */
-												TileSetStyle[TileSetStyle["DAVINCI_DEV7"] = 66] = "DAVINCI_DEV7";
-												/**
-												 * @generated from protobuf enum value: VECTOR_SPR_STANDARD = 67;
-												 */
-												TileSetStyle[TileSetStyle["DAVINCI_DEV8"] = 67] = "DAVINCI_DEV8";
-												/**
-												 * @generated from protobuf enum value: VECTOR_POI_V2 = 68;
-												 */
-												TileSetStyle[TileSetStyle["DAVINCI_DEV9"] = 68] = "DAVINCI_DEV9";
-												/**
-												 * @generated from protobuf enum value: VECTOR_BUILDINGS_V2 = 73;
-												 */
-												TileSetStyle[TileSetStyle["DAVINCI_BUILDINGS"] = 73] = "DAVINCI_BUILDINGS";
-												/**
-												 * @generated from protobuf enum value: VECTOR_TRACKS = 62;
-												 */
-												TileSetStyle[TileSetStyle["VECTOR_RESERVED_1"] = 62] = "VECTOR_RESERVED_1";
-											})(TileSetStyle || (TileSetStyle = {}));
-											/**
-											 * @generated from protobuf enum com.apple.geo.protobuf.geo.TileScale
-											 */
-											var TileScale;
-											(function (TileScale) {
-												/**
-												 * @generated from protobuf enum value: NODPI = 0;
-												 */
-												TileScale[TileScale["NODPI"] = 0] = "NODPI";
-												/**
-												 * @generated from protobuf enum value: LODPI = 1;
-												 */
-												TileScale[TileScale["LODPI"] = 1] = "LODPI";
-												/**
-												 * @generated from protobuf enum value: HIDPI = 2;
-												 */
-												TileScale[TileScale["HIDPI"] = 2] = "HIDPI";
-											})(TileScale || (TileScale = {}));
-											/**
-											 * @generated from protobuf enum com.apple.geo.protobuf.geo.TileSize
-											 */
-											var TileSize;
-											(function (TileSize) {
-												/**
-												 * @generated from protobuf enum value: PX128 = 0;
-												 */
-												TileSize[TileSize["PX128"] = 0] = "PX128";
-												/**
-												 * @generated from protobuf enum value: PX256 = 1;
-												 */
-												TileSize[TileSize["PX256"] = 1] = "PX256";
-												/**
-												 * @generated from protobuf enum value: PX512 = 2;
-												 */
-												TileSize[TileSize["PX512"] = 2] = "PX512";
-											})(TileSize || (TileSize = {}));
-											/**
-											 * @generated from protobuf enum com.apple.geo.protobuf.geo.GenericTileType
-											 */
-											var GenericTileType;
-											(function (GenericTileType) {
-												/**
-												 * @generated from protobuf enum value: UNKNOWN = 0;
-												 */
-												GenericTileType[GenericTileType["UNKNOWN"] = 0] = "UNKNOWN";
-												/**
-												 * @generated from protobuf enum value: WATER = 1;
-												 */
-												GenericTileType[GenericTileType["WATER"] = 1] = "WATER";
-												/**
-												 * @generated from protobuf enum value: NO_TILE = 2;
-												 */
-												GenericTileType[GenericTileType["NO_TILE"] = 2] = "NO_TILE";
-											})(GenericTileType || (GenericTileType = {}));
-											// @generated message type with reflection information, may provide speed optimized methods
-											class RegionalResource$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.RegionalResource", [
-														{ no: 1, name: "x", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
-														{ no: 2, name: "y", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
-														{ no: 3, name: "z", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
-														{ no: 4, name: "icon", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
-														{ no: 6, name: "attribution", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => Attribution },
-														{ no: 7, name: "iconChecksum", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
-														{ no: 29, name: "tileRange", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => TileSetRegion },
-														{ no: 30, name: "validSubManifestVersion", kind: "scalar", repeat: 1 /*RepeatType.PACKED*/, T: 13 /*ScalarType.UINT32*/ }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.RegionalResource
-											 */
-											const RegionalResource = new RegionalResource$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class RegionalResourceIndex$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.RegionalResourceIndex", []);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.RegionalResourceIndex
-											 */
-											const RegionalResourceIndex = new RegionalResourceIndex$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class RegionalResourceTile$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.RegionalResourceTile", []);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.RegionalResourceTile
-											 */
-											new RegionalResourceTile$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class RegionalResourceRegion$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.RegionalResourceRegion", []);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.RegionalResourceRegion
-											 */
-											new RegionalResourceRegion$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class TileGroup$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.TileGroup", [
-														{ no: 1, name: "identifier", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
-														{ no: 2, name: "tileSet", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => TileGroup_VersionedTileSet },
-														{ no: 3, name: "styleSheetIndex", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 13 /*ScalarType.UINT32*/ },
-														{ no: 4, name: "textureIndex", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 13 /*ScalarType.UINT32*/ },
-														{ no: 5, name: "fontIndex", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 13 /*ScalarType.UINT32*/ },
-														{ no: 6, name: "iconIndex", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 13 /*ScalarType.UINT32*/ },
-														{ no: 7, name: "regionalResourceIndex", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => RegionalResourceIndex },
-														{ no: 8, name: "xmlIndex", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 13 /*ScalarType.UINT32*/ },
-														{ no: 10, name: "attributionIndex", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 13 /*ScalarType.UINT32*/ },
-														{ no: 11, name: "hybridUnavailableRegion", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => TileSetRegion },
-														{ no: 12, name: "resourceIndex", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 13 /*ScalarType.UINT32*/ },
-														{ no: 14, name: "muninVersion", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
-														{ no: 15, name: "offlineMetadataIndex", kind: "scalar", T: 13 /*ScalarType.UINT32*/ }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.TileGroup
-											 */
-											const TileGroup = new TileGroup$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class TileGroup_VersionedTileSet$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.TileGroup.VersionedTileSet", [
-														{ no: 1, name: "tileSetIndex", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
-														{ no: 2, name: "identifier", kind: "scalar", T: 13 /*ScalarType.UINT32*/ }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.TileGroup.VersionedTileSet
-											 */
-											const TileGroup_VersionedTileSet = new TileGroup_VersionedTileSet$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class GenericTile$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.GenericTile", [
-														{ no: 1, name: "tileType", kind: "enum", T: () => ["com.apple.geo.protobuf.geo.GenericTileType", GenericTileType] },
-														{ no: 2, name: "textureIndex", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
-														{ no: 3, name: "resourceIndex", kind: "scalar", T: 13 /*ScalarType.UINT32*/ }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.GenericTile
-											 */
-											const GenericTile = new GenericTile$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class TileSetRegion$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.TileSetRegion", [
-														{ no: 1, name: "minX", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
-														{ no: 2, name: "minY", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
-														{ no: 3, name: "maxX", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
-														{ no: 4, name: "maxY", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
-														{ no: 5, name: "minZ", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
-														{ no: 6, name: "maxZ", kind: "scalar", T: 13 /*ScalarType.UINT32*/ }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.TileSetRegion
-											 */
-											const TileSetRegion = new TileSetRegion$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class TileSetVersion$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.TileSetVersion", [
-														{ no: 1, name: "identifier", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
-														{ no: 2, name: "availableTiles", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => TileSetRegion },
-														{ no: 3, name: "timeToLiveSeconds", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
-														{ no: 4, name: "genericTile", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => GenericTile },
-														{ no: 5, name: "supportedLanguagesVersion", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.TileSetVersion
-											 */
-											const TileSetVersion = new TileSetVersion$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class TileSet$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.TileSet", [
-														{ no: 1, name: "baseURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 2, name: "multiTileURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 3, name: "style", kind: "enum", T: () => ["com.apple.geo.protobuf.geo.TileSetStyle", TileSetStyle] },
-														{ no: 5, name: "validVersion", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => TileSetVersion },
-														{ no: 6, name: "scale", kind: "enum", T: () => ["com.apple.geo.protobuf.geo.TileScale", TileScale] },
-														{ no: 7, name: "size", kind: "enum", T: () => ["com.apple.geo.protobuf.geo.TileSize", TileSize] },
-														{ no: 9, name: "localizationURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 10, name: "supportedLanguage", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => TileSet_Language },
-														{ no: 11, name: "multiTileURLUsesStatusCodes", kind: "scalar", opt: true, T: 8 /*ScalarType.BOOL*/ },
-														{ no: 12, name: "updateBehavior", kind: "enum", opt: true, T: () => ["com.apple.geo.protobuf.geo.TileSet.TileSetVersionUpdateBehavior", TileSet_TileSetVersionUpdateBehavior] },
-														{ no: 13, name: "countryRegionWhitelist", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => TileSet_CountryRegionTuple },
-														{ no: 14, name: "checksumType", kind: "enum", T: () => ["com.apple.geo.protobuf.geo.TileSet.TileSetChecksumType", TileSet_TileSetChecksumType] },
-														{ no: 15, name: "dataSet", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
-														{ no: 16, name: "requestStyle", kind: "enum", T: () => ["com.apple.geo.protobuf.geo.TileSet.TileRequestStyle", TileSet_TileRequestStyle] },
-														{ no: 17, name: "useAuthProxy", kind: "scalar", opt: true, T: 8 /*ScalarType.BOOL*/ },
-														{ no: 18, name: "supportsMultipathTCP", kind: "scalar", opt: true, T: 8 /*ScalarType.BOOL*/ },
-														{ no: 19, name: "alternativeMultipathTCPPort", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
-														{ no: 20, name: "deviceSKUWhitelist", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.TileSet
-											 */
-											const TileSet = new TileSet$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class TileSet_Language$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.TileSet.Language", [
-														{ no: 1, name: "identifier", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
-														{ no: 2, name: "language", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.TileSet.Language
-											 */
-											const TileSet_Language = new TileSet_Language$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class TileSet_CountryRegionTuple$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.TileSet.CountryRegionTuple", [
-														{ no: 1, name: "countryCode", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-														{ no: 2, name: "region", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.TileSet.CountryRegionTuple
-											 */
-											const TileSet_CountryRegionTuple = new TileSet_CountryRegionTuple$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class ResourceFilter$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.ResourceFilter", [
-														{ no: 1, name: "scale", kind: "enum", repeat: 1 /*RepeatType.PACKED*/, T: () => ["com.apple.geo.protobuf.geo.ResourceFilter.Scale", ResourceFilter_Scale] },
-														{ no: 2, name: "scenario", kind: "enum", repeat: 1 /*RepeatType.PACKED*/, T: () => ["com.apple.geo.protobuf.geo.ResourceFilter.Scenario", ResourceFilter_Scenario] }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.ResourceFilter
-											 */
-											const ResourceFilter = new ResourceFilter$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class Resource$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.Resource", [
-														{ no: 1, name: "resourceType", kind: "enum", T: () => ["com.apple.geo.protobuf.geo.Resource.ResourceType", Resource_ResourceType, "RESOURCE_TYPE_"] },
-														{ no: 2, name: "filename", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-														{ no: 3, name: "checksum", kind: "scalar", T: 12 /*ScalarType.BYTES*/ },
-														{ no: 4, name: "region", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => TileSetRegion },
-														{ no: 5, name: "filter", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => ResourceFilter },
-														{ no: 6, name: "connectionType", kind: "enum", opt: true, T: () => ["com.apple.geo.protobuf.geo.Resource.ConnectionType", Resource_ConnectionType] },
-														{ no: 7, name: "preferWiFiAllowedStaleThreshold", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
-														{ no: 8, name: "validationMethod", kind: "enum", T: () => ["com.apple.geo.protobuf.geo.Resource.ValidationMethod", Resource_ValidationMethod] },
-														{ no: 9, name: "alternateResourceURLIndex", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
-														{ no: 10, name: "updateMethod", kind: "enum", T: () => ["com.apple.geo.protobuf.geo.Resource.UpdateMethod", Resource_UpdateMethod] },
-														{ no: 11, name: "timeToLiveSeconds", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.Resource
-											 */
-											const Resource = new Resource$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class Attribution$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.Attribution", [
-														{ no: 1, name: "badge", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 2, name: "logo", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 3, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-														{ no: 4, name: "url", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-														{ no: 5, name: "badgeChecksum", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 6, name: "logoChecksum", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 7, name: "resource", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => Resource },
-														{ no: 8, name: "region", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => TileSetRegion },
-														{ no: 9, name: "dataSet", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
-														{ no: 10, name: "linkDisplayStringIndex", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
-														{ no: 11, name: "plainTextURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 12, name: "plainTextURLSHA256Checksum", kind: "scalar", opt: true, T: 12 /*ScalarType.BYTES*/ }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.Attribution
-											 */
-											const Attribution = new Attribution$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class ServiceVersion$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.ServiceVersion", [
-														{ no: 1, name: "versionDomain", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
-														{ no: 2, name: "minimumVersion", kind: "scalar", T: 13 /*ScalarType.UINT32*/ }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.ServiceVersion
-											 */
-											const ServiceVersion = new ServiceVersion$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class VersionManifest$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.VersionManifest", [
-														{ no: 1, name: "serviceVersion", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => ServiceVersion }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.VersionManifest
-											 */
-											const VersionManifest = new VersionManifest$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class DataSetDescription$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.DataSetDescription", [
-														{ no: 1, name: "identifier", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
-														{ no: 2, name: "dataSetDescription", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.DataSetDescription
-											 */
-											const DataSetDescription = new DataSetDescription$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class DataSetURLOverride$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.DataSetURLOverride", []);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.DataSetURLOverride
-											 */
-											const DataSetURLOverride = new DataSetURLOverride$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class MuninVersion$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.MuninVersion", []);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.MuninVersion
-											 */
-											const MuninVersion = new MuninVersion$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class URLInfo$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.URLInfo", [
-														{ no: 1, name: "url", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-														{ no: 2, name: "useAuthProxy", kind: "scalar", opt: true, T: 8 /*ScalarType.BOOL*/ },
-														{ no: 3, name: "supportsMultipathTCP", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
-														{ no: 4, name: "alternativeMultipathTCPPort", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.URLInfo
-											 */
-											const URLInfo = new URLInfo$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class URLInfoSet$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.URLInfoSet", [
-														{ no: 1, name: "dataSet", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
-														{ no: 2, name: "resourcesURL", kind: "message", T: () => URLInfo },
-														{ no: 3, name: "searchAttributionManifestURL", kind: "message", T: () => URLInfo },
-														{ no: 4, name: "directionsURL", kind: "message", T: () => URLInfo },
-														{ no: 5, name: "etaURL", kind: "message", T: () => URLInfo },
-														{ no: 6, name: "batchReverseGeocoderURL", kind: "message", T: () => URLInfo },
-														{ no: 7, name: "simpleETAURL", kind: "message", T: () => URLInfo },
-														{ no: 8, name: "addressCorrectionInitURL", kind: "message", T: () => URLInfo },
-														{ no: 9, name: "addressCorrectionUpdateURL", kind: "message", T: () => URLInfo },
-														{ no: 10, name: "polyLocationShiftURL", kind: "message", T: () => URLInfo },
-														{ no: 11, name: "problemSubmissionURL", kind: "message", T: () => URLInfo },
-														{ no: 12, name: "problemStatusURL", kind: "message", T: () => URLInfo },
-														{ no: 13, name: "reverseGeocoderVersionsURL", kind: "message", T: () => URLInfo },
-														{ no: 14, name: "problemCategoriesURL", kind: "message", T: () => URLInfo },
-														{ no: 15, name: "announcementsURL", kind: "message", T: () => URLInfo },
-														{ no: 16, name: "dispatcherURL", kind: "message", T: () => URLInfo },
-														{ no: 17, name: "problemOptInURL", kind: "message", T: () => URLInfo },
-														{ no: 18, name: "abExperimentURL", kind: "message", T: () => URLInfo },
-														{ no: 19, name: "businessPortalBaseURL", kind: "message", T: () => URLInfo },
-														{ no: 20, name: "logMessageUsageURL", kind: "message", T: () => URLInfo },
-														{ no: 21, name: "spatialLookupURL", kind: "message", T: () => URLInfo },
-														{ no: 22, name: "realtimeTrafficProbeURL", kind: "message", T: () => URLInfo },
-														{ no: 23, name: "batchTrafficProbeURL", kind: "message", T: () => URLInfo },
-														{ no: 24, name: "proactiveRoutingURL", kind: "message", T: () => URLInfo },
-														{ no: 25, name: "logMessageUsageV3URL", kind: "message", T: () => URLInfo },
-														{ no: 26, name: "backgroundDispatcherURL", kind: "message", T: () => URLInfo },
-														{ no: 27, name: "bluePOIDispatcherURL", kind: "message", T: () => URLInfo },
-														{ no: 28, name: "backgroundRevGeoURL", kind: "message", T: () => URLInfo },
-														{ no: 29, name: "wifiConnectionQualityProbeURL", kind: "message", T: () => URLInfo },
-														{ no: 30, name: "muninBaseURL", kind: "message", T: () => URLInfo },
-														{ no: 31, name: "authProxyURL", kind: "message", T: () => URLInfo },
-														{ no: 32, name: "wifiQualityURL", kind: "message", T: () => URLInfo },
-														{ no: 33, name: "feedbackSubmissionURL", kind: "message", T: () => URLInfo },
-														{ no: 34, name: "feedbackLookupURL", kind: "message", T: () => URLInfo },
-														{ no: 35, name: "junctionImageServiceURL", kind: "message", T: () => URLInfo },
-														{ no: 36, name: "analyticsCohortSessionURL", kind: "message", T: () => URLInfo },
-														{ no: 37, name: "analyticsLongSessionURL", kind: "message", T: () => URLInfo },
-														{ no: 38, name: "analyticsShortSessionURL", kind: "message", T: () => URLInfo },
-														{ no: 39, name: "analyticsSessionlessURL", kind: "message", T: () => URLInfo },
-														{ no: 40, name: "webModuleBaseURL", kind: "message", T: () => URLInfo },
-														{ no: 41, name: "wifiQualityTileURL", kind: "message", T: () => URLInfo },
-														{ no: 42, name: "alternateResourcesURL", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => URLInfo },
-														{ no: 43, name: "tokenAuthenticationURL", kind: "message", T: () => URLInfo },
-														{ no: 44, name: "authenticatedClientFeatureFlagURL", kind: "message", T: () => URLInfo },
-														{ no: 45, name: "addressCorrectionTaggedLocationURL", kind: "message", T: () => URLInfo },
-														{ no: 46, name: "proactiveAppClipURL", kind: "message", T: () => URLInfo },
-														{ no: 47, name: "enrichmentSubmissionURL", kind: "message", T: () => URLInfo },
-														{ no: 48, name: "ugcLogDiscardURL", kind: "message", T: () => URLInfo },
-														{ no: 49, name: "batchReverseGeocoderPlaceRequestURL", kind: "message", T: () => URLInfo },
-														{ no: 50, name: "pressureProbeDataURL", kind: "message", T: () => URLInfo },
-														{ no: 51, name: "poiBusynessActivityCollectionURL", kind: "message", T: () => URLInfo },
-														{ no: 52, name: "rapWebBundleURL", kind: "message", T: () => URLInfo },
-														{ no: 53, name: "networkSelectionHarvestURL", kind: "message", T: () => URLInfo },
-														{ no: 54, name: "offlineDataBatchListURL", kind: "message", T: () => URLInfo },
-														{ no: 55, name: "offlineDataSizeURL", kind: "message", T: () => URLInfo },
-														{ no: 56, name: "offlineDataDownloadBaseURL", kind: "message", T: () => URLInfo },
-														{ no: 57, name: "bcxDispatcherURL", kind: "message", T: () => URLInfo }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.URLInfoSet
-											 */
-											const URLInfoSet = new URLInfoSet$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class MuninBucket$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.MuninBucket", [
-														{ no: 3, name: "bucketID", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
-														{ no: 4, name: "bucketURL", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-														{ no: 5, name: "lodLevel", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.MuninBucket
-											 */
-											const MuninBucket = new MuninBucket$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class DisplayString$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.DisplayString", [
-														{ no: 1, name: "localizedString", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => LocalizedString }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.DisplayString
-											 */
-											const DisplayString = new DisplayString$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class LocalizedString$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.LocalizedString", [
-														{ no: 1, name: "locale", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-														{ no: 3, name: "stringValue", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.LocalizedString
-											 */
-											const LocalizedString = new LocalizedString$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class MapRegion$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.MapRegion", []);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.MapRegion
-											 */
-											const MapRegion = new MapRegion$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class OfflineMetadata$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.OfflineMetadata", [
-														{ no: 1, name: "dataVersion", kind: "scalar", T: 4 /*ScalarType.UINT64*/ },
-														{ no: 2, name: "regulatoryRegionId", kind: "scalar", T: 13 /*ScalarType.UINT32*/ }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.OfflineMetadata
-											 */
-											const OfflineMetadata = new OfflineMetadata$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class Resources$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.Resources", [
-														{ no: 1, name: "tileGroup", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => TileGroup },
-														{ no: 2, name: "tileSet", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => TileSet },
-														{ no: 3, name: "styleSheet", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
-														{ no: 4, name: "texture", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
-														{ no: 5, name: "font", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
-														{ no: 6, name: "icon", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
-														{ no: 8, name: "regionalResource", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => RegionalResource },
-														{ no: 9, name: "xml", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
-														{ no: 11, name: "attribution", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => Attribution },
-														{ no: 30, name: "authToken", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-														{ no: 31, name: "resourcesURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 32, name: "searchURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 33, name: "searchAttributionManifestURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 34, name: "autocompleteURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 35, name: "reverseGeocoderURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 36, name: "forwardGeocoderURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 37, name: "directionsURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 38, name: "etaURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 39, name: "locationShiftURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 40, name: "releaseInfo", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-														{ no: 41, name: "batchReverseGeocoderURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 42, name: "mapMatchURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 43, name: "simpleETAURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 44, name: "styleSheetChecksum", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
-														{ no: 45, name: "textureChecksum", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
-														{ no: 46, name: "fontChecksum", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
-														{ no: 47, name: "iconChecksum", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
-														{ no: 48, name: "xmlChecksum", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
-														{ no: 49, name: "addressCorrectionInitURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 50, name: "addressCorrectionUpdateURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 51, name: "polyLocationShiftURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 52, name: "problemSubmissionURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 53, name: "problemStatusURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 54, name: "reverseGeocoderVersionsURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 55, name: "problemCategoriesURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 56, name: "usageURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 58, name: "businessCallerIDURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 59, name: "problemNotificationAvailabilityURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 61, name: "announcementsURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 62, name: "announcementsSupportedLanguage", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
-														{ no: 63, name: "businessNameResolutionURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 64, name: "dispatcherURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 65, name: "problemOptInURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 66, name: "versionManifest", kind: "message", T: () => VersionManifest },
-														{ no: 67, name: "abExperimentURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 68, name: "businessPortalBaseURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 69, name: "logMessageUsageURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 70, name: "locationShiftEnabledRegion", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => MapRegion },
-														{ no: 71, name: "locationShiftVersion", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
-														{ no: 72, name: "resource", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => Resource },
-														{ no: 73, name: "spatialLookupURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 74, name: "dataSet", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => DataSetDescription },
-														{ no: 75, name: "dataSetURLOverride", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => DataSetURLOverride },
-														{ no: 77, name: "realtimeTrafficProbeURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 78, name: "batchTrafficProbeURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 79, name: "proactiveRoutingURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 80, name: "logMessageUsageV3URL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 81, name: "backgroundDispatcherURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 82, name: "bluePOIDispatcherURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 83, name: "backgroundRevGeoURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 85, name: "wifiConnectionQualityProbeURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 88, name: "muninBaseURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 89, name: "muninVersion", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => MuninVersion },
-														{ no: 91, name: "authProxyURL", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-														{ no: 92, name: "urlInfoSet", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => URLInfoSet },
-														{ no: 93, name: "muninBucket", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => MuninBucket },
-														{ no: 94, name: "displayString", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => DisplayString },
-														{ no: 95, name: "offlineMetadata", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => OfflineMetadata }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.Resources
-											 */
-											const Resources = new Resources$Type();
-											// @generated message type with reflection information, may provide speed optimized methods
-											class ResourceManifestDownload$Type extends MessageType {
-												constructor() {
-													super("com.apple.geo.protobuf.geo.ResourceManifestDownload", [
-														{ no: 1, name: "resources", kind: "message", T: () => Resources }
-													]);
-												}
-											}
-											/**
-											 * @generated MessageType for protobuf message com.apple.geo.protobuf.geo.ResourceManifestDownload
-											 */
-											new ResourceManifestDownload$Type();
-											/******************  initialization finish  *******************/
-											body = Resources.fromBinary(rawBody);
-											//$.log(`🚧 调试信息`, `body before: ${JSON.stringify(body)}`, "");
-											/*
+											body = GEOResourceManifestDownload.decode(rawBody);
+											log(`🚧 调试信息`, `body before: ${JSON.stringify(body)}`, "");
+											
 											let UF = UnknownFieldHandler.list(body);
-											//$.log(`🚧 调试信息`, `UF: ${JSON.stringify(UF)}`, "");
+											log(`🚧 调试信息`, `UF: ${JSON.stringify(UF)}`, "");
 											if (UF) {
 												UF = UF.map(uf => {
-													//uf.no; // 22
-													//uf.wireType; // WireType.Varint
+													uf.no; // 22
+													uf.wireType; // WireType.Varint
 													// use the binary reader to decode the raw data:
 													let reader = new BinaryReader(uf.data);
 													let addedNumber = reader.int32(); // 7777
-													$.log(`🚧 no: ${uf.no}, wireType: ${uf.wireType}, reader: ${reader}, addedNumber: ${addedNumber}`, "");
+													log(`🚧 no: ${uf.no}, wireType: ${uf.wireType}, reader: ${reader}, addedNumber: ${addedNumber}`, "");
 												});
-											};
-											*/
+											}											
+											/*
 											switch (url.searchParams.get("country_code")) {
 												case "CN":
 													setCache(Caches, "CN", body);
@@ -19036,7 +19299,8 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 													body.resource.push({ "resourceType": 7, "filename": "POITypeMapping-CN-1.json", "checksum": { "0": 242, "1": 10, "2": 179, "3": 107, "4": 214, "5": 41, "6": 50, "7": 223, "8": 62, "9": 204, "10": 134, "11": 7, "12": 103, "13": 206, "14": 96, "15": 242, "16": 24, "17": 42, "18": 79, "19": 223 }, "region": [], "filter": [], "validationMethod": 0, "updateMethod": 0 });
 													body.resource.push({ "resourceType": 7, "filename": "China.cms-lpr", "checksum": { "0": 196, "1": 139, "2": 158, "3": 17, "4": 250, "5": 132, "6": 138, "7": 10, "8": 138, "9": 38, "10": 96, "11": 130, "12": 82, "13": 80, "14": 4, "15": 239, "16": 11, "17": 107, "18": 183, "19": 236 }, "region": [{ "minX": 1, "minY": 0, "maxX": 1, "maxY": 0, "minZ": 1, "maxZ": 25 }], "filter": [{ "scale": [], "scenario": [4] }], "connectionType": 0, "preferWiFiAllowedStaleThreshold": 0, "validationMethod": 1, "alternateResourceURLIndex": 1, "updateMethod": 1, "timeToLiveSeconds": 0 });
 													break;
-											}											body.tileSet = tileSets(body.tileSet, Settings, Caches);
+											};
+											body.tileSet = tileSets(body.tileSet, Settings, Caches);
 											body.attribution = attributions(body.attribution, url, Caches);
 											//body.dataSet = dataSets(body.dataSet, Settings, Caches);
 											body.dataSet = body.dataSet || Caches.XX?.dataSet || Configs.XX?.dataSet;
@@ -19044,10 +19308,11 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 											body.muninBucket = muninBuckets(body.muninBucket, Settings, Caches);
 											// releaseInfo
 											//body.releaseInfo = body.releaseInfo.replace(/(\d+\.\d+)/, `$1.${String(Date.now()/1000)}`);
-											$.log(`🚧 releaseInfo: ${body.releaseInfo}`, "");
+											log(`🚧 releaseInfo: ${body.releaseInfo}`, "");
 											body = SetTileGroup(body);
-											//$.log(`🚧 调试信息`, `body after: ${JSON.stringify(body)}`, "");
-											rawBody = Resources.toBinary(body);
+											*/
+											//log(`🚧 调试信息`, `body after: ${JSON.stringify(body)}`, "");
+											rawBody = GEOResourceManifestDownload.encode(body);
 											break;
 									}									break;
 							}							break;
@@ -19058,431 +19323,5 @@ $.log(`⚠ FORMAT: ${FORMAT}`, "");
 		case false:
 			break;
 	}})()
-	.catch((e) => $.logErr(e))
-	.finally(() => $.done($response));
-
-/***************** Function *****************/
-function setCache(cache, path, body) {
-	$.log(`☑️ Set Cache, path: ${path}`, "");
-	if (Date.now() - Lodash.get(cache, `${path}.timeStamp`, 0) > 86400000) {
-		Lodash.set(cache, `${path}.tileSet`, body.tileSet);
-		Lodash.set(cache, `${path}.attribution`, body.attribution);
-		Lodash.set(cache, `${path}.urlInfoSet`, body.urlInfoSet);
-		Lodash.set(cache, `${path}.muninBucket`, body.muninBucket);
-		Lodash.set(cache, `${path}.timeStamp`, Date.now());
-		$Storage.setItem("@iRingo.Maps.Caches", cache);
-		$.log(`✅ Set Cache`, "");
-	} else $.log(`❎ Set Cache`, "");
-}
-function SetTileGroup(body = {}) {
-	$.log(`☑️ Set TileGroups`, "");
-	body.tileGroup = body.tileGroup.map(tileGroup => {
-		$.log(`🚧 tileGroup.identifier: ${tileGroup.identifier}`);
-		tileGroup.identifier += Math.floor(Math.random() * 100) + 1;
-		$.log(`🚧 tileGroup.identifier: ${tileGroup.identifier}`);
-		tileGroup.tileSet = body.tileSet.map((tileSet, index) => {
-			return {
-				"tileSetIndex": index,
-				"identifier": tileSet.validVersion?.[0]?.identifier
-			};
-		});
-		tileGroup.attributionIndex = body.attribution.map((attribution, index) => {
-			return index;
-		});
-		tileGroup.resourceIndex = body.resource.map((resource, index) => {
-			return index;
-		});
-		return tileGroup;
-	});
-	$.log(`✅ Set TileGroups`, "");
-	return body;
-}
-function tileSets(tileSets = [], settings = {}, caches = {}) {
-	$.log(`☑️ Set TileSets`, "");
-	/*
-	// 填补数据组
-	if (caches?.CN?.tileSet) caches.CN.tileSet = caches.CN.tileSet.map(tile => {
-		tile.dataSet = 2;
-		return tile;
-	});
-	*/
-	// 填补空缺图源
-	caches?.XX?.tileSet?.forEach(tile => {
-		if (!tileSets.some(i => i.style === tile.style)) tileSets.push(tile);
-	});
-	// 按需更改图源
-	tileSets = tileSets.map((tileSet, index) => {
-		switch (tileSet.style) {
-			case 1: // VECTOR_STANDARD 标准地图
-			case 8: // RASTER_TERRAIN 地貌与地势（绿地/城市/水体/山地不同颜色的区域）
-			case 11: // VECTOR_BUILDINGS 建筑模型（3D/白模）
-			case 20: // VECTOR_ROADS 道路（卫星地图:显示标签）
-			case 30: // VECTOR_VENUES 室内地图
-			case 37: // VECTOR_TRANSIT 公共交通
-			case 47: // VECTOR_TRANSIT_SELECTION
-			case 64: // VECTOR_STREET_LANDMARKS
-			case 73: // VECTOR_BUILDINGS_V2 建筑模型V2（3D/上色）
-				switch (settings.TileSet.Map) {
-					case "AUTO":
-					default:
-						break;
-					case "CN":
-						tileSet = caches?.CN?.tileSet?.find(i => i.style === tileSet.style);
-						break;
-					case "XX":
-						tileSet = caches?.XX?.tileSet?.find(i => i.style === tileSet.style);
-						break;
-				}				break;
-			case 7: // RASTER_SATELLITE 卫星地图（2D）
-				switch (settings.TileSet.Satellite) {
-					case "AUTO":
-						break;
-					case "HYBRID":
-						tileSet = caches?.CN?.tileSet?.find(i => (i.style === tileSet.style && i.scale === tileSet.scale && i.size === tileSet.size));
-						if (tileSet.validVersion?.[0]) tileSet.validVersion[0].availableTiles = [{ "minX": 0, "minY": 0, "maxX": 1, "maxY": 1, "minZ": 1, "maxZ": 22 }];
-						break;
-					case "CN":
-						tileSet = caches?.CN?.tileSet?.find(i => (i.style === tileSet.style && i.scale === tileSet.scale && i.size === tileSet.size));
-						break;
-					case "XX":
-					default:
-						tileSet = caches?.XX?.tileSet?.find(i => (i.style === tileSet.style && i.scale === tileSet.scale && i.size === tileSet.size));
-						break;
-				}				break;
-			case 14: // SPUTNIK_METADATA 卫星地图（3D/俯瞰）元数据
-			case 15: // SPUTNIK_C3M 卫星地图（3D/俯瞰）C3模型
-			case 16: // SPUTNIK_DSM 卫星地图（3D/俯瞰）数字表面模型
-			case 17: // SPUTNIK_DSM_GLOBAL 卫星地图（3D/俯瞰）全球数字表面模型
-			case 33: // RASTER_SATELLITE_NIGHT 卫星地图（2D/夜间）
-			case 34: // SPUTNIK_VECTOR_BORDER 卫星地图（3D/俯瞰）边界
-			case 35: // RASTER_SATELLITE_DIGITIZE 卫星地图（2D/数字化）
-			case 45: // RASTER_SATELLITE_ASTC 卫星地图（2D/ASTC）
-				switch (settings.TileSet.Satellite) {
-					case "AUTO":
-						break;
-					case "HYBRID":
-						tileSet = caches?.XX?.tileSet?.find(i => (i.style === tileSet.style && i.scale === tileSet.scale && i.size === tileSet.size));
-						break;
-					case "CN":
-						tileSet = caches?.CN?.tileSet?.find(i => (i.style === tileSet.style && i.scale === tileSet.scale && i.size === tileSet.size));
-						break;
-					case "XX":
-					default:
-						tileSet = caches?.XX?.tileSet?.find(i => (i.style === tileSet.style && i.scale === tileSet.scale && i.size === tileSet.size));
-						break;
-				}				break;
-			case 12: // VECTOR_TRAFFIC 交通状况
-			case 22: // VECTOR_TRAFFIC_SKELETON 交通状况骨架（卫星地图:显示交通状况）
-			case 25: // VECTOR_TRAFFIC_WITH_GREEN
-			case 26: // VECTOR_TRAFFIC_STATIC
-			case 28: // VECTOR_TRAFFIC_SKELETON_WITH_HISTORICAL
-			case 86: // VECTOR_TRAFFIC_V2 交通状况V2
-				switch (settings.TileSet.Traffic) {
-					case "AUTO":
-					default:
-						break;
-					case "CN":
-						tileSet = caches?.CN?.tileSet?.find(i => i.style === tileSet.style);
-						break;
-					case "XX":
-						tileSet = caches?.XX?.tileSet?.find(i => i.style === tileSet.style);
-						break;
-				}				break;
-			case 13: // VECTOR_POI 兴趣点
-			case 68: // VECTOR_POI_V2 兴趣点V2
-			case 69: // VECTOR_POLYGON_SELECTION 多边形选区（兴趣点）
-			case 84: // VECTOR_POI_V2_UPDATE 兴趣点V2更新
-				switch (settings.TileSet.POI) {
-					case "AUTO":
-					default:
-						break;
-					case "CN":
-						tileSet = caches?.CN?.tileSet?.find(i => i.style === tileSet.style);
-						break;
-					case "XX":
-						tileSet = caches?.XX?.tileSet?.find(i => i.style === tileSet.style);
-						break;
-				}				break;
-			case 42: // FLYOVER_C3M_MESH
-			case 43: // FLYOVER_C3M_JPEG_TEXTURE
-			case 44: // FLYOVER_C3M_ASTC_TEXTURE
-			case 49: // FLYOVER_VISIBILITY
-			case 50: // FLYOVER_SKYBOX
-			case 51: // FLYOVER_NAVGRAPH
-			case 52: // FLYOVER_METADATA 俯瞰元数据
-				switch (settings.TileSet.Flyover) {
-					case "AUTO":
-					default:
-						break;
-					case "CN":
-						tileSet = caches?.CN?.tileSet?.find(i => i.style === tileSet.style);
-						break;
-					case "XX":
-						tileSet = caches?.XX?.tileSet?.find(i => i.style === tileSet.style);
-						break;
-				}				break;
-			case 53: // VECTOR_ROAD_NETWORK 道路网络（四处看看）
-			case 56: // VECTOR_STREET_POI 街道兴趣点（四处看看）
-			case 57: // MUNIN_METADATA 四处看看 元数据
-			case 58: // VECTOR_SPR_MERCATOR
-			case 59: // VECTOR_SPR_MODELS
-			case 60: // VECTOR_SPR_MATERIALS
-			case 61: // VECTOR_SPR_METADATA
-			case 66: // VECTOR_SPR_ROADS
-			case 67: // VECTOR_SPR_STANDARD
-				switch (settings.TileSet.Munin) {
-					case "AUTO":
-					default:
-						break;
-					case "CN":
-						tileSet = caches?.CN?.tileSet?.find(i => i.style === tileSet.style);
-						break;
-					case "XX":
-						tileSet = caches?.XX?.tileSet?.find(i => i.style === tileSet.style);
-						break;
-				}				break;
-				/*
-				switch (settings.TileSet.Map) {
-					case "AUTO":
-					default:
-						break;
-					case "CN":
-						tileSet = caches?.CN?.tileSet?.find(i => i.style === tileSet.style);
-						break;
-					case "XX":
-						tileSet = caches?.XX?.tileSet?.find(i => i.style === tileSet.style);
-						break;
-				};
-				break;
-				*/
-		}		return tileSet;
-	}).flat(Infinity).filter(Boolean);
-	$.log(`✅ Set TileSets`, "");
-	return tileSets;
-}
-function attributions(attributions = [], url = {}, caches = {}) {
-	$.log(`☑️ Set Attributions`, "");
-	switch (url.searchParams.get("country_code")) {
-		case "CN":
-			caches?.XX?.attribution?.forEach(attribution => {
-				if (!attributions.some(i => i.name === attribution.name)) attributions.unshift(attribution);
-			});
-			break;
-		case "KR":
-			caches?.KR?.attribution?.forEach(attribution => {
-				if (!attributions.some(i => i.name === attribution.name)) attributions.unshift(attribution);
-			});
-			break;
-		default:
-			caches?.CN?.attribution?.forEach(attribution => {
-				if (!attributions.some(i => i.name === attribution.name)) attributions.push(attribution);
-			});
-			break;
-	}	attributions.sort((a, b)=>{
-		switch (a.name) {
-			case "‎":
-				return -1;
-			case "AutoNavi":
-				return 0;
-			default:
-				return 1;
-		}	});
-	attributions = attributions.map((attribution, index) => {
-		switch (attribution.name) {
-			case "‎":
-				attribution.name = `${$.name}\n${new Date()}`;
-				delete attribution.plainTextURLSHA256Checksum;
-				break;
-			case "AutoNavi":
-				attribution.resource = attribution.resource.filter(i => i.resourceType !== 6);
-				attribution.region = [
-					{ "minX": 214, "minY": 82, "maxX": 216, "maxY": 82, "minZ": 8, "maxZ": 21 },
-					{ "minX": 213, "minY": 83, "maxX": 217, "maxY": 83, "minZ": 8, "maxZ": 21 },
-					{ "minX": 213, "minY": 84, "maxX": 218, "maxY": 84, "minZ": 8, "maxZ": 21 },
-					{ "minX": 213, "minY": 85, "maxX": 218, "maxY": 85, "minZ": 8, "maxZ": 21 },
-					{ "minX": 212, "minY": 86, "maxX": 218, "maxY": 86, "minZ": 8, "maxZ": 21 },
-					{ "minX": 189, "minY": 87, "maxX": 190, "maxY": 87, "minZ": 8, "maxZ": 21 },
-					{ "minX": 210, "minY": 87, "maxX": 220, "maxY": 87, "minZ": 8, "maxZ": 21 },
-					{ "minX": 188, "minY": 88, "maxX": 191, "maxY": 88, "minZ": 8, "maxZ": 21 },
-					{ "minX": 210, "minY": 88, "maxX": 223, "maxY": 88, "minZ": 8, "maxZ": 21 },
-					{ "minX": 188, "minY": 89, "maxX": 192, "maxY": 89, "minZ": 8, "maxZ": 21 },
-					{ "minX": 210, "minY": 89, "maxX": 223, "maxY": 89, "minZ": 8, "maxZ": 21 },
-					{ "minX": 186, "minY": 90, "maxX": 192, "maxY": 90, "minZ": 8, "maxZ": 21 },
-					{ "minX": 210, "minY": 90, "maxX": 223, "maxY": 90, "minZ": 8, "maxZ": 21 },
-					{ "minX": 209, "minY": 91, "maxX": 222, "maxY": 91, "minZ": 8, "maxZ": 21 },
-					{ "minX": 186, "minY": 91, "maxX": 192, "maxY": 91, "minZ": 8, "maxZ": 21 },
-					{ "minX": 184, "minY": 92, "maxX": 195, "maxY": 92, "minZ": 8, "maxZ": 21 },
-					{ "minX": 207, "minY": 92, "maxX": 221, "maxY": 92, "minZ": 8, "maxZ": 21 },
-					{ "minX": 185, "minY": 93, "maxX": 196, "maxY": 93, "minZ": 8, "maxZ": 21 },
-					{ "minX": 206, "minY": 93, "maxX": 221, "maxY": 93, "minZ": 8, "maxZ": 21 },
-					{ "minX": 185, "minY": 94, "maxX": 200, "maxY": 94, "minZ": 8, "maxZ": 21 },
-					{ "minX": 203, "minY": 94, "maxX": 221, "maxY": 94, "minZ": 8, "maxZ": 21 },
-					{ "minX": 182, "minY": 94, "maxX": 219, "maxY": 95, "minZ": 8, "maxZ": 21 },
-					{ "minX": 180, "minY": 96, "maxX": 217, "maxY": 96, "minZ": 8, "maxZ": 21 },
-					{ "minX": 180, "minY": 97, "maxX": 216, "maxY": 97, "minZ": 8, "maxZ": 21 },
-					{ "minX": 180, "minY": 98, "maxX": 214, "maxY": 98, "minZ": 8, "maxZ": 21 },
-					{ "minX": 180, "minY": 99, "maxX": 215, "maxY": 99, "minZ": 8, "maxZ": 21 },
-					{ "minX": 182, "minY": 100, "maxX": 214, "maxY": 100, "minZ": 8, "maxZ": 21 },
-					{ "minX": 183, "minY": 101, "maxX": 213, "maxY": 101, "minZ": 8, "maxZ": 21 },
-					{ "minX": 184, "minY": 102, "maxX": 214, "maxY": 102, "minZ": 8, "maxZ": 21 },
-					{ "minX": 183, "minY": 103, "maxX": 214, "maxY": 103, "minZ": 8, "maxZ": 21 },
-					{ "minX": 184, "minY": 104, "maxX": 215, "maxY": 104, "minZ": 8, "maxZ": 21 },
-					{ "minX": 185, "minY": 105, "maxX": 215, "maxY": 105, "minZ": 8, "maxZ": 21 },
-					{ "minX": 187, "minY": 106, "maxX": 215, "maxY": 106, "minZ": 8, "maxZ": 21 },
-					{ "minX": 189, "minY": 107, "maxX": 193, "maxY": 107, "minZ": 8, "maxZ": 21 },
-					{ "minX": 197, "minY": 107, "maxX": 214, "maxY": 107, "minZ": 8, "maxZ": 21 },
-					{ "minX": 198, "minY": 108, "maxX": 214, "maxY": 108, "minZ": 8, "maxZ": 21 },
-					{ "minX": 110, "minY": 109, "maxX": 214, "maxY": 109, "minZ": 8, "maxZ": 21 },
-					{ "minX": 197, "minY": 110, "maxX": 214, "maxY": 110, "minZ": 8, "maxZ": 21 },
-					{ "minX": 198, "minY": 111, "maxX": 214, "maxY": 111, "minZ": 8, "maxZ": 21 },
-					{ "minX": 204, "minY": 112, "maxX": 209, "maxY": 112, "minZ": 8, "maxZ": 21 },
-					{ "minX": 213, "minY": 112, "maxX": 214, "maxY": 112, "minZ": 8, "maxZ": 21 },
-					{ "minX": 205, "minY": 113, "maxX": 207, "maxY": 113, "minZ": 8, "maxZ": 21 },
-					{ "minX": 205, "minY": 114, "maxX": 206, "maxY": 114, "minZ": 8, "maxZ": 21 },
-					{ "minX": 204, "minY": 115, "maxX": 212, "maxY": 128, "minZ": 8, "maxZ": 21 },
-				];
-				break;
-		}		return attribution;
-	}).flat(Infinity).filter(Boolean);
-	$.log(`✅ Set Attributions`, "");
-	return attributions;
-}
-function urlInfoSets(urlInfoSets = [], url = {}, settings = {}, caches = {}) {
-	$.log(`☑️ Set UrlInfoSets`, "");
-	urlInfoSets = urlInfoSets.map((urlInfoSet, index) => {
-		switch (url.searchParams.get("country_code")) {
-			case "CN":
-				urlInfoSet = { ...caches.XX.urlInfoSet[0], ...caches.CN.urlInfoSet[0] };
-				break;
-			case "KR":
-				urlInfoSet = { ...caches.KR.urlInfoSet[0], ...caches.CN.urlInfoSet[0] };
-				break;
-			default:
-				urlInfoSet = { ...caches.CN.urlInfoSet[0], ...caches.XX.urlInfoSet[0] };
-				urlInfoSet.alternateResourcesURL = caches.CN.urlInfoSet[0].alternateResourcesURL;
-				delete urlInfoSet.polyLocationShiftURL;
-				break;
-		}		switch (settings.Config?.Announcements?.Environment?.default) {
-			case "AUTO":
-			default:
-				break;
-			case "CN":
-				// Announcements
-				urlInfoSet.announcementsURL = caches.CN.urlInfoSet[0].announcementsURL;
-				break;
-			case "XX":
-				// Announcements
-				urlInfoSet.announcementsURL = caches.XX.urlInfoSet[0].announcementsURL;
-				break;
-		}		switch (settings.UrlInfoSet.Dispatcher) {
-			case "AUTO":
-			default:
-				break;
-			case "AutoNavi":
-				// PlaceData Dispatcher
-				urlInfoSet.directionsURL = caches.CN.urlInfoSet[0].dispatcherURL;
-				// Background Dispatcher
-				urlInfoSet.backgroundDispatcherURL = caches.CN.urlInfoSet[0].backgroundDispatcherURL;
-				// Background Reverse Geocoder
-				urlInfoSet.backgroundRevGeoURL = caches.CN.urlInfoSet[0].backgroundRevGeoURL;
-				// Batch Reverse Geocoder
-				urlInfoSet.batchReverseGeocoderPlaceRequestURL = caches.CN.urlInfoSet[0].batchReverseGeocoderPlaceRequestURL;
-				break;
-			case "Apple":
-				// PlaceData Dispatcher
-				urlInfoSet.dispatcherURL = caches.XX.urlInfoSet[0].dispatcherURL;
-				// Background Dispatcher
-				urlInfoSet.backgroundDispatcherURL = caches.XX.urlInfoSet[0].backgroundDispatcherURL;
-				// Background Reverse Geocoder
-				urlInfoSet.backgroundRevGeoURL = caches.XX.urlInfoSet[0].backgroundRevGeoURL;
-				// Batch Reverse Geocoder
-				urlInfoSet.batchReverseGeocoderPlaceRequestURL = caches.XX.urlInfoSet[0].batchReverseGeocoderPlaceRequestURL;
-				break;
-		}		switch (settings.UrlInfoSet.Directions) {
-			case "AUTO":
-			default:
-				break;
-			case "AutoNavi":
-				// Directions
-				urlInfoSet.directionsURL = caches.CN.urlInfoSet[0].directionsURL;
-				// ETA
-				urlInfoSet.etaURL = caches.CN.urlInfoSet[0].etaURL;
-				// Simple ETA
-				urlInfoSet.simpleETAURL = caches.CN.urlInfoSet[0].simpleETAURL;
-				break;
-			case "Apple":
-				// Directions
-				urlInfoSet.directionsURL = caches.XX.urlInfoSet[0].directionsURL;
-				// ETA
-				urlInfoSet.etaURL = caches.XX.urlInfoSet[0].etaURL;
-				// Simple ETA
-				urlInfoSet.simpleETAURL = caches.XX.urlInfoSet[0].simpleETAURL;
-				break;
-		}		switch (settings.UrlInfoSet.RAP) {
-			case "AUTO":
-			default:
-				// RAP Submission
-				urlInfoSet.problemSubmissionURL = caches.XX.urlInfoSet[0].problemSubmissionURL;
-				// RAP Status
-				urlInfoSet.problemStatusURL = caches.XX.urlInfoSet[0].problemStatusURL;
-				// RAP Opt-Ins
-				urlInfoSet.problemOptInURL = caches.XX.urlInfoSet[0].problemOptInURL;
-				// RAP V4 Submission
-				urlInfoSet.feedbackSubmissionURL = caches.XX.urlInfoSet[0].feedbackSubmissionURL;
-				// RAP V4 Lookup
-				urlInfoSet.feedbackLookupURL = caches.XX.urlInfoSet[0].feedbackLookupURL;
-				break;
-			case "AutoNavi":
-				// RAP Submission
-				urlInfoSet.problemSubmissionURL = caches.CN.urlInfoSet[0].problemSubmissionURL;
-				// RAP Status
-				urlInfoSet.problemStatusURL = caches.CN.urlInfoSet[0].problemStatusURL;
-				// RAP V4 Submission
-				urlInfoSet.feedbackSubmissionURL = caches.CN.urlInfoSet[0].feedbackSubmissionURL;
-				// RAP V4 Lookup
-				urlInfoSet.feedbackLookupURL = caches.CN.urlInfoSet[0].feedbackLookupURL;
-				break;
-			case "Apple":
-				// RAP Submission
-				urlInfoSet.problemSubmissionURL = caches.XX.urlInfoSet[0].problemSubmissionURL;
-				// RAP Status
-				urlInfoSet.problemStatusURL = caches.XX.urlInfoSet[0].problemStatusURL;
-				// RAP Opt-Ins
-				urlInfoSet.problemOptInURL = caches.XX.urlInfoSet[0].problemOptInURL;
-				// RAP V4 Submission
-				urlInfoSet.feedbackSubmissionURL = caches.XX.urlInfoSet[0].feedbackSubmissionURL;
-				// RAP V4 Lookup
-				urlInfoSet.feedbackLookupURL = caches.XX.urlInfoSet[0].feedbackLookupURL;
-				break;
-		}		switch (settings.UrlInfoSet.LocationShift) {
-			case "AUTO":
-			default:
-				break;
-			case "AutoNavi":
-				// Location Shift (polynomial)
-				urlInfoSet.polyLocationShiftURL = caches.CN.urlInfoSet[0].polyLocationShiftURL;
-				break;
-			case "Apple":
-				// Location Shift (polynomial)
-				urlInfoSet.polyLocationShiftURL = caches.XX.urlInfoSet[0].polyLocationShiftURL;
-				break;
-		}		return urlInfoSet;
-	});
-	$.log(`✅ Set UrlInfoSets`, "");
-	return urlInfoSets;
-}
-function muninBuckets(muninBuckets = [], settings = {}, caches = {}) {
-	$.log(`☑️ Set MuninBuckets`, "");
-	switch (settings.TileSet.Munin) {
-		case "AUTO":
-		default:
-			break;
-		case "CN":
-			muninBuckets = caches.CN.muninBucket;
-			break;
-		case "XX":
-			muninBuckets = caches.XX.muninBucket;
-			break;
-	}	$.log(`✅ Set MuninBuckets`, "");
-	return muninBuckets;
-}
+	.catch((e) => logError(e))
+	.finally(() => done($response));

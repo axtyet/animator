@@ -5,7 +5,7 @@
 #!tag = 去广告
 #!system = 
 #!system_version = 
-#!loon_version = 3.2.1(732)
+#!loon_version = 3.2.1(745)
 #!homepage = https://gitlab.com/lodepuly/vpn_tool/-/blob/master/README.md
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/main/App_icon/120px/BiliComic.png
 #!date = 2024-07-19 09:51:31
@@ -46,5 +46,5 @@ http-response ^https:\/\/manga\.bilibili\.com\/twirp\/user\.v\d\.User\/UCenterCo
 # 小说列表横幅
 # http-response ^https:\/\/manga\.bilibili\.com\/twirp\/novel\.v\d\.Home\/Home script-path = https://raw.githubusercontent.com/axtyet/animator/main/repository/KeLee/Resource/Script/BiliComic/BiliComic_remove_ads.js, requires-body = true, tag = 移除小说列表横幅
 
-[Mitm]
+[MitM]
 hostname = manga.bilibili.com

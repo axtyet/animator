@@ -1,6 +1,6 @@
 #########################################
 # Sukka's Ruleset - Domestic Domains
-# Last Updated: 2024-08-21T05:57:25.630Z
+# Last Updated: 2024-09-05T15:42:13.097Z
 # Size: 781
 # License: AGPL 3.0
 # Homepage: https://ruleset.skk.moe
@@ -10,7 +10,7 @@
 #########################################
 HOST,this_ruleset_is_made_by_sukkaw.ruleset.skk.moe,DIRECT
 HOST,www.layuicdn.com,DIRECT
-HOST,xboxlive.cn,DIRECT
+HOST,gstore.val.manlaxy.com,DIRECT
 HOST,lv.queniujq.cn,DIRECT
 HOST,cn.download.nvidia.com,DIRECT
 HOST,www.intel.cn,DIRECT
@@ -165,7 +165,6 @@ HOST-SUFFIX,haowu.link,DIRECT
 HOST-SUFFIX,laiqukankan.com,DIRECT
 HOST-SUFFIX,zhuanzfx.com,DIRECT
 HOST-SUFFIX,321fenx.com,DIRECT
-HOST-SUFFIX,laiqukankan.com,DIRECT
 HOST-SUFFIX,youdao.com,DIRECT
 HOST-SUFFIX,sina.cn,DIRECT
 HOST-SUFFIX,sina.com,DIRECT
@@ -747,6 +746,7 @@ HOST-SUFFIX,jomodns.com,DIRECT
 HOST-SUFFIX,bdydns.com,DIRECT
 HOST-SUFFIX,jomoxc.com,DIRECT
 HOST-SUFFIX,duapp.com,DIRECT
+HOST-SUFFIX,antpcdn.com,DIRECT
 HOST-SUFFIX,qhimg.com,DIRECT
 HOST-SUFFIX,qhimgs0.com,DIRECT
 HOST-SUFFIX,qhimgs1.com,DIRECT

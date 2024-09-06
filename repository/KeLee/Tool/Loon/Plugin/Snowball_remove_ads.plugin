@@ -5,7 +5,7 @@
 #!tag = 去广告
 #!system = 
 #!system_version = 
-#!loon_version = 3.2.1(732)
+#!loon_version = 3.2.1(745)
 #!homepage = https://gitlab.com/lodepuly/vpn_tool/-/blob/master/README.md
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/main/App_icon/120px/Snowball.png
 #!date = 2024-07-11 11:22:18
@@ -38,5 +38,5 @@ URL-REGEX, ^http:\/\/119\.29\.29\.98\/d\?, REJECT
 # 推荐直播
 ^https:\/\/api\.xueqiu\.com\/livestream\/structure\/live\/hotCard\.json reject-dict
 
-[Mitm]
+[MitM]
 hostname = api.xueqiu.com, open.xueqiu.com, stock.xueqiu.com, 39.103.79.14, 39.106.97.84, 47.95.49.75, 101.201.62.20, 101.201.62.26, 101.201.175.228, 124.250.48.3, 182.92.145.50, 182.92.251.113

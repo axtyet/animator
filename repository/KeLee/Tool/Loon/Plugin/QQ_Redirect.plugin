@@ -5,7 +5,7 @@
 #!tag = 去广告
 #!system = 
 #!system_version = 
-#!loon_version = 3.2.1(732)
+#!loon_version = 3.2.1(745)
 #!homepage = https://gitlab.com/lodepuly/vpn_tool/-/blob/master/README.md
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/main/App_icon/120px/QQ.png
 #!date = 2024-06-30 17:23:22
@@ -20,5 +20,5 @@
 (^https:\/\/c\.pc\.qq\.com\/ios\.html\?url=)(http.*)(&level=.*) 302 $2
 (^https:\/\/pingtas\.qq\.com\/webview\/pingd\?dm=c\.pc\.qq\.com&pvi=\d+&si=s\d+&url=\/ios\.html\?url%3d)(http.*)(%26level.*%26level.*) 302 $2
 
-[Mitm]
+[MitM]
 hostname = pingtas.qq.com, c.pc.qq.com, cgi.connect.qq.com

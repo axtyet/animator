@@ -20,10 +20,8 @@
 
 */
 
-/* jshint esversion:11 */
+/* eslint-disable indent */
 /* global cloneInto */
-
-'use strict';
 
 // ruleset: swe-1
 
@@ -40,11 +38,11 @@
 // Start of code to inject
 const uBOL_removeNodeText = function() {
 
-const scriptletGlobals = {}; // jshint ignore: line
+const scriptletGlobals = {}; // eslint-disable-line
 
-const argsList = [["noscript"],["script","/wccp_pro/"],["script","cloned.removeAttr"],["#text","casino"]];
+const argsList = [["noscript"],["script","/wccp_pro/"],["#text","casino"]];
 
-const hostnamesMap = new Map([["dinbyggare.se",[0,1]],["elevspel.se",2],["garaget.org",3]]);
+const hostnamesMap = new Map([["dinbyggare.se",[0,1]],["garaget.org",2]]);
 
 const entitiesMap = new Map([]);
 
@@ -365,7 +363,19 @@ function safeSelf() {
 /******************************************************************************/
 
 const hnParts = [];
-try { hnParts.push(...document.location.hostname.split('.')); }
+try {
+    let origin = document.location.origin;
+    if ( origin === 'null' ) {
+        const origins = document.location.ancestorOrigins;
+        for ( let i = 0; i < origins.length; i++ ) {
+            origin = origins[i];
+            if ( origin !== 'null' ) { break; }
+        }
+    }
+    const pos = origin.lastIndexOf('://');
+    if ( pos === -1 ) { return; }
+    hnParts.push(...origin.slice(pos+3).split('.'));
+}
 catch(ex) { }
 const hnpartslen = hnParts.length;
 if ( hnpartslen === 0 ) { return; }

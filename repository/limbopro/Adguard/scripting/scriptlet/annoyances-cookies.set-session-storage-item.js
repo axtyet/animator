@@ -20,10 +20,8 @@
 
 */
 
-/* jshint esversion:11 */
+/* eslint-disable indent */
 /* global cloneInto */
-
-'use strict';
 
 // ruleset: annoyances-cookies
 
@@ -40,11 +38,11 @@
 // Start of code to inject
 const uBOL_setSessionStorageItem = function() {
 
-const scriptletGlobals = {}; // jshint ignore: line
+const scriptletGlobals = {}; // eslint-disable-line
 
-const argsList = [["cookieModal2","1"],["cookieMessageDisagree","true"],["disclaimerOpened","1"],["terms-and-policy-accepted","true"],["cookieConfirmed","true"],["hasConsent","1"],["hasDsg","1"],["griffinConsentIgnored","1"],["ACCEPT_LGPD","true"],["acceptCookies","false"],["terms-and-policy-accepted","yes"],["CookieBannerShown","yes"]];
+const argsList = [["cookieModal2","1"],["cookieMessageDisagree","true"],["disclaimerOpened","1"],["terms-and-policy-accepted","true"],["cookie_reject","true"],["cookieConfirmed","true"],["hasConsent","1"],["hasDsg","1"],["griffinConsentIgnored","1"],["ACCEPT_LGPD","true"],["acceptCookies","false"],["terms-and-policy-accepted","yes"],["CookieBannerShown","yes"]];
 
-const hostnamesMap = new Map([["workwide.de",0],["erco.com",1],["communitycrimemap.com",2],["smartwielen.lu",3],["ssga.com",4],["cachecrawler.com",[5,6]],["griffin.com",7],["c6bank.com.br",8],["gedik.com",9],["collato.com",[10,11]]]);
+const hostnamesMap = new Map([["workwide.de",0],["erco.com",1],["communitycrimemap.com",2],["smartwielen.lu",3],["brightonandhovealbion.com",4],["ssga.com",5],["cachecrawler.com",[6,7]],["griffin.com",8],["c6bank.com.br",9],["gedik.com",10],["collato.com",[11,12]]]);
 
 const entitiesMap = new Map([]);
 
@@ -74,13 +72,9 @@ function setLocalStorageItemFn(
     const trustedValues = [
         '',
         'undefined', 'null',
-        'false', 'true',
-        'on', 'off',
-        'yes', 'no',
-        'accept', 'reject',
-        'accepted', 'rejected',
         '{}', '[]', '""',
         '$remove$',
+        ...getSafeCookieValuesFn(),
     ];
 
     if ( trusted ) {
@@ -122,6 +116,27 @@ function setLocalStorageItemFn(
         }
     } catch(ex) {
     }
+}
+
+function getSafeCookieValuesFn() {
+    return [
+        'accept', 'reject',
+        'accepted', 'rejected', 'notaccepted',
+        'allow', 'disallow', 'deny',
+        'allowed', 'denied',
+        'approved', 'disapproved',
+        'checked', 'unchecked',
+        'dismiss', 'dismissed',
+        'enable', 'disable',
+        'enabled', 'disabled',
+        'essential', 'nonessential',
+        'hide', 'hidden',
+        'necessary', 'required',
+        'ok',
+        'on', 'off',
+        'true', 't', 'false', 'f',
+        'yes', 'y', 'no', 'n',
+    ];
 }
 
 function safeSelf() {
@@ -292,7 +307,19 @@ function safeSelf() {
 /******************************************************************************/
 
 const hnParts = [];
-try { hnParts.push(...document.location.hostname.split('.')); }
+try {
+    let origin = document.location.origin;
+    if ( origin === 'null' ) {
+        const origins = document.location.ancestorOrigins;
+        for ( let i = 0; i < origins.length; i++ ) {
+            origin = origins[i];
+            if ( origin !== 'null' ) { break; }
+        }
+    }
+    const pos = origin.lastIndexOf('://');
+    if ( pos === -1 ) { return; }
+    hnParts.push(...origin.slice(pos+3).split('.'));
+}
 catch(ex) { }
 const hnpartslen = hnParts.length;
 if ( hnpartslen === 0 ) { return; }

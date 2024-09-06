@@ -712,7 +712,7 @@
     },
     {
       "name": "macat",
-      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/macat.png"
+      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Macat.png"
     },
     {
       "name": "meituan",
@@ -803,8 +803,12 @@
       "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/ql_logo.png"
     },
     {
-      "name": "QQMusic",
+      "name": "QQMusic QQ音乐",
       "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/QQMusic.png"
+    },
+    {
+      "name": "QQMusic QQ音乐",
+      "url": "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/QQMusic_01.png"
     },
     {
       "name": "QuarkDrive",

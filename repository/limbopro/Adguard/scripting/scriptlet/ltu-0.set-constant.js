@@ -20,10 +20,8 @@
 
 */
 
-/* jshint esversion:11 */
+/* eslint-disable indent */
 /* global cloneInto */
-
-'use strict';
 
 // ruleset: ltu-0
 
@@ -40,7 +38,7 @@
 // Start of code to inject
 const uBOL_setConstant = function() {
 
-const scriptletGlobals = {}; // jshint ignore: line
+const scriptletGlobals = {}; // eslint-disable-line
 
 const argsList = [["_dlf.adfree","1"]];
 
@@ -430,7 +428,9 @@ function validateConstantFn(trusted, raw, extraArgs = {}) {
         if ( isNaN(raw) ) { return; }
         if ( Math.abs(raw) > 0x7FFF ) { return; }
     } else if ( trusted ) {
-        if ( raw.startsWith('{') && raw.endsWith('}') ) {
+        if ( raw.startsWith('json:') ) {
+            try { value = safe.JSON_parse(raw.slice(5)); } catch(ex) { return; }
+        } else if ( raw.startsWith('{') && raw.endsWith('}') ) {
             try { value = safe.JSON_parse(raw).value; } catch(ex) { return; }
         }
     } else {
@@ -453,7 +453,19 @@ function validateConstantFn(trusted, raw, extraArgs = {}) {
 /******************************************************************************/
 
 const hnParts = [];
-try { hnParts.push(...document.location.hostname.split('.')); }
+try {
+    let origin = document.location.origin;
+    if ( origin === 'null' ) {
+        const origins = document.location.ancestorOrigins;
+        for ( let i = 0; i < origins.length; i++ ) {
+            origin = origins[i];
+            if ( origin !== 'null' ) { break; }
+        }
+    }
+    const pos = origin.lastIndexOf('://');
+    if ( pos === -1 ) { return; }
+    hnParts.push(...origin.slice(pos+3).split('.'));
+}
 catch(ex) { }
 const hnpartslen = hnParts.length;
 if ( hnpartslen === 0 ) { return; }

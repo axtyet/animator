@@ -20,10 +20,8 @@
 
 */
 
-/* jshint esversion:11 */
+/* eslint-disable indent */
 /* global cloneInto */
-
-'use strict';
 
 // ruleset: spa-1
 
@@ -40,11 +38,11 @@
 // Start of code to inject
 const uBOL_noWindowOpenIf = function() {
 
-const scriptletGlobals = {}; // jshint ignore: line
+const scriptletGlobals = {}; // eslint-disable-line
 
-const argsList = [[],["","10"],["!/download\\/|link|atomtt\\.com\\//"],["?sid="],["passeura"],["/^https?:\\/\\/movieknowing\\.com\\/$/","trueFunc"],["redirdx.in/go/"]];
+const argsList = [[],["","10"],["!/download\\/|link|atomtt\\.com\\//"],["?sid="],["passeura"],["/^https?:\\/\\/movieknowing\\.com\\/$/","trueFunc"],["redirdx.in/go/"],["?key="]];
 
-const hostnamesMap = new Map([["darkmahou.org",0],["movidy.lat",0],["warezstream.net",0],["embedder.net",0],["beautyskincarebrasil.com",0],["poseidonhd2.co",0],["geeknetic.es",0],["animeblix.com",[0,4]],["servertwo.xyz",0],["megaseriesonline.pro",0],["chinesetubex.com.es",0],["playnewserie.xyz",0],["desenhosanimados.site",0],["pelispedia-v2.wtf",0],["paky3.me",0],["pelismart.com",0],["pelismarthd.com",0],["pelispedia-v1.wtf",0],["cuevana-3.wtf",0],["muyzorras.com",0],["vernaruto.tv",0],["clickhouse.xyz",0],["deportealdia.live",0],["repelis.io",0],["verdragonball.online",0],["otakustv.com",0],["repelisgt.net",0],["playpaste.com",0],["okpeliz.com",0],["player.seriesgod.com",0],["player.pelisgod.com",0],["pulpulyy.club",1],["atomohd.com",2],["atomtt.com",2],["maxitorrent.com",3],["movieknowing.com",5],["redirdx.in",6]]);
+const hostnamesMap = new Map([["darkmahou.org",0],["movidy.lat",0],["warezstream.net",0],["embedder.net",0],["beautyskincarebrasil.com",0],["poseidonhd2.co",0],["geeknetic.es",0],["animeblix.com",[0,4]],["servertwo.xyz",0],["megaseriesonline.pro",0],["chinesetubex.com.es",0],["playnewserie.xyz",0],["desenhosanimados.site",0],["pelispedia-v2.wtf",0],["paky3.me",0],["pelismart.com",0],["pelismarthd.com",0],["pelispedia-v1.wtf",0],["cuevana-3.wtf",0],["muyzorras.com",0],["vernaruto.tv",0],["clickhouse.xyz",0],["deportealdia.live",0],["repelis.io",0],["verdragonball.online",0],["otakustv.com",0],["repelisgt.net",0],["playpaste.com",0],["okpeliz.com",0],["player.seriesgod.com",0],["player.pelisgod.com",0],["pulpulyy.club",1],["atomohd.com",2],["atomtt.com",2],["maxitorrent.com",3],["movieknowing.com",5],["redirdx.in",6],["torrentjogos.com.br",7]]);
 
 const entitiesMap = new Map([["cuevana3",0],["gnula",0],["cuevana2espanol",0],["cuevana",0],["netcine",0],["atomixhq",2]]);
 
@@ -64,10 +62,8 @@ function noWindowOpenIf(
         pattern = pattern.slice(1);
     }
     const rePattern = safe.patternToRegex(pattern);
-    let autoRemoveAfter = parseInt(delay);
-    if ( isNaN(autoRemoveAfter) ) {
-        autoRemoveAfter = -1;
-    }
+    const autoRemoveAfter = (parseFloat(delay) || 0) * 1000;
+    const setTimeout = self.setTimeout;
     const createDecoy = function(tag, urlProp, url) {
         const decoyElem = document.createElement(tag);
         decoyElem[urlProp] = url;
@@ -76,55 +72,100 @@ function noWindowOpenIf(
         decoyElem.style.setProperty('top','-1px', 'important');
         decoyElem.style.setProperty('width','1px', 'important');
         document.body.appendChild(decoyElem);
-        setTimeout(( ) => { decoyElem.remove(); }, autoRemoveAfter * 1000);
+        setTimeout(( ) => { decoyElem.remove(); }, autoRemoveAfter);
         return decoyElem;
     };
-    window.open = new Proxy(window.open, {
-        apply: function(target, thisArg, args) {
-            const haystack = args.join(' ');
-            if ( rePattern.test(haystack) !== targetMatchResult ) {
-                if ( safe.logLevel > 1 ) {
-                    safe.uboLog(logPrefix, `Allowed (${args.join(', ')})`);
-                }
-                return Reflect.apply(target, thisArg, args);
+    const noopFunc = function(){};
+    proxyApplyFn('open', function open(target, thisArg, args) {
+        const haystack = args.join(' ');
+        if ( rePattern.test(haystack) !== targetMatchResult ) {
+            if ( safe.logLevel > 1 ) {
+                safe.uboLog(logPrefix, `Allowed (${args.join(', ')})`);
             }
-            safe.uboLog(logPrefix, `Prevented (${args.join(', ')})`);
-            if ( autoRemoveAfter < 0 ) { return null; }
-            const decoyElem = decoy === 'obj'
-                ? createDecoy('object', 'data', ...args)
-                : createDecoy('iframe', 'src', ...args);
-            let popup = decoyElem.contentWindow;
-            if ( typeof popup === 'object' && popup !== null ) {
-                Object.defineProperty(popup, 'closed', { value: false });
-            } else {
-                const noopFunc = (function(){}).bind(self);
-                popup = new Proxy(self, {
-                    get: function(target, prop) {
-                        if ( prop === 'closed' ) { return false; }
-                        const r = Reflect.get(...arguments);
-                        if ( typeof r === 'function' ) { return noopFunc; }
-                        return target[prop];
-                    },
-                    set: function() {
-                        return Reflect.set(...arguments);
-                    },
-                });
-            }
-            if ( safe.logLevel !== 0 ) {
-                popup = new Proxy(popup, {
-                    get: function(target, prop) {
-                        safe.uboLog(logPrefix, 'window.open / get', prop, '===', target[prop]);
-                        return Reflect.get(...arguments);
-                    },
-                    set: function(target, prop, value) {
-                        safe.uboLog(logPrefix, 'window.open / set', prop, '=', value);
-                        return Reflect.set(...arguments);
-                    },
-                });
-            }
-            return popup;
+            return Reflect.apply(target, thisArg, args);
         }
+        safe.uboLog(logPrefix, `Prevented (${args.join(', ')})`);
+        if ( delay === '' ) { return null; }
+        if ( decoy === 'blank' ) {
+            args[0] = 'about:blank';
+            const r = Reflect.apply(target, thisArg, args);
+            setTimeout(( ) => { r.close(); }, autoRemoveAfter);
+            return r;
+        }
+        const decoyElem = decoy === 'obj'
+            ? createDecoy('object', 'data', ...args)
+            : createDecoy('iframe', 'src', ...args);
+        let popup = decoyElem.contentWindow;
+        if ( typeof popup === 'object' && popup !== null ) {
+            Object.defineProperty(popup, 'closed', { value: false });
+        } else {
+            popup = new Proxy(self, {
+                get: function(target, prop, ...args) {
+                    if ( prop === 'closed' ) { return false; }
+                    const r = Reflect.get(target, prop, ...args);
+                    if ( typeof r === 'function' ) { return noopFunc; }
+                    return r;
+                },
+                set: function(...args) {
+                    return Reflect.set(...args);
+                },
+            });
+        }
+        if ( safe.logLevel !== 0 ) {
+            popup = new Proxy(popup, {
+                get: function(target, prop, ...args) {
+                    const r = Reflect.get(target, prop, ...args);
+                    safe.uboLog(logPrefix, `popup / get ${prop} === ${r}`);
+                    if ( typeof r === 'function' ) {
+                        return (...args) => { return r.call(target, ...args); };
+                    }
+                    return r;
+                },
+                set: function(target, prop, value, ...args) {
+                    safe.uboLog(logPrefix, `popup / set ${prop} = ${value}`);
+                    return Reflect.set(target, prop, value, ...args);
+                },
+            });
+        }
+        return popup;
     });
+}
+
+function proxyApplyFn(
+    target = '',
+    handler = ''
+) {
+    let context = globalThis;
+    let prop = target;
+    for (;;) {
+        const pos = prop.indexOf('.');
+        if ( pos === -1 ) { break; }
+        context = context[prop.slice(0, pos)];
+        if ( context instanceof Object === false ) { return; }
+        prop = prop.slice(pos+1);
+    }
+    const fn = context[prop];
+    if ( typeof fn !== 'function' ) { return; }
+    const fnStr = fn.toString();
+    const toString = (function toString() { return fnStr; }).bind(null);
+    if ( fn.prototype && fn.prototype.constructor === fn ) {
+        context[prop] = new Proxy(fn, {
+            construct: handler,
+            get(target, prop, receiver) {
+                if ( prop === 'toString' ) { return toString; }
+                return Reflect.get(target, prop, receiver);
+            },
+        });
+        return (...args) => Reflect.construct(...args);
+    }
+    context[prop] = new Proxy(fn, {
+        apply: handler,
+        get(target, prop, receiver) {
+            if ( prop === 'toString' ) { return toString; }
+            return Reflect.get(target, prop, receiver);
+        },
+    });
+    return (...args) => Reflect.apply(...args);
 }
 
 function safeSelf() {
@@ -295,7 +336,19 @@ function safeSelf() {
 /******************************************************************************/
 
 const hnParts = [];
-try { hnParts.push(...document.location.hostname.split('.')); }
+try {
+    let origin = document.location.origin;
+    if ( origin === 'null' ) {
+        const origins = document.location.ancestorOrigins;
+        for ( let i = 0; i < origins.length; i++ ) {
+            origin = origins[i];
+            if ( origin !== 'null' ) { break; }
+        }
+    }
+    const pos = origin.lastIndexOf('://');
+    if ( pos === -1 ) { return; }
+    hnParts.push(...origin.slice(pos+3).split('.'));
+}
 catch(ex) { }
 const hnpartslen = hnParts.length;
 if ( hnpartslen === 0 ) { return; }

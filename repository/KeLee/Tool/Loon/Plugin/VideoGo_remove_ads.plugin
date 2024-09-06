@@ -5,7 +5,7 @@
 #!tag = 去广告
 #!system = 
 #!system_version = 
-#!loon_version = 3.2.1(732)
+#!loon_version = 3.2.1(745)
 #!homepage = https://gitlab.com/lodepuly/vpn_tool/-/blob/master/README.md
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/main/App_icon/120px/VideoGo.png
 #!date = 2024-07-10 02:10:56
@@ -86,5 +86,5 @@ DOMAIN-SUFFIX, pos.baidu.com, REJECT
 [Script]
 # http-response ^https:\/\/api\.ys7\.com\/v3\/valueadded\/operation\/config\/master\/station script-path = https://raw.githubusercontent.com/axtyet/animator/main/repository/KeLee/Resource/Script/VideoGo/VideoGo_remove_ads.js, requires-body = true, tag = 我的页面去广告
 
-[Mitm]
+[MitM]
 hostname = api.ys7.com, i.ys7.com

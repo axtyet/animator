@@ -5,7 +5,7 @@
 #!tag = 去广告
 #!system = 
 #!system_version = 
-#!loon_version = 3.2.1(732)
+#!loon_version = 3.2.1(745)
 #!homepage = https://gitlab.com/lodepuly/vpn_tool/-/blob/master/README.md
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/main/App_icon/120px/MailMaster.png
 #!date = 2024-07-06 11:57:14
@@ -67,5 +67,5 @@ DOMAIN, janapi.jd.com, REJECT
 # 拦截HTTPDNS
 ^https:\/\/appconf\.mail\.163\.com\/mailmaster\/api\/http\/urlConfig\.do$ reject-dict
 
-[Mitm]
+[MitM]
 hostname = appconf.mail.163.com

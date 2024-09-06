@@ -5,7 +5,7 @@
 #!tag = 去广告
 #!system = 
 #!system_version = 
-#!loon_version = 3.2.1(732)
+#!loon_version = 3.2.1(745)
 #!homepage = https://gitlab.com/lodepuly/vpn_tool/-/blob/master/README.md
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/main/App_icon/120px/FenBi.png
 #!date = 2024-07-11 00:20:34
@@ -25,5 +25,5 @@
 # 首页 - 横向滚动板块
 # ^https:\/\/keapi\.fenbi\.com\/app\/iphone\/\w+\/small_banner reject-dict
 
-[Mitm]
+[MitM]
 hostname = keapi.fenbi.com, market-api.fenbi.com, tiku.fenbi.com
