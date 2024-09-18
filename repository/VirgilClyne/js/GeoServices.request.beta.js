@@ -16,7 +16,7 @@ function platform() {
 class URL {
 	constructor(url, base = undefined) {
 		const name = "URL";
-		const version = "2.1.0";
+		const version = "2.1.2";
 		console.log(`\n🟧 ${name} v${version}\n`);
 		url = this.#parse(url, base);
 		return this;
@@ -53,10 +53,9 @@ class URL {
 		if (url.search || base?.search) {
 			this.search = url.search || base.search;
 			Object.freeze(this.search);
-			if (this.search) {
-				const array = this.search.slice(1).split("&").map((param) => param.split("="));
-				this.searchParams = new Map(array);
-			}		}		this.harf = this.toString();
+			if (this.search) this.searchParams = this.search.slice(1).split("&").map((param) => param.split("="));
+		}		this.searchParams = new Map(this.searchParams || []);
+		this.harf = this.toString();
 		Object.freeze(this.harf);
 		return this;
 	};
@@ -68,7 +67,7 @@ class URL {
 		if (this.hostname) string += this.hostname;
 		if (this.port) string += ":" + this.port;
 		if (this.pathname) string += this.pathname;
-		if (this.searchParams) string += "?" + Array.from(this.searchParams).map(param => param.join("=")).join("&");
+		if (this.searchParams.size !== 0) string += "?" + Array.from(this.searchParams).map(param => param.join("=")).join("&");
 		return string;
 	};
 
@@ -1218,12136 +1217,6 @@ var Settings$6 = {
 	}
 };
 var Configs$3 = {
-	CN: {
-		attribution: [
-			{
-				region: [
-				],
-				name: "AutoNavi",
-				url: "https://gspe21-ssl.ls.apple.com/html/attribution-cn2-66.html",
-				resource: [
-					{
-						region: [
-						],
-						filter: [
-						],
-						checksum: {
-							"0": 61,
-							"1": 130,
-							"2": 126,
-							"3": 203,
-							"4": 170,
-							"5": 234,
-							"6": 91,
-							"7": 182,
-							"8": 191,
-							"9": 120,
-							"10": 72,
-							"11": 19,
-							"12": 46,
-							"13": 58,
-							"14": 235,
-							"15": 55,
-							"16": 221,
-							"17": 53,
-							"18": 252,
-							"19": 219
-						},
-						updateMethod: 0,
-						validationMethod: 0,
-						filename: "autonavi-4.png",
-						resourceType: 6
-					},
-					{
-						region: [
-						],
-						filter: [
-						],
-						checksum: {
-							"0": 101,
-							"1": 191,
-							"2": 219,
-							"3": 234,
-							"4": 178,
-							"5": 237,
-							"6": 6,
-							"7": 231,
-							"8": 236,
-							"9": 110,
-							"10": 3,
-							"11": 82,
-							"12": 194,
-							"13": 129,
-							"14": 29,
-							"15": 221,
-							"16": 225,
-							"17": 55,
-							"18": 26,
-							"19": 203
-						},
-						updateMethod: 0,
-						validationMethod: 0,
-						filename: "autonavi-4@2x.png",
-						resourceType: 6
-					},
-					{
-						region: [
-						],
-						filter: [
-						],
-						checksum: {
-							"0": 101,
-							"1": 191,
-							"2": 219,
-							"3": 234,
-							"4": 178,
-							"5": 237,
-							"6": 6,
-							"7": 231,
-							"8": 236,
-							"9": 110,
-							"10": 3,
-							"11": 82,
-							"12": 194,
-							"13": 129,
-							"14": 29,
-							"15": 221,
-							"16": 225,
-							"17": 55,
-							"18": 26,
-							"19": 203
-						},
-						updateMethod: 0,
-						validationMethod: 0,
-						filename: "autonavi-4@2x.png",
-						resourceType: 6
-					},
-					{
-						region: [
-						],
-						filter: [
-						],
-						checksum: {
-							"0": 247,
-							"1": 152,
-							"2": 81,
-							"3": 90,
-							"4": 135,
-							"5": 206,
-							"6": 171,
-							"7": 138,
-							"8": 151,
-							"9": 37,
-							"10": 167,
-							"11": 77,
-							"12": 112,
-							"13": 223,
-							"14": 89,
-							"15": 164,
-							"16": 242,
-							"17": 201,
-							"18": 164,
-							"19": 74
-						},
-						updateMethod: 0,
-						validationMethod: 0,
-						filename: "autonavi-logo-mask-1.png",
-						resourceType: 5
-					},
-					{
-						region: [
-						],
-						filter: [
-						],
-						checksum: {
-							"0": 54,
-							"1": 203,
-							"2": 95,
-							"3": 5,
-							"4": 82,
-							"5": 108,
-							"6": 189,
-							"7": 170,
-							"8": 124,
-							"9": 255,
-							"10": 39,
-							"11": 153,
-							"12": 245,
-							"13": 47,
-							"14": 224,
-							"15": 93,
-							"16": 202,
-							"17": 181,
-							"18": 11,
-							"19": 127
-						},
-						updateMethod: 0,
-						validationMethod: 0,
-						filename: "autonavi-logo-mask-1@2x.png",
-						resourceType: 5
-					},
-					{
-						region: [
-						],
-						filter: [
-						],
-						checksum: {
-							"0": 131,
-							"1": 225,
-							"2": 158,
-							"3": 241,
-							"4": 69,
-							"5": 218,
-							"6": 172,
-							"7": 162,
-							"8": 166,
-							"9": 241,
-							"10": 48,
-							"11": 174,
-							"12": 31,
-							"13": 104,
-							"14": 225,
-							"15": 155,
-							"16": 97,
-							"17": 143,
-							"18": 15,
-							"19": 99
-						},
-						updateMethod: 0,
-						validationMethod: 0,
-						filename: "autonavi-logo-mask-1@3x.png",
-						resourceType: 5
-					}
-				]
-			},
-			{
-				region: [
-					{
-						maxX: 225,
-						minZ: 8,
-						minX: 218,
-						maxY: 104,
-						minY: 102,
-						maxZ: 21
-					},
-					{
-						maxX: 228,
-						minZ: 8,
-						minX: 221,
-						maxY: 101,
-						minY: 98,
-						maxZ: 21
-					},
-					{
-						maxX: 231,
-						minZ: 8,
-						minX: 226,
-						maxY: 97,
-						minY: 91,
-						maxZ: 21
-					}
-				],
-				name: "© GeoTechnologies, Inc.",
-				url: "https://gspe21-ssl.ls.apple.com/html/attribution-cn2-66.html",
-				resource: [
-				]
-			}
-		],
-		releaseInfo: "PROD-CN (24.20)",
-		tileSet: [
-			{
-				scale: 0,
-				style: 1,
-				checksumType: 0,
-				countryRegionWhitelist: [
-					{
-						countryCode: "AE",
-						region: "AE"
-					},
-					{
-						countryCode: "AE",
-						region: "SA"
-					},
-					{
-						countryCode: "IN",
-						region: "IN"
-					},
-					{
-						countryCode: "JP",
-						region: "JP"
-					},
-					{
-						countryCode: "KR",
-						region: "KR"
-					},
-					{
-						countryCode: "MA",
-						region: "MA"
-					},
-					{
-						countryCode: "RU",
-						region: "RU"
-					},
-					{
-						countryCode: "SA",
-						region: "AE"
-					},
-					{
-						countryCode: "SA",
-						region: "SA"
-					}
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles?flags=8",
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							}
-						],
-						identifier: 2197,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 1,
-				style: 7,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 1,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe11-2-cn-ssl.ls.apple.com/2/tiles",
-				validVersion: [
-					{
-						genericTile: [
-							{
-								resourceIndex: 1971,
-								textureIndex: 0,
-								tileType: 2
-							}
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 224,
-								minZ: 8,
-								minX: 179,
-								maxY: 128,
-								minY: 80,
-								maxZ: 8
-							},
-							{
-								maxX: 449,
-								minZ: 9,
-								minX: 359,
-								maxY: 257,
-								minY: 161,
-								maxZ: 9
-							},
-							{
-								maxX: 898,
-								minZ: 10,
-								minX: 719,
-								maxY: 915,
-								minY: 323,
-								maxZ: 10
-							},
-							{
-								maxX: 1797,
-								minZ: 11,
-								minX: 1438,
-								maxY: 1031,
-								minY: 646,
-								maxZ: 11
-							},
-							{
-								maxX: 3594,
-								minZ: 12,
-								minX: 2876,
-								maxY: 2062,
-								minY: 1292,
-								maxZ: 12
-							},
-							{
-								maxX: 7188,
-								minZ: 13,
-								minX: 5752,
-								maxY: 4124,
-								minY: 2584,
-								maxZ: 13
-							},
-							{
-								maxX: 14376,
-								minZ: 14,
-								minX: 11504,
-								maxY: 8248,
-								minY: 5168,
-								maxZ: 14
-							},
-							{
-								maxX: 28752,
-								minZ: 15,
-								minX: 23008,
-								maxY: 16496,
-								minY: 10336,
-								maxZ: 15
-							},
-							{
-								maxX: 57504,
-								minZ: 16,
-								minX: 46016,
-								maxY: 32992,
-								minY: 20672,
-								maxZ: 16
-							},
-							{
-								maxX: 115008,
-								minZ: 17,
-								minX: 92032,
-								maxY: 65984,
-								minY: 41344,
-								maxZ: 17
-							},
-							{
-								maxX: 230016,
-								minZ: 18,
-								minX: 184064,
-								maxY: 131976,
-								minY: 82668,
-								maxZ: 18
-							}
-						],
-						identifier: 52
-					}
-				]
-			},
-			{
-				scale: 2,
-				style: 7,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 1,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe11-2-cn-ssl.ls.apple.com/2/tiles",
-				validVersion: [
-					{
-						genericTile: [
-							{
-								resourceIndex: 1971,
-								textureIndex: 0,
-								tileType: 2
-							}
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 224,
-								minZ: 8,
-								minX: 179,
-								maxY: 128,
-								minY: 80,
-								maxZ: 8
-							},
-							{
-								maxX: 449,
-								minZ: 9,
-								minX: 359,
-								maxY: 257,
-								minY: 161,
-								maxZ: 9
-							},
-							{
-								maxX: 898,
-								minZ: 10,
-								minX: 719,
-								maxY: 915,
-								minY: 323,
-								maxZ: 10
-							},
-							{
-								maxX: 1797,
-								minZ: 11,
-								minX: 1438,
-								maxY: 1031,
-								minY: 646,
-								maxZ: 11
-							},
-							{
-								maxX: 3594,
-								minZ: 12,
-								minX: 2876,
-								maxY: 2062,
-								minY: 1292,
-								maxZ: 12
-							},
-							{
-								maxX: 7188,
-								minZ: 13,
-								minX: 5752,
-								maxY: 4124,
-								minY: 2584,
-								maxZ: 13
-							},
-							{
-								maxX: 14376,
-								minZ: 14,
-								minX: 11504,
-								maxY: 8248,
-								minY: 5168,
-								maxZ: 14
-							},
-							{
-								maxX: 28752,
-								minZ: 15,
-								minX: 23008,
-								maxY: 16496,
-								minY: 10336,
-								maxZ: 15
-							},
-							{
-								maxX: 57504,
-								minZ: 16,
-								minX: 46016,
-								maxY: 32992,
-								minY: 20672,
-								maxZ: 16
-							},
-							{
-								maxX: 115008,
-								minZ: 17,
-								minX: 92032,
-								maxY: 65984,
-								minY: 41344,
-								maxZ: 17
-							},
-							{
-								maxX: 230016,
-								minZ: 18,
-								minX: 184064,
-								maxY: 131976,
-								minY: 82668,
-								maxZ: 18
-							}
-						],
-						identifier: 52
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 11,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles?flags=1",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 476
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 12,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe12-cn-ssl.ls.apple.com/traffic",
-				validVersion: [
-					{
-						availableTiles: [
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							}
-						],
-						identifier: 2196,
-						timeToLiveSeconds: 120,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 13,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles?flags=2",
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 15
-							},
-							{
-								maxX: 65535,
-								minZ: 16,
-								minX: 0,
-								maxY: 65535,
-								minY: 0,
-								maxZ: 16
-							},
-							{
-								maxX: 131071,
-								minZ: 17,
-								minX: 0,
-								maxY: 131071,
-								minY: 0,
-								maxZ: 17
-							}
-						],
-						identifier: 2176,
-						timeToLiveSeconds: 604800,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 18,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles",
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 2197,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 20,
-				checksumType: 0,
-				countryRegionWhitelist: [
-					{
-						countryCode: "AE",
-						region: "AE"
-					},
-					{
-						countryCode: "AE",
-						region: "SA"
-					},
-					{
-						countryCode: "IN",
-						region: "IN"
-					},
-					{
-						countryCode: "JP",
-						region: "JP"
-					},
-					{
-						countryCode: "KR",
-						region: "KR"
-					},
-					{
-						countryCode: "MA",
-						region: "MA"
-					},
-					{
-						countryCode: "RU",
-						region: "RU"
-					},
-					{
-						countryCode: "SA",
-						region: "AE"
-					},
-					{
-						countryCode: "SA",
-						region: "SA"
-					}
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles",
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 2197,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 22,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 2197
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 30,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles",
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							},
-							{
-								maxX: 262143,
-								minZ: 18,
-								minX: 0,
-								maxY: 262143,
-								minY: 0,
-								maxZ: 18
-							}
-						],
-						identifier: 152,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 37,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles?flags=2",
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 1983,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 47,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles",
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 1983,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 48,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 1983
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 53,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles",
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 2197,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 54,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 2197
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 56,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles",
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 131071,
-								minZ: 17,
-								minX: 0,
-								maxY: 131071,
-								minY: 0,
-								maxZ: 17
-							}
-						],
-						identifier: 16,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 57,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gsp76-cn-ssl.ls.apple.com/api/tile",
-				validVersion: [
-					{
-						availableTiles: [
-							{
-								maxX: 131071,
-								minZ: 17,
-								minX: 0,
-								maxY: 131071,
-								minY: 0,
-								maxZ: 17
-							}
-						],
-						identifier: 0,
-						timeToLiveSeconds: 3600,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 58,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							},
-							{
-								maxX: 65535,
-								minZ: 16,
-								minX: 0,
-								maxY: 65535,
-								minY: 0,
-								maxZ: 16
-							},
-							{
-								maxX: 131071,
-								minZ: 17,
-								minX: 0,
-								maxY: 131071,
-								minY: 0,
-								maxZ: 17
-							}
-						],
-						identifier: 149
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 59,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/asset/v3/model",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							}
-						],
-						identifier: 86
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 60,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/asset/v3/material",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							}
-						],
-						identifier: 30
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 61,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							}
-						],
-						identifier: 30
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 64,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles",
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							}
-						],
-						identifier: 16,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 65,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe79-cn-ssl.ls.apple.com/65/v1",
-				validVersion: [
-					{
-						availableTiles: [
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							}
-						],
-						identifier: 2,
-						timeToLiveSeconds: 3600,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 66,
-				checksumType: 0,
-				countryRegionWhitelist: [
-					{
-						countryCode: "AE",
-						region: "AE"
-					},
-					{
-						countryCode: "AE",
-						region: "SA"
-					},
-					{
-						countryCode: "IN",
-						region: "IN"
-					},
-					{
-						countryCode: "JP",
-						region: "JP"
-					},
-					{
-						countryCode: "KR",
-						region: "KR"
-					},
-					{
-						countryCode: "MA",
-						region: "MA"
-					},
-					{
-						countryCode: "RU",
-						region: "RU"
-					},
-					{
-						countryCode: "SA",
-						region: "AE"
-					},
-					{
-						countryCode: "SA",
-						region: "SA"
-					}
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles",
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 2197,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 67,
-				checksumType: 0,
-				countryRegionWhitelist: [
-					{
-						countryCode: "AE",
-						region: "AE"
-					},
-					{
-						countryCode: "AE",
-						region: "SA"
-					},
-					{
-						countryCode: "IN",
-						region: "IN"
-					},
-					{
-						countryCode: "JP",
-						region: "JP"
-					},
-					{
-						countryCode: "KR",
-						region: "KR"
-					},
-					{
-						countryCode: "MA",
-						region: "MA"
-					},
-					{
-						countryCode: "RU",
-						region: "RU"
-					},
-					{
-						countryCode: "SA",
-						region: "AE"
-					},
-					{
-						countryCode: "SA",
-						region: "SA"
-					}
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles",
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							}
-						],
-						identifier: 2197,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 68,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles",
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							},
-							{
-								maxX: 65535,
-								minZ: 16,
-								minX: 0,
-								maxY: 65535,
-								minY: 0,
-								maxZ: 16
-							},
-							{
-								maxX: 131071,
-								minZ: 17,
-								minX: 0,
-								maxY: 131071,
-								minY: 0,
-								maxZ: 17
-							}
-						],
-						identifier: 2176,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 69,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 21
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 72,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				validVersion: [
-					{
-						availableTiles: [
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							}
-						],
-						identifier: 2,
-						timeToLiveSeconds: 3600,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 73,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 476
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 76,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe79-cn-ssl.ls.apple.com/sis/v1",
-				validVersion: [
-					{
-						availableTiles: [
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 524287,
-								minZ: 19,
-								minX: 0,
-								maxY: 524287,
-								minY: 0,
-								maxZ: 19
-							}
-						],
-						identifier: 0,
-						timeToLiveSeconds: 86400,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 79,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							}
-						],
-						identifier: 29
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 83,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 0,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-cn-ssl.ls.apple.com/tiles",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							}
-						],
-						identifier: 3
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 84,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe19-2-cn-ssl.ls.apple.com/poi_update",
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							},
-							{
-								maxX: 65535,
-								minZ: 16,
-								minX: 0,
-								maxY: 65535,
-								minY: 0,
-								maxZ: 16
-							},
-							{
-								maxX: 131071,
-								minZ: 17,
-								minX: 0,
-								maxY: 131071,
-								minY: 0,
-								maxZ: 17
-							}
-						],
-						identifier: 2176,
-						timeToLiveSeconds: 1800,
-						genericTile: [
-						]
-					}
-				]
-			}
-		],
-		urlInfoSet: [
-			{
-				backgroundRevGeoURL: {
-					url: "https://dispatcher.is.autonavi.com/dispatcher",
-					supportsMultipathTCP: false
-				},
-				searchAttributionManifestURL: {
-					url: "https://gspe21-ssl.ls.apple.com/config/search-attribution-1323",
-					supportsMultipathTCP: false
-				},
-				analyticsSessionlessURL: {
-					url: "https://gsp64-ssl.ls.apple.com/hvr/v3/use",
-					supportsMultipathTCP: false
-				},
-				poiBusynessActivityCollectionURL: {
-					url: "https://gsp53-ssl.ls.apple.com/hvr/rt_poi_activity",
-					supportsMultipathTCP: false
-				},
-				offlineDataDownloadBaseURL: {
-					url: "https://gspe121-cn-ssl.ls.apple.com",
-					supportsMultipathTCP: false
-				},
-				wifiConnectionQualityProbeURL: {
-					url: "https://gsp10-ssl-cn.ls.apple.com/hvr/wcq",
-					supportsMultipathTCP: false
-				},
-				junctionImageServiceURL: {
-					url: "https://direction2.is.autonavi.com/direction",
-					supportsMultipathTCP: false
-				},
-				etaURL: {
-					url: "https://direction2.is.autonavi.com/direction",
-					supportsMultipathTCP: false
-				},
-				analyticsCohortSessionURL: {
-					url: "https://gsp64-ssl.ls.apple.com/hvr/v3/use",
-					supportsMultipathTCP: false
-				},
-				resourcesURL: {
-					url: "https://gspe21-ssl.ls.apple.com/",
-					supportsMultipathTCP: false
-				},
-				feedbackLookupURL: {
-					url: "https://rap.is.autonavi.com/lookup",
-					supportsMultipathTCP: false
-				},
-				batchTrafficProbeURL: {
-					url: "https://gsp10-ssl.ls.apple.com/hvr/v2/loc",
-					supportsMultipathTCP: false
-				},
-				batchReverseGeocoderURL: {
-					url: "https://batch-rgeo.is.autonavi.com/batchRGeo",
-					supportsMultipathTCP: false
-				},
-				spatialLookupURL: {
-					url: "https://spatialsearch.is.autonavi.com/spatialsearch",
-					supportsMultipathTCP: false
-				},
-				realtimeTrafficProbeURL: {
-					url: "https://gsp9-ssl.apple.com/hvr/v2/rtloc",
-					supportsMultipathTCP: false
-				},
-				wifiQualityTileURL: {
-					url: "https://gspe85-cn-ssl.ls.apple.com/wifi_request_tile",
-					supportsMultipathTCP: false
-				},
-				problemSubmissionURL: {
-					url: "https://rap.is.autonavi.com/rap",
-					supportsMultipathTCP: false
-				},
-				reverseGeocoderVersionsURL: {
-					url: "https://gspe21-ssl.ls.apple.com/config/revgeo-version-11.plist",
-					supportsMultipathTCP: false
-				},
-				problemCategoriesURL: {
-					url: "https://gspe21-ssl.ls.apple.com/config/com.apple.GEO.BusinessLocalizedCategories-482.plist",
-					supportsMultipathTCP: false
-				},
-				batchReverseGeocoderPlaceRequestURL: {
-					url: "https://dispatcher.is.autonavi.com/dispatcher",
-					supportsMultipathTCP: false
-				},
-				wifiQualityURL: {
-					url: "https://gsp85-cn-ssl.ls.apple.com/wifi_request",
-					supportsMultipathTCP: false
-				},
-				polyLocationShiftURL: {
-					url: "https://shift.is.autonavi.com/localshift",
-					supportsMultipathTCP: false
-				},
-				problemStatusURL: {
-					url: "https://rap.is.autonavi.com/rapstatus",
-					supportsMultipathTCP: false
-				},
-				feedbackSubmissionURL: {
-					url: "https://rap.is.autonavi.com/rap",
-					supportsMultipathTCP: false
-				},
-				offlineDataBatchListURL: {
-					url: "https://ods.is.autonavi.com/api/batchesForRegion",
-					supportsMultipathTCP: false
-				},
-				offlineDataSizeURL: {
-					url: "https://ods.is.autonavi.com/api/sizeForRegion",
-					supportsMultipathTCP: false
-				},
-				analyticsShortSessionURL: {
-					url: "https://gsp64-ssl.ls.apple.com/hvr/v3/use",
-					supportsMultipathTCP: false
-				},
-				alternateResourcesURL: [
-					{
-						url: "https://cdn.apple-mapkit.com/rap",
-						supportsMultipathTCP: false
-					},
-					{
-						url: "https://limit-rule.is.autonavi.com/lpr/rules/download",
-						supportsMultipathTCP: false
-					}
-				],
-				abExperimentURL: {
-					url: "https://gsp-ssl.ls.apple.com/cn/ab.arpc",
-					supportsMultipathTCP: false
-				},
-				logMessageUsageURL: {
-					url: "https://gsp64-ssl.ls.apple.com/a/v2/use",
-					supportsMultipathTCP: false
-				},
-				rapWebBundleURL: {
-					url: "https://cdn.apple-mapkit.com/rap",
-					supportsMultipathTCP: false
-				},
-				dispatcherURL: {
-					url: "https://dispatcher.is.autonavi.com/dispatcher",
-					supportsMultipathTCP: false
-				},
-				simpleETAURL: {
-					url: "https://direction2.is.autonavi.com/direction",
-					supportsMultipathTCP: false
-				},
-				analyticsLongSessionURL: {
-					url: "https://gsp64-ssl.ls.apple.com/hvr/v3/use",
-					supportsMultipathTCP: false
-				},
-				backgroundDispatcherURL: {
-					url: "https://dispatcher.is.autonavi.com/dispatcher",
-					supportsMultipathTCP: false
-				},
-				webModuleBaseURL: {
-					url: "https://placecard-server-wm.is.autonavi.com",
-					supportsMultipathTCP: false
-				},
-				directionsURL: {
-					url: "https://direction2.is.autonavi.com/direction",
-					supportsMultipathTCP: false
-				},
-				logMessageUsageV3URL: {
-					url: "https://gsp64-ssl.ls.apple.com/hvr/v3/use",
-					supportsMultipathTCP: false
-				},
-				announcementsURL: {
-					url: "https://gspe35-ssl.ls.apple.com/config/announcements?environment=prod-cn",
-					supportsMultipathTCP: false
-				}
-			}
-		],
-		muninBucket: [
-			{
-				bucketID: 2,
-				bucketURL: "https://gspe72-cn-ssl.ls.apple.com/mnn_us"
-			},
-			{
-				bucketID: 6,
-				bucketURL: "https://gspe72-cn-ssl.ls.apple.com/mnn_us"
-			}
-		]
-	},
-	XX: {
-		attribution: [
-			{
-				region: [
-				],
-				name: "‎",
-				url: "https://gspe21-ssl.ls.apple.com/html/attribution-279.html",
-				resource: [
-				],
-				linkDisplayStringIndex: 0,
-				plainTextURL: "https://gspe21-ssl.ls.apple.com/html/attribution-278.txt",
-				plainTextURLSHA256Checksum: {
-					"0": 124,
-					"1": 102,
-					"2": 134,
-					"3": 184,
-					"4": 40,
-					"5": 189,
-					"6": 231,
-					"7": 39,
-					"8": 109,
-					"9": 244,
-					"10": 228,
-					"11": 192,
-					"12": 151,
-					"13": 223,
-					"14": 17,
-					"15": 129,
-					"16": 158,
-					"17": 253,
-					"18": 70,
-					"19": 5,
-					"20": 123,
-					"21": 187,
-					"22": 50,
-					"23": 87,
-					"24": 25,
-					"25": 122,
-					"26": 38,
-					"27": 36,
-					"28": 33,
-					"29": 149,
-					"30": 18,
-					"31": 234
-				}
-			},
-			{
-				region: [
-					{
-						maxX: 183,
-						minZ: 8,
-						minX: 176,
-						maxY: 122,
-						minY: 110,
-						maxZ: 21
-					},
-					{
-						maxX: 188,
-						minZ: 8,
-						minX: 178,
-						maxY: 107,
-						minY: 107,
-						maxZ: 21
-					},
-					{
-						maxX: 183,
-						minZ: 8,
-						minX: 178,
-						maxY: 109,
-						minY: 108,
-						maxZ: 21
-					},
-					{
-						maxX: 180,
-						minZ: 8,
-						minX: 180,
-						maxY: 106,
-						minY: 105,
-						maxZ: 21
-					},
-					{
-						maxX: 183,
-						minZ: 8,
-						minX: 181,
-						maxY: 106,
-						minY: 104,
-						maxZ: 21
-					},
-					{
-						maxX: 182,
-						minZ: 8,
-						minX: 182,
-						maxY: 103,
-						minY: 103,
-						maxZ: 21
-					},
-					{
-						maxX: 184,
-						minZ: 8,
-						minX: 184,
-						maxY: 106,
-						minY: 104,
-						maxZ: 21
-					},
-					{
-						maxX: 195,
-						minZ: 8,
-						minX: 184,
-						maxY: 110,
-						minY: 108,
-						maxZ: 21
-					},
-					{
-						maxX: 194,
-						minZ: 8,
-						minX: 184,
-						maxY: 111,
-						minY: 111,
-						maxZ: 21
-					},
-					{
-						maxX: 191,
-						minZ: 8,
-						minX: 184,
-						maxY: 120,
-						minY: 112,
-						maxZ: 21
-					},
-					{
-						maxX: 184,
-						minZ: 8,
-						minX: 184,
-						maxY: 121,
-						minY: 121,
-						maxZ: 21
-					},
-					{
-						maxX: 185,
-						minZ: 8,
-						minX: 185,
-						maxY: 106,
-						minY: 105,
-						maxZ: 21
-					},
-					{
-						maxX: 190,
-						minZ: 8,
-						minX: 190,
-						maxY: 107,
-						minY: 107,
-						maxZ: 21
-					},
-					{
-						maxX: 194,
-						minZ: 8,
-						minX: 193,
-						maxY: 123,
-						minY: 118,
-						maxZ: 21
-					},
-					{
-						maxX: 195,
-						minZ: 8,
-						minX: 195,
-						maxY: 118,
-						minY: 118,
-						maxZ: 21
-					}
-				],
-				linkDisplayStringIndex: 0,
-				name: "MMI",
-				url: "https://gspe21-ssl.ls.apple.com/html/attribution-279.html",
-				resource: [
-					{
-						region: [
-						],
-						filter: [
-						],
-						checksum: {
-							"0": 35,
-							"1": 54,
-							"2": 2,
-							"3": 219,
-							"4": 218,
-							"5": 184,
-							"6": 124,
-							"7": 50,
-							"8": 35,
-							"9": 32,
-							"10": 86,
-							"11": 20,
-							"12": 147,
-							"13": 223,
-							"14": 7,
-							"15": 41,
-							"16": 209,
-							"17": 238,
-							"18": 32,
-							"19": 41
-						},
-						updateMethod: 0,
-						validationMethod: 0,
-						filename: "mmi-mask-2.png",
-						resourceType: 5
-					},
-					{
-						region: [
-						],
-						filter: [
-						],
-						checksum: {
-							"0": 5,
-							"1": 160,
-							"2": 112,
-							"3": 185,
-							"4": 3,
-							"5": 255,
-							"6": 7,
-							"7": 75,
-							"8": 78,
-							"9": 139,
-							"10": 52,
-							"11": 81,
-							"12": 151,
-							"13": 231,
-							"14": 143,
-							"15": 29,
-							"16": 187,
-							"17": 109,
-							"18": 220,
-							"19": 80
-						},
-						updateMethod: 0,
-						validationMethod: 0,
-						filename: "mmi-mask-2@2x.png",
-						resourceType: 5
-					},
-					{
-						region: [
-						],
-						filter: [
-						],
-						checksum: {
-							"0": 240,
-							"1": 170,
-							"2": 204,
-							"3": 91,
-							"4": 161,
-							"5": 113,
-							"6": 81,
-							"7": 101,
-							"8": 136,
-							"9": 205,
-							"10": 115,
-							"11": 2,
-							"12": 192,
-							"13": 97,
-							"14": 106,
-							"15": 34,
-							"16": 227,
-							"17": 214,
-							"18": 74,
-							"19": 220
-						},
-						updateMethod: 0,
-						validationMethod: 0,
-						filename: "mmi-mask-2@3x.png",
-						resourceType: 5
-					}
-				]
-			},
-			{
-				region: [
-					{
-						maxX: 225,
-						minZ: 8,
-						minX: 218,
-						maxY: 104,
-						minY: 102,
-						maxZ: 21
-					},
-					{
-						maxX: 228,
-						minZ: 8,
-						minX: 221,
-						maxY: 101,
-						minY: 98,
-						maxZ: 21
-					},
-					{
-						maxX: 231,
-						minZ: 8,
-						minX: 226,
-						maxY: 97,
-						minY: 91,
-						maxZ: 21
-					}
-				],
-				linkDisplayStringIndex: 0,
-				name: "© GeoTechnologies, Inc.",
-				url: "https://gspe21-ssl.ls.apple.com/html/attribution-279.html",
-				resource: [
-				]
-			}
-		],
-		releaseInfo: "PROD (24.20)",
-		tileSet: [
-			{
-				scale: 0,
-				style: 1,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							}
-						],
-						identifier: 16388440,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-					{
-						countryCode: "AE",
-						region: "AE"
-					},
-					{
-						countryCode: "AE",
-						region: "SA"
-					},
-					{
-						countryCode: "IN",
-						region: ""
-					},
-					{
-						countryCode: "JP",
-						region: "JP"
-					},
-					{
-						countryCode: "KR",
-						region: "KR"
-					},
-					{
-						countryCode: "MA",
-						region: "MA"
-					},
-					{
-						countryCode: "RU",
-						region: "RU"
-					},
-					{
-						countryCode: "SA",
-						region: "AE"
-					},
-					{
-						countryCode: "SA",
-						region: "SA"
-					},
-					{
-						countryCode: "VN",
-						region: "VN"
-					}
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf?flags=8"
-			},
-			{
-				scale: 0,
-				style: 1,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							}
-						],
-						identifier: 16389156,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-					{
-						countryCode: "AE",
-						region: "AE"
-					},
-					{
-						countryCode: "AE",
-						region: "SA"
-					},
-					{
-						countryCode: "IN",
-						region: ""
-					},
-					{
-						countryCode: "JP",
-						region: "JP"
-					},
-					{
-						countryCode: "KR",
-						region: "KR"
-					},
-					{
-						countryCode: "MA",
-						region: "MA"
-					},
-					{
-						countryCode: "RU",
-						region: "RU"
-					},
-					{
-						countryCode: "SA",
-						region: "AE"
-					},
-					{
-						countryCode: "SA",
-						region: "SA"
-					},
-					{
-						countryCode: "VN",
-						region: "VN"
-					}
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf?flags=8"
-			},
-			{
-				scale: 1,
-				style: 7,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 1,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe11-ssl.ls.apple.com/tile",
-				validVersion: [
-					{
-						genericTile: [
-							{
-								resourceIndex: 1971,
-								textureIndex: 0,
-								tileType: 2
-							}
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 22
-							}
-						],
-						identifier: 9751
-					}
-				]
-			},
-			{
-				scale: 2,
-				style: 7,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 1,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe11-ssl.ls.apple.com/tile",
-				validVersion: [
-					{
-						genericTile: [
-							{
-								resourceIndex: 1971,
-								textureIndex: 0,
-								tileType: 2
-							}
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 22
-							}
-						],
-						identifier: 9751
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 11,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16388440
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf?flags=1"
-			},
-			{
-				scale: 0,
-				style: 11,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16389156
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf?flags=1"
-			},
-			{
-				scale: 0,
-				style: 12,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						availableTiles: [
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							}
-						],
-						identifier: 16388440,
-						timeToLiveSeconds: 120,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe12-ssl.ls.apple.com/traffic"
-			},
-			{
-				scale: 0,
-				style: 12,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						availableTiles: [
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							}
-						],
-						identifier: 16389156,
-						timeToLiveSeconds: 120,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe12-kittyhawk-ssl.ls.apple.com/traffic"
-			},
-			{
-				scale: 0,
-				style: 13,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							},
-							{
-								maxX: 65535,
-								minZ: 16,
-								minX: 0,
-								maxY: 65535,
-								minY: 0,
-								maxZ: 16
-							},
-							{
-								maxX: 131071,
-								minZ: 17,
-								minX: 0,
-								maxY: 131071,
-								minY: 0,
-								maxZ: 17
-							}
-						],
-						identifier: 16388440,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf?flags=2"
-			},
-			{
-				scale: 0,
-				style: 13,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							},
-							{
-								maxX: 65535,
-								minZ: 16,
-								minX: 0,
-								maxY: 65535,
-								minY: 0,
-								maxZ: 16
-							},
-							{
-								maxX: 131071,
-								minZ: 17,
-								minX: 0,
-								maxY: 131071,
-								minY: 0,
-								maxZ: 17
-							}
-						],
-						identifier: 16389156,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf?flags=2"
-			},
-			{
-				scale: 0,
-				style: 14,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe11-ssl.ls.apple.com/tile",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-						],
-						identifier: 1
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 15,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe11-ssl.ls.apple.com/tile",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-						],
-						identifier: 1
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 16,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe11-ssl.ls.apple.com/tile",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-						],
-						identifier: 1
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 17,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe11-ssl.ls.apple.com/tile",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							}
-						],
-						identifier: 0
-					}
-				]
-			},
-			{
-				scale: 1,
-				style: 17,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 1,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe11-ssl.ls.apple.com/tile",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 2583,
-								minZ: 13,
-								minX: 408,
-								maxY: 3659,
-								minY: 2760,
-								maxZ: 13
-							},
-							{
-								maxX: 4535,
-								minZ: 13,
-								minX: 3848,
-								maxY: 3235,
-								minY: 2332,
-								maxZ: 13
-							}
-						],
-						identifier: 32
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 18,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16388440,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 18,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16389156,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 20,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16388440,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-					{
-						countryCode: "AE",
-						region: "AE"
-					},
-					{
-						countryCode: "AE",
-						region: "SA"
-					},
-					{
-						countryCode: "IN",
-						region: ""
-					},
-					{
-						countryCode: "JP",
-						region: "JP"
-					},
-					{
-						countryCode: "KR",
-						region: "KR"
-					},
-					{
-						countryCode: "MA",
-						region: "MA"
-					},
-					{
-						countryCode: "RU",
-						region: "RU"
-					},
-					{
-						countryCode: "SA",
-						region: "AE"
-					},
-					{
-						countryCode: "SA",
-						region: "SA"
-					},
-					{
-						countryCode: "VN",
-						region: "VN"
-					}
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 20,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16389156,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-					{
-						countryCode: "AE",
-						region: "AE"
-					},
-					{
-						countryCode: "AE",
-						region: "SA"
-					},
-					{
-						countryCode: "IN",
-						region: ""
-					},
-					{
-						countryCode: "JP",
-						region: "JP"
-					},
-					{
-						countryCode: "KR",
-						region: "KR"
-					},
-					{
-						countryCode: "MA",
-						region: "MA"
-					},
-					{
-						countryCode: "RU",
-						region: "RU"
-					},
-					{
-						countryCode: "SA",
-						region: "AE"
-					},
-					{
-						countryCode: "SA",
-						region: "SA"
-					},
-					{
-						countryCode: "VN",
-						region: "VN"
-					}
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 22,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16388440
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 22,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16389156
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 30,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							},
-							{
-								maxX: 262143,
-								minZ: 18,
-								minX: 0,
-								maxY: 262143,
-								minY: 0,
-								maxZ: 18
-							}
-						],
-						identifier: 16388440,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 30,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							},
-							{
-								maxX: 262143,
-								minZ: 18,
-								minX: 0,
-								maxY: 262143,
-								minY: 0,
-								maxZ: 18
-							}
-						],
-						identifier: 16389156,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 1,
-				style: 33,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 1,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe11-ssl.ls.apple.com/tile",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 7
-							}
-						],
-						identifier: 4
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 37,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16388440,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf?flags=2"
-			},
-			{
-				scale: 0,
-				style: 37,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16389156,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf?flags=2"
-			},
-			{
-				scale: 0,
-				style: 42,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe11-ssl.ls.apple.com/tile",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-						],
-						identifier: 1
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 43,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe11-ssl.ls.apple.com/tile",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-						],
-						identifier: 1
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 44,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe11-ssl.ls.apple.com/tile",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-						],
-						identifier: 1
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 47,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16388440,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 47,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16389156,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 48,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 11201196
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 48,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 11201196
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 52,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe11-ssl.ls.apple.com/tile",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-						],
-						identifier: 1
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 53,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16388440,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 53,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16389156,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 54,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 13658945
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 54,
-				checksumType: 0,
-				requestStyle: 1,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 13659050
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 56,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 131071,
-								minZ: 17,
-								minX: 0,
-								maxY: 131071,
-								minY: 0,
-								maxZ: 17
-							}
-						],
-						identifier: 16388440,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 56,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 131071,
-								minZ: 17,
-								minX: 0,
-								maxY: 131071,
-								minY: 0,
-								maxZ: 17
-							}
-						],
-						identifier: 16389156,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 57,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe76-ssl.ls.apple.com/api/tile",
-				validVersion: [
-					{
-						availableTiles: [
-							{
-								maxX: 131071,
-								minZ: 17,
-								minX: 0,
-								maxY: 131071,
-								minY: 0,
-								maxZ: 17
-							}
-						],
-						identifier: 0,
-						timeToLiveSeconds: 3600,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 58,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							},
-							{
-								maxX: 65535,
-								minZ: 16,
-								minX: 0,
-								maxY: 65535,
-								minY: 0,
-								maxZ: 16
-							},
-							{
-								maxX: 131071,
-								minZ: 17,
-								minX: 0,
-								maxY: 131071,
-								minY: 0,
-								maxZ: 17
-							}
-						],
-						identifier: 16388440
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 58,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							},
-							{
-								maxX: 65535,
-								minZ: 16,
-								minX: 0,
-								maxY: 65535,
-								minY: 0,
-								maxZ: 16
-							},
-							{
-								maxX: 131071,
-								minZ: 17,
-								minX: 0,
-								maxY: 131071,
-								minY: 0,
-								maxZ: 17
-							}
-						],
-						identifier: 16389156
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 59,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							}
-						],
-						identifier: 16388440
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/asset/v3/model"
-			},
-			{
-				scale: 0,
-				style: 59,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							}
-						],
-						identifier: 16389156
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/asset/v3/model"
-			},
-			{
-				scale: 0,
-				style: 60,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							}
-						],
-						identifier: 16388440
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/asset/v3/material"
-			},
-			{
-				scale: 0,
-				style: 60,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							}
-						],
-						identifier: 16389156
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/asset/v3/material"
-			},
-			{
-				scale: 0,
-				style: 61,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							}
-						],
-						identifier: 16388440
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 61,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							}
-						],
-						identifier: 16389156
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 62,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							}
-						],
-						identifier: 16388440
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 62,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							}
-						],
-						identifier: 16389156
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 64,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							}
-						],
-						identifier: 16388440,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 64,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							}
-						],
-						identifier: 16389156,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 65,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe79-ssl.ls.apple.com/65/v1",
-				validVersion: [
-					{
-						availableTiles: [
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							}
-						],
-						identifier: 2,
-						timeToLiveSeconds: 3600,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 66,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16388440,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-					{
-						countryCode: "AE",
-						region: "AE"
-					},
-					{
-						countryCode: "AE",
-						region: "SA"
-					},
-					{
-						countryCode: "IN",
-						region: ""
-					},
-					{
-						countryCode: "JP",
-						region: "JP"
-					},
-					{
-						countryCode: "KR",
-						region: "KR"
-					},
-					{
-						countryCode: "MA",
-						region: "MA"
-					},
-					{
-						countryCode: "RU",
-						region: "RU"
-					},
-					{
-						countryCode: "SA",
-						region: "AE"
-					},
-					{
-						countryCode: "SA",
-						region: "SA"
-					},
-					{
-						countryCode: "VN",
-						region: "VN"
-					}
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 66,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16389156,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-					{
-						countryCode: "AE",
-						region: "AE"
-					},
-					{
-						countryCode: "AE",
-						region: "SA"
-					},
-					{
-						countryCode: "IN",
-						region: ""
-					},
-					{
-						countryCode: "JP",
-						region: "JP"
-					},
-					{
-						countryCode: "KR",
-						region: "KR"
-					},
-					{
-						countryCode: "MA",
-						region: "MA"
-					},
-					{
-						countryCode: "RU",
-						region: "RU"
-					},
-					{
-						countryCode: "SA",
-						region: "AE"
-					},
-					{
-						countryCode: "SA",
-						region: "SA"
-					},
-					{
-						countryCode: "VN",
-						region: "VN"
-					}
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 67,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							}
-						],
-						identifier: 16388440,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-					{
-						countryCode: "AE",
-						region: "AE"
-					},
-					{
-						countryCode: "AE",
-						region: "SA"
-					},
-					{
-						countryCode: "IN",
-						region: ""
-					},
-					{
-						countryCode: "JP",
-						region: "JP"
-					},
-					{
-						countryCode: "KR",
-						region: "KR"
-					},
-					{
-						countryCode: "MA",
-						region: "MA"
-					},
-					{
-						countryCode: "RU",
-						region: "RU"
-					},
-					{
-						countryCode: "SA",
-						region: "AE"
-					},
-					{
-						countryCode: "SA",
-						region: "SA"
-					},
-					{
-						countryCode: "VN",
-						region: "VN"
-					}
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 67,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							}
-						],
-						identifier: 16389156,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-					{
-						countryCode: "AE",
-						region: "AE"
-					},
-					{
-						countryCode: "AE",
-						region: "SA"
-					},
-					{
-						countryCode: "IN",
-						region: ""
-					},
-					{
-						countryCode: "JP",
-						region: "JP"
-					},
-					{
-						countryCode: "KR",
-						region: "KR"
-					},
-					{
-						countryCode: "MA",
-						region: "MA"
-					},
-					{
-						countryCode: "RU",
-						region: "RU"
-					},
-					{
-						countryCode: "SA",
-						region: "AE"
-					},
-					{
-						countryCode: "SA",
-						region: "SA"
-					},
-					{
-						countryCode: "VN",
-						region: "VN"
-					}
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 68,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							},
-							{
-								maxX: 65535,
-								minZ: 16,
-								minX: 0,
-								maxY: 65535,
-								minY: 0,
-								maxZ: 16
-							},
-							{
-								maxX: 131071,
-								minZ: 17,
-								minX: 0,
-								maxY: 131071,
-								minY: 0,
-								maxZ: 17
-							}
-						],
-						identifier: 16388440,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 68,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							},
-							{
-								maxX: 65535,
-								minZ: 16,
-								minX: 0,
-								maxY: 65535,
-								minY: 0,
-								maxZ: 16
-							},
-							{
-								maxX: 131071,
-								minZ: 17,
-								minX: 0,
-								maxY: 131071,
-								minY: 0,
-								maxZ: 17
-							}
-						],
-						identifier: 16389156,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 69,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16388440
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 69,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16389156
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 70,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe76-ssl.ls.apple.com/api/vltile",
-				validVersion: [
-					{
-						availableTiles: [
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							}
-						],
-						identifier: 1,
-						timeToLiveSeconds: 86400,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 71,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe92-ssl.ls.apple.com",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 2097151,
-								minZ: 21,
-								minX: 0,
-								maxY: 2097151,
-								minY: 0,
-								maxZ: 21
-							}
-						],
-						identifier: 1
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 72,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe79-ssl.ls.apple.com/72/v2",
-				validVersion: [
-					{
-						availableTiles: [
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							}
-						],
-						identifier: 2,
-						timeToLiveSeconds: 3600,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 73,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16388440
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 73,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16389156
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 74,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe79-ssl.ls.apple.com/pbz/v1",
-				validVersion: [
-					{
-						availableTiles: [
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2097151,
-								minZ: 21,
-								minX: 0,
-								maxY: 2097151,
-								minY: 0,
-								maxZ: 21
-							}
-						],
-						identifier: 0,
-						timeToLiveSeconds: 86400,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 76,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe79-ssl.ls.apple.com/sis/v1",
-				validVersion: [
-					{
-						availableTiles: [
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 524287,
-								minZ: 19,
-								minX: 0,
-								maxY: 524287,
-								minY: 0,
-								maxZ: 19
-							}
-						],
-						identifier: 0,
-						timeToLiveSeconds: 86400,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 78,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							}
-						],
-						identifier: 16388440
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 78,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							}
-						],
-						identifier: 16389156
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 79,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							}
-						],
-						identifier: 16388440
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 79,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							}
-						],
-						identifier: 16389156
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 80,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe79-ssl.ls.apple.com/sdm/v1",
-				validVersion: [
-					{
-						availableTiles: [
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 65535,
-								minZ: 16,
-								minX: 0,
-								maxY: 65535,
-								minY: 0,
-								maxZ: 16
-							}
-						],
-						identifier: 0,
-						timeToLiveSeconds: 86400,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 82,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							}
-						],
-						identifier: 16388440
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/asset/v3/model-occlusion"
-			},
-			{
-				scale: 0,
-				style: 82,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							}
-						],
-						identifier: 16389156
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/asset/v3/model-occlusion"
-			},
-			{
-				scale: 0,
-				style: 83,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 0,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							},
-							{
-								maxX: 65535,
-								minZ: 16,
-								minX: 0,
-								maxY: 65535,
-								minY: 0,
-								maxZ: 16
-							},
-							{
-								maxX: 131071,
-								minZ: 17,
-								minX: 0,
-								maxY: 131071,
-								minY: 0,
-								maxZ: 17
-							}
-						],
-						identifier: 16357893
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 83,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 0,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							},
-							{
-								maxX: 65535,
-								minZ: 16,
-								minX: 0,
-								maxY: 65535,
-								minY: 0,
-								maxZ: 16
-							},
-							{
-								maxX: 131071,
-								minZ: 17,
-								minX: 0,
-								maxY: 131071,
-								minY: 0,
-								maxZ: 17
-							}
-						],
-						identifier: 16361517
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 84,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							},
-							{
-								maxX: 65535,
-								minZ: 16,
-								minX: 0,
-								maxY: 65535,
-								minY: 0,
-								maxZ: 16
-							},
-							{
-								maxX: 131071,
-								minZ: 17,
-								minX: 0,
-								maxY: 131071,
-								minY: 0,
-								maxZ: 17
-							}
-						],
-						identifier: 16388440,
-						timeToLiveSeconds: 1800,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-2-ssl.ls.apple.com/poi_update"
-			},
-			{
-				scale: 0,
-				style: 84,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							},
-							{
-								maxX: 65535,
-								minZ: 16,
-								minX: 0,
-								maxY: 65535,
-								minY: 0,
-								maxZ: 16
-							},
-							{
-								maxX: 131071,
-								minZ: 17,
-								minX: 0,
-								maxY: 131071,
-								minY: 0,
-								maxZ: 17
-							}
-						],
-						identifier: 16389156,
-						timeToLiveSeconds: 1800,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-2-ssl.ls.apple.com/poi_update"
-			},
-			{
-				scale: 0,
-				style: 85,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							}
-						],
-						identifier: 16388440
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-2-ssl.ls.apple.com/live_tile.vf"
-			},
-			{
-				scale: 0,
-				style: 85,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							}
-						],
-						identifier: 16389156
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-2-ssl.ls.apple.com/live_tile.vf"
-			},
-			{
-				scale: 0,
-				style: 87,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16388440,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 87,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-					{
-						language: [
-							"ar",
-							"ca",
-							"cs",
-							"da",
-							"de",
-							"el",
-							"en",
-							"en-AU",
-							"en-GB",
-							"es",
-							"es-MX",
-							"es-US",
-							"fi",
-							"fr",
-							"fr-CA",
-							"he",
-							"hi",
-							"hr",
-							"hu",
-							"id",
-							"it",
-							"ja",
-							"ko",
-							"ms",
-							"nb",
-							"nl",
-							"pl",
-							"pt",
-							"pt-PT",
-							"ro",
-							"ru",
-							"sk",
-							"sv",
-							"th",
-							"tr",
-							"uk",
-							"vi",
-							"zh-Hans",
-							"zh-Hant",
-							"zh-HK"
-						],
-						identifier: 1
-					}
-				],
-				validVersion: [
-					{
-						supportedLanguagesVersion: 1,
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							},
-							{
-								maxX: 31,
-								minZ: 5,
-								minX: 0,
-								maxY: 31,
-								minY: 0,
-								maxZ: 5
-							},
-							{
-								maxX: 63,
-								minZ: 6,
-								minX: 0,
-								maxY: 63,
-								minY: 0,
-								maxZ: 6
-							},
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 255,
-								minZ: 8,
-								minX: 0,
-								maxY: 255,
-								minY: 0,
-								maxZ: 8
-							},
-							{
-								maxX: 511,
-								minZ: 9,
-								minX: 0,
-								maxY: 511,
-								minY: 0,
-								maxZ: 9
-							},
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							},
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 16383,
-								minZ: 14,
-								minX: 0,
-								maxY: 16383,
-								minY: 0,
-								maxZ: 14
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16389156,
-						genericTile: [
-						]
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 88,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							}
-						],
-						identifier: 16388440
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 88,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 4095,
-								minZ: 12,
-								minX: 0,
-								maxY: 4095,
-								minY: 0,
-								maxZ: 12
-							}
-						],
-						identifier: 16389156
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 89,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 1,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe79-ssl.ls.apple.com/ray/v1",
-				validVersion: [
-					{
-						availableTiles: [
-							{
-								maxX: 262143,
-								minZ: 18,
-								minX: 0,
-								maxY: 262143,
-								minY: 0,
-								maxZ: 18
-							}
-						],
-						identifier: 1,
-						timeToLiveSeconds: 86400,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 90,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 0,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16388440
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 90,
-				checksumType: 0,
-				requestStyle: 0,
-				supportsMultipathTCP: false,
-				dataSet: 1,
-				size: 2,
-				supportedLanguage: [
-				],
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 8191,
-								minZ: 13,
-								minX: 0,
-								maxY: 8191,
-								minY: 0,
-								maxZ: 13
-							},
-							{
-								maxX: 32767,
-								minZ: 15,
-								minX: 0,
-								maxY: 32767,
-								minY: 0,
-								maxZ: 15
-							}
-						],
-						identifier: 16389156
-					}
-				],
-				deviceSKUWhitelist: [
-				],
-				countryRegionWhitelist: [
-				],
-				baseURL: "https://gspe19-kittyhawk-ssl.ls.apple.com/tile.vf"
-			},
-			{
-				scale: 0,
-				style: 91,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe11-ssl-vss.ls.apple.com/tile",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							}
-						],
-						identifier: 2
-					}
-				]
-			},
-			{
-				scale: 1,
-				style: 92,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 1,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe11-ssl-vss.ls.apple.com/tile",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 127,
-								minZ: 7,
-								minX: 0,
-								maxY: 127,
-								minY: 0,
-								maxZ: 7
-							},
-							{
-								maxX: 2047,
-								minZ: 11,
-								minX: 0,
-								maxY: 2047,
-								minY: 0,
-								maxZ: 11
-							},
-							{
-								maxX: 2583,
-								minZ: 13,
-								minX: 408,
-								maxY: 3659,
-								minY: 2760,
-								maxZ: 13
-							},
-							{
-								maxX: 4535,
-								minZ: 13,
-								minX: 3848,
-								maxY: 3235,
-								minY: 2332,
-								maxZ: 13
-							}
-						],
-						identifier: 32
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 94,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 0,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe79-ssl.ls.apple.com/ccc/v1",
-				validVersion: [
-					{
-						availableTiles: [
-							{
-								maxX: 1023,
-								minZ: 10,
-								minX: 0,
-								maxY: 1023,
-								minY: 0,
-								maxZ: 10
-							},
-							{
-								maxX: 262143,
-								minZ: 18,
-								minX: 0,
-								maxY: 262143,
-								minY: 0,
-								maxZ: 18
-							}
-						],
-						identifier: 1,
-						timeToLiveSeconds: 86400,
-						genericTile: [
-						]
-					}
-				]
-			},
-			{
-				scale: 0,
-				style: 95,
-				checksumType: 0,
-				countryRegionWhitelist: [
-				],
-				size: 2,
-				requestStyle: 0,
-				deviceSKUWhitelist: [
-				],
-				supportedLanguage: [
-				],
-				supportsMultipathTCP: false,
-				baseURL: "https://gspe11-ssl-vss.ls.apple.com/tile",
-				validVersion: [
-					{
-						genericTile: [
-						],
-						availableTiles: [
-							{
-								maxX: 1,
-								minZ: 1,
-								minX: 0,
-								maxY: 1,
-								minY: 0,
-								maxZ: 1
-							},
-							{
-								maxX: 3,
-								minZ: 2,
-								minX: 0,
-								maxY: 3,
-								minY: 0,
-								maxZ: 2
-							},
-							{
-								maxX: 7,
-								minZ: 3,
-								minX: 0,
-								maxY: 7,
-								minY: 0,
-								maxZ: 3
-							},
-							{
-								maxX: 15,
-								minZ: 4,
-								minX: 0,
-								maxY: 15,
-								minY: 0,
-								maxZ: 4
-							}
-						],
-						identifier: 1
-					}
-				]
-			}
-		],
-		dataSet: [
-			{
-				identifier: 0,
-				dataSetDescription: "TomTom"
-			},
-			{
-				identifier: 1,
-				dataSetDescription: "KittyHawk"
-			}
-		],
-		urlInfoSet: [
-			{
-				backgroundRevGeoURL: {
-					url: "https://gsp57-ssl-revgeo.ls.apple.com/dispatcher.arpc",
-					supportsMultipathTCP: false
-				},
-				announcementsURL: {
-					url: "https://gspe35-ssl.ls.apple.com/config/announcements?environment=prod",
-					supportsMultipathTCP: false
-				},
-				searchAttributionManifestURL: {
-					url: "https://gspe21-ssl.ls.apple.com/config/search-attribution-1322",
-					supportsMultipathTCP: false
-				},
-				analyticsSessionlessURL: {
-					url: "https://gsp64-ssl.ls.apple.com/hvr/v3/use",
-					supportsMultipathTCP: false
-				},
-				proactiveAppClipURL: {
-					url: "https://gspe79-ssl.ls.apple.com/72/v2",
-					supportsMultipathTCP: false
-				},
-				enrichmentSubmissionURL: {
-					url: "https://sundew.ls.apple.com/v1/feedback/submission.arpc",
-					supportsMultipathTCP: false
-				},
-				wifiConnectionQualityProbeURL: {
-					url: "https://gsp10-ssl.ls.apple.com/hvr/wcq",
-					supportsMultipathTCP: false
-				},
-				poiBusynessActivityCollectionURL: {
-					url: "https://gsp53-ssl.ls.apple.com/hvr/rt_poi_activity",
-					supportsMultipathTCP: false
-				},
-				offlineDataDownloadBaseURL: {
-					url: "https://gspe121-ssl.ls.apple.com",
-					supportsMultipathTCP: false
-				},
-				etaURL: {
-					url: "https://gsp-ssl.ls.apple.com/directions.arpc",
-					supportsMultipathTCP: true,
-					alternativeMultipathTCPPort: 5228
-				},
-				analyticsCohortSessionURL: {
-					url: "https://gsp64-ssl.ls.apple.com/hvr/v3/use",
-					supportsMultipathTCP: false
-				},
-				resourcesURL: {
-					url: "https://gspe21-ssl.ls.apple.com/",
-					supportsMultipathTCP: false
-				},
-				problemOptInURL: {
-					url: "https://sundew.ls.apple.com/grp/oi",
-					supportsMultipathTCP: false
-				},
-				proactiveRoutingURL: {
-					url: "https://gsp-ssl-commute.ls.apple.com/directions.arpc",
-					supportsMultipathTCP: true,
-					alternativeMultipathTCPPort: 5228
-				},
-				feedbackLookupURL: {
-					url: "https://gsp-ssl.ls.apple.com/feedback.arpc",
-					supportsMultipathTCP: false
-				},
-				bluePOIDispatcherURL: {
-					url: "https://gsp57-ssl-locus.ls.apple.com/dispatcher.arpc",
-					supportsMultipathTCP: true,
-					alternativeMultipathTCPPort: 5228
-				},
-				batchTrafficProbeURL: {
-					url: "https://gsp10-ssl.ls.apple.com/hvr/v2/loc",
-					supportsMultipathTCP: false
-				},
-				batchReverseGeocoderURL: {
-					url: "https://gsp36-ssl.ls.apple.com/revgeo.arpc",
-					supportsMultipathTCP: false
-				},
-				spatialLookupURL: {
-					url: "https://gsp51-ssl.ls.apple.com/api/v1.0/poi/data",
-					supportsMultipathTCP: false
-				},
-				realtimeTrafficProbeURL: {
-					url: "https://gsp9-ssl.apple.com/hvr/v2/rtloc",
-					supportsMultipathTCP: false
-				},
-				addressCorrectionTaggedLocationURL: {
-					url: "https://gsp47-ssl.ls.apple.com/ac",
-					supportsMultipathTCP: false
-				},
-				problemSubmissionURL: {
-					url: "https://sundew.ls.apple.com/v1/feedback/submission.arpc",
-					supportsMultipathTCP: false
-				},
-				reverseGeocoderVersionsURL: {
-					url: "https://gspe21-ssl.ls.apple.com/config/revgeo-version-11.plist",
-					supportsMultipathTCP: false
-				},
-				wifiQualityTileURL: {
-					url: "https://gspe85-ssl.ls.apple.com/wifi_request_tile",
-					supportsMultipathTCP: false
-				},
-				problemCategoriesURL: {
-					url: "https://gspe21-ssl.ls.apple.com/config/com.apple.GEO.BusinessLocalizedCategories-482.plist",
-					supportsMultipathTCP: false
-				},
-				batchReverseGeocoderPlaceRequestURL: {
-					url: "https://gsp36-ssl.ls.apple.com/revgeo_pr.arpc",
-					supportsMultipathTCP: false
-				},
-				wifiQualityURL: {
-					url: "https://gsp85-ssl.ls.apple.com/wifi_request",
-					supportsMultipathTCP: false
-				},
-				problemStatusURL: {
-					url: "https://sundew.ls.apple.com/grp/st",
-					supportsMultipathTCP: false
-				},
-				feedbackSubmissionURL: {
-					url: "https://sundew.ls.apple.com/v1/feedback/submission.arpc",
-					supportsMultipathTCP: false
-				},
-				pressureProbeDataURL: {
-					url: "https://gsp10-ssl.ls.apple.com/hvr/cpr",
-					supportsMultipathTCP: false
-				},
-				offlineDataBatchListURL: {
-					url: "https://gspe121-ssl.ls.apple.com/api/batchesForRegion",
-					supportsMultipathTCP: false
-				},
-				offlineDataSizeURL: {
-					url: "https://gspe121-ssl.ls.apple.com/api/sizeForRegion",
-					supportsMultipathTCP: false
-				},
-				analyticsShortSessionURL: {
-					url: "https://gsp64-ssl.ls.apple.com/hvr/v3/use",
-					supportsMultipathTCP: false
-				},
-				bcxDispatcherURL: {
-					url: "https://gsp57-ssl-bcx.ls.apple.com/dispatcher.arpc",
-					supportsMultipathTCP: false
-				},
-				alternateResourcesURL: [
-					{
-						url: "https://cdn.apple-mapkit.com/rap",
-						supportsMultipathTCP: false
-					}
-				],
-				abExperimentURL: {
-					url: "https://gsp-ssl.ls.apple.com/ab.arpc",
-					supportsMultipathTCP: false
-				},
-				logMessageUsageURL: {
-					url: "https://gsp64-ssl.ls.apple.com/a/v2/use",
-					supportsMultipathTCP: false
-				},
-				addressCorrectionInitURL: {
-					url: "https://gsp47-ssl.ls.apple.com/ac",
-					supportsMultipathTCP: false
-				},
-				dispatcherURL: {
-					url: "https://gsp-ssl.ls.apple.com/dispatcher.arpc",
-					supportsMultipathTCP: true,
-					alternativeMultipathTCPPort: 5228
-				},
-				ugcLogDiscardURL: {
-					url: "https://sundew.ls.apple.com/v1/log_message",
-					supportsMultipathTCP: false
-				},
-				rapWebBundleURL: {
-					url: "https://cdn.apple-mapkit.com/rap",
-					supportsMultipathTCP: false
-				},
-				networkSelectionHarvestURL: {
-					url: "https://gsp10-ssl.ls.apple.com/hvr/strn",
-					supportsMultipathTCP: false
-				},
-				simpleETAURL: {
-					url: "https://gsp-ssl.ls.apple.com/directions.arpc",
-					supportsMultipathTCP: true,
-					alternativeMultipathTCPPort: 5228
-				},
-				businessPortalBaseURL: {
-					url: "https://mapsconnect.apple.com/business/ui/claimPlace",
-					supportsMultipathTCP: false
-				},
-				analyticsLongSessionURL: {
-					url: "https://gsp64-ssl.ls.apple.com/hvr/v3/use",
-					supportsMultipathTCP: false
-				},
-				backgroundDispatcherURL: {
-					url: "https://gsp57-ssl-background.ls.apple.com/dispatcher.arpc",
-					supportsMultipathTCP: true,
-					alternativeMultipathTCPPort: 5228
-				},
-				webModuleBaseURL: {
-					url: "https://maps.apple.com",
-					supportsMultipathTCP: false
-				},
-				directionsURL: {
-					url: "https://gsp-ssl.ls.apple.com/directions.arpc",
-					supportsMultipathTCP: true,
-					alternativeMultipathTCPPort: 5228
-				},
-				addressCorrectionUpdateURL: {
-					url: "https://gsp47-ssl.ls.apple.com/ac",
-					supportsMultipathTCP: false
-				},
-				logMessageUsageV3URL: {
-					url: "https://gsp64-ssl.ls.apple.com/hvr/v3/use",
-					supportsMultipathTCP: false
-				}
-			}
-		],
-		muninBucket: [
-			{
-				bucketID: 2,
-				bucketURL: "https://gspe72-ssl.ls.apple.com/mnn_us"
-			},
-			{
-				bucketID: 6,
-				bucketURL: "https://gspe72-ssl.ls.apple.com/mnn_us"
-			}
-		]
-	}
 };
 var Maps = {
 	Settings: Settings$6,
@@ -13394,6 +1263,7 @@ var PrivateRelay$1 = /*#__PURE__*/Object.freeze({
 var Settings$3 = {
 	Switch: true,
 	CountryCode: "SG",
+	Region: "AUTO",
 	Domains: [
 		"web",
 		"itunes",
@@ -13931,12 +1801,12 @@ var Configs = {
 			"forecastDaily",
 			"forecastHourly",
 			"forecastPeriodic",
-			"forecastNextHour",
 			"historicalComparisons",
-			"news",
+			"weatherChanges",
+			"forecastNextHour",
 			"weatherAlerts",
 			"weatherAlertNotifications",
-			"weatherChange"
+			"news"
 		]
 	}
 };
@@ -13974,43 +1844,43 @@ var Database$1 = Database = {
  * @return {Object} { Settings, Caches, Configs }
  */
 function getStorage(key, names, database) {
-    //log(`☑️ ${this.name}, Get Environment Variables`, "");
+    //log(`☑️ getStorage, Get Environment Variables`, "");
     /***************** BoxJs *****************/
     // 包装为局部变量，用完释放内存
     // BoxJs的清空操作返回假值空字符串, 逻辑或操作符会在左侧操作数为假值时返回右侧操作数。
     let BoxJs = Storage.getItem(key, database);
-    //log(`🚧 ${this.name}, Get Environment Variables`, `BoxJs类型: ${typeof BoxJs}`, `BoxJs内容: ${JSON.stringify(BoxJs)}`, "");
+    //log(`🚧 getStorage, Get Environment Variables`, `BoxJs类型: ${typeof BoxJs}`, `BoxJs内容: ${JSON.stringify(BoxJs)}`, "");
     /***************** Argument *****************/
     let Argument = {};
-    if (typeof $argument !== "undefined") {
-        if (Boolean($argument)) {
-            //log(`🎉 ${this.name}, $Argument`);
+    switch (typeof $argument) {
+        case "string":
             let arg = Object.fromEntries($argument.split("&").map((item) => item.split("=").map(i => i.replace(/\"/g, ''))));
-            //log(JSON.stringify(arg));
             for (let item in arg) Lodash.set(Argument, item, arg[item]);
-            //log(JSON.stringify(Argument));
-        }        //log(`✅ ${this.name}, Get Environment Variables`, `Argument类型: ${typeof Argument}`, `Argument内容: ${JSON.stringify(Argument)}`, "");
-    }    /***************** Store *****************/
+            break;
+        case "object":
+            for (let item in $argument) Lodash.set(Argument, item, $argument[item]);
+            break;
+    }    //log(`✅ getStorage, Get Environment Variables`, `Argument类型: ${typeof Argument}`, `Argument内容: ${JSON.stringify(Argument)}`, "");
+    /***************** Store *****************/
     const Store = { Settings: database?.Default?.Settings || {}, Configs: database?.Default?.Configs || {}, Caches: {} };
     if (!Array.isArray(names)) names = [names];
-    //log(`🚧 ${this.name}, Get Environment Variables`, `names类型: ${typeof names}`, `names内容: ${JSON.stringify(names)}`, "");
+    //log(`🚧 getStorage, Get Environment Variables`, `names类型: ${typeof names}`, `names内容: ${JSON.stringify(names)}`, "");
     for (let name of names) {
         Store.Settings = { ...Store.Settings, ...database?.[name]?.Settings, ...Argument, ...BoxJs?.[name]?.Settings };
         Store.Configs = { ...Store.Configs, ...database?.[name]?.Configs };
         if (BoxJs?.[name]?.Caches && typeof BoxJs?.[name]?.Caches === "string") BoxJs[name].Caches = JSON.parse(BoxJs?.[name]?.Caches);
         Store.Caches = { ...Store.Caches, ...BoxJs?.[name]?.Caches };
-    }    //log(`🚧 ${this.name}, Get Environment Variables`, `Store.Settings类型: ${typeof Store.Settings}`, `Store.Settings: ${JSON.stringify(Store.Settings)}`, "");
+    }    //log(`🚧 getStorage, Get Environment Variables`, `Store.Settings类型: ${typeof Store.Settings}`, `Store.Settings: ${JSON.stringify(Store.Settings)}`, "");
     traverseObject(Store.Settings, (key, value) => {
-        //log(`🚧 ${this.name}, traverseObject`, `${key}: ${typeof value}`, `${key}: ${JSON.stringify(value)}`, "");
+        //log(`🚧 getStorage, traverseObject`, `${key}: ${typeof value}`, `${key}: ${JSON.stringify(value)}`, "");
         if (value === "true" || value === "false") value = JSON.parse(value); // 字符串转Boolean
         else if (typeof value === "string") {
             if (value.includes(",")) value = value.split(",").map(item => string2number(item)); // 字符串转数组转数字
             else value = string2number(value); // 字符串转数字
         }        return value;
     });
-    //log(`✅ ${this.name}, Get Environment Variables`, `Store: ${typeof Store.Caches}`, `Store内容: ${JSON.stringify(Store)}`, "");
+    //log(`✅ getStorage, Get Environment Variables`, `Store: ${typeof Store.Caches}`, `Store内容: ${JSON.stringify(Store)}`, "");
     return Store;
-
     /***************** function *****************/
     function traverseObject(o, c) { for (var t in o) { var n = o[t]; o[t] = "object" == typeof n && null !== n ? traverseObject(n, c) : c(t, n); } return o }
     function string2number(string) { if (string && !isNaN(string)) string = parseInt(string, 10); return string }
@@ -14053,11 +1923,4082 @@ function setENV(name, platforms, database) {
 	return { Settings, Caches, Configs };
 }
 
-log("v3.1.0(2)");
+/**
+ * Get the type of a JSON value.
+ * Distinguishes between array, null and object.
+ */
+function typeofJsonValue(value) {
+    let t = typeof value;
+    if (t == "object") {
+        if (Array.isArray(value))
+            return "array";
+        if (value === null)
+            return "null";
+    }
+    return t;
+}
+/**
+ * Is this a JSON object (instead of an array or null)?
+ */
+function isJsonObject(value) {
+    return value !== null && typeof value == "object" && !Array.isArray(value);
+}
 
+// lookup table from base64 character to byte
+let encTable = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.split('');
+// lookup table from base64 character *code* to byte because lookup by number is fast
+let decTable = [];
+for (let i = 0; i < encTable.length; i++)
+    decTable[encTable[i].charCodeAt(0)] = i;
+// support base64url variants
+decTable["-".charCodeAt(0)] = encTable.indexOf("+");
+decTable["_".charCodeAt(0)] = encTable.indexOf("/");
+/**
+ * Decodes a base64 string to a byte array.
+ *
+ * - ignores white-space, including line breaks and tabs
+ * - allows inner padding (can decode concatenated base64 strings)
+ * - does not require padding
+ * - understands base64url encoding:
+ *   "-" instead of "+",
+ *   "_" instead of "/",
+ *   no padding
+ */
+function base64decode(base64Str) {
+    // estimate byte size, not accounting for inner padding and whitespace
+    let es = base64Str.length * 3 / 4;
+    // if (es % 3 !== 0)
+    // throw new Error('invalid base64 string');
+    if (base64Str[base64Str.length - 2] == '=')
+        es -= 2;
+    else if (base64Str[base64Str.length - 1] == '=')
+        es -= 1;
+    let bytes = new Uint8Array(es), bytePos = 0, // position in byte array
+    groupPos = 0, // position in base64 group
+    b, // current byte
+    p = 0 // previous byte
+    ;
+    for (let i = 0; i < base64Str.length; i++) {
+        b = decTable[base64Str.charCodeAt(i)];
+        if (b === undefined) {
+            // noinspection FallThroughInSwitchStatementJS
+            switch (base64Str[i]) {
+                case '=':
+                    groupPos = 0; // reset state when padding found
+                case '\n':
+                case '\r':
+                case '\t':
+                case ' ':
+                    continue; // skip white-space, and padding
+                default:
+                    throw Error(`invalid base64 string.`);
+            }
+        }
+        switch (groupPos) {
+            case 0:
+                p = b;
+                groupPos = 1;
+                break;
+            case 1:
+                bytes[bytePos++] = p << 2 | (b & 48) >> 4;
+                p = b;
+                groupPos = 2;
+                break;
+            case 2:
+                bytes[bytePos++] = (p & 15) << 4 | (b & 60) >> 2;
+                p = b;
+                groupPos = 3;
+                break;
+            case 3:
+                bytes[bytePos++] = (p & 3) << 6 | b;
+                groupPos = 0;
+                break;
+        }
+    }
+    if (groupPos == 1)
+        throw Error(`invalid base64 string.`);
+    return bytes.subarray(0, bytePos);
+}
+/**
+ * Encodes a byte array to a base64 string.
+ * Adds padding at the end.
+ * Does not insert newlines.
+ */
+function base64encode(bytes) {
+    let base64 = '', groupPos = 0, // position in base64 group
+    b, // current byte
+    p = 0; // carry over from previous byte
+    for (let i = 0; i < bytes.length; i++) {
+        b = bytes[i];
+        switch (groupPos) {
+            case 0:
+                base64 += encTable[b >> 2];
+                p = (b & 3) << 4;
+                groupPos = 1;
+                break;
+            case 1:
+                base64 += encTable[p | b >> 4];
+                p = (b & 15) << 2;
+                groupPos = 2;
+                break;
+            case 2:
+                base64 += encTable[p | b >> 6];
+                base64 += encTable[b & 63];
+                groupPos = 0;
+                break;
+        }
+    }
+    // padding required?
+    if (groupPos) {
+        base64 += encTable[p];
+        base64 += '=';
+        if (groupPos == 1)
+            base64 += '=';
+    }
+    return base64;
+}
+
+/**
+ * This handler implements the default behaviour for unknown fields.
+ * When reading data, unknown fields are stored on the message, in a
+ * symbol property.
+ * When writing data, the symbol property is queried and unknown fields
+ * are serialized into the output again.
+ */
+var UnknownFieldHandler;
+(function (UnknownFieldHandler) {
+    /**
+     * The symbol used to store unknown fields for a message.
+     * The property must conform to `UnknownFieldContainer`.
+     */
+    UnknownFieldHandler.symbol = Symbol.for("protobuf-ts/unknown");
+    /**
+     * Store an unknown field during binary read directly on the message.
+     * This method is compatible with `BinaryReadOptions.readUnknownField`.
+     */
+    UnknownFieldHandler.onRead = (typeName, message, fieldNo, wireType, data) => {
+        let container = is(message) ? message[UnknownFieldHandler.symbol] : message[UnknownFieldHandler.symbol] = [];
+        container.push({ no: fieldNo, wireType, data });
+    };
+    /**
+     * Write unknown fields stored for the message to the writer.
+     * This method is compatible with `BinaryWriteOptions.writeUnknownFields`.
+     */
+    UnknownFieldHandler.onWrite = (typeName, message, writer) => {
+        for (let { no, wireType, data } of UnknownFieldHandler.list(message))
+            writer.tag(no, wireType).raw(data);
+    };
+    /**
+     * List unknown fields stored for the message.
+     * Note that there may be multiples fields with the same number.
+     */
+    UnknownFieldHandler.list = (message, fieldNo) => {
+        if (is(message)) {
+            let all = message[UnknownFieldHandler.symbol];
+            return fieldNo ? all.filter(uf => uf.no == fieldNo) : all;
+        }
+        return [];
+    };
+    /**
+     * Returns the last unknown field by field number.
+     */
+    UnknownFieldHandler.last = (message, fieldNo) => UnknownFieldHandler.list(message, fieldNo).slice(-1)[0];
+    const is = (message) => message && Array.isArray(message[UnknownFieldHandler.symbol]);
+})(UnknownFieldHandler || (UnknownFieldHandler = {}));
+/**
+ * Protobuf binary format wire types.
+ *
+ * A wire type provides just enough information to find the length of the
+ * following value.
+ *
+ * See https://developers.google.com/protocol-buffers/docs/encoding#structure
+ */
+var WireType;
+(function (WireType) {
+    /**
+     * Used for int32, int64, uint32, uint64, sint32, sint64, bool, enum
+     */
+    WireType[WireType["Varint"] = 0] = "Varint";
+    /**
+     * Used for fixed64, sfixed64, double.
+     * Always 8 bytes with little-endian byte order.
+     */
+    WireType[WireType["Bit64"] = 1] = "Bit64";
+    /**
+     * Used for string, bytes, embedded messages, packed repeated fields
+     *
+     * Only repeated numeric types (types which use the varint, 32-bit,
+     * or 64-bit wire types) can be packed. In proto3, such fields are
+     * packed by default.
+     */
+    WireType[WireType["LengthDelimited"] = 2] = "LengthDelimited";
+    /**
+     * Used for groups
+     * @deprecated
+     */
+    WireType[WireType["StartGroup"] = 3] = "StartGroup";
+    /**
+     * Used for groups
+     * @deprecated
+     */
+    WireType[WireType["EndGroup"] = 4] = "EndGroup";
+    /**
+     * Used for fixed32, sfixed32, float.
+     * Always 4 bytes with little-endian byte order.
+     */
+    WireType[WireType["Bit32"] = 5] = "Bit32";
+})(WireType || (WireType = {}));
+
+// Copyright 2008 Google Inc.  All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+// * Redistributions of source code must retain the above copyright
+// notice, this list of conditions and the following disclaimer.
+// * Redistributions in binary form must reproduce the above
+// copyright notice, this list of conditions and the following disclaimer
+// in the documentation and/or other materials provided with the
+// distribution.
+// * Neither the name of Google Inc. nor the names of its
+// contributors may be used to endorse or promote products derived from
+// this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+// Code generated by the Protocol Buffer compiler is owned by the owner
+// of the input file used when generating it.  This code is not
+// standalone and requires a support library to be linked with it.  This
+// support library is itself covered by the above license.
+/**
+ * Read a 64 bit varint as two JS numbers.
+ *
+ * Returns tuple:
+ * [0]: low bits
+ * [0]: high bits
+ *
+ * Copyright 2008 Google Inc.  All rights reserved.
+ *
+ * See https://github.com/protocolbuffers/protobuf/blob/8a71927d74a4ce34efe2d8769fda198f52d20d12/js/experimental/runtime/kernel/buffer_decoder.js#L175
+ */
+function varint64read() {
+    let lowBits = 0;
+    let highBits = 0;
+    for (let shift = 0; shift < 28; shift += 7) {
+        let b = this.buf[this.pos++];
+        lowBits |= (b & 0x7F) << shift;
+        if ((b & 0x80) == 0) {
+            this.assertBounds();
+            return [lowBits, highBits];
+        }
+    }
+    let middleByte = this.buf[this.pos++];
+    // last four bits of the first 32 bit number
+    lowBits |= (middleByte & 0x0F) << 28;
+    // 3 upper bits are part of the next 32 bit number
+    highBits = (middleByte & 0x70) >> 4;
+    if ((middleByte & 0x80) == 0) {
+        this.assertBounds();
+        return [lowBits, highBits];
+    }
+    for (let shift = 3; shift <= 31; shift += 7) {
+        let b = this.buf[this.pos++];
+        highBits |= (b & 0x7F) << shift;
+        if ((b & 0x80) == 0) {
+            this.assertBounds();
+            return [lowBits, highBits];
+        }
+    }
+    throw new Error('invalid varint');
+}
+/**
+ * Write a 64 bit varint, given as two JS numbers, to the given bytes array.
+ *
+ * Copyright 2008 Google Inc.  All rights reserved.
+ *
+ * See https://github.com/protocolbuffers/protobuf/blob/8a71927d74a4ce34efe2d8769fda198f52d20d12/js/experimental/runtime/kernel/writer.js#L344
+ */
+function varint64write(lo, hi, bytes) {
+    for (let i = 0; i < 28; i = i + 7) {
+        const shift = lo >>> i;
+        const hasNext = !((shift >>> 7) == 0 && hi == 0);
+        const byte = (hasNext ? shift | 0x80 : shift) & 0xFF;
+        bytes.push(byte);
+        if (!hasNext) {
+            return;
+        }
+    }
+    const splitBits = ((lo >>> 28) & 0x0F) | ((hi & 0x07) << 4);
+    const hasMoreBits = !((hi >> 3) == 0);
+    bytes.push((hasMoreBits ? splitBits | 0x80 : splitBits) & 0xFF);
+    if (!hasMoreBits) {
+        return;
+    }
+    for (let i = 3; i < 31; i = i + 7) {
+        const shift = hi >>> i;
+        const hasNext = !((shift >>> 7) == 0);
+        const byte = (hasNext ? shift | 0x80 : shift) & 0xFF;
+        bytes.push(byte);
+        if (!hasNext) {
+            return;
+        }
+    }
+    bytes.push((hi >>> 31) & 0x01);
+}
+// constants for binary math
+const TWO_PWR_32_DBL$1 = (1 << 16) * (1 << 16);
+/**
+ * Parse decimal string of 64 bit integer value as two JS numbers.
+ *
+ * Returns tuple:
+ * [0]: minus sign?
+ * [1]: low bits
+ * [2]: high bits
+ *
+ * Copyright 2008 Google Inc.
+ */
+function int64fromString(dec) {
+    // Check for minus sign.
+    let minus = dec[0] == '-';
+    if (minus)
+        dec = dec.slice(1);
+    // Work 6 decimal digits at a time, acting like we're converting base 1e6
+    // digits to binary. This is safe to do with floating point math because
+    // Number.isSafeInteger(ALL_32_BITS * 1e6) == true.
+    const base = 1e6;
+    let lowBits = 0;
+    let highBits = 0;
+    function add1e6digit(begin, end) {
+        // Note: Number('') is 0.
+        const digit1e6 = Number(dec.slice(begin, end));
+        highBits *= base;
+        lowBits = lowBits * base + digit1e6;
+        // Carry bits from lowBits to highBits
+        if (lowBits >= TWO_PWR_32_DBL$1) {
+            highBits = highBits + ((lowBits / TWO_PWR_32_DBL$1) | 0);
+            lowBits = lowBits % TWO_PWR_32_DBL$1;
+        }
+    }
+    add1e6digit(-24, -18);
+    add1e6digit(-18, -12);
+    add1e6digit(-12, -6);
+    add1e6digit(-6);
+    return [minus, lowBits, highBits];
+}
+/**
+ * Format 64 bit integer value (as two JS numbers) to decimal string.
+ *
+ * Copyright 2008 Google Inc.
+ */
+function int64toString(bitsLow, bitsHigh) {
+    // Skip the expensive conversion if the number is small enough to use the
+    // built-in conversions.
+    if ((bitsHigh >>> 0) <= 0x1FFFFF) {
+        return '' + (TWO_PWR_32_DBL$1 * bitsHigh + (bitsLow >>> 0));
+    }
+    // What this code is doing is essentially converting the input number from
+    // base-2 to base-1e7, which allows us to represent the 64-bit range with
+    // only 3 (very large) digits. Those digits are then trivial to convert to
+    // a base-10 string.
+    // The magic numbers used here are -
+    // 2^24 = 16777216 = (1,6777216) in base-1e7.
+    // 2^48 = 281474976710656 = (2,8147497,6710656) in base-1e7.
+    // Split 32:32 representation into 16:24:24 representation so our
+    // intermediate digits don't overflow.
+    let low = bitsLow & 0xFFFFFF;
+    let mid = (((bitsLow >>> 24) | (bitsHigh << 8)) >>> 0) & 0xFFFFFF;
+    let high = (bitsHigh >> 16) & 0xFFFF;
+    // Assemble our three base-1e7 digits, ignoring carries. The maximum
+    // value in a digit at this step is representable as a 48-bit integer, which
+    // can be stored in a 64-bit floating point number.
+    let digitA = low + (mid * 6777216) + (high * 6710656);
+    let digitB = mid + (high * 8147497);
+    let digitC = (high * 2);
+    // Apply carries from A to B and from B to C.
+    let base = 10000000;
+    if (digitA >= base) {
+        digitB += Math.floor(digitA / base);
+        digitA %= base;
+    }
+    if (digitB >= base) {
+        digitC += Math.floor(digitB / base);
+        digitB %= base;
+    }
+    // Convert base-1e7 digits to base-10, with optional leading zeroes.
+    function decimalFrom1e7(digit1e7, needLeadingZeros) {
+        let partial = digit1e7 ? String(digit1e7) : '';
+        if (needLeadingZeros) {
+            return '0000000'.slice(partial.length) + partial;
+        }
+        return partial;
+    }
+    return decimalFrom1e7(digitC, /*needLeadingZeros=*/ 0) +
+        decimalFrom1e7(digitB, /*needLeadingZeros=*/ digitC) +
+        // If the final 1e7 digit didn't need leading zeros, we would have
+        // returned via the trivial code path at the top.
+        decimalFrom1e7(digitA, /*needLeadingZeros=*/ 1);
+}
+/**
+ * Write a 32 bit varint, signed or unsigned. Same as `varint64write(0, value, bytes)`
+ *
+ * Copyright 2008 Google Inc.  All rights reserved.
+ *
+ * See https://github.com/protocolbuffers/protobuf/blob/1b18833f4f2a2f681f4e4a25cdf3b0a43115ec26/js/binary/encoder.js#L144
+ */
+function varint32write(value, bytes) {
+    if (value >= 0) {
+        // write value as varint 32
+        while (value > 0x7f) {
+            bytes.push((value & 0x7f) | 0x80);
+            value = value >>> 7;
+        }
+        bytes.push(value);
+    }
+    else {
+        for (let i = 0; i < 9; i++) {
+            bytes.push(value & 127 | 128);
+            value = value >> 7;
+        }
+        bytes.push(1);
+    }
+}
+/**
+ * Read an unsigned 32 bit varint.
+ *
+ * See https://github.com/protocolbuffers/protobuf/blob/8a71927d74a4ce34efe2d8769fda198f52d20d12/js/experimental/runtime/kernel/buffer_decoder.js#L220
+ */
+function varint32read() {
+    let b = this.buf[this.pos++];
+    let result = b & 0x7F;
+    if ((b & 0x80) == 0) {
+        this.assertBounds();
+        return result;
+    }
+    b = this.buf[this.pos++];
+    result |= (b & 0x7F) << 7;
+    if ((b & 0x80) == 0) {
+        this.assertBounds();
+        return result;
+    }
+    b = this.buf[this.pos++];
+    result |= (b & 0x7F) << 14;
+    if ((b & 0x80) == 0) {
+        this.assertBounds();
+        return result;
+    }
+    b = this.buf[this.pos++];
+    result |= (b & 0x7F) << 21;
+    if ((b & 0x80) == 0) {
+        this.assertBounds();
+        return result;
+    }
+    // Extract only last 4 bits
+    b = this.buf[this.pos++];
+    result |= (b & 0x0F) << 28;
+    for (let readBytes = 5; ((b & 0x80) !== 0) && readBytes < 10; readBytes++)
+        b = this.buf[this.pos++];
+    if ((b & 0x80) != 0)
+        throw new Error('invalid varint');
+    this.assertBounds();
+    // Result can have 32 bits, convert it to unsigned
+    return result >>> 0;
+}
+
+let BI;
+function detectBi() {
+    const dv = new DataView(new ArrayBuffer(8));
+    const ok = globalThis.BigInt !== undefined
+        && typeof dv.getBigInt64 === "function"
+        && typeof dv.getBigUint64 === "function"
+        && typeof dv.setBigInt64 === "function"
+        && typeof dv.setBigUint64 === "function";
+    BI = ok ? {
+        MIN: BigInt("-9223372036854775808"),
+        MAX: BigInt("9223372036854775807"),
+        UMIN: BigInt("0"),
+        UMAX: BigInt("18446744073709551615"),
+        C: BigInt,
+        V: dv,
+    } : undefined;
+}
+detectBi();
+function assertBi(bi) {
+    if (!bi)
+        throw new Error("BigInt unavailable, see https://github.com/timostamm/protobuf-ts/blob/v1.0.8/MANUAL.md#bigint-support");
+}
+// used to validate from(string) input (when bigint is unavailable)
+const RE_DECIMAL_STR = /^-?[0-9]+$/;
+// constants for binary math
+const TWO_PWR_32_DBL = 0x100000000;
+const HALF_2_PWR_32 = 0x080000000;
+// base class for PbLong and PbULong provides shared code
+class SharedPbLong {
+    /**
+     * Create a new instance with the given bits.
+     */
+    constructor(lo, hi) {
+        this.lo = lo | 0;
+        this.hi = hi | 0;
+    }
+    /**
+     * Is this instance equal to 0?
+     */
+    isZero() {
+        return this.lo == 0 && this.hi == 0;
+    }
+    /**
+     * Convert to a native number.
+     */
+    toNumber() {
+        let result = this.hi * TWO_PWR_32_DBL + (this.lo >>> 0);
+        if (!Number.isSafeInteger(result))
+            throw new Error("cannot convert to safe number");
+        return result;
+    }
+}
+/**
+ * 64-bit unsigned integer as two 32-bit values.
+ * Converts between `string`, `number` and `bigint` representations.
+ */
+class PbULong extends SharedPbLong {
+    /**
+     * Create instance from a `string`, `number` or `bigint`.
+     */
+    static from(value) {
+        if (BI)
+            // noinspection FallThroughInSwitchStatementJS
+            switch (typeof value) {
+                case "string":
+                    if (value == "0")
+                        return this.ZERO;
+                    if (value == "")
+                        throw new Error('string is no integer');
+                    value = BI.C(value);
+                case "number":
+                    if (value === 0)
+                        return this.ZERO;
+                    value = BI.C(value);
+                case "bigint":
+                    if (!value)
+                        return this.ZERO;
+                    if (value < BI.UMIN)
+                        throw new Error('signed value for ulong');
+                    if (value > BI.UMAX)
+                        throw new Error('ulong too large');
+                    BI.V.setBigUint64(0, value, true);
+                    return new PbULong(BI.V.getInt32(0, true), BI.V.getInt32(4, true));
+            }
+        else
+            switch (typeof value) {
+                case "string":
+                    if (value == "0")
+                        return this.ZERO;
+                    value = value.trim();
+                    if (!RE_DECIMAL_STR.test(value))
+                        throw new Error('string is no integer');
+                    let [minus, lo, hi] = int64fromString(value);
+                    if (minus)
+                        throw new Error('signed value for ulong');
+                    return new PbULong(lo, hi);
+                case "number":
+                    if (value == 0)
+                        return this.ZERO;
+                    if (!Number.isSafeInteger(value))
+                        throw new Error('number is no integer');
+                    if (value < 0)
+                        throw new Error('signed value for ulong');
+                    return new PbULong(value, value / TWO_PWR_32_DBL);
+            }
+        throw new Error('unknown value ' + typeof value);
+    }
+    /**
+     * Convert to decimal string.
+     */
+    toString() {
+        return BI ? this.toBigInt().toString() : int64toString(this.lo, this.hi);
+    }
+    /**
+     * Convert to native bigint.
+     */
+    toBigInt() {
+        assertBi(BI);
+        BI.V.setInt32(0, this.lo, true);
+        BI.V.setInt32(4, this.hi, true);
+        return BI.V.getBigUint64(0, true);
+    }
+}
+/**
+ * ulong 0 singleton.
+ */
+PbULong.ZERO = new PbULong(0, 0);
+/**
+ * 64-bit signed integer as two 32-bit values.
+ * Converts between `string`, `number` and `bigint` representations.
+ */
+class PbLong extends SharedPbLong {
+    /**
+     * Create instance from a `string`, `number` or `bigint`.
+     */
+    static from(value) {
+        if (BI)
+            // noinspection FallThroughInSwitchStatementJS
+            switch (typeof value) {
+                case "string":
+                    if (value == "0")
+                        return this.ZERO;
+                    if (value == "")
+                        throw new Error('string is no integer');
+                    value = BI.C(value);
+                case "number":
+                    if (value === 0)
+                        return this.ZERO;
+                    value = BI.C(value);
+                case "bigint":
+                    if (!value)
+                        return this.ZERO;
+                    if (value < BI.MIN)
+                        throw new Error('signed long too small');
+                    if (value > BI.MAX)
+                        throw new Error('signed long too large');
+                    BI.V.setBigInt64(0, value, true);
+                    return new PbLong(BI.V.getInt32(0, true), BI.V.getInt32(4, true));
+            }
+        else
+            switch (typeof value) {
+                case "string":
+                    if (value == "0")
+                        return this.ZERO;
+                    value = value.trim();
+                    if (!RE_DECIMAL_STR.test(value))
+                        throw new Error('string is no integer');
+                    let [minus, lo, hi] = int64fromString(value);
+                    if (minus) {
+                        if (hi > HALF_2_PWR_32 || (hi == HALF_2_PWR_32 && lo != 0))
+                            throw new Error('signed long too small');
+                    }
+                    else if (hi >= HALF_2_PWR_32)
+                        throw new Error('signed long too large');
+                    let pbl = new PbLong(lo, hi);
+                    return minus ? pbl.negate() : pbl;
+                case "number":
+                    if (value == 0)
+                        return this.ZERO;
+                    if (!Number.isSafeInteger(value))
+                        throw new Error('number is no integer');
+                    return value > 0
+                        ? new PbLong(value, value / TWO_PWR_32_DBL)
+                        : new PbLong(-value, -value / TWO_PWR_32_DBL).negate();
+            }
+        throw new Error('unknown value ' + typeof value);
+    }
+    /**
+     * Do we have a minus sign?
+     */
+    isNegative() {
+        return (this.hi & HALF_2_PWR_32) !== 0;
+    }
+    /**
+     * Negate two's complement.
+     * Invert all the bits and add one to the result.
+     */
+    negate() {
+        let hi = ~this.hi, lo = this.lo;
+        if (lo)
+            lo = ~lo + 1;
+        else
+            hi += 1;
+        return new PbLong(lo, hi);
+    }
+    /**
+     * Convert to decimal string.
+     */
+    toString() {
+        if (BI)
+            return this.toBigInt().toString();
+        if (this.isNegative()) {
+            let n = this.negate();
+            return '-' + int64toString(n.lo, n.hi);
+        }
+        return int64toString(this.lo, this.hi);
+    }
+    /**
+     * Convert to native bigint.
+     */
+    toBigInt() {
+        assertBi(BI);
+        BI.V.setInt32(0, this.lo, true);
+        BI.V.setInt32(4, this.hi, true);
+        return BI.V.getBigInt64(0, true);
+    }
+}
+/**
+ * long 0 singleton.
+ */
+PbLong.ZERO = new PbLong(0, 0);
+
+const defaultsRead$1 = {
+    readUnknownField: true,
+    readerFactory: bytes => new BinaryReader(bytes),
+};
+/**
+ * Make options for reading binary data form partial options.
+ */
+function binaryReadOptions(options) {
+    return options ? Object.assign(Object.assign({}, defaultsRead$1), options) : defaultsRead$1;
+}
+class BinaryReader {
+    constructor(buf, textDecoder) {
+        this.varint64 = varint64read; // dirty cast for `this`
+        /**
+         * Read a `uint32` field, an unsigned 32 bit varint.
+         */
+        this.uint32 = varint32read; // dirty cast for `this` and access to protected `buf`
+        this.buf = buf;
+        this.len = buf.length;
+        this.pos = 0;
+        this.view = new DataView(buf.buffer, buf.byteOffset, buf.byteLength);
+        this.textDecoder = textDecoder !== null && textDecoder !== void 0 ? textDecoder : new TextDecoder("utf-8", {
+            fatal: true,
+            ignoreBOM: true,
+        });
+    }
+    /**
+     * Reads a tag - field number and wire type.
+     */
+    tag() {
+        let tag = this.uint32(), fieldNo = tag >>> 3, wireType = tag & 7;
+        if (fieldNo <= 0 || wireType < 0 || wireType > 5)
+            throw new Error("illegal tag: field no " + fieldNo + " wire type " + wireType);
+        return [fieldNo, wireType];
+    }
+    /**
+     * Skip one element on the wire and return the skipped data.
+     * Supports WireType.StartGroup since v2.0.0-alpha.23.
+     */
+    skip(wireType) {
+        let start = this.pos;
+        // noinspection FallThroughInSwitchStatementJS
+        switch (wireType) {
+            case WireType.Varint:
+                while (this.buf[this.pos++] & 0x80) {
+                    // ignore
+                }
+                break;
+            case WireType.Bit64:
+                this.pos += 4;
+            case WireType.Bit32:
+                this.pos += 4;
+                break;
+            case WireType.LengthDelimited:
+                let len = this.uint32();
+                this.pos += len;
+                break;
+            case WireType.StartGroup:
+                // From descriptor.proto: Group type is deprecated, not supported in proto3.
+                // But we must still be able to parse and treat as unknown.
+                let t;
+                while ((t = this.tag()[1]) !== WireType.EndGroup) {
+                    this.skip(t);
+                }
+                break;
+            default:
+                throw new Error("cant skip wire type " + wireType);
+        }
+        this.assertBounds();
+        return this.buf.subarray(start, this.pos);
+    }
+    /**
+     * Throws error if position in byte array is out of range.
+     */
+    assertBounds() {
+        if (this.pos > this.len)
+            throw new RangeError("premature EOF");
+    }
+    /**
+     * Read a `int32` field, a signed 32 bit varint.
+     */
+    int32() {
+        return this.uint32() | 0;
+    }
+    /**
+     * Read a `sint32` field, a signed, zigzag-encoded 32-bit varint.
+     */
+    sint32() {
+        let zze = this.uint32();
+        // decode zigzag
+        return (zze >>> 1) ^ -(zze & 1);
+    }
+    /**
+     * Read a `int64` field, a signed 64-bit varint.
+     */
+    int64() {
+        return new PbLong(...this.varint64());
+    }
+    /**
+     * Read a `uint64` field, an unsigned 64-bit varint.
+     */
+    uint64() {
+        return new PbULong(...this.varint64());
+    }
+    /**
+     * Read a `sint64` field, a signed, zig-zag-encoded 64-bit varint.
+     */
+    sint64() {
+        let [lo, hi] = this.varint64();
+        // decode zig zag
+        let s = -(lo & 1);
+        lo = ((lo >>> 1 | (hi & 1) << 31) ^ s);
+        hi = (hi >>> 1 ^ s);
+        return new PbLong(lo, hi);
+    }
+    /**
+     * Read a `bool` field, a variant.
+     */
+    bool() {
+        let [lo, hi] = this.varint64();
+        return lo !== 0 || hi !== 0;
+    }
+    /**
+     * Read a `fixed32` field, an unsigned, fixed-length 32-bit integer.
+     */
+    fixed32() {
+        return this.view.getUint32((this.pos += 4) - 4, true);
+    }
+    /**
+     * Read a `sfixed32` field, a signed, fixed-length 32-bit integer.
+     */
+    sfixed32() {
+        return this.view.getInt32((this.pos += 4) - 4, true);
+    }
+    /**
+     * Read a `fixed64` field, an unsigned, fixed-length 64 bit integer.
+     */
+    fixed64() {
+        return new PbULong(this.sfixed32(), this.sfixed32());
+    }
+    /**
+     * Read a `fixed64` field, a signed, fixed-length 64-bit integer.
+     */
+    sfixed64() {
+        return new PbLong(this.sfixed32(), this.sfixed32());
+    }
+    /**
+     * Read a `float` field, 32-bit floating point number.
+     */
+    float() {
+        return this.view.getFloat32((this.pos += 4) - 4, true);
+    }
+    /**
+     * Read a `double` field, a 64-bit floating point number.
+     */
+    double() {
+        return this.view.getFloat64((this.pos += 8) - 8, true);
+    }
+    /**
+     * Read a `bytes` field, length-delimited arbitrary data.
+     */
+    bytes() {
+        let len = this.uint32();
+        let start = this.pos;
+        this.pos += len;
+        this.assertBounds();
+        return this.buf.subarray(start, start + len);
+    }
+    /**
+     * Read a `string` field, length-delimited data converted to UTF-8 text.
+     */
+    string() {
+        return this.textDecoder.decode(this.bytes());
+    }
+}
+
+/**
+ * assert that condition is true or throw error (with message)
+ */
+function assert(condition, msg) {
+    if (!condition) {
+        throw new Error(msg);
+    }
+}
+const FLOAT32_MAX = 3.4028234663852886e+38, FLOAT32_MIN = -3.4028234663852886e+38, UINT32_MAX = 0xFFFFFFFF, INT32_MAX = 0X7FFFFFFF, INT32_MIN = -0X80000000;
+function assertInt32(arg) {
+    if (typeof arg !== "number")
+        throw new Error('invalid int 32: ' + typeof arg);
+    if (!Number.isInteger(arg) || arg > INT32_MAX || arg < INT32_MIN)
+        throw new Error('invalid int 32: ' + arg);
+}
+function assertUInt32(arg) {
+    if (typeof arg !== "number")
+        throw new Error('invalid uint 32: ' + typeof arg);
+    if (!Number.isInteger(arg) || arg > UINT32_MAX || arg < 0)
+        throw new Error('invalid uint 32: ' + arg);
+}
+function assertFloat32(arg) {
+    if (typeof arg !== "number")
+        throw new Error('invalid float 32: ' + typeof arg);
+    if (!Number.isFinite(arg))
+        return;
+    if (arg > FLOAT32_MAX || arg < FLOAT32_MIN)
+        throw new Error('invalid float 32: ' + arg);
+}
+
+const defaultsWrite$1 = {
+    writeUnknownFields: true,
+    writerFactory: () => new BinaryWriter(),
+};
+/**
+ * Make options for writing binary data form partial options.
+ */
+function binaryWriteOptions(options) {
+    return options ? Object.assign(Object.assign({}, defaultsWrite$1), options) : defaultsWrite$1;
+}
+class BinaryWriter {
+    constructor(textEncoder) {
+        /**
+         * Previous fork states.
+         */
+        this.stack = [];
+        this.textEncoder = textEncoder !== null && textEncoder !== void 0 ? textEncoder : new TextEncoder();
+        this.chunks = [];
+        this.buf = [];
+    }
+    /**
+     * Return all bytes written and reset this writer.
+     */
+    finish() {
+        this.chunks.push(new Uint8Array(this.buf)); // flush the buffer
+        let len = 0;
+        for (let i = 0; i < this.chunks.length; i++)
+            len += this.chunks[i].length;
+        let bytes = new Uint8Array(len);
+        let offset = 0;
+        for (let i = 0; i < this.chunks.length; i++) {
+            bytes.set(this.chunks[i], offset);
+            offset += this.chunks[i].length;
+        }
+        this.chunks = [];
+        return bytes;
+    }
+    /**
+     * Start a new fork for length-delimited data like a message
+     * or a packed repeated field.
+     *
+     * Must be joined later with `join()`.
+     */
+    fork() {
+        this.stack.push({ chunks: this.chunks, buf: this.buf });
+        this.chunks = [];
+        this.buf = [];
+        return this;
+    }
+    /**
+     * Join the last fork. Write its length and bytes, then
+     * return to the previous state.
+     */
+    join() {
+        // get chunk of fork
+        let chunk = this.finish();
+        // restore previous state
+        let prev = this.stack.pop();
+        if (!prev)
+            throw new Error('invalid state, fork stack empty');
+        this.chunks = prev.chunks;
+        this.buf = prev.buf;
+        // write length of chunk as varint
+        this.uint32(chunk.byteLength);
+        return this.raw(chunk);
+    }
+    /**
+     * Writes a tag (field number and wire type).
+     *
+     * Equivalent to `uint32( (fieldNo << 3 | type) >>> 0 )`.
+     *
+     * Generated code should compute the tag ahead of time and call `uint32()`.
+     */
+    tag(fieldNo, type) {
+        return this.uint32((fieldNo << 3 | type) >>> 0);
+    }
+    /**
+     * Write a chunk of raw bytes.
+     */
+    raw(chunk) {
+        if (this.buf.length) {
+            this.chunks.push(new Uint8Array(this.buf));
+            this.buf = [];
+        }
+        this.chunks.push(chunk);
+        return this;
+    }
+    /**
+     * Write a `uint32` value, an unsigned 32 bit varint.
+     */
+    uint32(value) {
+        assertUInt32(value);
+        // write value as varint 32, inlined for speed
+        while (value > 0x7f) {
+            this.buf.push((value & 0x7f) | 0x80);
+            value = value >>> 7;
+        }
+        this.buf.push(value);
+        return this;
+    }
+    /**
+     * Write a `int32` value, a signed 32 bit varint.
+     */
+    int32(value) {
+        assertInt32(value);
+        varint32write(value, this.buf);
+        return this;
+    }
+    /**
+     * Write a `bool` value, a variant.
+     */
+    bool(value) {
+        this.buf.push(value ? 1 : 0);
+        return this;
+    }
+    /**
+     * Write a `bytes` value, length-delimited arbitrary data.
+     */
+    bytes(value) {
+        this.uint32(value.byteLength); // write length of chunk as varint
+        return this.raw(value);
+    }
+    /**
+     * Write a `string` value, length-delimited data converted to UTF-8 text.
+     */
+    string(value) {
+        let chunk = this.textEncoder.encode(value);
+        this.uint32(chunk.byteLength); // write length of chunk as varint
+        return this.raw(chunk);
+    }
+    /**
+     * Write a `float` value, 32-bit floating point number.
+     */
+    float(value) {
+        assertFloat32(value);
+        let chunk = new Uint8Array(4);
+        new DataView(chunk.buffer).setFloat32(0, value, true);
+        return this.raw(chunk);
+    }
+    /**
+     * Write a `double` value, a 64-bit floating point number.
+     */
+    double(value) {
+        let chunk = new Uint8Array(8);
+        new DataView(chunk.buffer).setFloat64(0, value, true);
+        return this.raw(chunk);
+    }
+    /**
+     * Write a `fixed32` value, an unsigned, fixed-length 32-bit integer.
+     */
+    fixed32(value) {
+        assertUInt32(value);
+        let chunk = new Uint8Array(4);
+        new DataView(chunk.buffer).setUint32(0, value, true);
+        return this.raw(chunk);
+    }
+    /**
+     * Write a `sfixed32` value, a signed, fixed-length 32-bit integer.
+     */
+    sfixed32(value) {
+        assertInt32(value);
+        let chunk = new Uint8Array(4);
+        new DataView(chunk.buffer).setInt32(0, value, true);
+        return this.raw(chunk);
+    }
+    /**
+     * Write a `sint32` value, a signed, zigzag-encoded 32-bit varint.
+     */
+    sint32(value) {
+        assertInt32(value);
+        // zigzag encode
+        value = ((value << 1) ^ (value >> 31)) >>> 0;
+        varint32write(value, this.buf);
+        return this;
+    }
+    /**
+     * Write a `fixed64` value, a signed, fixed-length 64-bit integer.
+     */
+    sfixed64(value) {
+        let chunk = new Uint8Array(8);
+        let view = new DataView(chunk.buffer);
+        let long = PbLong.from(value);
+        view.setInt32(0, long.lo, true);
+        view.setInt32(4, long.hi, true);
+        return this.raw(chunk);
+    }
+    /**
+     * Write a `fixed64` value, an unsigned, fixed-length 64 bit integer.
+     */
+    fixed64(value) {
+        let chunk = new Uint8Array(8);
+        let view = new DataView(chunk.buffer);
+        let long = PbULong.from(value);
+        view.setInt32(0, long.lo, true);
+        view.setInt32(4, long.hi, true);
+        return this.raw(chunk);
+    }
+    /**
+     * Write a `int64` value, a signed 64-bit varint.
+     */
+    int64(value) {
+        let long = PbLong.from(value);
+        varint64write(long.lo, long.hi, this.buf);
+        return this;
+    }
+    /**
+     * Write a `sint64` value, a signed, zig-zag-encoded 64-bit varint.
+     */
+    sint64(value) {
+        let long = PbLong.from(value), 
+        // zigzag encode
+        sign = long.hi >> 31, lo = (long.lo << 1) ^ sign, hi = ((long.hi << 1) | (long.lo >>> 31)) ^ sign;
+        varint64write(lo, hi, this.buf);
+        return this;
+    }
+    /**
+     * Write a `uint64` value, an unsigned 64-bit varint.
+     */
+    uint64(value) {
+        let long = PbULong.from(value);
+        varint64write(long.lo, long.hi, this.buf);
+        return this;
+    }
+}
+
+const defaultsWrite = {
+    emitDefaultValues: false,
+    enumAsInteger: false,
+    useProtoFieldName: false,
+    prettySpaces: 0,
+}, defaultsRead = {
+    ignoreUnknownFields: false,
+};
+/**
+ * Make options for reading JSON data from partial options.
+ */
+function jsonReadOptions(options) {
+    return options ? Object.assign(Object.assign({}, defaultsRead), options) : defaultsRead;
+}
+/**
+ * Make options for writing JSON data from partial options.
+ */
+function jsonWriteOptions(options) {
+    return options ? Object.assign(Object.assign({}, defaultsWrite), options) : defaultsWrite;
+}
+
+/**
+ * The symbol used as a key on message objects to store the message type.
+ *
+ * Note that this is an experimental feature - it is here to stay, but
+ * implementation details may change without notice.
+ */
+const MESSAGE_TYPE = Symbol.for("protobuf-ts/message-type");
+
+/**
+ * Converts snake_case to lowerCamelCase.
+ *
+ * Should behave like protoc:
+ * https://github.com/protocolbuffers/protobuf/blob/e8ae137c96444ea313485ed1118c5e43b2099cf1/src/google/protobuf/compiler/java/java_helpers.cc#L118
+ */
+function lowerCamelCase(snakeCase) {
+    let capNext = false;
+    const sb = [];
+    for (let i = 0; i < snakeCase.length; i++) {
+        let next = snakeCase.charAt(i);
+        if (next == '_') {
+            capNext = true;
+        }
+        else if (/\d/.test(next)) {
+            sb.push(next);
+            capNext = true;
+        }
+        else if (capNext) {
+            sb.push(next.toUpperCase());
+            capNext = false;
+        }
+        else if (i == 0) {
+            sb.push(next.toLowerCase());
+        }
+        else {
+            sb.push(next);
+        }
+    }
+    return sb.join('');
+}
+
+/**
+ * Scalar value types. This is a subset of field types declared by protobuf
+ * enum google.protobuf.FieldDescriptorProto.Type The types GROUP and MESSAGE
+ * are omitted, but the numerical values are identical.
+ */
+var ScalarType;
+(function (ScalarType) {
+    // 0 is reserved for errors.
+    // Order is weird for historical reasons.
+    ScalarType[ScalarType["DOUBLE"] = 1] = "DOUBLE";
+    ScalarType[ScalarType["FLOAT"] = 2] = "FLOAT";
+    // Not ZigZag encoded.  Negative numbers take 10 bytes.  Use TYPE_SINT64 if
+    // negative values are likely.
+    ScalarType[ScalarType["INT64"] = 3] = "INT64";
+    ScalarType[ScalarType["UINT64"] = 4] = "UINT64";
+    // Not ZigZag encoded.  Negative numbers take 10 bytes.  Use TYPE_SINT32 if
+    // negative values are likely.
+    ScalarType[ScalarType["INT32"] = 5] = "INT32";
+    ScalarType[ScalarType["FIXED64"] = 6] = "FIXED64";
+    ScalarType[ScalarType["FIXED32"] = 7] = "FIXED32";
+    ScalarType[ScalarType["BOOL"] = 8] = "BOOL";
+    ScalarType[ScalarType["STRING"] = 9] = "STRING";
+    // Tag-delimited aggregate.
+    // Group type is deprecated and not supported in proto3. However, Proto3
+    // implementations should still be able to parse the group wire format and
+    // treat group fields as unknown fields.
+    // TYPE_GROUP = 10,
+    // TYPE_MESSAGE = 11,  // Length-delimited aggregate.
+    // New in version 2.
+    ScalarType[ScalarType["BYTES"] = 12] = "BYTES";
+    ScalarType[ScalarType["UINT32"] = 13] = "UINT32";
+    // TYPE_ENUM = 14,
+    ScalarType[ScalarType["SFIXED32"] = 15] = "SFIXED32";
+    ScalarType[ScalarType["SFIXED64"] = 16] = "SFIXED64";
+    ScalarType[ScalarType["SINT32"] = 17] = "SINT32";
+    ScalarType[ScalarType["SINT64"] = 18] = "SINT64";
+})(ScalarType || (ScalarType = {}));
+/**
+ * JavaScript representation of 64 bit integral types. Equivalent to the
+ * field option "jstype".
+ *
+ * By default, protobuf-ts represents 64 bit types as `bigint`.
+ *
+ * You can change the default behaviour by enabling the plugin parameter
+ * `long_type_string`, which will represent 64 bit types as `string`.
+ *
+ * Alternatively, you can change the behaviour for individual fields
+ * with the field option "jstype":
+ *
+ * ```protobuf
+ * uint64 my_field = 1 [jstype = JS_STRING];
+ * uint64 other_field = 2 [jstype = JS_NUMBER];
+ * ```
+ */
+var LongType;
+(function (LongType) {
+    /**
+     * Use JavaScript `bigint`.
+     *
+     * Field option `[jstype = JS_NORMAL]`.
+     */
+    LongType[LongType["BIGINT"] = 0] = "BIGINT";
+    /**
+     * Use JavaScript `string`.
+     *
+     * Field option `[jstype = JS_STRING]`.
+     */
+    LongType[LongType["STRING"] = 1] = "STRING";
+    /**
+     * Use JavaScript `number`.
+     *
+     * Large values will loose precision.
+     *
+     * Field option `[jstype = JS_NUMBER]`.
+     */
+    LongType[LongType["NUMBER"] = 2] = "NUMBER";
+})(LongType || (LongType = {}));
+/**
+ * Protobuf 2.1.0 introduced packed repeated fields.
+ * Setting the field option `[packed = true]` enables packing.
+ *
+ * In proto3, all repeated fields are packed by default.
+ * Setting the field option `[packed = false]` disables packing.
+ *
+ * Packed repeated fields are encoded with a single tag,
+ * then a length-delimiter, then the element values.
+ *
+ * Unpacked repeated fields are encoded with a tag and
+ * value for each element.
+ *
+ * `bytes` and `string` cannot be packed.
+ */
+var RepeatType;
+(function (RepeatType) {
+    /**
+     * The field is not repeated.
+     */
+    RepeatType[RepeatType["NO"] = 0] = "NO";
+    /**
+     * The field is repeated and should be packed.
+     * Invalid for `bytes` and `string`, they cannot be packed.
+     */
+    RepeatType[RepeatType["PACKED"] = 1] = "PACKED";
+    /**
+     * The field is repeated but should not be packed.
+     * The only valid repeat type for repeated `bytes` and `string`.
+     */
+    RepeatType[RepeatType["UNPACKED"] = 2] = "UNPACKED";
+})(RepeatType || (RepeatType = {}));
+/**
+ * Turns PartialFieldInfo into FieldInfo.
+ */
+function normalizeFieldInfo(field) {
+    var _a, _b, _c, _d;
+    field.localName = (_a = field.localName) !== null && _a !== void 0 ? _a : lowerCamelCase(field.name);
+    field.jsonName = (_b = field.jsonName) !== null && _b !== void 0 ? _b : lowerCamelCase(field.name);
+    field.repeat = (_c = field.repeat) !== null && _c !== void 0 ? _c : RepeatType.NO;
+    field.opt = (_d = field.opt) !== null && _d !== void 0 ? _d : (field.repeat ? false : field.oneof ? false : field.kind == "message");
+    return field;
+}
+
+/**
+ * Is the given value a valid oneof group?
+ *
+ * We represent protobuf `oneof` as algebraic data types (ADT) in generated
+ * code. But when working with messages of unknown type, the ADT does not
+ * help us.
+ *
+ * This type guard checks if the given object adheres to the ADT rules, which
+ * are as follows:
+ *
+ * 1) Must be an object.
+ *
+ * 2) Must have a "oneofKind" discriminator property.
+ *
+ * 3) If "oneofKind" is `undefined`, no member field is selected. The object
+ * must not have any other properties.
+ *
+ * 4) If "oneofKind" is a `string`, the member field with this name is
+ * selected.
+ *
+ * 5) If a member field is selected, the object must have a second property
+ * with this name. The property must not be `undefined`.
+ *
+ * 6) No extra properties are allowed. The object has either one property
+ * (no selection) or two properties (selection).
+ *
+ */
+function isOneofGroup(any) {
+    if (typeof any != 'object' || any === null || !any.hasOwnProperty('oneofKind')) {
+        return false;
+    }
+    switch (typeof any.oneofKind) {
+        case "string":
+            if (any[any.oneofKind] === undefined)
+                return false;
+            return Object.keys(any).length == 2;
+        case "undefined":
+            return Object.keys(any).length == 1;
+        default:
+            return false;
+    }
+}
+
+// noinspection JSMethodCanBeStatic
+class ReflectionTypeCheck {
+    constructor(info) {
+        var _a;
+        this.fields = (_a = info.fields) !== null && _a !== void 0 ? _a : [];
+    }
+    prepare() {
+        if (this.data)
+            return;
+        const req = [], known = [], oneofs = [];
+        for (let field of this.fields) {
+            if (field.oneof) {
+                if (!oneofs.includes(field.oneof)) {
+                    oneofs.push(field.oneof);
+                    req.push(field.oneof);
+                    known.push(field.oneof);
+                }
+            }
+            else {
+                known.push(field.localName);
+                switch (field.kind) {
+                    case "scalar":
+                    case "enum":
+                        if (!field.opt || field.repeat)
+                            req.push(field.localName);
+                        break;
+                    case "message":
+                        if (field.repeat)
+                            req.push(field.localName);
+                        break;
+                    case "map":
+                        req.push(field.localName);
+                        break;
+                }
+            }
+        }
+        this.data = { req, known, oneofs: Object.values(oneofs) };
+    }
+    /**
+     * Is the argument a valid message as specified by the
+     * reflection information?
+     *
+     * Checks all field types recursively. The `depth`
+     * specifies how deep into the structure the check will be.
+     *
+     * With a depth of 0, only the presence of fields
+     * is checked.
+     *
+     * With a depth of 1 or more, the field types are checked.
+     *
+     * With a depth of 2 or more, the members of map, repeated
+     * and message fields are checked.
+     *
+     * Message fields will be checked recursively with depth - 1.
+     *
+     * The number of map entries / repeated values being checked
+     * is < depth.
+     */
+    is(message, depth, allowExcessProperties = false) {
+        if (depth < 0)
+            return true;
+        if (message === null || message === undefined || typeof message != 'object')
+            return false;
+        this.prepare();
+        let keys = Object.keys(message), data = this.data;
+        // if a required field is missing in arg, this cannot be a T
+        if (keys.length < data.req.length || data.req.some(n => !keys.includes(n)))
+            return false;
+        if (!allowExcessProperties) {
+            // if the arg contains a key we dont know, this is not a literal T
+            if (keys.some(k => !data.known.includes(k)))
+                return false;
+        }
+        // "With a depth of 0, only the presence and absence of fields is checked."
+        // "With a depth of 1 or more, the field types are checked."
+        if (depth < 1) {
+            return true;
+        }
+        // check oneof group
+        for (const name of data.oneofs) {
+            const group = message[name];
+            if (!isOneofGroup(group))
+                return false;
+            if (group.oneofKind === undefined)
+                continue;
+            const field = this.fields.find(f => f.localName === group.oneofKind);
+            if (!field)
+                return false; // we found no field, but have a kind, something is wrong
+            if (!this.field(group[group.oneofKind], field, allowExcessProperties, depth))
+                return false;
+        }
+        // check types
+        for (const field of this.fields) {
+            if (field.oneof !== undefined)
+                continue;
+            if (!this.field(message[field.localName], field, allowExcessProperties, depth))
+                return false;
+        }
+        return true;
+    }
+    field(arg, field, allowExcessProperties, depth) {
+        let repeated = field.repeat;
+        switch (field.kind) {
+            case "scalar":
+                if (arg === undefined)
+                    return field.opt;
+                if (repeated)
+                    return this.scalars(arg, field.T, depth, field.L);
+                return this.scalar(arg, field.T, field.L);
+            case "enum":
+                if (arg === undefined)
+                    return field.opt;
+                if (repeated)
+                    return this.scalars(arg, ScalarType.INT32, depth);
+                return this.scalar(arg, ScalarType.INT32);
+            case "message":
+                if (arg === undefined)
+                    return true;
+                if (repeated)
+                    return this.messages(arg, field.T(), allowExcessProperties, depth);
+                return this.message(arg, field.T(), allowExcessProperties, depth);
+            case "map":
+                if (typeof arg != 'object' || arg === null)
+                    return false;
+                if (depth < 2)
+                    return true;
+                if (!this.mapKeys(arg, field.K, depth))
+                    return false;
+                switch (field.V.kind) {
+                    case "scalar":
+                        return this.scalars(Object.values(arg), field.V.T, depth, field.V.L);
+                    case "enum":
+                        return this.scalars(Object.values(arg), ScalarType.INT32, depth);
+                    case "message":
+                        return this.messages(Object.values(arg), field.V.T(), allowExcessProperties, depth);
+                }
+                break;
+        }
+        return true;
+    }
+    message(arg, type, allowExcessProperties, depth) {
+        if (allowExcessProperties) {
+            return type.isAssignable(arg, depth);
+        }
+        return type.is(arg, depth);
+    }
+    messages(arg, type, allowExcessProperties, depth) {
+        if (!Array.isArray(arg))
+            return false;
+        if (depth < 2)
+            return true;
+        if (allowExcessProperties) {
+            for (let i = 0; i < arg.length && i < depth; i++)
+                if (!type.isAssignable(arg[i], depth - 1))
+                    return false;
+        }
+        else {
+            for (let i = 0; i < arg.length && i < depth; i++)
+                if (!type.is(arg[i], depth - 1))
+                    return false;
+        }
+        return true;
+    }
+    scalar(arg, type, longType) {
+        let argType = typeof arg;
+        switch (type) {
+            case ScalarType.UINT64:
+            case ScalarType.FIXED64:
+            case ScalarType.INT64:
+            case ScalarType.SFIXED64:
+            case ScalarType.SINT64:
+                switch (longType) {
+                    case LongType.BIGINT:
+                        return argType == "bigint";
+                    case LongType.NUMBER:
+                        return argType == "number" && !isNaN(arg);
+                    default:
+                        return argType == "string";
+                }
+            case ScalarType.BOOL:
+                return argType == 'boolean';
+            case ScalarType.STRING:
+                return argType == 'string';
+            case ScalarType.BYTES:
+                return arg instanceof Uint8Array;
+            case ScalarType.DOUBLE:
+            case ScalarType.FLOAT:
+                return argType == 'number' && !isNaN(arg);
+            default:
+                // case ScalarType.UINT32:
+                // case ScalarType.FIXED32:
+                // case ScalarType.INT32:
+                // case ScalarType.SINT32:
+                // case ScalarType.SFIXED32:
+                return argType == 'number' && Number.isInteger(arg);
+        }
+    }
+    scalars(arg, type, depth, longType) {
+        if (!Array.isArray(arg))
+            return false;
+        if (depth < 2)
+            return true;
+        if (Array.isArray(arg))
+            for (let i = 0; i < arg.length && i < depth; i++)
+                if (!this.scalar(arg[i], type, longType))
+                    return false;
+        return true;
+    }
+    mapKeys(map, type, depth) {
+        let keys = Object.keys(map);
+        switch (type) {
+            case ScalarType.INT32:
+            case ScalarType.FIXED32:
+            case ScalarType.SFIXED32:
+            case ScalarType.SINT32:
+            case ScalarType.UINT32:
+                return this.scalars(keys.slice(0, depth).map(k => parseInt(k)), type, depth);
+            case ScalarType.BOOL:
+                return this.scalars(keys.slice(0, depth).map(k => k == 'true' ? true : k == 'false' ? false : k), type, depth);
+            default:
+                return this.scalars(keys, type, depth, LongType.STRING);
+        }
+    }
+}
+
+/**
+ * Utility method to convert a PbLong or PbUlong to a JavaScript
+ * representation during runtime.
+ *
+ * Works with generated field information, `undefined` is equivalent
+ * to `STRING`.
+ */
+function reflectionLongConvert(long, type) {
+    switch (type) {
+        case LongType.BIGINT:
+            return long.toBigInt();
+        case LongType.NUMBER:
+            return long.toNumber();
+        default:
+            // case undefined:
+            // case LongType.STRING:
+            return long.toString();
+    }
+}
+
+/**
+ * Reads proto3 messages in canonical JSON format using reflection information.
+ *
+ * https://developers.google.com/protocol-buffers/docs/proto3#json
+ */
+class ReflectionJsonReader {
+    constructor(info) {
+        this.info = info;
+    }
+    prepare() {
+        var _a;
+        if (this.fMap === undefined) {
+            this.fMap = {};
+            const fieldsInput = (_a = this.info.fields) !== null && _a !== void 0 ? _a : [];
+            for (const field of fieldsInput) {
+                this.fMap[field.name] = field;
+                this.fMap[field.jsonName] = field;
+                this.fMap[field.localName] = field;
+            }
+        }
+    }
+    // Cannot parse JSON <type of jsonValue> for <type name>#<fieldName>.
+    assert(condition, fieldName, jsonValue) {
+        if (!condition) {
+            let what = typeofJsonValue(jsonValue);
+            if (what == "number" || what == "boolean")
+                what = jsonValue.toString();
+            throw new Error(`Cannot parse JSON ${what} for ${this.info.typeName}#${fieldName}`);
+        }
+    }
+    /**
+     * Reads a message from canonical JSON format into the target message.
+     *
+     * Repeated fields are appended. Map entries are added, overwriting
+     * existing keys.
+     *
+     * If a message field is already present, it will be merged with the
+     * new data.
+     */
+    read(input, message, options) {
+        this.prepare();
+        const oneofsHandled = [];
+        for (const [jsonKey, jsonValue] of Object.entries(input)) {
+            const field = this.fMap[jsonKey];
+            if (!field) {
+                if (!options.ignoreUnknownFields)
+                    throw new Error(`Found unknown field while reading ${this.info.typeName} from JSON format. JSON key: ${jsonKey}`);
+                continue;
+            }
+            const localName = field.localName;
+            // handle oneof ADT
+            let target; // this will be the target for the field value, whether it is member of a oneof or not
+            if (field.oneof) {
+                if (jsonValue === null && (field.kind !== 'enum' || field.T()[0] !== 'google.protobuf.NullValue')) {
+                    continue;
+                }
+                // since json objects are unordered by specification, it is not possible to take the last of multiple oneofs
+                if (oneofsHandled.includes(field.oneof))
+                    throw new Error(`Multiple members of the oneof group "${field.oneof}" of ${this.info.typeName} are present in JSON.`);
+                oneofsHandled.push(field.oneof);
+                target = message[field.oneof] = {
+                    oneofKind: localName
+                };
+            }
+            else {
+                target = message;
+            }
+            // we have handled oneof above. we just have read the value into `target`.
+            if (field.kind == 'map') {
+                if (jsonValue === null) {
+                    continue;
+                }
+                // check input
+                this.assert(isJsonObject(jsonValue), field.name, jsonValue);
+                // our target to put map entries into
+                const fieldObj = target[localName];
+                // read entries
+                for (const [jsonObjKey, jsonObjValue] of Object.entries(jsonValue)) {
+                    this.assert(jsonObjValue !== null, field.name + " map value", null);
+                    // read value
+                    let val;
+                    switch (field.V.kind) {
+                        case "message":
+                            val = field.V.T().internalJsonRead(jsonObjValue, options);
+                            break;
+                        case "enum":
+                            val = this.enum(field.V.T(), jsonObjValue, field.name, options.ignoreUnknownFields);
+                            if (val === false)
+                                continue;
+                            break;
+                        case "scalar":
+                            val = this.scalar(jsonObjValue, field.V.T, field.V.L, field.name);
+                            break;
+                    }
+                    this.assert(val !== undefined, field.name + " map value", jsonObjValue);
+                    // read key
+                    let key = jsonObjKey;
+                    if (field.K == ScalarType.BOOL)
+                        key = key == "true" ? true : key == "false" ? false : key;
+                    key = this.scalar(key, field.K, LongType.STRING, field.name).toString();
+                    fieldObj[key] = val;
+                }
+            }
+            else if (field.repeat) {
+                if (jsonValue === null)
+                    continue;
+                // check input
+                this.assert(Array.isArray(jsonValue), field.name, jsonValue);
+                // our target to put array entries into
+                const fieldArr = target[localName];
+                // read array entries
+                for (const jsonItem of jsonValue) {
+                    this.assert(jsonItem !== null, field.name, null);
+                    let val;
+                    switch (field.kind) {
+                        case "message":
+                            val = field.T().internalJsonRead(jsonItem, options);
+                            break;
+                        case "enum":
+                            val = this.enum(field.T(), jsonItem, field.name, options.ignoreUnknownFields);
+                            if (val === false)
+                                continue;
+                            break;
+                        case "scalar":
+                            val = this.scalar(jsonItem, field.T, field.L, field.name);
+                            break;
+                    }
+                    this.assert(val !== undefined, field.name, jsonValue);
+                    fieldArr.push(val);
+                }
+            }
+            else {
+                switch (field.kind) {
+                    case "message":
+                        if (jsonValue === null && field.T().typeName != 'google.protobuf.Value') {
+                            this.assert(field.oneof === undefined, field.name + " (oneof member)", null);
+                            continue;
+                        }
+                        target[localName] = field.T().internalJsonRead(jsonValue, options, target[localName]);
+                        break;
+                    case "enum":
+                        let val = this.enum(field.T(), jsonValue, field.name, options.ignoreUnknownFields);
+                        if (val === false)
+                            continue;
+                        target[localName] = val;
+                        break;
+                    case "scalar":
+                        target[localName] = this.scalar(jsonValue, field.T, field.L, field.name);
+                        break;
+                }
+            }
+        }
+    }
+    /**
+     * Returns `false` for unrecognized string representations.
+     *
+     * google.protobuf.NullValue accepts only JSON `null` (or the old `"NULL_VALUE"`).
+     */
+    enum(type, json, fieldName, ignoreUnknownFields) {
+        if (type[0] == 'google.protobuf.NullValue')
+            assert(json === null || json === "NULL_VALUE", `Unable to parse field ${this.info.typeName}#${fieldName}, enum ${type[0]} only accepts null.`);
+        if (json === null)
+            // we require 0 to be default value for all enums
+            return 0;
+        switch (typeof json) {
+            case "number":
+                assert(Number.isInteger(json), `Unable to parse field ${this.info.typeName}#${fieldName}, enum can only be integral number, got ${json}.`);
+                return json;
+            case "string":
+                let localEnumName = json;
+                if (type[2] && json.substring(0, type[2].length) === type[2])
+                    // lookup without the shared prefix
+                    localEnumName = json.substring(type[2].length);
+                let enumNumber = type[1][localEnumName];
+                if (typeof enumNumber === 'undefined' && ignoreUnknownFields) {
+                    return false;
+                }
+                assert(typeof enumNumber == "number", `Unable to parse field ${this.info.typeName}#${fieldName}, enum ${type[0]} has no value for "${json}".`);
+                return enumNumber;
+        }
+        assert(false, `Unable to parse field ${this.info.typeName}#${fieldName}, cannot parse enum value from ${typeof json}".`);
+    }
+    scalar(json, type, longType, fieldName) {
+        let e;
+        try {
+            switch (type) {
+                // float, double: JSON value will be a number or one of the special string values "NaN", "Infinity", and "-Infinity".
+                // Either numbers or strings are accepted. Exponent notation is also accepted.
+                case ScalarType.DOUBLE:
+                case ScalarType.FLOAT:
+                    if (json === null)
+                        return .0;
+                    if (json === "NaN")
+                        return Number.NaN;
+                    if (json === "Infinity")
+                        return Number.POSITIVE_INFINITY;
+                    if (json === "-Infinity")
+                        return Number.NEGATIVE_INFINITY;
+                    if (json === "") {
+                        e = "empty string";
+                        break;
+                    }
+                    if (typeof json == "string" && json.trim().length !== json.length) {
+                        e = "extra whitespace";
+                        break;
+                    }
+                    if (typeof json != "string" && typeof json != "number") {
+                        break;
+                    }
+                    let float = Number(json);
+                    if (Number.isNaN(float)) {
+                        e = "not a number";
+                        break;
+                    }
+                    if (!Number.isFinite(float)) {
+                        // infinity and -infinity are handled by string representation above, so this is an error
+                        e = "too large or small";
+                        break;
+                    }
+                    if (type == ScalarType.FLOAT)
+                        assertFloat32(float);
+                    return float;
+                // int32, fixed32, uint32: JSON value will be a decimal number. Either numbers or strings are accepted.
+                case ScalarType.INT32:
+                case ScalarType.FIXED32:
+                case ScalarType.SFIXED32:
+                case ScalarType.SINT32:
+                case ScalarType.UINT32:
+                    if (json === null)
+                        return 0;
+                    let int32;
+                    if (typeof json == "number")
+                        int32 = json;
+                    else if (json === "")
+                        e = "empty string";
+                    else if (typeof json == "string") {
+                        if (json.trim().length !== json.length)
+                            e = "extra whitespace";
+                        else
+                            int32 = Number(json);
+                    }
+                    if (int32 === undefined)
+                        break;
+                    if (type == ScalarType.UINT32)
+                        assertUInt32(int32);
+                    else
+                        assertInt32(int32);
+                    return int32;
+                // int64, fixed64, uint64: JSON value will be a decimal string. Either numbers or strings are accepted.
+                case ScalarType.INT64:
+                case ScalarType.SFIXED64:
+                case ScalarType.SINT64:
+                    if (json === null)
+                        return reflectionLongConvert(PbLong.ZERO, longType);
+                    if (typeof json != "number" && typeof json != "string")
+                        break;
+                    return reflectionLongConvert(PbLong.from(json), longType);
+                case ScalarType.FIXED64:
+                case ScalarType.UINT64:
+                    if (json === null)
+                        return reflectionLongConvert(PbULong.ZERO, longType);
+                    if (typeof json != "number" && typeof json != "string")
+                        break;
+                    return reflectionLongConvert(PbULong.from(json), longType);
+                // bool:
+                case ScalarType.BOOL:
+                    if (json === null)
+                        return false;
+                    if (typeof json !== "boolean")
+                        break;
+                    return json;
+                // string:
+                case ScalarType.STRING:
+                    if (json === null)
+                        return "";
+                    if (typeof json !== "string") {
+                        e = "extra whitespace";
+                        break;
+                    }
+                    try {
+                        encodeURIComponent(json);
+                    }
+                    catch (e) {
+                        e = "invalid UTF8";
+                        break;
+                    }
+                    return json;
+                // bytes: JSON value will be the data encoded as a string using standard base64 encoding with paddings.
+                // Either standard or URL-safe base64 encoding with/without paddings are accepted.
+                case ScalarType.BYTES:
+                    if (json === null || json === "")
+                        return new Uint8Array(0);
+                    if (typeof json !== 'string')
+                        break;
+                    return base64decode(json);
+            }
+        }
+        catch (error) {
+            e = error.message;
+        }
+        this.assert(false, fieldName + (e ? " - " + e : ""), json);
+    }
+}
+
+/**
+ * Writes proto3 messages in canonical JSON format using reflection
+ * information.
+ *
+ * https://developers.google.com/protocol-buffers/docs/proto3#json
+ */
+class ReflectionJsonWriter {
+    constructor(info) {
+        var _a;
+        this.fields = (_a = info.fields) !== null && _a !== void 0 ? _a : [];
+    }
+    /**
+     * Converts the message to a JSON object, based on the field descriptors.
+     */
+    write(message, options) {
+        const json = {}, source = message;
+        for (const field of this.fields) {
+            // field is not part of a oneof, simply write as is
+            if (!field.oneof) {
+                let jsonValue = this.field(field, source[field.localName], options);
+                if (jsonValue !== undefined)
+                    json[options.useProtoFieldName ? field.name : field.jsonName] = jsonValue;
+                continue;
+            }
+            // field is part of a oneof
+            const group = source[field.oneof];
+            if (group.oneofKind !== field.localName)
+                continue; // not selected, skip
+            const opt = field.kind == 'scalar' || field.kind == 'enum'
+                ? Object.assign(Object.assign({}, options), { emitDefaultValues: true }) : options;
+            let jsonValue = this.field(field, group[field.localName], opt);
+            assert(jsonValue !== undefined);
+            json[options.useProtoFieldName ? field.name : field.jsonName] = jsonValue;
+        }
+        return json;
+    }
+    field(field, value, options) {
+        let jsonValue = undefined;
+        if (field.kind == 'map') {
+            assert(typeof value == "object" && value !== null);
+            const jsonObj = {};
+            switch (field.V.kind) {
+                case "scalar":
+                    for (const [entryKey, entryValue] of Object.entries(value)) {
+                        const val = this.scalar(field.V.T, entryValue, field.name, false, true);
+                        assert(val !== undefined);
+                        jsonObj[entryKey.toString()] = val; // JSON standard allows only (double quoted) string as property key
+                    }
+                    break;
+                case "message":
+                    const messageType = field.V.T();
+                    for (const [entryKey, entryValue] of Object.entries(value)) {
+                        const val = this.message(messageType, entryValue, field.name, options);
+                        assert(val !== undefined);
+                        jsonObj[entryKey.toString()] = val; // JSON standard allows only (double quoted) string as property key
+                    }
+                    break;
+                case "enum":
+                    const enumInfo = field.V.T();
+                    for (const [entryKey, entryValue] of Object.entries(value)) {
+                        assert(entryValue === undefined || typeof entryValue == 'number');
+                        const val = this.enum(enumInfo, entryValue, field.name, false, true, options.enumAsInteger);
+                        assert(val !== undefined);
+                        jsonObj[entryKey.toString()] = val; // JSON standard allows only (double quoted) string as property key
+                    }
+                    break;
+            }
+            if (options.emitDefaultValues || Object.keys(jsonObj).length > 0)
+                jsonValue = jsonObj;
+        }
+        else if (field.repeat) {
+            assert(Array.isArray(value));
+            const jsonArr = [];
+            switch (field.kind) {
+                case "scalar":
+                    for (let i = 0; i < value.length; i++) {
+                        const val = this.scalar(field.T, value[i], field.name, field.opt, true);
+                        assert(val !== undefined);
+                        jsonArr.push(val);
+                    }
+                    break;
+                case "enum":
+                    const enumInfo = field.T();
+                    for (let i = 0; i < value.length; i++) {
+                        assert(value[i] === undefined || typeof value[i] == 'number');
+                        const val = this.enum(enumInfo, value[i], field.name, field.opt, true, options.enumAsInteger);
+                        assert(val !== undefined);
+                        jsonArr.push(val);
+                    }
+                    break;
+                case "message":
+                    const messageType = field.T();
+                    for (let i = 0; i < value.length; i++) {
+                        const val = this.message(messageType, value[i], field.name, options);
+                        assert(val !== undefined);
+                        jsonArr.push(val);
+                    }
+                    break;
+            }
+            // add converted array to json output
+            if (options.emitDefaultValues || jsonArr.length > 0 || options.emitDefaultValues)
+                jsonValue = jsonArr;
+        }
+        else {
+            switch (field.kind) {
+                case "scalar":
+                    jsonValue = this.scalar(field.T, value, field.name, field.opt, options.emitDefaultValues);
+                    break;
+                case "enum":
+                    jsonValue = this.enum(field.T(), value, field.name, field.opt, options.emitDefaultValues, options.enumAsInteger);
+                    break;
+                case "message":
+                    jsonValue = this.message(field.T(), value, field.name, options);
+                    break;
+            }
+        }
+        return jsonValue;
+    }
+    /**
+     * Returns `null` as the default for google.protobuf.NullValue.
+     */
+    enum(type, value, fieldName, optional, emitDefaultValues, enumAsInteger) {
+        if (type[0] == 'google.protobuf.NullValue')
+            return !emitDefaultValues && !optional ? undefined : null;
+        if (value === undefined) {
+            assert(optional);
+            return undefined;
+        }
+        if (value === 0 && !emitDefaultValues && !optional)
+            // we require 0 to be default value for all enums
+            return undefined;
+        assert(typeof value == 'number');
+        assert(Number.isInteger(value));
+        if (enumAsInteger || !type[1].hasOwnProperty(value))
+            // if we don't now the enum value, just return the number
+            return value;
+        if (type[2])
+            // restore the dropped prefix
+            return type[2] + type[1][value];
+        return type[1][value];
+    }
+    message(type, value, fieldName, options) {
+        if (value === undefined)
+            return options.emitDefaultValues ? null : undefined;
+        return type.internalJsonWrite(value, options);
+    }
+    scalar(type, value, fieldName, optional, emitDefaultValues) {
+        if (value === undefined) {
+            assert(optional);
+            return undefined;
+        }
+        const ed = emitDefaultValues || optional;
+        // noinspection FallThroughInSwitchStatementJS
+        switch (type) {
+            // int32, fixed32, uint32: JSON value will be a decimal number. Either numbers or strings are accepted.
+            case ScalarType.INT32:
+            case ScalarType.SFIXED32:
+            case ScalarType.SINT32:
+                if (value === 0)
+                    return ed ? 0 : undefined;
+                assertInt32(value);
+                return value;
+            case ScalarType.FIXED32:
+            case ScalarType.UINT32:
+                if (value === 0)
+                    return ed ? 0 : undefined;
+                assertUInt32(value);
+                return value;
+            // float, double: JSON value will be a number or one of the special string values "NaN", "Infinity", and "-Infinity".
+            // Either numbers or strings are accepted. Exponent notation is also accepted.
+            case ScalarType.FLOAT:
+                assertFloat32(value);
+            case ScalarType.DOUBLE:
+                if (value === 0)
+                    return ed ? 0 : undefined;
+                assert(typeof value == 'number');
+                if (Number.isNaN(value))
+                    return 'NaN';
+                if (value === Number.POSITIVE_INFINITY)
+                    return 'Infinity';
+                if (value === Number.NEGATIVE_INFINITY)
+                    return '-Infinity';
+                return value;
+            // string:
+            case ScalarType.STRING:
+                if (value === "")
+                    return ed ? '' : undefined;
+                assert(typeof value == 'string');
+                return value;
+            // bool:
+            case ScalarType.BOOL:
+                if (value === false)
+                    return ed ? false : undefined;
+                assert(typeof value == 'boolean');
+                return value;
+            // JSON value will be a decimal string. Either numbers or strings are accepted.
+            case ScalarType.UINT64:
+            case ScalarType.FIXED64:
+                assert(typeof value == 'number' || typeof value == 'string' || typeof value == 'bigint');
+                let ulong = PbULong.from(value);
+                if (ulong.isZero() && !ed)
+                    return undefined;
+                return ulong.toString();
+            // JSON value will be a decimal string. Either numbers or strings are accepted.
+            case ScalarType.INT64:
+            case ScalarType.SFIXED64:
+            case ScalarType.SINT64:
+                assert(typeof value == 'number' || typeof value == 'string' || typeof value == 'bigint');
+                let long = PbLong.from(value);
+                if (long.isZero() && !ed)
+                    return undefined;
+                return long.toString();
+            // bytes: JSON value will be the data encoded as a string using standard base64 encoding with paddings.
+            // Either standard or URL-safe base64 encoding with/without paddings are accepted.
+            case ScalarType.BYTES:
+                assert(value instanceof Uint8Array);
+                if (!value.byteLength)
+                    return ed ? "" : undefined;
+                return base64encode(value);
+        }
+    }
+}
+
+/**
+ * Creates the default value for a scalar type.
+ */
+function reflectionScalarDefault(type, longType = LongType.STRING) {
+    switch (type) {
+        case ScalarType.BOOL:
+            return false;
+        case ScalarType.UINT64:
+        case ScalarType.FIXED64:
+            return reflectionLongConvert(PbULong.ZERO, longType);
+        case ScalarType.INT64:
+        case ScalarType.SFIXED64:
+        case ScalarType.SINT64:
+            return reflectionLongConvert(PbLong.ZERO, longType);
+        case ScalarType.DOUBLE:
+        case ScalarType.FLOAT:
+            return 0.0;
+        case ScalarType.BYTES:
+            return new Uint8Array(0);
+        case ScalarType.STRING:
+            return "";
+        default:
+            // case ScalarType.INT32:
+            // case ScalarType.UINT32:
+            // case ScalarType.SINT32:
+            // case ScalarType.FIXED32:
+            // case ScalarType.SFIXED32:
+            return 0;
+    }
+}
+
+/**
+ * Reads proto3 messages in binary format using reflection information.
+ *
+ * https://developers.google.com/protocol-buffers/docs/encoding
+ */
+class ReflectionBinaryReader {
+    constructor(info) {
+        this.info = info;
+    }
+    prepare() {
+        var _a;
+        if (!this.fieldNoToField) {
+            const fieldsInput = (_a = this.info.fields) !== null && _a !== void 0 ? _a : [];
+            this.fieldNoToField = new Map(fieldsInput.map(field => [field.no, field]));
+        }
+    }
+    /**
+     * Reads a message from binary format into the target message.
+     *
+     * Repeated fields are appended. Map entries are added, overwriting
+     * existing keys.
+     *
+     * If a message field is already present, it will be merged with the
+     * new data.
+     */
+    read(reader, message, options, length) {
+        this.prepare();
+        const end = length === undefined ? reader.len : reader.pos + length;
+        while (reader.pos < end) {
+            // read the tag and find the field
+            const [fieldNo, wireType] = reader.tag(), field = this.fieldNoToField.get(fieldNo);
+            if (!field) {
+                let u = options.readUnknownField;
+                if (u == "throw")
+                    throw new Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.info.typeName}`);
+                let d = reader.skip(wireType);
+                if (u !== false)
+                    (u === true ? UnknownFieldHandler.onRead : u)(this.info.typeName, message, fieldNo, wireType, d);
+                continue;
+            }
+            // target object for the field we are reading
+            let target = message, repeated = field.repeat, localName = field.localName;
+            // if field is member of oneof ADT, use ADT as target
+            if (field.oneof) {
+                target = target[field.oneof];
+                // if other oneof member selected, set new ADT
+                if (target.oneofKind !== localName)
+                    target = message[field.oneof] = {
+                        oneofKind: localName
+                    };
+            }
+            // we have handled oneof above, we just have read the value into `target[localName]`
+            switch (field.kind) {
+                case "scalar":
+                case "enum":
+                    let T = field.kind == "enum" ? ScalarType.INT32 : field.T;
+                    let L = field.kind == "scalar" ? field.L : undefined;
+                    if (repeated) {
+                        let arr = target[localName]; // safe to assume presence of array, oneof cannot contain repeated values
+                        if (wireType == WireType.LengthDelimited && T != ScalarType.STRING && T != ScalarType.BYTES) {
+                            let e = reader.uint32() + reader.pos;
+                            while (reader.pos < e)
+                                arr.push(this.scalar(reader, T, L));
+                        }
+                        else
+                            arr.push(this.scalar(reader, T, L));
+                    }
+                    else
+                        target[localName] = this.scalar(reader, T, L);
+                    break;
+                case "message":
+                    if (repeated) {
+                        let arr = target[localName]; // safe to assume presence of array, oneof cannot contain repeated values
+                        let msg = field.T().internalBinaryRead(reader, reader.uint32(), options);
+                        arr.push(msg);
+                    }
+                    else
+                        target[localName] = field.T().internalBinaryRead(reader, reader.uint32(), options, target[localName]);
+                    break;
+                case "map":
+                    let [mapKey, mapVal] = this.mapEntry(field, reader, options);
+                    // safe to assume presence of map object, oneof cannot contain repeated values
+                    target[localName][mapKey] = mapVal;
+                    break;
+            }
+        }
+    }
+    /**
+     * Read a map field, expecting key field = 1, value field = 2
+     */
+    mapEntry(field, reader, options) {
+        let length = reader.uint32();
+        let end = reader.pos + length;
+        let key = undefined; // javascript only allows number or string for object properties
+        let val = undefined;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case 1:
+                    if (field.K == ScalarType.BOOL)
+                        key = reader.bool().toString();
+                    else
+                        // long types are read as string, number types are okay as number
+                        key = this.scalar(reader, field.K, LongType.STRING);
+                    break;
+                case 2:
+                    switch (field.V.kind) {
+                        case "scalar":
+                            val = this.scalar(reader, field.V.T, field.V.L);
+                            break;
+                        case "enum":
+                            val = reader.int32();
+                            break;
+                        case "message":
+                            val = field.V.T().internalBinaryRead(reader, reader.uint32(), options);
+                            break;
+                    }
+                    break;
+                default:
+                    throw new Error(`Unknown field ${fieldNo} (wire type ${wireType}) in map entry for ${this.info.typeName}#${field.name}`);
+            }
+        }
+        if (key === undefined) {
+            let keyRaw = reflectionScalarDefault(field.K);
+            key = field.K == ScalarType.BOOL ? keyRaw.toString() : keyRaw;
+        }
+        if (val === undefined)
+            switch (field.V.kind) {
+                case "scalar":
+                    val = reflectionScalarDefault(field.V.T, field.V.L);
+                    break;
+                case "enum":
+                    val = 0;
+                    break;
+                case "message":
+                    val = field.V.T().create();
+                    break;
+            }
+        return [key, val];
+    }
+    scalar(reader, type, longType) {
+        switch (type) {
+            case ScalarType.INT32:
+                return reader.int32();
+            case ScalarType.STRING:
+                return reader.string();
+            case ScalarType.BOOL:
+                return reader.bool();
+            case ScalarType.DOUBLE:
+                return reader.double();
+            case ScalarType.FLOAT:
+                return reader.float();
+            case ScalarType.INT64:
+                return reflectionLongConvert(reader.int64(), longType);
+            case ScalarType.UINT64:
+                return reflectionLongConvert(reader.uint64(), longType);
+            case ScalarType.FIXED64:
+                return reflectionLongConvert(reader.fixed64(), longType);
+            case ScalarType.FIXED32:
+                return reader.fixed32();
+            case ScalarType.BYTES:
+                return reader.bytes();
+            case ScalarType.UINT32:
+                return reader.uint32();
+            case ScalarType.SFIXED32:
+                return reader.sfixed32();
+            case ScalarType.SFIXED64:
+                return reflectionLongConvert(reader.sfixed64(), longType);
+            case ScalarType.SINT32:
+                return reader.sint32();
+            case ScalarType.SINT64:
+                return reflectionLongConvert(reader.sint64(), longType);
+        }
+    }
+}
+
+/**
+ * Writes proto3 messages in binary format using reflection information.
+ *
+ * https://developers.google.com/protocol-buffers/docs/encoding
+ */
+class ReflectionBinaryWriter {
+    constructor(info) {
+        this.info = info;
+    }
+    prepare() {
+        if (!this.fields) {
+            const fieldsInput = this.info.fields ? this.info.fields.concat() : [];
+            this.fields = fieldsInput.sort((a, b) => a.no - b.no);
+        }
+    }
+    /**
+     * Writes the message to binary format.
+     */
+    write(message, writer, options) {
+        this.prepare();
+        for (const field of this.fields) {
+            let value, // this will be our field value, whether it is member of a oneof or not
+            emitDefault, // whether we emit the default value (only true for oneof members)
+            repeated = field.repeat, localName = field.localName;
+            // handle oneof ADT
+            if (field.oneof) {
+                const group = message[field.oneof];
+                if (group.oneofKind !== localName)
+                    continue; // if field is not selected, skip
+                value = group[localName];
+                emitDefault = true;
+            }
+            else {
+                value = message[localName];
+                emitDefault = false;
+            }
+            // we have handled oneof above. we just have to honor `emitDefault`.
+            switch (field.kind) {
+                case "scalar":
+                case "enum":
+                    let T = field.kind == "enum" ? ScalarType.INT32 : field.T;
+                    if (repeated) {
+                        assert(Array.isArray(value));
+                        if (repeated == RepeatType.PACKED)
+                            this.packed(writer, T, field.no, value);
+                        else
+                            for (const item of value)
+                                this.scalar(writer, T, field.no, item, true);
+                    }
+                    else if (value === undefined)
+                        assert(field.opt);
+                    else
+                        this.scalar(writer, T, field.no, value, emitDefault || field.opt);
+                    break;
+                case "message":
+                    if (repeated) {
+                        assert(Array.isArray(value));
+                        for (const item of value)
+                            this.message(writer, options, field.T(), field.no, item);
+                    }
+                    else {
+                        this.message(writer, options, field.T(), field.no, value);
+                    }
+                    break;
+                case "map":
+                    assert(typeof value == 'object' && value !== null);
+                    for (const [key, val] of Object.entries(value))
+                        this.mapEntry(writer, options, field, key, val);
+                    break;
+            }
+        }
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u === true ? UnknownFieldHandler.onWrite : u)(this.info.typeName, message, writer);
+    }
+    mapEntry(writer, options, field, key, value) {
+        writer.tag(field.no, WireType.LengthDelimited);
+        writer.fork();
+        // javascript only allows number or string for object properties
+        // we convert from our representation to the protobuf type
+        let keyValue = key;
+        switch (field.K) {
+            case ScalarType.INT32:
+            case ScalarType.FIXED32:
+            case ScalarType.UINT32:
+            case ScalarType.SFIXED32:
+            case ScalarType.SINT32:
+                keyValue = Number.parseInt(key);
+                break;
+            case ScalarType.BOOL:
+                assert(key == 'true' || key == 'false');
+                keyValue = key == 'true';
+                break;
+        }
+        // write key, expecting key field number = 1
+        this.scalar(writer, field.K, 1, keyValue, true);
+        // write value, expecting value field number = 2
+        switch (field.V.kind) {
+            case 'scalar':
+                this.scalar(writer, field.V.T, 2, value, true);
+                break;
+            case 'enum':
+                this.scalar(writer, ScalarType.INT32, 2, value, true);
+                break;
+            case 'message':
+                this.message(writer, options, field.V.T(), 2, value);
+                break;
+        }
+        writer.join();
+    }
+    message(writer, options, handler, fieldNo, value) {
+        if (value === undefined)
+            return;
+        handler.internalBinaryWrite(value, writer.tag(fieldNo, WireType.LengthDelimited).fork(), options);
+        writer.join();
+    }
+    /**
+     * Write a single scalar value.
+     */
+    scalar(writer, type, fieldNo, value, emitDefault) {
+        let [wireType, method, isDefault] = this.scalarInfo(type, value);
+        if (!isDefault || emitDefault) {
+            writer.tag(fieldNo, wireType);
+            writer[method](value);
+        }
+    }
+    /**
+     * Write an array of scalar values in packed format.
+     */
+    packed(writer, type, fieldNo, value) {
+        if (!value.length)
+            return;
+        assert(type !== ScalarType.BYTES && type !== ScalarType.STRING);
+        // write tag
+        writer.tag(fieldNo, WireType.LengthDelimited);
+        // begin length-delimited
+        writer.fork();
+        // write values without tags
+        let [, method,] = this.scalarInfo(type);
+        for (let i = 0; i < value.length; i++)
+            writer[method](value[i]);
+        // end length delimited
+        writer.join();
+    }
+    /**
+     * Get information for writing a scalar value.
+     *
+     * Returns tuple:
+     * [0]: appropriate WireType
+     * [1]: name of the appropriate method of IBinaryWriter
+     * [2]: whether the given value is a default value
+     *
+     * If argument `value` is omitted, [2] is always false.
+     */
+    scalarInfo(type, value) {
+        let t = WireType.Varint;
+        let m;
+        let i = value === undefined;
+        let d = value === 0;
+        switch (type) {
+            case ScalarType.INT32:
+                m = "int32";
+                break;
+            case ScalarType.STRING:
+                d = i || !value.length;
+                t = WireType.LengthDelimited;
+                m = "string";
+                break;
+            case ScalarType.BOOL:
+                d = value === false;
+                m = "bool";
+                break;
+            case ScalarType.UINT32:
+                m = "uint32";
+                break;
+            case ScalarType.DOUBLE:
+                t = WireType.Bit64;
+                m = "double";
+                break;
+            case ScalarType.FLOAT:
+                t = WireType.Bit32;
+                m = "float";
+                break;
+            case ScalarType.INT64:
+                d = i || PbLong.from(value).isZero();
+                m = "int64";
+                break;
+            case ScalarType.UINT64:
+                d = i || PbULong.from(value).isZero();
+                m = "uint64";
+                break;
+            case ScalarType.FIXED64:
+                d = i || PbULong.from(value).isZero();
+                t = WireType.Bit64;
+                m = "fixed64";
+                break;
+            case ScalarType.BYTES:
+                d = i || !value.byteLength;
+                t = WireType.LengthDelimited;
+                m = "bytes";
+                break;
+            case ScalarType.FIXED32:
+                t = WireType.Bit32;
+                m = "fixed32";
+                break;
+            case ScalarType.SFIXED32:
+                t = WireType.Bit32;
+                m = "sfixed32";
+                break;
+            case ScalarType.SFIXED64:
+                d = i || PbLong.from(value).isZero();
+                t = WireType.Bit64;
+                m = "sfixed64";
+                break;
+            case ScalarType.SINT32:
+                m = "sint32";
+                break;
+            case ScalarType.SINT64:
+                d = i || PbLong.from(value).isZero();
+                m = "sint64";
+                break;
+        }
+        return [t, m, i || d];
+    }
+}
+
+/**
+ * Creates an instance of the generic message, using the field
+ * information.
+ */
+function reflectionCreate(type) {
+    /**
+     * This ternary can be removed in the next major version.
+     * The `Object.create()` code path utilizes a new `messagePrototype`
+     * property on the `IMessageType` which has this same `MESSAGE_TYPE`
+     * non-enumerable property on it. Doing it this way means that we only
+     * pay the cost of `Object.defineProperty()` once per `IMessageType`
+     * class of once per "instance". The falsy code path is only provided
+     * for backwards compatibility in cases where the runtime library is
+     * updated without also updating the generated code.
+     */
+    const msg = type.messagePrototype
+        ? Object.create(type.messagePrototype)
+        : Object.defineProperty({}, MESSAGE_TYPE, { value: type });
+    for (let field of type.fields) {
+        let name = field.localName;
+        if (field.opt)
+            continue;
+        if (field.oneof)
+            msg[field.oneof] = { oneofKind: undefined };
+        else if (field.repeat)
+            msg[name] = [];
+        else
+            switch (field.kind) {
+                case "scalar":
+                    msg[name] = reflectionScalarDefault(field.T, field.L);
+                    break;
+                case "enum":
+                    // we require 0 to be default value for all enums
+                    msg[name] = 0;
+                    break;
+                case "map":
+                    msg[name] = {};
+                    break;
+            }
+    }
+    return msg;
+}
+
+/**
+ * Copy partial data into the target message.
+ *
+ * If a singular scalar or enum field is present in the source, it
+ * replaces the field in the target.
+ *
+ * If a singular message field is present in the source, it is merged
+ * with the target field by calling mergePartial() of the responsible
+ * message type.
+ *
+ * If a repeated field is present in the source, its values replace
+ * all values in the target array, removing extraneous values.
+ * Repeated message fields are copied, not merged.
+ *
+ * If a map field is present in the source, entries are added to the
+ * target map, replacing entries with the same key. Entries that only
+ * exist in the target remain. Entries with message values are copied,
+ * not merged.
+ *
+ * Note that this function differs from protobuf merge semantics,
+ * which appends repeated fields.
+ */
+function reflectionMergePartial(info, target, source) {
+    let fieldValue, // the field value we are working with
+    input = source, output; // where we want our field value to go
+    for (let field of info.fields) {
+        let name = field.localName;
+        if (field.oneof) {
+            const group = input[field.oneof]; // this is the oneof`s group in the source
+            if ((group === null || group === void 0 ? void 0 : group.oneofKind) == undefined) { // the user is free to omit
+                continue; // we skip this field, and all other members too
+            }
+            fieldValue = group[name]; // our value comes from the the oneof group of the source
+            output = target[field.oneof]; // and our output is the oneof group of the target
+            output.oneofKind = group.oneofKind; // always update discriminator
+            if (fieldValue == undefined) {
+                delete output[name]; // remove any existing value
+                continue; // skip further work on field
+            }
+        }
+        else {
+            fieldValue = input[name]; // we are using the source directly
+            output = target; // we want our field value to go directly into the target
+            if (fieldValue == undefined) {
+                continue; // skip further work on field, existing value is used as is
+            }
+        }
+        if (field.repeat)
+            output[name].length = fieldValue.length; // resize target array to match source array
+        // now we just work with `fieldValue` and `output` to merge the value
+        switch (field.kind) {
+            case "scalar":
+            case "enum":
+                if (field.repeat)
+                    for (let i = 0; i < fieldValue.length; i++)
+                        output[name][i] = fieldValue[i]; // not a reference type
+                else
+                    output[name] = fieldValue; // not a reference type
+                break;
+            case "message":
+                let T = field.T();
+                if (field.repeat)
+                    for (let i = 0; i < fieldValue.length; i++)
+                        output[name][i] = T.create(fieldValue[i]);
+                else if (output[name] === undefined)
+                    output[name] = T.create(fieldValue); // nothing to merge with
+                else
+                    T.mergePartial(output[name], fieldValue);
+                break;
+            case "map":
+                // Map and repeated fields are simply overwritten, not appended or merged
+                switch (field.V.kind) {
+                    case "scalar":
+                    case "enum":
+                        Object.assign(output[name], fieldValue); // elements are not reference types
+                        break;
+                    case "message":
+                        let T = field.V.T();
+                        for (let k of Object.keys(fieldValue))
+                            output[name][k] = T.create(fieldValue[k]);
+                        break;
+                }
+                break;
+        }
+    }
+}
+
+/**
+ * Determines whether two message of the same type have the same field values.
+ * Checks for deep equality, traversing repeated fields, oneof groups, maps
+ * and messages recursively.
+ * Will also return true if both messages are `undefined`.
+ */
+function reflectionEquals(info, a, b) {
+    if (a === b)
+        return true;
+    if (!a || !b)
+        return false;
+    for (let field of info.fields) {
+        let localName = field.localName;
+        let val_a = field.oneof ? a[field.oneof][localName] : a[localName];
+        let val_b = field.oneof ? b[field.oneof][localName] : b[localName];
+        switch (field.kind) {
+            case "enum":
+            case "scalar":
+                let t = field.kind == "enum" ? ScalarType.INT32 : field.T;
+                if (!(field.repeat
+                    ? repeatedPrimitiveEq(t, val_a, val_b)
+                    : primitiveEq(t, val_a, val_b)))
+                    return false;
+                break;
+            case "map":
+                if (!(field.V.kind == "message"
+                    ? repeatedMsgEq(field.V.T(), objectValues(val_a), objectValues(val_b))
+                    : repeatedPrimitiveEq(field.V.kind == "enum" ? ScalarType.INT32 : field.V.T, objectValues(val_a), objectValues(val_b))))
+                    return false;
+                break;
+            case "message":
+                let T = field.T();
+                if (!(field.repeat
+                    ? repeatedMsgEq(T, val_a, val_b)
+                    : T.equals(val_a, val_b)))
+                    return false;
+                break;
+        }
+    }
+    return true;
+}
+const objectValues = Object.values;
+function primitiveEq(type, a, b) {
+    if (a === b)
+        return true;
+    if (type !== ScalarType.BYTES)
+        return false;
+    let ba = a;
+    let bb = b;
+    if (ba.length !== bb.length)
+        return false;
+    for (let i = 0; i < ba.length; i++)
+        if (ba[i] != bb[i])
+            return false;
+    return true;
+}
+function repeatedPrimitiveEq(type, a, b) {
+    if (a.length !== b.length)
+        return false;
+    for (let i = 0; i < a.length; i++)
+        if (!primitiveEq(type, a[i], b[i]))
+            return false;
+    return true;
+}
+function repeatedMsgEq(type, a, b) {
+    if (a.length !== b.length)
+        return false;
+    for (let i = 0; i < a.length; i++)
+        if (!type.equals(a[i], b[i]))
+            return false;
+    return true;
+}
+
+const baseDescriptors = Object.getOwnPropertyDescriptors(Object.getPrototypeOf({}));
+/**
+ * This standard message type provides reflection-based
+ * operations to work with a message.
+ */
+class MessageType {
+    constructor(name, fields, options) {
+        this.defaultCheckDepth = 16;
+        this.typeName = name;
+        this.fields = fields.map(normalizeFieldInfo);
+        this.options = options !== null && options !== void 0 ? options : {};
+        this.messagePrototype = Object.create(null, Object.assign(Object.assign({}, baseDescriptors), { [MESSAGE_TYPE]: { value: this } }));
+        this.refTypeCheck = new ReflectionTypeCheck(this);
+        this.refJsonReader = new ReflectionJsonReader(this);
+        this.refJsonWriter = new ReflectionJsonWriter(this);
+        this.refBinReader = new ReflectionBinaryReader(this);
+        this.refBinWriter = new ReflectionBinaryWriter(this);
+    }
+    create(value) {
+        let message = reflectionCreate(this);
+        if (value !== undefined) {
+            reflectionMergePartial(this, message, value);
+        }
+        return message;
+    }
+    /**
+     * Clone the message.
+     *
+     * Unknown fields are discarded.
+     */
+    clone(message) {
+        let copy = this.create();
+        reflectionMergePartial(this, copy, message);
+        return copy;
+    }
+    /**
+     * Determines whether two message of the same type have the same field values.
+     * Checks for deep equality, traversing repeated fields, oneof groups, maps
+     * and messages recursively.
+     * Will also return true if both messages are `undefined`.
+     */
+    equals(a, b) {
+        return reflectionEquals(this, a, b);
+    }
+    /**
+     * Is the given value assignable to our message type
+     * and contains no [excess properties](https://www.typescriptlang.org/docs/handbook/interfaces.html#excess-property-checks)?
+     */
+    is(arg, depth = this.defaultCheckDepth) {
+        return this.refTypeCheck.is(arg, depth, false);
+    }
+    /**
+     * Is the given value assignable to our message type,
+     * regardless of [excess properties](https://www.typescriptlang.org/docs/handbook/interfaces.html#excess-property-checks)?
+     */
+    isAssignable(arg, depth = this.defaultCheckDepth) {
+        return this.refTypeCheck.is(arg, depth, true);
+    }
+    /**
+     * Copy partial data into the target message.
+     */
+    mergePartial(target, source) {
+        reflectionMergePartial(this, target, source);
+    }
+    /**
+     * Create a new message from binary format.
+     */
+    fromBinary(data, options) {
+        let opt = binaryReadOptions(options);
+        return this.internalBinaryRead(opt.readerFactory(data), data.byteLength, opt);
+    }
+    /**
+     * Read a new message from a JSON value.
+     */
+    fromJson(json, options) {
+        return this.internalJsonRead(json, jsonReadOptions(options));
+    }
+    /**
+     * Read a new message from a JSON string.
+     * This is equivalent to `T.fromJson(JSON.parse(json))`.
+     */
+    fromJsonString(json, options) {
+        let value = JSON.parse(json);
+        return this.fromJson(value, options);
+    }
+    /**
+     * Write the message to canonical JSON value.
+     */
+    toJson(message, options) {
+        return this.internalJsonWrite(message, jsonWriteOptions(options));
+    }
+    /**
+     * Convert the message to canonical JSON string.
+     * This is equivalent to `JSON.stringify(T.toJson(t))`
+     */
+    toJsonString(message, options) {
+        var _a;
+        let value = this.toJson(message, options);
+        return JSON.stringify(value, null, (_a = options === null || options === void 0 ? void 0 : options.prettySpaces) !== null && _a !== void 0 ? _a : 0);
+    }
+    /**
+     * Write the message to binary format.
+     */
+    toBinary(message, options) {
+        let opt = binaryWriteOptions(options);
+        return this.internalBinaryWrite(message, opt.writerFactory(), opt).finish();
+    }
+    /**
+     * This is an internal method. If you just want to read a message from
+     * JSON, use `fromJson()` or `fromJsonString()`.
+     *
+     * Reads JSON value and merges the fields into the target
+     * according to protobuf rules. If the target is omitted,
+     * a new instance is created first.
+     */
+    internalJsonRead(json, options, target) {
+        if (json !== null && typeof json == "object" && !Array.isArray(json)) {
+            let message = target !== null && target !== void 0 ? target : this.create();
+            this.refJsonReader.read(json, message, options);
+            return message;
+        }
+        throw new Error(`Unable to parse message ${this.typeName} from JSON ${typeofJsonValue(json)}.`);
+    }
+    /**
+     * This is an internal method. If you just want to write a message
+     * to JSON, use `toJson()` or `toJsonString().
+     *
+     * Writes JSON value and returns it.
+     */
+    internalJsonWrite(message, options) {
+        return this.refJsonWriter.write(message, options);
+    }
+    /**
+     * This is an internal method. If you just want to write a message
+     * in binary format, use `toBinary()`.
+     *
+     * Serializes the message in binary format and appends it to the given
+     * writer. Returns passed writer.
+     */
+    internalBinaryWrite(message, writer, options) {
+        this.refBinWriter.write(message, writer, options);
+        return writer;
+    }
+    /**
+     * This is an internal method. If you just want to read a message from
+     * binary data, use `fromBinary()`.
+     *
+     * Reads data from binary format and merges the fields into
+     * the target according to protobuf rules. If the target is
+     * omitted, a new instance is created first.
+     */
+    internalBinaryRead(reader, length, options, target) {
+        let message = target !== null && target !== void 0 ? target : this.create();
+        this.refBinReader.read(reader, message, options, length);
+        return message;
+    }
+}
+
+// @generated by protobuf-ts 2.9.4 with parameter generate_dependencies,long_type_number,keep_enum_prefix,output_javascript
+// @generated from protobuf file "GEOPDComponentInfo.proto" (syntax proto3)
+// tslint:disable
+/**
+ * @generated from protobuf enum ComponentType
+ */
+var ComponentType;
+(function (ComponentType) {
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKNOWN = 0;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKNOWN"] = 0] = "COMPONENT_TYPE_UNKNOWN";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_ENTITY = 1;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_ENTITY"] = 1] = "COMPONENT_TYPE_ENTITY";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_PLACE_INFO = 2;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_PLACE_INFO"] = 2] = "COMPONENT_TYPE_PLACE_INFO";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_ROAD_ACCESS_INFO = 3;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_ROAD_ACCESS_INFO"] = 3] = "COMPONENT_TYPE_ROAD_ACCESS_INFO";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_BOUNDS = 4;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_BOUNDS"] = 4] = "COMPONENT_TYPE_BOUNDS";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_ADDRESS = 5;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_ADDRESS"] = 5] = "COMPONENT_TYPE_ADDRESS";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_RATING = 6;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_RATING"] = 6] = "COMPONENT_TYPE_RATING";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_REVIEW = 7;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_REVIEW"] = 7] = "COMPONENT_TYPE_REVIEW";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_PHOTO = 8;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_PHOTO"] = 8] = "COMPONENT_TYPE_PHOTO";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_HOURS = 9;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_HOURS"] = 9] = "COMPONENT_TYPE_HOURS";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_TRANSIT_INFO = 10;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_TRANSIT_INFO"] = 10] = "COMPONENT_TYPE_TRANSIT_INFO";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_TRANSIT_SCHEDULE = 11;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_TRANSIT_SCHEDULE"] = 11] = "COMPONENT_TYPE_TRANSIT_SCHEDULE";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_ETA = 12;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_ETA"] = 12] = "COMPONENT_TYPE_ETA";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_FLYOVER = 13;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_FLYOVER"] = 13] = "COMPONENT_TYPE_FLYOVER";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_RAW_ATTRIBUTE = 14;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_RAW_ATTRIBUTE"] = 14] = "COMPONENT_TYPE_RAW_ATTRIBUTE";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_AMENITIES = 15;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_AMENITIES"] = 15] = "COMPONENT_TYPE_AMENITIES";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_STYLE_ATTRIBUTES = 16;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_STYLE_ATTRIBUTES"] = 16] = "COMPONENT_TYPE_STYLE_ATTRIBUTES";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN17 = 17;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN17"] = 17] = "COMPONENT_TYPE_UNKONWN17";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN18 = 18;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN18"] = 18] = "COMPONENT_TYPE_UNKONWN18";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN19 = 19;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN19"] = 19] = "COMPONENT_TYPE_UNKONWN19";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_TRANSIT_INCIDENT = 20;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_TRANSIT_INCIDENT"] = 20] = "COMPONENT_TYPE_TRANSIT_INCIDENT";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN21 = 21;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN21"] = 21] = "COMPONENT_TYPE_UNKONWN21";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_TEXT_BLOCK = 22;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_TEXT_BLOCK"] = 22] = "COMPONENT_TYPE_TEXT_BLOCK";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_FACTOID = 23;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_FACTOID"] = 23] = "COMPONENT_TYPE_FACTOID";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_TRANSIT_ATTRIBUTION = 24;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_TRANSIT_ATTRIBUTION"] = 24] = "COMPONENT_TYPE_TRANSIT_ATTRIBUTION";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_BUSINESS_CLAIM = 25;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_BUSINESS_CLAIM"] = 25] = "COMPONENT_TYPE_BUSINESS_CLAIM";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_CAPTIONED_PHOTO = 26;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_CAPTIONED_PHOTO"] = 26] = "COMPONENT_TYPE_CAPTIONED_PHOTO";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_TRANSIT_INFO_SNIPPET = 27;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_TRANSIT_INFO_SNIPPET"] = 27] = "COMPONENT_TYPE_TRANSIT_INFO_SNIPPET";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN28 = 28;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN28"] = 28] = "COMPONENT_TYPE_UNKONWN28";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_EXTERNAL_ACTION = 29;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_EXTERNAL_ACTION"] = 29] = "COMPONENT_TYPE_EXTERNAL_ACTION";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_RESULT_SNIPPET = 30;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_RESULT_SNIPPET"] = 30] = "COMPONENT_TYPE_RESULT_SNIPPET";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_ADDRESS_OBJECT = 31;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_ADDRESS_OBJECT"] = 31] = "COMPONENT_TYPE_ADDRESS_OBJECT";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_SIMPLE_RESTAURANT_MENU_TEXT = 32;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_SIMPLE_RESTAURANT_MENU_TEXT"] = 32] = "COMPONENT_TYPE_SIMPLE_RESTAURANT_MENU_TEXT";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_RESTAURANT_RESERVATION_LINK = 33;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_RESTAURANT_RESERVATION_LINK"] = 33] = "COMPONENT_TYPE_RESTAURANT_RESERVATION_LINK";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_SPATIAL_LOOKUP_RESULT = 34;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_SPATIAL_LOOKUP_RESULT"] = 34] = "COMPONENT_TYPE_SPATIAL_LOOKUP_RESULT";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN35 = 35;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN35"] = 35] = "COMPONENT_TYPE_UNKONWN35";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_TIP = 36;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_TIP"] = 36] = "COMPONENT_TYPE_TIP";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_PLACECARD_URL = 37;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_PLACECARD_URL"] = 37] = "COMPONENT_TYPE_PLACECARD_URL";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_ASSOCIATED_APP = 38;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_ASSOCIATED_APP"] = 38] = "COMPONENT_TYPE_ASSOCIATED_APP";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_MESSAGE_LINK = 39;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_MESSAGE_LINK"] = 39] = "COMPONENT_TYPE_MESSAGE_LINK";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_QUICK_LINK = 40;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_QUICK_LINK"] = 40] = "COMPONENT_TYPE_QUICK_LINK";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_RAP = 41;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_RAP"] = 41] = "COMPONENT_TYPE_RAP";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_OFFLINE_AREA = 42;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_OFFLINE_AREA"] = 42] = "COMPONENT_TYPE_OFFLINE_AREA";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_LOCATION_EVENT = 43;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_LOCATION_EVENT"] = 43] = "COMPONENT_TYPE_LOCATION_EVENT";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_SUPPORTS_OFFLINE_MAPS = 44;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_SUPPORTS_OFFLINE_MAPS"] = 44] = "COMPONENT_TYPE_SUPPORTS_OFFLINE_MAPS";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_OFFLINE_IDENTIFIER = 45;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_OFFLINE_IDENTIFIER"] = 45] = "COMPONENT_TYPE_OFFLINE_IDENTIFIER";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_OFFLINE_QUAD_NODES = 46;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_OFFLINE_QUAD_NODES"] = 46] = "COMPONENT_TYPE_OFFLINE_QUAD_NODES";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_OFFLINE_SIZE = 47;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_OFFLINE_SIZE"] = 47] = "COMPONENT_TYPE_OFFLINE_SIZE";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_VENUE_INFO = 48;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_VENUE_INFO"] = 48] = "COMPONENT_TYPE_VENUE_INFO";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_OFFLINE_UPDATE_MANIFEST = 49;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_OFFLINE_UPDATE_MANIFEST"] = 49] = "COMPONENT_TYPE_OFFLINE_UPDATE_MANIFEST";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_CONTAINED_PLACE = 50;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_CONTAINED_PLACE"] = 50] = "COMPONENT_TYPE_CONTAINED_PLACE";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_WIFI_FINGERPRINT = 51;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_WIFI_FINGERPRINT"] = 51] = "COMPONENT_TYPE_WIFI_FINGERPRINT";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_ICON = 52;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_ICON"] = 52] = "COMPONENT_TYPE_ICON";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_PRICE_DESCRIPTION = 53;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_PRICE_DESCRIPTION"] = 53] = "COMPONENT_TYPE_PRICE_DESCRIPTION";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_BROWSE_CATEGORIES = 54;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_BROWSE_CATEGORIES"] = 54] = "COMPONENT_TYPE_BROWSE_CATEGORIES";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_STOREFRONT = 55;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_STOREFRONT"] = 55] = "COMPONENT_TYPE_STOREFRONT";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_GROUND_VIEW_LABEL = 56;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_GROUND_VIEW_LABEL"] = 56] = "COMPONENT_TYPE_GROUND_VIEW_LABEL";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_ANNOTATED_ITEM_LIST = 57;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_ANNOTATED_ITEM_LIST"] = 57] = "COMPONENT_TYPE_ANNOTATED_ITEM_LIST";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_POI_EVENT = 58;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_POI_EVENT"] = 58] = "COMPONENT_TYPE_POI_EVENT";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_STOREFRONT_PRESENTATION = 59;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_STOREFRONT_PRESENTATION"] = 59] = "COMPONENT_TYPE_STOREFRONT_PRESENTATION";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_PLACECARD_LAYOUT = 60;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_PLACECARD_LAYOUT"] = 60] = "COMPONENT_TYPE_PLACECARD_LAYOUT";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_PROTOTYPE_CONTAINER = 61;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_PROTOTYPE_CONTAINER"] = 61] = "COMPONENT_TYPE_PROTOTYPE_CONTAINER";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_TRANSIT_VEHICLE_POSITION = 62;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_TRANSIT_VEHICLE_POSITION"] = 62] = "COMPONENT_TYPE_TRANSIT_VEHICLE_POSITION";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_LINKED_SERVICE = 63;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_LINKED_SERVICE"] = 63] = "COMPONENT_TYPE_LINKED_SERVICE";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_BUSINESS_HOURS = 64;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_BUSINESS_HOURS"] = 64] = "COMPONENT_TYPE_BUSINESS_HOURS";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_COLLECTION = 65;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_COLLECTION"] = 65] = "COMPONENT_TYPE_COLLECTION";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_RELATED_PLACE = 66;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_RELATED_PLACE"] = 66] = "COMPONENT_TYPE_RELATED_PLACE";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_TRANSIT_TRIP_STOP = 67;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_TRANSIT_TRIP_STOP"] = 67] = "COMPONENT_TYPE_TRANSIT_TRIP_STOP";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_TRANSIT_TRIP_STOP_TIME = 68;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_TRANSIT_TRIP_STOP_TIME"] = 68] = "COMPONENT_TYPE_TRANSIT_TRIP_STOP_TIME";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_TRANSIT_TRIP_GEOMETRY = 69;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_TRANSIT_TRIP_GEOMETRY"] = 69] = "COMPONENT_TYPE_TRANSIT_TRIP_GEOMETRY";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_PLACE_BROWSE_CATEGORIES = 70;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_PLACE_BROWSE_CATEGORIES"] = 70] = "COMPONENT_TYPE_PLACE_BROWSE_CATEGORIES";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_PUBLISHER = 71;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_PUBLISHER"] = 71] = "COMPONENT_TYPE_PUBLISHER";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_MINI_PLACE_BROWSE_CATEGORIES = 72;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_MINI_PLACE_BROWSE_CATEGORIES"] = 72] = "COMPONENT_TYPE_MINI_PLACE_BROWSE_CATEGORIES";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_PLACE_QUESTIONNAIRE = 73;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_PLACE_QUESTIONNAIRE"] = 73] = "COMPONENT_TYPE_PLACE_QUESTIONNAIRE";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_PLACE_COLLECTION_ITEM = 74;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_PLACE_COLLECTION_ITEM"] = 74] = "COMPONENT_TYPE_PLACE_COLLECTION_ITEM";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKNOWN75 = 75;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKNOWN75"] = 75] = "COMPONENT_TYPE_UNKNOWN75";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_COLLECTION_IDS = 76;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_COLLECTION_IDS"] = 76] = "COMPONENT_TYPE_COLLECTION_IDS";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_ISO_3166_CODE = 77;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_ISO_3166_CODE"] = 77] = "COMPONENT_TYPE_ISO_3166_CODE";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_VENDOR_AMENITIES = 78;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_VENDOR_AMENITIES"] = 78] = "COMPONENT_TYPE_VENDOR_AMENITIES";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_TRANSIT_NEARBY_SCHEDULE = 79;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_TRANSIT_NEARBY_SCHEDULE"] = 79] = "COMPONENT_TYPE_TRANSIT_NEARBY_SCHEDULE";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKNOWN80 = 80;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKNOWN80"] = 80] = "COMPONENT_TYPE_UNKNOWN80";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_STOREFRONT_FACES = 81;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_STOREFRONT_FACES"] = 81] = "COMPONENT_TYPE_STOREFRONT_FACES";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_GUIDE_GROUP = 82;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_GUIDE_GROUP"] = 82] = "COMPONENT_TYPE_GUIDE_GROUP";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_CONTAINMENT_PLACE = 83;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_CONTAINMENT_PLACE"] = 83] = "COMPONENT_TYPE_CONTAINMENT_PLACE";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_CATEGORIZED_PHOTOS = 84;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_CATEGORIZED_PHOTOS"] = 84] = "COMPONENT_TYPE_CATEGORIZED_PHOTOS";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_EXPLORE_GUIDES = 85;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_EXPLORE_GUIDES"] = 85] = "COMPONENT_TYPE_EXPLORE_GUIDES";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_ABOUT = 86;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_ABOUT"] = 86] = "COMPONENT_TYPE_ABOUT";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_LABEL_GEOMETRY = 87;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_LABEL_GEOMETRY"] = 87] = "COMPONENT_TYPE_LABEL_GEOMETRY";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_ENHANCED_PLACEMENT = 88;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_ENHANCED_PLACEMENT"] = 88] = "COMPONENT_TYPE_ENHANCED_PLACEMENT";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_TEMPLATE_PLACE = 89;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_TEMPLATE_PLACE"] = 89] = "COMPONENT_TYPE_TEMPLATE_PLACE";
+    /**
+     * ?
+     *
+     * @generated from protobuf enum value: COMPONENT_TYPE_SEARCH_ENRICHMENT = 90;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_SEARCH_ENRICHMENT"] = 90] = "COMPONENT_TYPE_SEARCH_ENRICHMENT";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_TRANSIT_PAYMENT_METHOD_INFO = 91;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_TRANSIT_PAYMENT_METHOD_INFO"] = 91] = "COMPONENT_TYPE_TRANSIT_PAYMENT_METHOD_INFO";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_BUSINESS_ASSETS = 92;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_BUSINESS_ASSETS"] = 92] = "COMPONENT_TYPE_BUSINESS_ASSETS";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_ENRICHMENT_INFO = 93;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_ENRICHMENT_INFO"] = 93] = "COMPONENT_TYPE_ENRICHMENT_INFO";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_ACTION_DATA = 94;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_ACTION_DATA"] = 94] = "COMPONENT_TYPE_ACTION_DATA";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_ENRICHMENT_DATA = 95;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_ENRICHMENT_DATA"] = 95] = "COMPONENT_TYPE_ENRICHMENT_DATA";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_POI_CLAIM = 96;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_POI_CLAIM"] = 96] = "COMPONENT_TYPE_POI_CLAIM";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN97 = 97;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN97"] = 97] = "COMPONENT_TYPE_UNKONWN97";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN98 = 98;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN98"] = 98] = "COMPONENT_TYPE_UNKONWN98";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN99 = 99;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN99"] = 99] = "COMPONENT_TYPE_UNKONWN99";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN100 = 100;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN100"] = 100] = "COMPONENT_TYPE_UNKONWN100";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN101 = 101;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN101"] = 101] = "COMPONENT_TYPE_UNKONWN101";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN102 = 102;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN102"] = 102] = "COMPONENT_TYPE_UNKONWN102";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN103 = 103;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN103"] = 103] = "COMPONENT_TYPE_UNKONWN103";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN104 = 104;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN104"] = 104] = "COMPONENT_TYPE_UNKONWN104";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN105 = 105;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN105"] = 105] = "COMPONENT_TYPE_UNKONWN105";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN106 = 106;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN106"] = 106] = "COMPONENT_TYPE_UNKONWN106";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN107 = 107;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN107"] = 107] = "COMPONENT_TYPE_UNKONWN107";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN108 = 108;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN108"] = 108] = "COMPONENT_TYPE_UNKONWN108";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN109 = 109;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN109"] = 109] = "COMPONENT_TYPE_UNKONWN109";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN110 = 110;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN110"] = 110] = "COMPONENT_TYPE_UNKONWN110";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN111 = 111;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN111"] = 111] = "COMPONENT_TYPE_UNKONWN111";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN112 = 112;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN112"] = 112] = "COMPONENT_TYPE_UNKONWN112";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN113 = 113;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN113"] = 113] = "COMPONENT_TYPE_UNKONWN113";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN114 = 114;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN114"] = 114] = "COMPONENT_TYPE_UNKONWN114";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN115 = 115;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN115"] = 115] = "COMPONENT_TYPE_UNKONWN115";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN116 = 116;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN116"] = 116] = "COMPONENT_TYPE_UNKONWN116";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN117 = 117;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN117"] = 117] = "COMPONENT_TYPE_UNKONWN117";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN118 = 118;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN118"] = 118] = "COMPONENT_TYPE_UNKONWN118";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN119 = 119;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN119"] = 119] = "COMPONENT_TYPE_UNKONWN119";
+    /**
+     * @generated from protobuf enum value: COMPONENT_TYPE_UNKONWN120 = 120;
+     */
+    ComponentType[ComponentType["COMPONENT_TYPE_UNKONWN120"] = 120] = "COMPONENT_TYPE_UNKONWN120";
+})(ComponentType || (ComponentType = {}));
+// @generated message type with reflection information, may provide speed optimized methods
+class GEOPDComponentInfo$Type extends MessageType {
+    constructor() {
+        super("GEOPDComponentInfo", [
+            { no: 1, name: "type", kind: "enum", T: () => ["ComponentType", ComponentType] },
+            { no: 2, name: "startIndex", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
+            { no: 3, name: "count", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
+            { no: 6, name: "includeSource", kind: "scalar", opt: true, T: 8 /*ScalarType.BOOL*/ },
+            { no: 7, name: "urgency", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.type = 0;
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* ComponentType type */ 1:
+                    message.type = reader.int32();
+                    break;
+                case /* optional uint32 startIndex */ 2:
+                    message.startIndex = reader.uint32();
+                    break;
+                case /* optional uint32 count */ 3:
+                    message.count = reader.uint32();
+                    break;
+                case /* optional bool includeSource */ 6:
+                    message.includeSource = reader.bool();
+                    break;
+                case /* optional int32 urgency */ 7:
+                    message.urgency = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* ComponentType type = 1; */
+        if (message.type !== 0)
+            writer.tag(1, WireType.Varint).int32(message.type);
+        /* optional uint32 startIndex = 2; */
+        if (message.startIndex !== undefined)
+            writer.tag(2, WireType.Varint).uint32(message.startIndex);
+        /* optional uint32 count = 3; */
+        if (message.count !== undefined)
+            writer.tag(3, WireType.Varint).uint32(message.count);
+        /* optional bool includeSource = 6; */
+        if (message.includeSource !== undefined)
+            writer.tag(6, WireType.Varint).bool(message.includeSource);
+        /* optional int32 urgency = 7; */
+        if (message.urgency !== undefined)
+            writer.tag(7, WireType.Varint).int32(message.urgency);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message GEOPDComponentInfo
+ */
+const GEOPDComponentInfo = new GEOPDComponentInfo$Type();
+
+// @generated by protobuf-ts 2.9.4 with parameter generate_dependencies,long_type_number,keep_enum_prefix,output_javascript
+// @generated from protobuf file "GEOPDClientMetadata.proto" (syntax proto3)
+// tslint:disable
+// @generated message type with reflection information, may provide speed optimized methods
+class GEOPDClientMetadata$Type extends MessageType {
+    constructor() {
+        super("GEOPDClientMetadata", [
+            { no: 1, name: "deviceCountryCode", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "deviceDisplayLanguage", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 4, name: "deviceKeyboardLanguage", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 5, name: "deviceSpokenLanguage", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 8, name: "timeSinceMapEnteredForeground", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
+            { no: 10, name: "resultListAttributionSupport", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 11, name: "hourOfDay", kind: "scalar", opt: true, T: 13 /*ScalarType.UINT32*/ },
+            { no: 12, name: "dayOfWeek", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+            { no: 16, name: "requiredVersion", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 17, name: "debugApiKey", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 22, name: "clientRevision", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 24, name: "deviceSku", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.deviceCountryCode = "";
+        message.deviceDisplayLanguage = "";
+        message.resultListAttributionSupport = 0;
+        message.dayOfWeek = 0;
+        message.requiredVersion = 0;
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string deviceCountryCode */ 1:
+                    message.deviceCountryCode = reader.string();
+                    break;
+                case /* string deviceDisplayLanguage */ 3:
+                    message.deviceDisplayLanguage = reader.string();
+                    break;
+                case /* optional string deviceKeyboardLanguage */ 4:
+                    message.deviceKeyboardLanguage = reader.string();
+                    break;
+                case /* optional string deviceSpokenLanguage */ 5:
+                    message.deviceSpokenLanguage = reader.string();
+                    break;
+                case /* optional uint32 timeSinceMapEnteredForeground */ 8:
+                    message.timeSinceMapEnteredForeground = reader.uint32();
+                    break;
+                case /* int32 resultListAttributionSupport */ 10:
+                    message.resultListAttributionSupport = reader.int32();
+                    break;
+                case /* optional uint32 hourOfDay */ 11:
+                    message.hourOfDay = reader.uint32();
+                    break;
+                case /* uint32 dayOfWeek */ 12:
+                    message.dayOfWeek = reader.uint32();
+                    break;
+                case /* int32 requiredVersion */ 16:
+                    message.requiredVersion = reader.int32();
+                    break;
+                case /* optional string debugApiKey */ 17:
+                    message.debugApiKey = reader.string();
+                    break;
+                case /* optional int32 clientRevision */ 22:
+                    message.clientRevision = reader.int32();
+                    break;
+                case /* optional string deviceSku */ 24:
+                    message.deviceSku = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* string deviceCountryCode = 1; */
+        if (message.deviceCountryCode !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.deviceCountryCode);
+        /* string deviceDisplayLanguage = 3; */
+        if (message.deviceDisplayLanguage !== "")
+            writer.tag(3, WireType.LengthDelimited).string(message.deviceDisplayLanguage);
+        /* optional string deviceKeyboardLanguage = 4; */
+        if (message.deviceKeyboardLanguage !== undefined)
+            writer.tag(4, WireType.LengthDelimited).string(message.deviceKeyboardLanguage);
+        /* optional string deviceSpokenLanguage = 5; */
+        if (message.deviceSpokenLanguage !== undefined)
+            writer.tag(5, WireType.LengthDelimited).string(message.deviceSpokenLanguage);
+        /* optional uint32 timeSinceMapEnteredForeground = 8; */
+        if (message.timeSinceMapEnteredForeground !== undefined)
+            writer.tag(8, WireType.Varint).uint32(message.timeSinceMapEnteredForeground);
+        /* int32 resultListAttributionSupport = 10; */
+        if (message.resultListAttributionSupport !== 0)
+            writer.tag(10, WireType.Varint).int32(message.resultListAttributionSupport);
+        /* optional uint32 hourOfDay = 11; */
+        if (message.hourOfDay !== undefined)
+            writer.tag(11, WireType.Varint).uint32(message.hourOfDay);
+        /* uint32 dayOfWeek = 12; */
+        if (message.dayOfWeek !== 0)
+            writer.tag(12, WireType.Varint).uint32(message.dayOfWeek);
+        /* int32 requiredVersion = 16; */
+        if (message.requiredVersion !== 0)
+            writer.tag(16, WireType.Varint).int32(message.requiredVersion);
+        /* optional string debugApiKey = 17; */
+        if (message.debugApiKey !== undefined)
+            writer.tag(17, WireType.LengthDelimited).string(message.debugApiKey);
+        /* optional int32 clientRevision = 22; */
+        if (message.clientRevision !== undefined)
+            writer.tag(22, WireType.Varint).int32(message.clientRevision);
+        /* optional string deviceSku = 24; */
+        if (message.deviceSku !== undefined)
+            writer.tag(24, WireType.LengthDelimited).string(message.deviceSku);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message GEOPDClientMetadata
+ */
+const GEOPDClientMetadata = new GEOPDClientMetadata$Type();
+
+// @generated by protobuf-ts 2.9.4 with parameter generate_dependencies,long_type_number,keep_enum_prefix,output_javascript
+// @generated from protobuf file "GEOPDPlaceRequest.proto" (syntax proto3)
+// tslint:disable
+/**
+ * @generated from protobuf enum RequestType
+ */
+var RequestType;
+(function (RequestType) {
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_UNKNOWN = 0;
+     */
+    RequestType[RequestType["REQUEST_TYPE_UNKNOWN"] = 0] = "REQUEST_TYPE_UNKNOWN";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_SEARCH = 1;
+     */
+    RequestType[RequestType["REQUEST_TYPE_SEARCH"] = 1] = "REQUEST_TYPE_SEARCH";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_GEOCODING = 2;
+     */
+    RequestType[RequestType["REQUEST_TYPE_GEOCODING"] = 2] = "REQUEST_TYPE_GEOCODING";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_CANONICAL_LOCATION_SEARCH = 3;
+     */
+    RequestType[RequestType["REQUEST_TYPE_CANONICAL_LOCATION_SEARCH"] = 3] = "REQUEST_TYPE_CANONICAL_LOCATION_SEARCH";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_REVERSE_GEOCODING = 4;
+     */
+    RequestType[RequestType["REQUEST_TYPE_REVERSE_GEOCODING"] = 4] = "REQUEST_TYPE_REVERSE_GEOCODING";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_PLACE_LOOKUP = 5;
+     */
+    RequestType[RequestType["REQUEST_TYPE_PLACE_LOOKUP"] = 5] = "REQUEST_TYPE_PLACE_LOOKUP";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_MERCHANT_LOOKUP = 6;
+     */
+    RequestType[RequestType["REQUEST_TYPE_MERCHANT_LOOKUP"] = 6] = "REQUEST_TYPE_MERCHANT_LOOKUP";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_PLACE_REFINEMENT = 7;
+     */
+    RequestType[RequestType["REQUEST_TYPE_PLACE_REFINEMENT"] = 7] = "REQUEST_TYPE_PLACE_REFINEMENT";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_SIRI_SEARCH = 8;
+     */
+    RequestType[RequestType["REQUEST_TYPE_SIRI_SEARCH"] = 8] = "REQUEST_TYPE_SIRI_SEARCH";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_LOCATION_DIRECTED_SEARCH = 9;
+     */
+    RequestType[RequestType["REQUEST_TYPE_LOCATION_DIRECTED_SEARCH"] = 9] = "REQUEST_TYPE_LOCATION_DIRECTED_SEARCH";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_AUTOCOMPLETE = 10;
+     */
+    RequestType[RequestType["REQUEST_TYPE_AUTOCOMPLETE"] = 10] = "REQUEST_TYPE_AUTOCOMPLETE";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_BROWSE_CATEGORY_SUGGESTION = 11;
+     */
+    RequestType[RequestType["REQUEST_TYPE_BROWSE_CATEGORY_SUGGESTION"] = 11] = "REQUEST_TYPE_BROWSE_CATEGORY_SUGGESTION";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_CATEGORY_SEARCH = 12;
+     */
+    RequestType[RequestType["REQUEST_TYPE_CATEGORY_SEARCH"] = 12] = "REQUEST_TYPE_CATEGORY_SEARCH";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_POPULAR_NEARBY_SEARCH = 13;
+     */
+    RequestType[RequestType["REQUEST_TYPE_POPULAR_NEARBY_SEARCH"] = 13] = "REQUEST_TYPE_POPULAR_NEARBY_SEARCH";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_ZERO_KEYWORD_CATEGORY_SUGGESTION = 14;
+     */
+    RequestType[RequestType["REQUEST_TYPE_ZERO_KEYWORD_CATEGORY_SUGGESTION"] = 14] = "REQUEST_TYPE_ZERO_KEYWORD_CATEGORY_SUGGESTION";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_SEARCH_FIELD_PLACEHOLDER = 15;
+     */
+    RequestType[RequestType["REQUEST_TYPE_SEARCH_FIELD_PLACEHOLDER"] = 15] = "REQUEST_TYPE_SEARCH_FIELD_PLACEHOLDER";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_BATCH_POPULAR_NEARBY_SEARCH = 16;
+     */
+    RequestType[RequestType["REQUEST_TYPE_BATCH_POPULAR_NEARBY_SEARCH"] = 16] = "REQUEST_TYPE_BATCH_POPULAR_NEARBY_SEARCH";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_VENDOR_SPECIFIC_PLACE_REFINEMENT = 17;
+     */
+    RequestType[RequestType["REQUEST_TYPE_VENDOR_SPECIFIC_PLACE_REFINEMENT"] = 17] = "REQUEST_TYPE_VENDOR_SPECIFIC_PLACE_REFINEMENT";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_NEARBY_SEARCH = 18;
+     */
+    RequestType[RequestType["REQUEST_TYPE_NEARBY_SEARCH"] = 18] = "REQUEST_TYPE_NEARBY_SEARCH";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_ADDRESS_OBJECT_GEOCODING = 19;
+     */
+    RequestType[RequestType["REQUEST_TYPE_ADDRESS_OBJECT_GEOCODING"] = 19] = "REQUEST_TYPE_ADDRESS_OBJECT_GEOCODING";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_ZERO_KEYWORD_WITH_SEARCH_RESULTS_SUGGESTION = 20;
+     */
+    RequestType[RequestType["REQUEST_TYPE_ZERO_KEYWORD_WITH_SEARCH_RESULTS_SUGGESTION"] = 20] = "REQUEST_TYPE_ZERO_KEYWORD_WITH_SEARCH_RESULTS_SUGGESTION";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_EXTERNAL_TRANSIT_LOOKUP = 21;
+     */
+    RequestType[RequestType["REQUEST_TYPE_EXTERNAL_TRANSIT_LOOKUP"] = 21] = "REQUEST_TYPE_EXTERNAL_TRANSIT_LOOKUP";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_FEATURE_ID_GEOCODING = 22;
+     */
+    RequestType[RequestType["REQUEST_TYPE_FEATURE_ID_GEOCODING"] = 22] = "REQUEST_TYPE_FEATURE_ID_GEOCODING";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_MAPS_IDENTIFIER_PLACE_LOOKUP = 23;
+     */
+    RequestType[RequestType["REQUEST_TYPE_MAPS_IDENTIFIER_PLACE_LOOKUP"] = 23] = "REQUEST_TYPE_MAPS_IDENTIFIER_PLACE_LOOKUP";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_DATASET_STATUS_CHECK = 24;
+     */
+    RequestType[RequestType["REQUEST_TYPE_DATASET_STATUS_CHECK"] = 24] = "REQUEST_TYPE_DATASET_STATUS_CHECK";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_OFFLINE_AREA_LOOKUP = 25;
+     */
+    RequestType[RequestType["REQUEST_TYPE_OFFLINE_AREA_LOOKUP"] = 25] = "REQUEST_TYPE_OFFLINE_AREA_LOOKUP";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_CLUSTER_GEOCODING = 26;
+     */
+    RequestType[RequestType["REQUEST_TYPE_CLUSTER_GEOCODING"] = 26] = "REQUEST_TYPE_CLUSTER_GEOCODING";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_OFFLINE_SUGGESTED_REGIONS = 27;
+     */
+    RequestType[RequestType["REQUEST_TYPE_OFFLINE_SUGGESTED_REGIONS"] = 27] = "REQUEST_TYPE_OFFLINE_SUGGESTED_REGIONS";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_OFFLINE_POLYGON_QUAD_NODES = 28;
+     */
+    RequestType[RequestType["REQUEST_TYPE_OFFLINE_POLYGON_QUAD_NODES"] = 28] = "REQUEST_TYPE_OFFLINE_POLYGON_QUAD_NODES";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_OFFLINE_PROACTIVE_REGIONS = 29;
+     */
+    RequestType[RequestType["REQUEST_TYPE_OFFLINE_PROACTIVE_REGIONS"] = 29] = "REQUEST_TYPE_OFFLINE_PROACTIVE_REGIONS";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_BRAND_LOOKUP = 30;
+     */
+    RequestType[RequestType["REQUEST_TYPE_BRAND_LOOKUP"] = 30] = "REQUEST_TYPE_BRAND_LOOKUP";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_OFFLINE_UPDATE_MANIFEST = 31;
+     */
+    RequestType[RequestType["REQUEST_TYPE_OFFLINE_UPDATE_MANIFEST"] = 31] = "REQUEST_TYPE_OFFLINE_UPDATE_MANIFEST";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_WIFI_FINGERPRINT_LOOKUP = 32;
+     */
+    RequestType[RequestType["REQUEST_TYPE_WIFI_FINGERPRINT_LOOKUP"] = 32] = "REQUEST_TYPE_WIFI_FINGERPRINT_LOOKUP";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_INITIAL_OFFLINE_SUGGESTION = 33;
+     */
+    RequestType[RequestType["REQUEST_TYPE_INITIAL_OFFLINE_SUGGESTION"] = 33] = "REQUEST_TYPE_INITIAL_OFFLINE_SUGGESTION";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_IP_GEO_LOOKUP = 34;
+     */
+    RequestType[RequestType["REQUEST_TYPE_IP_GEO_LOOKUP"] = 34] = "REQUEST_TYPE_IP_GEO_LOOKUP";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_GROUND_VIEW_LABEL = 35;
+     */
+    RequestType[RequestType["REQUEST_TYPE_GROUND_VIEW_LABEL"] = 35] = "REQUEST_TYPE_GROUND_VIEW_LABEL";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_BATCH_SPATIAL_LOOKUP = 36;
+     */
+    RequestType[RequestType["REQUEST_TYPE_BATCH_SPATIAL_LOOKUP"] = 36] = "REQUEST_TYPE_BATCH_SPATIAL_LOOKUP";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_TRANSIT_VEHICLE_POSITION = 37;
+     */
+    RequestType[RequestType["REQUEST_TYPE_TRANSIT_VEHICLE_POSITION"] = 37] = "REQUEST_TYPE_TRANSIT_VEHICLE_POSITION";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_PLACE_COLLECTION_LOOKUP = 38;
+     */
+    RequestType[RequestType["REQUEST_TYPE_PLACE_COLLECTION_LOOKUP"] = 38] = "REQUEST_TYPE_PLACE_COLLECTION_LOOKUP";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_TRANSIT_SCHEDULE_LOOKUP = 39;
+     */
+    RequestType[RequestType["REQUEST_TYPE_TRANSIT_SCHEDULE_LOOKUP"] = 39] = "REQUEST_TYPE_TRANSIT_SCHEDULE_LOOKUP";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_BATCH_CATEGORY_LOOKUP = 40;
+     */
+    RequestType[RequestType["REQUEST_TYPE_BATCH_CATEGORY_LOOKUP"] = 40] = "REQUEST_TYPE_BATCH_CATEGORY_LOOKUP";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_BATCH_MERCHANT_LOOKUP_BRAND = 41;
+     */
+    RequestType[RequestType["REQUEST_TYPE_BATCH_MERCHANT_LOOKUP_BRAND"] = 41] = "REQUEST_TYPE_BATCH_MERCHANT_LOOKUP_BRAND";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_CHILD_PLACE_LOOKUP_BY_CATEGORY = 42;
+     */
+    RequestType[RequestType["REQUEST_TYPE_CHILD_PLACE_LOOKUP_BY_CATEGORY"] = 42] = "REQUEST_TYPE_CHILD_PLACE_LOOKUP_BY_CATEGORY";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_COLLECTION_SUGGESTION = 43;
+     */
+    RequestType[RequestType["REQUEST_TYPE_COLLECTION_SUGGESTION"] = 43] = "REQUEST_TYPE_COLLECTION_SUGGESTION";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_MAPS_SEARCH_HOME = 44;
+     */
+    RequestType[RequestType["REQUEST_TYPE_MAPS_SEARCH_HOME"] = 44] = "REQUEST_TYPE_MAPS_SEARCH_HOME";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_PLACE_QUESTIONNAIRE_LOOKUP = 45;
+     */
+    RequestType[RequestType["REQUEST_TYPE_PLACE_QUESTIONNAIRE_LOOKUP"] = 45] = "REQUEST_TYPE_PLACE_QUESTIONNAIRE_LOOKUP";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_PUBLISHER_VIEW = 46;
+     */
+    RequestType[RequestType["REQUEST_TYPE_PUBLISHER_VIEW"] = 46] = "REQUEST_TYPE_PUBLISHER_VIEW";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_ALL_COLLECTIONS_VIEW = 47;
+     */
+    RequestType[RequestType["REQUEST_TYPE_ALL_COLLECTIONS_VIEW"] = 47] = "REQUEST_TYPE_ALL_COLLECTIONS_VIEW";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_AIRPORT_ENTITY_PLACE_LOOKUP = 48;
+     */
+    RequestType[RequestType["REQUEST_TYPE_AIRPORT_ENTITY_PLACE_LOOKUP"] = 48] = "REQUEST_TYPE_AIRPORT_ENTITY_PLACE_LOOKUP";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_TERRITORY_LOOKUP = 49;
+     */
+    RequestType[RequestType["REQUEST_TYPE_TERRITORY_LOOKUP"] = 49] = "REQUEST_TYPE_TERRITORY_LOOKUP";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_TRANSIT_NEARBY_SCHEDULE_LOOKUP = 50;
+     */
+    RequestType[RequestType["REQUEST_TYPE_TRANSIT_NEARBY_SCHEDULE_LOOKUP"] = 50] = "REQUEST_TYPE_TRANSIT_NEARBY_SCHEDULE_LOOKUP";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_MAPS_HOME = 51;
+     */
+    RequestType[RequestType["REQUEST_TYPE_MAPS_HOME"] = 51] = "REQUEST_TYPE_MAPS_HOME";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_ALL_GUIDES_LOCATIONS = 52;
+     */
+    RequestType[RequestType["REQUEST_TYPE_ALL_GUIDES_LOCATIONS"] = 52] = "REQUEST_TYPE_ALL_GUIDES_LOCATIONS";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_GUIDES_HOME = 53;
+     */
+    RequestType[RequestType["REQUEST_TYPE_GUIDES_HOME"] = 53] = "REQUEST_TYPE_GUIDES_HOME";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_EXTENDED_GEO_LOOKUP = 54;
+     */
+    RequestType[RequestType["REQUEST_TYPE_EXTENDED_GEO_LOOKUP"] = 54] = "REQUEST_TYPE_EXTENDED_GEO_LOOKUP";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_QUERY_UNDERSTANDING = 55;
+     */
+    RequestType[RequestType["REQUEST_TYPE_QUERY_UNDERSTANDING"] = 55] = "REQUEST_TYPE_QUERY_UNDERSTANDING";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_POI_AT_ADDRESS_LOOKUP = 56;
+     */
+    RequestType[RequestType["REQUEST_TYPE_POI_AT_ADDRESS_LOOKUP"] = 56] = "REQUEST_TYPE_POI_AT_ADDRESS_LOOKUP";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_TRANSIT_NEARBY_PAYMENT_METHOD_LOOKUP = 57;
+     */
+    RequestType[RequestType["REQUEST_TYPE_TRANSIT_NEARBY_PAYMENT_METHOD_LOOKUP"] = 57] = "REQUEST_TYPE_TRANSIT_NEARBY_PAYMENT_METHOD_LOOKUP";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_PLACECARD_ENRICHMENT = 58;
+     */
+    RequestType[RequestType["REQUEST_TYPE_PLACECARD_ENRICHMENT"] = 58] = "REQUEST_TYPE_PLACECARD_ENRICHMENT";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_UNKNOWN59 = 59;
+     */
+    RequestType[RequestType["REQUEST_TYPE_UNKNOWN59"] = 59] = "REQUEST_TYPE_UNKNOWN59";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_UNKNOWN60 = 60;
+     */
+    RequestType[RequestType["REQUEST_TYPE_UNKNOWN60"] = 60] = "REQUEST_TYPE_UNKNOWN60";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_UNKNOWN61 = 61;
+     */
+    RequestType[RequestType["REQUEST_TYPE_UNKNOWN61"] = 61] = "REQUEST_TYPE_UNKNOWN61";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_UNKNOWN62 = 62;
+     */
+    RequestType[RequestType["REQUEST_TYPE_UNKNOWN62"] = 62] = "REQUEST_TYPE_UNKNOWN62";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_UNKNOWN63 = 63;
+     */
+    RequestType[RequestType["REQUEST_TYPE_UNKNOWN63"] = 63] = "REQUEST_TYPE_UNKNOWN63";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_UNKNOWN64 = 64;
+     */
+    RequestType[RequestType["REQUEST_TYPE_UNKNOWN64"] = 64] = "REQUEST_TYPE_UNKNOWN64";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_UNKNOWN65 = 65;
+     */
+    RequestType[RequestType["REQUEST_TYPE_UNKNOWN65"] = 65] = "REQUEST_TYPE_UNKNOWN65";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_UNKNOWN66 = 66;
+     */
+    RequestType[RequestType["REQUEST_TYPE_UNKNOWN66"] = 66] = "REQUEST_TYPE_UNKNOWN66";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_UNKNOWN67 = 67;
+     */
+    RequestType[RequestType["REQUEST_TYPE_UNKNOWN67"] = 67] = "REQUEST_TYPE_UNKNOWN67";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_UNKNOWN68 = 68;
+     */
+    RequestType[RequestType["REQUEST_TYPE_UNKNOWN68"] = 68] = "REQUEST_TYPE_UNKNOWN68";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_UNKNOWN69 = 69;
+     */
+    RequestType[RequestType["REQUEST_TYPE_UNKNOWN69"] = 69] = "REQUEST_TYPE_UNKNOWN69";
+    /**
+     * @generated from protobuf enum value: REQUEST_TYPE_UNKNOWN70 = 70;
+     */
+    RequestType[RequestType["REQUEST_TYPE_UNKNOWN70"] = 70] = "REQUEST_TYPE_UNKNOWN70";
+})(RequestType || (RequestType = {}));
+// @generated message type with reflection information, may provide speed optimized methods
+class PDPlaceRequest$Type extends MessageType {
+    constructor() {
+        super("PDPlaceRequest", [
+            { no: 2, name: "clientMetadata", kind: "message", T: () => GEOPDClientMetadata },
+            { no: 3, name: "displayLanguages", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
+            { no: 4, name: "spokenLanguages", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
+            { no: 5, name: "requestedComponents", kind: "message", repeat: 1 /*RepeatType.PACKED*/, T: () => GEOPDComponentInfo },
+            { no: 6, name: "suppressResultsRequiringAttribution", kind: "scalar", opt: true, T: 8 /*ScalarType.BOOL*/ },
+            { no: 7, name: "requestType", kind: "enum", T: () => ["RequestType", RequestType] },
+            { no: 9, name: "displayRegion", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value) {
+        const message = globalThis.Object.create((this.messagePrototype));
+        message.displayLanguages = [];
+        message.spokenLanguages = [];
+        message.requestedComponents = [];
+        message.requestType = 0;
+        message.displayRegion = "";
+        if (value !== undefined)
+            reflectionMergePartial(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader, length, options, target) {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* GEOPDClientMetadata clientMetadata */ 2:
+                    message.clientMetadata = GEOPDClientMetadata.internalBinaryRead(reader, reader.uint32(), options, message.clientMetadata);
+                    break;
+                case /* repeated string displayLanguages */ 3:
+                    message.displayLanguages.push(reader.string());
+                    break;
+                case /* repeated string spokenLanguages */ 4:
+                    message.spokenLanguages.push(reader.string());
+                    break;
+                case /* repeated GEOPDComponentInfo requestedComponents */ 5:
+                    message.requestedComponents.push(GEOPDComponentInfo.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* optional bool suppressResultsRequiringAttribution */ 6:
+                    message.suppressResultsRequiringAttribution = reader.bool();
+                    break;
+                case /* RequestType requestType */ 7:
+                    message.requestType = reader.int32();
+                    break;
+                case /* string displayRegion */ 9:
+                    message.displayRegion = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message, writer, options) {
+        /* GEOPDClientMetadata clientMetadata = 2; */
+        if (message.clientMetadata)
+            GEOPDClientMetadata.internalBinaryWrite(message.clientMetadata, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        /* repeated string displayLanguages = 3; */
+        for (let i = 0; i < message.displayLanguages.length; i++)
+            writer.tag(3, WireType.LengthDelimited).string(message.displayLanguages[i]);
+        /* repeated string spokenLanguages = 4; */
+        for (let i = 0; i < message.spokenLanguages.length; i++)
+            writer.tag(4, WireType.LengthDelimited).string(message.spokenLanguages[i]);
+        /* repeated GEOPDComponentInfo requestedComponents = 5; */
+        for (let i = 0; i < message.requestedComponents.length; i++)
+            GEOPDComponentInfo.internalBinaryWrite(message.requestedComponents[i], writer.tag(5, WireType.LengthDelimited).fork(), options).join();
+        /* optional bool suppressResultsRequiringAttribution = 6; */
+        if (message.suppressResultsRequiringAttribution !== undefined)
+            writer.tag(6, WireType.Varint).bool(message.suppressResultsRequiringAttribution);
+        /* RequestType requestType = 7; */
+        if (message.requestType !== 0)
+            writer.tag(7, WireType.Varint).int32(message.requestType);
+        /* string displayRegion = 9; */
+        if (message.displayRegion !== "")
+            writer.tag(9, WireType.LengthDelimited).string(message.displayRegion);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message PDPlaceRequest
+ */
+const PDPlaceRequest = new PDPlaceRequest$Type();
+
+class GEOPDPlaceRequest {
+    static Name = "GEOPDPlaceRequest";
+    static Version = "1.0.4";
+	static Author = "VirgilClyne";
+    static decode(rawBody = new Uint8Array([])) {
+        log("☑️ GEOPDPlaceRequest.decode", "");
+        const body = PDPlaceRequest.fromBinary(rawBody);
+        if (typeof body?.analyticMetadata?.serviceTag !== "undefined") body.analyticMetadata.serviceTag.map(serviceTag => {
+            if (typeof serviceTag.serviceType !== "undefined") serviceTag.serviceType = GeoServiceTag_ServiceType[serviceTag.serviceType];
+            return serviceTag;
+        });
+        if (typeof body?.requestedComponents !== "undefined") body.requestedComponents.map(requestedComponent => {
+            if (typeof requestedComponent.type !== "undefined") requestedComponent.type = ComponentType[requestedComponent.type];
+            return requestedComponent;
+        });
+        if (typeof body.requestType !== "undefined") body.requestType = RequestType[body.requestType];
+        log("✅ GEOPDPlaceRequest.decode", "");
+        return body;
+    };
+
+    static encode(body = {}) {
+        log("☑️ GEOPDPlaceRequest.encode", "");
+        if (typeof body?.analyticMetadata?.serviceTag !== "undefined") body.analyticMetadata.serviceTag.map(serviceTag => {
+            if (typeof serviceTag.serviceType !== "undefined") serviceTag.serviceType = GeoServiceTag_ServiceType[serviceTag.serviceType];
+            return serviceTag;
+        });
+        if (typeof body?.requestedComponents !== "undefined") body.requestedComponents.map(requestedComponent => {
+            if (typeof requestedComponent.type !== "undefined") requestedComponent.type = ComponentType[requestedComponent.type];
+            return requestedComponent;
+        });
+        if (typeof body.requestType !== "undefined") body.requestType = RequestType[body.requestType];
+        const rawBody = PDPlaceRequest.toBinary(body);
+        log("✅ GEOPDPlaceRequest.encode", "");
+        return rawBody;
+    };
+}
+
+log("v3.2.5(1016)");
 // 构造回复数据
 let $response = undefined;
-
 /***************** Processing *****************/
 // 解构URL
 const url = new URL($request.url);
@@ -14074,6 +6015,8 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 	switch (Settings.Switch) {
 		case true:
 		default:
+			// 创建空数据
+			let body = {};
 			// 方法判断
 			switch (METHOD) {
 				case "POST":
@@ -14124,10 +6067,36 @@ log(`⚠ FORMAT: ${FORMAT}`, "");
 						case "application/grpc":
 						case "application/grpc+proto":
 						case "application/octet-stream":
-							log(`🚧 $request: ${JSON.stringify($request, null, 2)}`, "");
+							//log(`🚧 $request: ${JSON.stringify($request, null, 2)}`, "");
 							let rawBody = ($platform === "Quantumult X") ? new Uint8Array($request.bodyBytes ?? []) : $request.body ?? new Uint8Array();
-							log(`🚧 isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody, null, 2)}`, "");
-							// 写入二进制数据
+							//log(`🚧 isBuffer? ${ArrayBuffer.isView(rawBody)}: ${JSON.stringify(rawBody, null, 2)}`, "");
+							switch (HOST) {
+								case "gsp-ssl.ls.apple.com":
+								case "dispatcher.is.autonavi.com":
+									switch (PATH) {
+										case "/dispatcher.arpc":
+										case "/dispatcher":
+											/******************  initialization start  *******************/
+											// 先拆分aRPC校验头和protobuf数据体
+											const headerIndex = rawBody.findIndex((element, index) => element === 0x0A && index > 47);
+											log(`🚧 headerIndex: ${headerIndex}`, "");
+											const Header = rawBody.slice(0, headerIndex);
+											body = rawBody.slice(headerIndex);
+											/******************  initialization finish  *******************/
+											body = GEOPDPlaceRequest.decode(body);
+											log(`🚧 body: ${JSON.stringify(body, null, 2)}`, "");
+											switch (body.requestType) {
+																							}											body.displayRegion = "US";
+											body.clientMetadata.deviceCountryCode = "US";
+											body = GEOPDPlaceRequest.encode(body);
+											/******************  initialization start  *******************/
+											rawBody = new Uint8Array(Header.length + body.length);
+											rawBody.set(Header, 0);
+											rawBody.set(body, Header.length);
+											/******************  initialization finish  *******************/
+											break;
+									}									break;
+							}							// 写入二进制数据
 							$request.body = rawBody;
 							break;
 					}					//break; // 不中断，继续处理URL

@@ -1,6 +1,6 @@
 payload:
   # 来源： https://github.com/MisakaFxxk/MisakaF_Subconverter/blob/main/Sub/Emby.list
-  # 最后更新时间： 2024-08-28 22:28
+  # 最后更新时间：2024-09-17 19:27
 
 
   ##### A #####
@@ -46,9 +46,6 @@ payload:
 
   # Dolphin(海豚)
   - DOMAIN-SUFFIX,xiaoyi.one
-
-  # 大白
-  - DOMAIN-SUFFIX,emby.p-p.men
 
   ##### E #####
 
@@ -158,7 +155,6 @@ payload:
 
   # MisakaF
   - DOMAIN-SUFFIX,misakaf.org
-  - DOMAIN-SUFFIX,cloudfront.net
 
   # MjjEmby
   - DOMAIN-SUFFIX,mjjemby.org
@@ -247,6 +243,7 @@ payload:
   - DOMAIN-SUFFIX,emby77.org
   - DOMAIN-SUFFIX,pilipiliultra.top
   - DOMAIN-SUFFIX,pilipiliultra.com
+  - DOMAIN-SUFFIX,pilipili.club
 
   # PornEmby
   - DOMAIN-SUFFIX,pornemby.club

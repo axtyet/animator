@@ -53,6 +53,8 @@ export var TileSet_TileRequestStyle;
 export var TileSetStyle;
 (function (TileSetStyle) {
     /**
+     * option allow_alias = true;
+     *
      * @generated from protobuf enum value: RASTER_STANDARD = 0;
      */
     TileSetStyle[TileSetStyle["RASTER_STANDARD"] = 0] = "RASTER_STANDARD";
@@ -409,25 +411,25 @@ export var TileSetStyle;
      */
     TileSetStyle[TileSetStyle["VECTOR_CONTOURS"] = 90] = "VECTOR_CONTOURS";
     /**
-     * @generated from protobuf enum value: UNUSED_91 = 91;
+     * @generated from protobuf enum value: RASTER_SATELLITE_POLAR = 91;
      */
-    TileSetStyle[TileSetStyle["UNUSED_91"] = 91] = "UNUSED_91";
+    TileSetStyle[TileSetStyle["RASTER_SATELLITE_POLAR"] = 91] = "RASTER_SATELLITE_POLAR";
     /**
-     * @generated from protobuf enum value: UNUSED_92 = 92;
+     * @generated from protobuf enum value: VMAP4_ELEVATION = 92;
      */
-    TileSetStyle[TileSetStyle["UNUSED_92"] = 92] = "UNUSED_92";
+    TileSetStyle[TileSetStyle["VMAP4_ELEVATION"] = 92] = "VMAP4_ELEVATION";
     /**
-     * @generated from protobuf enum value: UNUSED_93 = 93;
+     * @generated from protobuf enum value: VMAP4_ELEVATION_POLAR = 93;
      */
-    TileSetStyle[TileSetStyle["UNUSED_93"] = 93] = "UNUSED_93";
+    TileSetStyle[TileSetStyle["VMAP4_ELEVATION_POLAR"] = 93] = "VMAP4_ELEVATION_POLAR";
     /**
-     * @generated from protobuf enum value: UNUSED_94 = 94;
+     * @generated from protobuf enum value: CELLULAR_COVERAGE_PLMN = 94;
      */
-    TileSetStyle[TileSetStyle["UNUSED_94"] = 94] = "UNUSED_94";
+    TileSetStyle[TileSetStyle["CELLULAR_COVERAGE_PLMN"] = 94] = "CELLULAR_COVERAGE_PLMN";
     /**
-     * @generated from protobuf enum value: UNUSED_95 = 95;
+     * @generated from protobuf enum value: RASTER_SATELLITE_POLAR_NIGHT = 95;
      */
-    TileSetStyle[TileSetStyle["UNUSED_95"] = 95] = "UNUSED_95";
+    TileSetStyle[TileSetStyle["RASTER_SATELLITE_POLAR_NIGHT"] = 95] = "RASTER_SATELLITE_POLAR_NIGHT";
     /**
      * @generated from protobuf enum value: UNUSED_96 = 96;
      */
@@ -441,49 +443,20 @@ export var TileSetStyle;
      */
     TileSetStyle[TileSetStyle["UNUSED_98"] = 98] = "UNUSED_98";
     /**
+     * DAVINCI_DEV1 = 58;
+     * DAVINCI_DEV2 = 59;
+     * DAVINCI_DEV3 = 60;
+     * DAVINCI_DEV4 = 61;
+     * DAVINCI_DEV6 = 63;
+     * DAVINCI_DEV7 = 66;
+     * DAVINCI_DEV8 = 67;
+     * DAVINCI_DEV9 = 68;
+     * DAVINCI_BUILDINGS = 73;
+     * VECTOR_RESERVED_1 = 62;
+     *
      * @generated from protobuf enum value: UNUSED_99 = 99;
      */
     TileSetStyle[TileSetStyle["UNUSED_99"] = 99] = "UNUSED_99";
-    /**
-     * @generated from protobuf enum value: VECTOR_SPR_MERCATOR = 58;
-     */
-    TileSetStyle[TileSetStyle["DAVINCI_DEV1"] = 58] = "DAVINCI_DEV1";
-    /**
-     * @generated from protobuf enum value: VECTOR_SPR_MODELS = 59;
-     */
-    TileSetStyle[TileSetStyle["DAVINCI_DEV2"] = 59] = "DAVINCI_DEV2";
-    /**
-     * @generated from protobuf enum value: VECTOR_SPR_MATERIALS = 60;
-     */
-    TileSetStyle[TileSetStyle["DAVINCI_DEV3"] = 60] = "DAVINCI_DEV3";
-    /**
-     * @generated from protobuf enum value: VECTOR_SPR_METADATA = 61;
-     */
-    TileSetStyle[TileSetStyle["DAVINCI_DEV4"] = 61] = "DAVINCI_DEV4";
-    /**
-     * @generated from protobuf enum value: VECTOR_RESERVED_2 = 63;
-     */
-    TileSetStyle[TileSetStyle["DAVINCI_DEV6"] = 63] = "DAVINCI_DEV6";
-    /**
-     * @generated from protobuf enum value: VECTOR_SPR_ROADS = 66;
-     */
-    TileSetStyle[TileSetStyle["DAVINCI_DEV7"] = 66] = "DAVINCI_DEV7";
-    /**
-     * @generated from protobuf enum value: VECTOR_SPR_STANDARD = 67;
-     */
-    TileSetStyle[TileSetStyle["DAVINCI_DEV8"] = 67] = "DAVINCI_DEV8";
-    /**
-     * @generated from protobuf enum value: VECTOR_POI_V2 = 68;
-     */
-    TileSetStyle[TileSetStyle["DAVINCI_DEV9"] = 68] = "DAVINCI_DEV9";
-    /**
-     * @generated from protobuf enum value: VECTOR_BUILDINGS_V2 = 73;
-     */
-    TileSetStyle[TileSetStyle["DAVINCI_BUILDINGS"] = 73] = "DAVINCI_BUILDINGS";
-    /**
-     * @generated from protobuf enum value: VECTOR_TRACKS = 62;
-     */
-    TileSetStyle[TileSetStyle["VECTOR_RESERVED_1"] = 62] = "VECTOR_RESERVED_1";
 })(TileSetStyle || (TileSetStyle = {}));
 /**
  * @generated from protobuf enum com.apple.geo.protobuf.geo.TileScale

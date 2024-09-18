@@ -1,11 +1,11 @@
 name: 复写去广告(严格版)
-desc: 最后更新时间 2024-09-05 02:16:27
+desc: 最后更新时间 2024-09-12 02:16:01
 # author: blackmatrix7
 # repo: https://github.com/blackmatrix7/ios_rule_script
-# reject: 1155
-# mitm: 850
+# reject: 1157
+# mitm: 852
 # force-http-engine-hosts: 6
-# total: 2011
+# total: 2015
 
 
 
@@ -53,6 +53,7 @@ http:
     - ^https:\/\/ccmsupport-sz\.tenpay\.com\/cgi-bin\/common\/ccm_page_element.cgi - reject
     - ^https:\/\/cdke\.youdao\.com\/course3\/recommend\/dict\/startup - reject
     - ^https:\/\/chat-live\.soulapp\.cn\/live\/planet\/recListV2 - reject
+    - ^https:\/\/cn-app\.narwaltech\.com\/(operate\/(cactivity\/listByResourceIds|appPosition\/listSplash)|app-user-device-server\/v\d\/user-device\/getTips) - reject
     - ^https:\/\/dict\.youdao\.com\/commonsearch - reject
     - ^https:\/\/dict\.youdao\.com\/course\/tab\/translateTab - reject
     - ^https:\/\/dict\.youdao\.com\/dictusertask\/system - reject
@@ -216,6 +217,7 @@ http:
     - ^https?:\/\/api.xueqiu.com\/ucprofile\/api\/user\/batchGetUserBasicInfo.json - reject
     - ^https?:\/\/api1\.34580\.com\/wx\/Home\/AdvertisementPhotoshootRequest - reject
     - ^https?:\/\/api2\.helper\.qq\.com\/game\/buttons - reject
+    - ^https?:\/\/api2\.picooc\.com\/v\d\/api\/focus\/strategy\/execute - reject
     - ^https?:\/\/api2\.yaduo\.com\/atourlife\/activity\/appLaunch - reject
     - ^https?:\/\/api3\.cls\.cn\/v1\/boot\/ad - reject
     - ^https?:\/\/api4\.bybutter\.com\/v\d\/app\/placements\/\d\/advertisements - reject
@@ -1347,6 +1349,7 @@ http:
     - "api.zhuishushenqi.com"
     - "api1.34580.com"
     - "api2.helper.qq.com"
+    - "api2.picooc.com"
     - "api2.yaduo.com"
     - "api3.cls.cn"
     - "api4.bybutter.com"
@@ -1480,6 +1483,7 @@ http:
     - "cmsfile.wifi8.com"
     - "cmt.comp.360os.com"
     - "cn-acs.m.cainiao.com"
+    - "cn-app.narwaltech.com"
     - "comicapi.manhuashe.com"
     - "compus.xiaofubao.com"
     - "conf-darwin.xycdn.com"

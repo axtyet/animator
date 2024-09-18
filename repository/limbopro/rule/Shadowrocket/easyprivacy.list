@@ -1,7 +1,7 @@
 ## [Adblock Plus 1.1]
-## ! Version: 202409051614
+## ! Version: 202409132119
 ## ! Title: EasyPrivacy
-## ! Last modified: 05 Sep 2024 16:14 UTC
+## ! Last modified: 13 Sep 2024 21:19 UTC
 ## ! Expires: 4 days (update frequency)
 ## ! *** easylist:template_header.txt ***
 ## ! 
@@ -1881,6 +1881,7 @@ DOMAIN-SUFFIX,rambunctiousflock.com, reject
 DOMAIN-SUFFIX,rambunctiousvoyage.com, reject
 DOMAIN-SUFFIX,rangecake.com, reject
 DOMAIN-SUFFIX,rangeplayground.com, reject
+DOMAIN-SUFFIX,rangergustav.com, reject
 DOMAIN-SUFFIX,rapidkittens.com, reject
 DOMAIN-SUFFIX,raresummer.com, reject
 DOMAIN-SUFFIX,reactjspdf.com, reject
@@ -3639,6 +3640,7 @@ DOMAIN-SUFFIX,try.abtasty.com, reject
 DOMAIN-SUFFIX,ts.tradetracker.net, reject
 DOMAIN-SUFFIX,ucounter.ucoz.net, reject
 DOMAIN-SUFFIX,uid.mediacorp.sg, reject
+DOMAIN-SUFFIX,uilogging.tcdevops.com, reject
 DOMAIN-SUFFIX,uim.tifbs.net, reject
 DOMAIN-SUFFIX,umami.aigenerations.net, reject
 DOMAIN-SUFFIX,units.knotch.it, reject
@@ -4354,6 +4356,7 @@ DOMAIN-SUFFIX,0.myikas.com, reject
 DOMAIN-SUFFIX,analitik.bik.gov.tr, reject
 DOMAIN-SUFFIX,analytics.faprika.net, reject
 DOMAIN-SUFFIX,analytics.kkb.com.tr, reject
+DOMAIN-SUFFIX,analytics.qushad.com, reject
 DOMAIN-SUFFIX,c.keltis.com, reject
 DOMAIN-SUFFIX,collector.wawlabs.com, reject
 DOMAIN-SUFFIX,log.collectaction.com, reject
@@ -4373,6 +4376,7 @@ DOMAIN-SUFFIX,tracking.aita.gov.vn, reject
 DOMAIN-SUFFIX,tracking3.vnncdn.net, reject
 DOMAIN-SUFFIX,za.zalo.me, reject
 DOMAIN-SUFFIX,za.zdn.vn, reject
+DOMAIN-SUFFIX,a-da.invideo.io, reject
 DOMAIN-SUFFIX,a-reporting.nytimes.com, reject
 DOMAIN-SUFFIX,a.electerious.com, reject
 DOMAIN-SUFFIX,a.tellonym.me, reject
@@ -4395,6 +4399,7 @@ DOMAIN-SUFFIX,ampltd.top.gg, reject
 DOMAIN-SUFFIX,ampltd2.medal.tv, reject
 DOMAIN-SUFFIX,anal.doubledouble.top, reject
 DOMAIN-SUFFIX,analytics-batch.blitz.gg, reject
+DOMAIN-SUFFIX,analytics-dataplane.invideo.io, reject
 DOMAIN-SUFFIX,analytics-proxy.springboard.com, reject
 DOMAIN-SUFFIX,analytics-server.arras.cx, reject
 DOMAIN-SUFFIX,analytics-tracking.meetup.com, reject
@@ -4577,6 +4582,7 @@ DOMAIN-SUFFIX,eventlog.jackpot.de, reject
 DOMAIN-SUFFIX,events-prod.autolist.com, reject
 DOMAIN-SUFFIX,events-tracker.deliveroo.net, reject
 DOMAIN-SUFFIX,events.api.godaddy.com, reject
+DOMAIN-SUFFIX,events.baselime.io, reject
 DOMAIN-SUFFIX,events.clips4sale.com, reject
 DOMAIN-SUFFIX,events.framer.com, reject
 DOMAIN-SUFFIX,events.mercadolibre.com, reject
@@ -4698,6 +4704,7 @@ DOMAIN-SUFFIX,mcs-va.tiktokv.com, reject
 DOMAIN-SUFFIX,mcs.tiktokv.us, reject
 DOMAIN-SUFFIX,mcs.tiktokw.us, reject
 DOMAIN-SUFFIX,mcs.us.tiktokv.com, reject
+DOMAIN-SUFFIX,mdt.crateandbarrel.com, reject
 DOMAIN-SUFFIX,megatron.igraal.com, reject
 DOMAIN-SUFFIX,metrics.audius.co, reject
 DOMAIN-SUFFIX,metrics.bangbros.com, reject
@@ -4753,6 +4760,7 @@ DOMAIN-SUFFIX,pingback.issuu.com, reject
 DOMAIN-SUFFIX,pingo.staticmoly.me, reject
 DOMAIN-SUFFIX,pixel.archivecaslytosk.onion, reject
 DOMAIN-SUFFIX,pixel.archiveiya74codqgiixo33q62qlrqtkgmcitqx5u2oeqnmn5bpcbiyd.onion, reject
+DOMAIN-SUFFIX,pixel.clutter.com, reject
 DOMAIN-SUFFIX,pixel.convertize.io, reject
 DOMAIN-SUFFIX,pixel.facebook.com, reject
 DOMAIN-SUFFIX,pixel.honestjohn.co.uk, reject
@@ -4850,7 +4858,9 @@ DOMAIN-SUFFIX,stat.turb.pw, reject
 DOMAIN-SUFFIX,stat.vulkanvegas.com, reject
 DOMAIN-SUFFIX,statistics.streamdav.com, reject
 DOMAIN-SUFFIX,stats.aerotime.aero, reject
+DOMAIN-SUFFIX,stats.allenai.org, reject
 DOMAIN-SUFFIX,stats.calcalist.co.il, reject
+DOMAIN-SUFFIX,stats.chromatone.center, reject
 DOMAIN-SUFFIX,stats.codeur.com, reject
 DOMAIN-SUFFIX,stats.davidickedelivery.com, reject
 DOMAIN-SUFFIX,stats.gateio.ch, reject
@@ -38704,7 +38714,6 @@ DOMAIN-SUFFIX,go.petmire.com, reject
 DOMAIN-SUFFIX,go.piccolo.mobi, reject
 DOMAIN-SUFFIX,go.picsart.com, reject
 DOMAIN-SUFFIX,go.pinoy.innovatedating.com, reject
-DOMAIN-SUFFIX,go.playbackbone.com, reject
 DOMAIN-SUFFIX,go.player2app.com, reject
 DOMAIN-SUFFIX,go.poland.innovatedating.com, reject
 DOMAIN-SUFFIX,go.polen-app.com, reject
@@ -41327,6 +41336,7 @@ DOMAIN-SUFFIX,track.exame.com, reject
 DOMAIN-SUFFIX,track.olx.com.br, reject
 DOMAIN-SUFFIX,tracker.bt.uol.com.br, reject
 DOMAIN-SUFFIX,tracker.publico.pt, reject
+DOMAIN-SUFFIX,unleash.livepix.gg, reject
 DOMAIN-SUFFIX,analytics.okazii.ro, reject
 DOMAIN-SUFFIX,views.b1tv.ro, reject
 DOMAIN-SUFFIX,views.romaniatv.net, reject

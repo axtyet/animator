@@ -1,14 +1,14 @@
 # NAME: Global
 # AUTHOR: blackmatrix7
 # REPO: https://github.com/blackmatrix7/ios_rule_script
-# UPDATED: 2024-09-05 02:12:16
+# UPDATED: 2024-09-16 02:12:29
 # DOMAIN: 83
 # DOMAIN-KEYWORD: 36
-# DOMAIN-SUFFIX: 24989
+# DOMAIN-SUFFIX: 24993
 # IP-CIDR: 112
 # IP-CIDR6: 4
 # PROCESS-NAME: 1
-# TOTAL: 25225
+# TOTAL: 25229
 payload:
   - 'adobeereg.com'
   - 'angle.com.tw'
@@ -7483,6 +7483,7 @@ payload:
   - '+.giffgaff.com'
   - '+.giffgaff.design'
   - '+.gifnuki.com'
+  - '+.gigabyte.com'
   - '+.gigantits.com'
   - '+.gigaporn.org'
   - '+.gigaxvideos.com'
@@ -8336,6 +8337,7 @@ payload:
   - '+.herringnetwork.com'
   - '+.hetzner.cloud'
   - '+.hetzner.com'
+  - '+.hetzner.company'
   - '+.hetzner.de'
   - '+.hex.pm'
   - '+.hexatronik.com'
@@ -10523,6 +10525,7 @@ payload:
   - '+.littlesexdolls.com'
   - '+.litv.tv'
   - '+.liuhefabu.club'
+  - '+.live-video.net'
   - '+.live.com.au'
   - '+.live.eu'
   - '+.liveauction.com'
@@ -11341,6 +11344,7 @@ payload:
   - '+.mindmeld.com'
   - '+.minecraft.net'
   - '+.minecraft.wiki'
+  - '+.minecraftservices.com'
   - '+.minecraftshop.com'
   - '+.minghui.org'
   - '+.mingky.org'

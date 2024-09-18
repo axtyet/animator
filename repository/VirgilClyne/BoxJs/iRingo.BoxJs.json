@@ -7,6 +7,179 @@
 	"repo": "https://github.com/VirgilClyne/iRingo",
 	"apps": [
 		{
+			"id": "iRingo.WeatherKit",
+			"name": "🌤 天气服务",
+			"descs_html": [
+				"请参照<a href=\"https://github.com/VirgilClyne/iRingo/wiki/🌤-天气服务\">🌤 天气服务</a>的使用说明进行配置",
+				"填写完成后别忘点击此页面底端右下角的\"保存\"。"
+			],
+			"keys": [
+				"@iRingo.WeatherKit.Settings",
+				"@iRingo.WeatherKit.Caches"
+			],
+			"settings": [
+				{
+					"id": "@iRingo.WeatherKit.Settings.Switch",
+					"name": "总功能开关",
+					"val": true,
+					"type": "boolean",
+					"desc": "是否启用此APP修改"
+				},
+				{
+					"id": "@iRingo.WeatherKit.Settings.NextHour.Provider",
+					"name": "[未来一小时降水强度]数据源",
+					"val": "ColorfulClouds",
+					"type": "selects",
+					"items": [
+						{
+							"key": "WeatherKit",
+							"label": "WeatherKit (不进行替换)"
+						},
+						{
+							"key": "ColorfulClouds",
+							"label": "彩云天气"
+						},
+						{
+							"key": "QWeather",
+							"label": "和风天气"
+						}
+					],
+					"desc": "始终会使用选定的数据源，填补无降水监测地区的数据。"
+				},
+				{
+					"id": "@iRingo.WeatherKit.Settings.AQI.Provider",
+					"name": "[空气质量]数据源",
+					"val": "ColorfulClouds",
+					"type": "selects",
+					"items": [
+						{
+							"key": "WeatherKit",
+							"label": "WeatherKit (不进行替换)"
+						},
+						{
+							"key": "ColorfulClouds",
+							"label": "彩云天气"
+						},
+						{
+							"key": "QWeather",
+							"label": "和风天气"
+						},
+						{
+							"key": "WAQI",
+							"label": "The World Air Quality Project"
+						}
+					],
+					"desc": "始终会使用选定的数据源，填补无空气质量监测地区的数据。"
+				},
+				{
+					"id": "@iRingo.WeatherKit.Settings.AQI.ReplaceProviders",
+					"name": "[空气质量]需要替换的供应商",
+					"val": [],
+					"type": "checkboxes",
+					"desc": "选中的空气质量数据源会被替换。",
+					"items": [
+						{
+							"key": "QWeather",
+							"label": "和风天气"
+						},
+						{
+							"key": "BreezoMeter",
+							"label": "BreezoMeter"
+						},
+						{
+							"key": "TWC",
+							"label": "The Weather Channel"
+						}
+					]
+				},
+				{
+					"id": "@iRingo.WeatherKit.Settings.AQI.Local.Scale",
+					"name": "[空气质量]本地替换算法",
+					"val": "WAQI_InstantCast",
+					"type": "selects",
+					"desc": "本地替换时使用的算法",
+					"items": [
+						{
+							"key": "NONE",
+							"label": "None (不进行替换)"
+						},
+						{
+							"key": "WAQI_InstantCast",
+							"label": "WAQI InstantCast"
+						}
+					]
+				},
+				{
+					"id": "@iRingo.WeatherKit.Settings.AQI.Local.ReplaceScales",
+					"name": "[空气质量]需要修改的标准",
+					"val": [
+						"HJ6332012"
+					],
+					"type": "checkboxes",
+					"desc": "选中的空气质量标准会被替换。请注意各国监测的污染物种类可能有所不同，转换算法或API未必适合当地。",
+					"items": [
+						{
+							"key": "HJ6332012",
+							"label": "中国 (HJ 633—2012)"
+						}
+					]
+				},
+				{
+					"id": "@iRingo.WeatherKit.Settings.AQI.Local.ConvertUnits",
+					"name": "[空气质量]转换污染物计量单位",
+					"val": false,
+					"type": "boolean",
+					"desc": "（不推荐。不同单位互转可能会损失精度，导致数值偏大）将污染物数据替换为转换单位后的数据，方便对照转换后的标准。"
+				},
+				{
+					"id": "@iRingo.WeatherKit.Settings.API.ColorfulClouds.Token",
+					"name": "[API]彩云天气 API 令牌",
+					"val": "",
+					"type": "text",
+					"placeholder": "123456789123456789abcdefghijklmnopqrstuv",
+					"desc": "彩云天气 API 令牌"
+				},
+				{
+					"id": "@iRingo.WeatherKit.Settings.API.QWeather.Host",
+					"name": "[API]和风天气 API 主机",
+					"val": "devapi.qweather.com",
+					"type": "selects",
+					"desc": "和风天气 API 使用的主机名",
+					"items": [
+						{
+							"key": "devapi.qweather.com",
+							"label": "免费订阅 (devapi.qweather.com)"
+						},
+						{
+							"key": "api.qweather.com",
+							"label": "付费订阅 (api.qweather.com)"
+						}
+					]
+				},
+				{
+					"id": "@iRingo.WeatherKit.Settings.API.QWeather.Token",
+					"name": "[API]和风天气 API 令牌",
+					"val": "",
+					"type": "text",
+					"placeholder": "123456789123456789abcdefghijklmnopqrstuv",
+					"desc": "和风天气 API 令牌"
+				},
+				{
+					"id": "@iRingo.WeatherKit.Settings.API.WAQI.Token",
+					"name": "[API]WAQI API 令牌",
+					"val": "",
+					"type": "text",
+					"placeholder": "123456789123456789abcdefghijklmnopqrstuv",
+					"desc": "WAQI API 令牌，填写此字段将自动使用WAQI高级API"
+				}
+			],
+			"author": "@VirgilClyne",
+			"repo": "https://github.com/VirgilClyne/iRingo/",
+			"icons": [
+				"https://developer.apple.com/assets/elements/icons/weatherkit/weatherkit-96x96_2x.png",
+				"https://developer.apple.com/assets/elements/icons/weatherkit/weatherkit-96x96_2x.png"			]
+		},
+		{
 			"id": "iRingo.Location",
 			"name": "📍 定位服务",
 			"descs_html": [
@@ -88,180 +261,6 @@
 			"icons": [
 				"https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iOS/ios15-location-arrow-status-icon.png",
 				"https://support.apple.com/library/content/dam/edam/applecare/images/en_US/iOS/ios15-location-arrow-status-icon.png"
-			]
-		},
-		{
-			"id": "iRingo.WeatherKit",
-			"name": "🌤 天气服务",
-			"descs_html": [
-				"请参照<a href=\"https://github.com/VirgilClyne/iRingo/wiki/🌤-天气服务\">🌤 天气服务</a>的使用说明进行配置",
-				"填写完成后别忘点击此页面底端右下角的\"保存\"。"
-			],
-			"keys": [
-				"@iRingo.WeatherKit.Settings",
-				"@iRingo.WeatherKit.Caches"
-			],
-			"settings": [
-				{
-					"id": "@iRingo.WeatherKit.Settings.Switch",
-					"name": "总功能开关",
-					"val": true,
-					"type": "boolean",
-					"desc": "是否启用此APP修改"
-				},
-				{
-					"id": "@iRingo.WeatherKit.Settings.NextHour.Provider",
-					"name": "[未来一小时降水强度]数据源",
-					"val": "ColorfulClouds",
-					"type": "selects",
-					"items": [
-						{
-							"key": "WeatherKit",
-							"label": "WeatherKit (不进行替换)"
-						},
-						{
-							"key": "QWeather",
-							"label": "和风天气"
-						},
-						{
-							"key": "ColorfulClouds",
-							"label": "彩云天气"
-						}
-					],
-					"desc": "始终会使用选定的数据源，填补无降水监测地区的数据。"
-				},
-				{
-					"id": "@iRingo.WeatherKit.Settings.AQI.Provider",
-					"name": "[空气质量]数据源",
-					"val": "ColorfulClouds",
-					"type": "selects",
-					"items": [
-						{
-							"key": "WeatherKit",
-							"label": "WeatherKit (不进行替换)"
-						},
-						{
-							"key": "QWeather",
-							"label": "和风天气"
-						},
-						{
-							"key": "ColorfulClouds",
-							"label": "彩云天气"
-						},
-						{
-							"key": "WAQI",
-							"label": "The World Air Quality Project"
-						}
-					],
-					"desc": "始终会使用选定的数据源，填补无空气质量监测地区的数据。"
-				},
-				{
-					"id": "@iRingo.WeatherKit.Settings.AQI.ReplaceProviders",
-					"name": "[空气质量]需要替换的供应商",
-					"val": [],
-					"type": "checkboxes",
-					"desc": "选中的空气质量数据源会被替换。",
-					"items": [
-						{
-							"key": "TWC",
-							"label": "The Weather Channel"
-						},
-						{
-							"key": "BreezoMeter",
-							"label": "BreezoMeter"
-						},
-						{
-							"key": "QWeather",
-							"label": "和风天气"
-						}
-					]
-				},
-				{
-					"id": "@iRingo.WeatherKit.Settings.AQI.Local.ReplaceScales",
-					"name": "[空气质量]需要修改的标准",
-					"val": [
-						"HJ6332012"
-					],
-					"type": "checkboxes",
-					"desc": "选中的空气质量标准会被替换。请注意各国监测的污染物种类可能有所不同，转换算法或API未必适合当地。",
-					"items": [
-						{
-							"key": "HJ6332012",
-							"label": "中国 (HJ 633—2012)"
-						}
-					]
-				},
-				{
-					"id": "@iRingo.WeatherKit.Settings.AQI.Local.Scale",
-					"name": "[空气质量]本地替换算法",
-					"val": "WAQI_InstantCast",
-					"type": "selects",
-					"desc": "本地替换时使用的算法",
-					"items": [
-						{
-							"key": "NONE",
-							"label": "None (不进行替换)"
-						},
-						{
-							"key": "WAQI_InstantCast",
-							"label": "WAQI InstantCast"
-						}
-					]
-				},
-				{
-					"id": "@iRingo.WeatherKit.Settings.AQI.Local.ConvertUnits",
-					"name": "[空气质量]转换污染物计量单位",
-					"val": false,
-					"type": "boolean",
-					"desc": "（不推荐。不同单位互转可能会损失精度，导致数值偏大）将污染物数据替换为转换单位后的数据，方便对照转换后的标准。"
-				},
-				{
-					"id": "@iRingo.WeatherKit.Settings.API.WAQI.Token",
-					"name": "[API]WAQI API 令牌",
-					"val": "",
-					"type": "text",
-					"placeholder": "123456789123456789abcdefghijklmnopqrstuv",
-					"desc": "WAQI API 令牌，填写此字段将自动使用WAQI高级API"
-				},
-				{
-					"id": "@iRingo.WeatherKit.Settings.API.QWeather.Host",
-					"name": "[API]和风天气 API 主机",
-					"val": "devapi.qweather.com",
-					"type": "selects",
-					"desc": "和风天气 API 使用的主机名",
-					"items": [
-						{
-							"key": "devapi.qweather.com",
-							"label": "免费订阅 (devapi.qweather.com)"
-						},
-						{
-							"key": "api.qweather.com",
-							"label": "付费订阅 (api.qweather.com)"
-						}
-					]
-				},
-				{
-					"id": "@iRingo.WeatherKit.Settings.API.QWeather.Token",
-					"name": "[API]和风天气 API 令牌",
-					"val": "",
-					"type": "text",
-					"placeholder": "123456789123456789abcdefghijklmnopqrstuv",
-					"desc": "和风天气 API 令牌"
-				},
-				{
-					"id": "@iRingo.WeatherKit.Settings.API.ColorfulClouds.Token",
-					"name": "[API]彩云天气 API 令牌",
-					"val": "",
-					"type": "text",
-					"placeholder": "123456789123456789abcdefghijklmnopqrstuv",
-					"desc": "彩云天气 API 令牌"
-				}
-			],
-			"author": "@VirgilClyne",
-			"repo": "https://github.com/VirgilClyne/iRingo/",
-			"icons": [
-				"https://is4-ssl.mzstatic.com/image/thumb/Purple125/v4/c8/76/87/c8768792-b7ab-7de4-9c70-1888096b7ae9/AppIcon-0-0-1x_U007emarketing-0-0-0-10-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/108x0w.webp",
-				"https://is4-ssl.mzstatic.com/image/thumb/Purple125/v4/c8/76/87/c8768792-b7ab-7de4-9c70-1888096b7ae9/AppIcon-0-0-1x_U007emarketing-0-0-0-10-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/108x0w.webp"
 			]
 		},
 		{
@@ -425,27 +424,6 @@
 					]
 				},
 				{
-					"id": "@iRingo.Maps.Settings.TileSet.Map",
-					"name": "[地图]数据源",
-					"val": "CN",
-					"type": "selects",
-					"desc": "‘探索’、‘驾车’、‘公共交通’地图的数据源，此选项影响所列瓦片地图数据",
-					"items": [
-						{
-							"key": "AUTO",
-							"label": "自动（随[动态配置]版本自动选择）"
-						},
-						{
-							"key": "CN",
-							"label": "🇨🇳Apple（🇨🇳:高德 | 🇺🇳:OpenStreetMap等）"
-						},
-						{
-							"key": "XX",
-							"label": "🇺🇳Apple（OpenStreetMap等）"
-						}
-					]
-				},
-				{
 					"id": "@iRingo.Maps.Settings.TileSet.Satellite",
 					"name": "[卫星图像]数据源",
 					"val": "HYBRID",
@@ -467,48 +445,6 @@
 						{
 							"key": "XX",
 							"label": "🇺🇳DigitalGlobe（🇨🇳:2D较旧 | 🇺🇳:2D+主要城市3D）"
-						}
-					]
-				},
-				{
-					"id": "@iRingo.Maps.Settings.TileSet.Traffic",
-					"name": "[交通状况]数据源",
-					"val": "CN",
-					"type": "selects",
-					"desc": "交通状况服务的数据源，此选项影响交通状况与道路信息服务",
-					"items": [
-						{
-							"key": "AUTO",
-							"label": "自动（随[动态配置]版本自动选择）"
-						},
-						{
-							"key": "CN",
-							"label": "🇨🇳Apple（🇨🇳:🈶️ | 🇺🇳:🈚️）"
-						},
-						{
-							"key": "XX",
-							"label": "🇺🇳Apple（🇨🇳:🈚️ | 🇺🇳:🈶️TomTom等）"
-						}
-					]
-				},
-				{
-					"id": "@iRingo.Maps.Settings.TileSet.POI",
-					"name": "[兴趣点]数据源",
-					"val": "CN",
-					"type": "selects",
-					"desc": "兴趣点(POI)的数据源，此选项影响景点店面建筑等地点数据",
-					"items": [
-						{
-							"key": "AUTO",
-							"label": "自动（随[动态配置]版本自动选择）"
-						},
-						{
-							"key": "CN",
-							"label": "🇨🇳Apple（🇨🇳:互动百科/大众点评/携程等 | 🇺🇳:维基百科/Yelp/Booking等）"
-						},
-						{
-							"key": "XX",
-							"label": "🇺🇳Apple（维基百科/Yelp/Booking等）"
 						}
 					]
 				},
@@ -564,10 +500,10 @@
 		},
 		{
 			"id": "iRingo.Siri",
-			"name": "🔍 Siri与搜索",
+			"name": "⭕ Siri",
 			"descs_html": [
-				"请参照<a href=\"https://github.com/VirgilClyne/iRingo/wiki/🔍-Siri与搜索\">🔍 Siri与搜索</a>的使用说明进行配置",
-				"影响功能范围包括但不限于“Siri建议”、“来自APPLE的内容”、“来自APPLE的建议”等"
+				"请参照<a href=\"https://github.com/VirgilClyne/iRingo/wiki/⭕-Siri\">⭕ Siri</a>的使用说明进行配置",
+				"影响功能范围不包括“Siri建议”、“来自APPLE的内容”、“来自APPLE的建议”等"
 			],
 			"keys": [
 				"@iRingo.Siri.Settings",
@@ -639,113 +575,72 @@
 					]
 				},
 				{
-					"id": "@iRingo.Siri.Settings.Domains",
-					"name": "启用领域",
-					"val": [
-						"web",
-						"itunes",
-						"app_store",
-						"movies",
-						"restaurants",
-						"maps"
-					],
-					"type": "checkboxes",
-					"desc": "启用搜索的领域，未选项领域将被关闭，启用领域数据由国家和地区决定，此选项仅代表功能上的开启，不代表对应地区一定有数据和服务",
+					"id": "@iRingo.Siri.Settings.Region",
+					"name": "Siri 区域",
+					"val": "AUTO",
+					"type": "selects",
+					"desc": "忽略系统中“Siri”的“语言”设置，强制采用这里的设置。",
 					"items": [
 						{
-							"key": "web",
-							"label": "网页"
+							"key": "AUTO",
+							"label": "🇺🇳自动 (跟随“Siri”的“语言”设置)"
 						},
 						{
-							"key": "itunes",
-							"label": "iTunes"
+							"key": "zh_CN",
+							"label": "🇨🇳中文 (普通话 - 中国大陆)"
 						},
 						{
-							"key": "app_store",
-							"label": "App Store"
+							"key": "zh_TW",
+							"label": "🇹🇼中文 (普通话 - 台湾)"
 						},
 						{
-							"key": "movies",
-							"label": "电影"
+							"key": "yue_CN",
+							"label": "🇨🇳中文 (粤语 - 中国大陆)"
 						},
 						{
-							"key": "restaurants",
-							"label": "餐厅"
+							"key": "zh_HK",
+							"label": "🇭🇰中文 (粤语 - 香港)"
 						},
 						{
-							"key": "maps",
-							"label": "地图"
+							"key": "ja_JP",
+							"label": "🇯🇵日语"
+						},
+						{
+							"key": "en_CA",
+							"label": "🇨🇦英语 (加拿大)"
+						},
+						{
+							"key": "en_SG",
+							"label": "🇸🇬英语 (新加坡)"
+						},
+						{
+							"key": "en_AU",
+							"label": "🇦🇺英语 (澳大利亚)"
+						},
+						{
+							"key": "IE",
+							"label": "🇮🇪英语 (爱尔兰)"
+						},
+						{
+							"key": "en_US",
+							"label": "🇺🇸英语 (美国)"
+						},
+						{
+							"key": "en_GB",
+							"label": "🇬🇧英语 (英国)"
+						},
+						{
+							"key": "ko_KR",
+							"label": "🇰🇷韩语"
 						}
 					]
-				},
-				{
-					"id": "@iRingo.Siri.Settings.Functions",
-					"name": "强制启用的功能",
-					"val": [
-						"flightutilities",
-						"lookup",
-						"mail",
-						"messages",
-						"news",
-						"safari",
-						"siri",
-						"spotlight",
-						"visualintelligence"
-					],
-					"type": "checkboxes",
-					"desc": "强制启用Siri建议的APP，被选项的功能会被强制开启，但是未选不代表关闭对应的功能，仅代表还原到该地区默认设置状态",
-					"items": [
-						{
-							"key": "flightutilities",
-							"label": "航班工具"
-						},
-						{
-							"key": "lookup",
-							"label": "查询"
-						},
-						{
-							"key": "mail",
-							"label": "邮件"
-						},
-						{
-							"key": "messages",
-							"label": "信息"
-						},
-						{
-							"key": "news",
-							"label": "新闻"
-						},
-						{
-							"key": "safari",
-							"label": "Safari浏览器"
-						},
-						{
-							"key": "siri",
-							"label": "Siri"
-						},
-						{
-							"key": "spotlight",
-							"label": "聚焦搜索"
-						},
-						{
-							"key": "visualintelligence",
-							"label": "视觉智能"
-						}
-					]
-				},
-				{
-					"id": "@iRingo.Siri.Settings.Safari_Smart_History",
-					"name": "Safari智能历史记录",
-					"val": true,
-					"type": "boolean",
-					"desc": "是否在Safari浏览器中启用基于历史记录的Siri建议功能，启用后将在Safari浏览器起始页推荐基于时间地点跨设备等的相关浏览记录"
 				}
 			],
 			"author": "@VirgilClyne",
 			"repo": "https://github.com/VirgilClyne/iRingo/",
 			"icons": [
-				"https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Siri.png",
-				"https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Siri.png"
+				"https://upload.wikimedia.org/wikipedia/commons/d/de/Logo_Apple_Siri_iOS_2024.svg",
+				"https://upload.wikimedia.org/wikipedia/commons/d/de/Logo_Apple_Siri_iOS_2024.svg"
 			]
 		},
 		{

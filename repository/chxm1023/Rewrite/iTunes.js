@@ -1,7 +1,7 @@
 /*************************************
 
 项目名称：iTunes-系列解锁合集
-更新日期：2024-08-31
+更新日期：2024-09-12
 脚本作者：chxm1023
 电报频道：https://t.me/chxm1023
 使用声明：⚠️仅供参考，🈲转载与售卖！
@@ -29,8 +29,11 @@ const yearlyid = `${bundle_id}.yearly`;
 const yearlysubscription = `${bundle_id}.yearlysubscription`;
 
 const list = {
+  'WallpaperWidget': { cm: 'timea', hx: 'hxpda', id: "com.widget.theme.yearly.3dayfree", latest: "chxm1023" }, //壁纸主题(需试用)
+  'ProREC': { cm: 'timea', hx: 'hxpda', id: "ProAudioCamera_Annual", latest: "chxm1023" }, //ProREC-相机
   'Period': { cm: 'timeb', hx: 'hxpda', id: "com.hanchongzan.book.vip", latest: "chxm1023" }, //闪电记账
   'TypeOn%20Keyboard': { cm: 'timeb', hx: 'hxpda', id: "com.hanchongzan.book.vip", latest: "chxm1023" }, //TypeOn
+  'PhotoCollagePro': { cm: 'timeb', hx: 'hxpda', id: "PHOTABLE_PREMIUM", latest: "chxm1023" }, //Photable-腹肌P图神器
   'com.alphamobiletech.bodyApp': { cm: 'timeb', hx: 'hxpda', id: "Bodyapp_Forever", latest: "chxm1023" }, //Bodyapp-身材修图软件
   'com.alphamobiletech.facey': { cm: 'timeb', hx: 'hxpda', id: "Facey_Forever", latest: "chxm1023" }, //Facey-专业彩妆P图神器
   'Packet': { cm: 'timeb', hx: 'hxpda', id: "com.aaaalab.nepacket.iap.full", latest: "chxm1023" }, //HTTPS抓包
@@ -160,7 +163,7 @@ const list = {
   'com.lockwidt.cn': { cm: 'timea', hx: 'hxpda', id: "com.lockwidt.cn.member", latest: "chxm1023" },  //壁纸16
   'Utsuki': { cm: 'timea', hx: 'hxpda', id: "KameePro", latest: "chxm1023" },  //梦见账本
   'Processing': { cm: 'timeb', hx: 'hxpda', id: "wtf.riedel.processing.lifetime", latest: "chxm1023" },  //Processing-软件开发工具
-  'one%20sec': { cm: 'timea', hx: 'hxpda', id: "wtf.riedel.one_sec.pro.annual.individual", latest: "chxm1023" },  //one sec-番茄钟
+  'one%20sec': { cm: 'timeb', hx: 'hxpda', id: "wtf.riedel.onesec.lifetime", latest: "chxm1023" },  //onesec-番茄钟
   'com.skysoft.pencilsketch': { cm: 'timea', hx: 'hxpda', id: "com.skysoft.pencilsketch.subscription.yearly", latest: "chxm1023" },  //铅笔画(需试用)
   'com.instagridpost.rsigp': { cm: 'timea', hx: 'hxpda', id: "com.GridPost.oneyearplus", latest: "chxm1023" },  //九宫格切图
   'com.skysoft.picsqueen': { cm: 'timea', hx: 'hxpda', id: "com.skysoft.picsqueen.subscription.yearly", latest: "chxm1023" },  //PicsQueen-AI绘图
@@ -252,7 +255,7 @@ const list = {
   'IconChange': { cm: 'timea', hx: 'hxpda', id: "iconeryearvip", latest: "chxm1023" },  //iconser图标更换
   'life.journal.diary': { cm: 'timeb', hx: 'hxpda', id: "life.journal.diary.lifetime", latest: "chxm1023" },  //Today日记
   'com.floatcamellia.motionninja': { cm: 'timea', hx: 'hxpda', id: "com.floatcamellia.motionninja.yearlyvip", latest: "chxm1023" },  //MotionNinja
-  'com.iuuapp.audiomaker': { cm: 'timea', hx: 'hxpda', id: "com.iuuapp.audiomaker.removeads.year", latest: "chxm1023" },  //音频剪辑
+  'com.iuuapp.audiomaker': { cm: 'timed', hx: 'hxpda', id: "com.iuuapp.audiomaker.cloud.year", ids: "com.iuuapp.audiomaker.removeads", latest: "chxm1023" },  //音频剪辑
   'com.biggerlens.photoretouch': { cm: 'timeb', hx: 'hxpda', id: "com.photoretouch.SVIP", latest: "chxm1023" },  //PhotoRetouch消除笔P图
   'com.macpaw.iosgemini': { cm: 'timea', hx: 'hxpda', id: "com.macpaw.iosgemini.month.trial", latest: "chxm1023" },  //GeminiPhotos
   'com.mematom.ios': { cm: 'timea', hx: 'hxpda', id: "MMYear", latest: "chxm1023" },  //年轮3
@@ -334,7 +337,7 @@ for (const i in list) {
         break;
       case 'timed':
         data = [
-          Object.assign({}, receiptdata, { "product_id": ids }),
+          Object.assign({}, receiptdata, expirestime, { "product_id": ids }),
           Object.assign({}, receiptdata, expirestime, { "product_id": id })
         ];
         break;
