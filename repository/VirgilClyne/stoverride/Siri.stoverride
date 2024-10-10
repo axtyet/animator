@@ -1,20 +1,14 @@
-name: " iRingo: 🔍 Siri & Search"
+name: " iRingo: ⭕ Siri & Search"
 desc: |-
-  V1️⃣ & iOS 17.5⬇️
+  V1️⃣ & iOS 17.6⬇️
   全面自定义「Siri与搜索」中的「Siri 建议」功能。
   本模块不含自定义「Siri与搜索」中的「询问 Siri」功能。
-  注：该覆写包含代理规则。"
 openUrl: "http://boxjs.com/#/app/iRingo.Siri"
-author: "VirgilClyne"
-homepage: "https://github.com/VirgilClyne"
-manual: "https://github.com/VirgilClyne/iRingo/wiki/🔍-Siri与搜索"
-icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Siri.png"
+author: "VirgilClyne[https://github.com/VirgilClyne]"
+homepage: "https://github.com/NSRingo"
+manual: "https://github.com/NSRingo/Siri/wiki/⭕-Siri与搜索"
+icon: "https://raw.githubusercontent.com/NSRingo/Siri/main/images/icon/v1/Siri%20-%20Icon.png"
 category: " iRingo"
-
-rules:
-  - DOMAIN,lookup-api.apple.com,PROXY
-  - DOMAIN,lookup-api.apple.com.edgekey.net,PROXY
-  - DOMAIN,e16991.b.akamaiedge.net,PROXY
 
 http:
   mitm:
@@ -66,8 +60,8 @@ http:
 
 script-providers:
   Siri.request:
-    url: https://raw.githubusercontent.com/VirgilClyne/iRingo/main/js/Siri.request.js
+    url: https://github.com/NSRingo/Siri/releases/latest/download/request.js
     interval: 86400
   Siri.response:
-    url: https://raw.githubusercontent.com/VirgilClyne/iRingo/main/js/Siri.response.js
+    url: https://github.com/NSRingo/Siri/releases/latest/download/response.js
     interval: 86400

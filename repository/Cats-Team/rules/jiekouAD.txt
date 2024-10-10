@@ -1,10 +1,21 @@
 [Adblock Plus 2.0]
 ! Title: 轻量广告拦截规则
 ! Homepage: https://github.com/damengzhu/banad
-! Update Time: 2024-09-17 13:16:12（北京时间）
-! Total Count: 5440
+! Update Time: 2024-10-10 17:38:28（北京时间）
+! Total Count: 5460
 ! by: 酷安@大萌主
 ! domain name
+||hauqou.top^
+||yzldy.info^
+||yckamq.xyz^
+||opkkjh.xyz^
+||ignslkgs.com^
+||8181zx.com^
+||csfds000.fun^
+||baggvon.icu^
+||ceiqox.com^
+||yaacdn.top^
+||jauql.top^
 ||kzaawga.icu^
 ||zcypmsp.icu^
 ||dxqck.com^
@@ -3375,7 +3386,7 @@
 ||ulkoxbra.com^
 ||ulojlvmejkaem.xyz^
 ||um5xcgngmart.xyz^
-||umbrellaomendear.com,^
+||umbrellaomendear.com^
 ||umeng.com^
 ||umkezbh.cn^
 ||umyrn.xyz^
@@ -3745,7 +3756,7 @@
 ||xianzhice.com^
 ||xiaobao8888.com^
 ||xiaodongrui.com^
-||xiaofangtongzhi.xy^
+||xiaofangtongzhi.xyz^
 ||xiaojifly.cn^
 ||xiaomifood.cn^
 ||xiaoqurong.com^
@@ -4443,6 +4454,7 @@ trafficjunky.com$third-part
 .xyz/qby_*.js?$third-party
 .xyz/get?$third-party
 .xyz/ty/*-*-*$third-party
+||ciliyinqing.top^$third-party
 ||feijisu*.com/js/huimi-
 /api/LM/Report?placeUUID=$third-party
 .icu/pssbk?$third-party
@@ -4526,6 +4538,7 @@ com:8891/c.php?s=*$third-party
 /template/mytheme/statics/js/listing.js
 /asfile/m/gudings.js
 ?local_ga_js=
+||555ysys.com/gg/g.js
 .xyz/xling_*_*_*.js?
 ||pinyuege.net/template/pinygm/public/js/
 .com:8005/*&n=$third-party
@@ -4540,9 +4553,10 @@ com:8891/c.php?s=*$third-party
 ||manhuabei.com/assets/xiwang.js
 ||yhdm.tv/bar/yfyh.js
 /js/js4.js
+.com:*.js?v=17$third-party
 .top/*/*.js?ts=$third-party
-/obj/ad-app-package
 /yinghuacd/bottom.js
+chusixs.com/5ygsh/
 /hm.js?$third-party
 ||www.pkmp*.xyz/template/piankuwap/js/afoot.js
 ||baidu.com/rec?*=ad&
@@ -4650,11 +4664,14 @@ mobi*.*.cam/*_$third-party
 mobi*.*.xyz/*_$third-party
 mobi*.*.top/*_$third-party
 /*_*_aubi.js$third-party
+:800*/d/*n=$third-party
+/public/tingshu/foor.js$~third-party
 dingbu.*.*.com/dingbu.$third-party
 .xyz/jque*.js?$third-party
 /blxn_*_*_*?*$third-party
 .top/*q=*form=*&*url=http*$third-party
 _/bigREDdog.js
+
 ||zzccseo.com/statics/js/di.js
 ||txtyuzhaiwu.com/astyle/wap.js
 .xyz//qby_*.js$third-party
@@ -4918,6 +4935,7 @@ www.wenshushu.cn##A[href^='https://wenshushu.cn/ad/']
 cupfox.app##IMG[class^='jsx-'][width='100%'],.swiper-wrapper img[class^='jsx-'][class*='a']:only-child,.cupfox-content.right,.cupfox-content.left
 youtube.com##AD-SLOT-RENDERER
 163.com##.js-open-app
+m.autohome.com.cn##section > ol
 www.3ppp.net##DIV.bottom_fixed
 apkpure.net,apkpure.com##DIV.js-ad-slot
 dongmanhuayuan.myheartsite.com##.card-body
@@ -5427,6 +5445,8 @@ javbus.com##.container-fluid:nth-child(9) > .row > .ad-list:nth-child(3)
 ##[href*='amu6v.com']
 ##.vp-project-home > .ads-container
 ##A.gotoclick[adv_id]
+##body.conch-adjust-fix #component
+##IFRAME[src^='/Banner/index.html'][allowfullscreen='true']
 ##div#notice_container > div.event-notice > div.modal
 ##[style^='display: block; z-index: 2147483646; width: 17px; ']
 ##[style^='display: block; z-index: 2147483646; width: 10%;']

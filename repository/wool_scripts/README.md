@@ -104,22 +104,20 @@
 
 | # | 配置类型 | 配置名称               | 配置链接                                                                                             | 作者                                  | 特别说明                               | 使用教程 |
 |---|------|--------------------|--------------------------------------------------------------------------------------------------|-------------------------------------|------------------------------------|------|
-| # | 规则   | `去广告合集`            | [rejectAd.plugin](https://github.com/fmz200/wool_scripts/raw/main/Loon/rule/rejectAd.list)       | [fmz200](https://github.com/fmz200) | 从QX的分流去广告转换而来                      | 暂无   |
-| # | 插件   | `微博去广告`            | [weibo.plugin](https://github.com/fmz200/wool_scripts/raw/main/Loon/plugin/weibo.plugin)         | [fmz200](https://github.com/fmz200) | 无                                  | 暂无   |
+| # | 插件   | `微博去广告`            | [weibo.plugin](https://github.com/fmz200/wool_scripts/raw/main/Loon/plugin/weibo.plugin)         | [fmz200](https://github.com/fmz200) | 可能有遗漏                              | 暂无   |
+| # | 插件   | `去广告合集`            | [blockAds.plugin](https://github.com/fmz200/wool_scripts/raw/main/Loon/plugin/blockAds.plugin)   | [fmz200](https://github.com/fmz200) | (支持约538款APP/小程序)针对部分APP和小程序广告进行拦截  | 暂无   |
 | # | 插件   | `获取cookie&token合集` | [cookies.plugin](https://github.com/fmz200/wool_scripts/raw/main/Loon/plugin/cookies.plugin)     | [fmz200](https://github.com/fmz200) | 包含fmz200/NobyDa/chavyleung/Sunert等 | 暂无   |
 | # | 脚本   | `Task订阅`           | [tasks.scripts](https://github.com/fmz200/wool_scripts/raw/main/Loon/script/tasks.scripts)       | [fmz200](https://github.com/fmz200) | 需要先获取cookie或token再运行               | 暂无   |
+| # | 脚本   | `工具合集`             | [tools.scripts](https://github.com/fmz200/wool_scripts/raw/main/Loon/script/tools.scripts)       | [fmz200](https://github.com/fmz200) | 节点测试工具，导入后长按节点使用                   | 暂无   |
+| # | 规则   | `去广告合集`            | [rejectAd.plugin](https://github.com/fmz200/wool_scripts/raw/main/Loon/rule/rejectAd.list)       | [fmz200](https://github.com/fmz200) | 从QX的分流去广告转换而来                      | 暂无   |
 | # | 规则   | `AI分流规则合集`         | [AI.list](https://github.com/fmz200/wool_scripts/raw/main/Loon/rule/AI.list)                     | [fmz200](https://github.com/fmz200) | 汇集常用的AI模型                          | 暂无   |
 | # | 规则   | `屏蔽苹果系统更新`         | [apple_update.list](https://github.com/fmz200/wool_scripts/raw/main/Loon/rule/apple_update.list) | [fmz200](https://github.com/fmz200) | 无                                  | 暂无   |
 
 
 ### 3️⃣ Surge配置
 
-> 📍 除下方已经转为Surge的配置，你可以借助 [Script-Hub：重写 & 规则集转换](https://github.com/Script-Hub-Org/Script-Hub) 工具将上方的QX重写和分流添加到Surge中。
-
-| # | 配置类型 | 配置名称       | 配置链接                                                                                             | 作者                                  | 特别说明              | 使用教程 |
-|---|------|------------|--------------------------------------------------------------------------------------------------|-------------------------------------|-------------------|------|
-| # | 代理规则 | `OpenAI分流` | [OpenAI.list](https://raw.githubusercontent.com/fmz200/wool_scripts/main/Surge/rule/OpenAI.list) | [fmz200](https://github.com/fmz200) | 只有OpenAI，有问题欢迎反馈  | 无    |
-| # | 代理规则 | `AI分流规则合集` | [AI.list](https://github.com/fmz200/wool_scripts/raw/main/Surge/rule/AI.list)                    | [fmz200](https://github.com/fmz200) | 汇集常用的AI模型，有问题欢迎反馈 | 无    |
+> 📍 你可以借助 [Script-Hub：重写 & 规则集转换](https://github.com/Script-Hub-Org/Script-Hub) 工具将上方的QX重写和分流添加到Surge中。
+- 因为Loon和Surge的规则是通用的，所以统一把规则放到Loon文件夹中
 
 
 ### 4️⃣ ShadowRocket配置

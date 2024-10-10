@@ -5,10 +5,10 @@
 #!tag = DNS
 #!system = 
 #!system_version = 
-#!loon_version = 3.2.1(745)
+#!loon_version = 3.2.1(749)
 #!homepage = https://gitlab.com/lodepuly/vpn_tool/-/blob/master/README.md
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/main/Other_icon/120px/HTTPDNS.png
-#!date = 2024-09-09 13:06:25
+#!date = 2024-09-25 15:45:58
 
 [Rule]
 # YY语音
@@ -19,7 +19,7 @@ DOMAIN, httpdns-v6.gslb.yy.com, REJECT
 # 虎牙
 URL-REGEX, ^http:\/\/cdn\.wup\.huya\.com\/launch\/queryHttpDns, REJECT
 
-# 抖音
+# 字节跳动
 AND, ((DOMAIN-KEYWORD, api100-core-quic-), (DOMAIN-SUFFIX, amemv.com)), REJECT
 AND, ((DOMAIN-KEYWORD, api100-normal-quic-), (DOMAIN-SUFFIX, amemv.com)), REJECT
 AND, ((DOMAIN-KEYWORD, api100-normal-quic-aweme-), (DOMAIN-SUFFIX, amemv.com)), REJECT
@@ -116,6 +116,7 @@ URL-REGEX, ^http:\/\/116\.63\.10\.31\/resolve, REJECT
 
 # 小米
 DOMAIN, httpdns.browser.miui.com, REJECT
+DOMAIN, resolver.msg.xiaomi.net, REJECT
 
 # 阿里巴巴
 DOMAIN, httpdns.alicdn.com, REJECT
@@ -271,5 +272,8 @@ DOMAIN, hd.xiaojukeji.com, REJECT
 # 虎牙
 ^https?:\/\/cdn\.wup\.huya\.com\/monitor\/monitor\.jsp reject
 
+# 健康160
+^https:\/\/msglb\.91160\.com\/msg\/outer\/broker\/get$ reject-dict
+
 [MitM]
-hostname = 119.29.29.29, 203.107.1.1, 203.107.1.33, 203.107.1.66, 203.107.1.67, 203.107.1.97, 2401:b180:2000:30::1c, 2401:b180:2000:20::10, appconf.mail.163.com, amdc.alipay.com, 180.76.76.200, 180.76.76.112, cdn.wup.huya.com
+hostname = 119.29.29.29, 203.107.1.1, 203.107.1.33, 203.107.1.66, 203.107.1.67, 203.107.1.97, 2401:b180:2000:30::1c, 2401:b180:2000:20::10, amdc.alipay.com, 180.76.76.200, 180.76.76.112, appconf.mail.163.com, msglb.91160.com

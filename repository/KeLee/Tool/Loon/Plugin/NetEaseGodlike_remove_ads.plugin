@@ -1,14 +1,14 @@
 #!name = 网易大神去广告
-#!desc = 移除开屏广告、底栏游戏入口、精简我的页面。
+#!desc = 移除开屏广告，精简我的页面。
 #!openUrl = https://apps.apple.com/app/id1359055423
 #!author = 可莉🅥[https://gitlab.com/lodepuly/vpn_tool/-/blob/master/README.md]
 #!tag = 去广告
 #!system = 
 #!system_version = 
-#!loon_version = 3.2.1(745)
+#!loon_version = 3.2.1(749)
 #!homepage = https://gitlab.com/lodepuly/vpn_tool/-/blob/master/README.md
 #!icon = https://gitlab.com/lodepuly/iconlibrary/-/raw/main/App_icon/120px/NetEaseGodlike.png
-#!date = 2024-08-11 23:14:59
+#!date = 2024-09-20 21:37:41
 
 [Rule]
 # 拦截HTTPDNS
@@ -30,11 +30,11 @@ IP-CIDR, 115.236.121.195/32, REJECT, no-resolve
 # 我的页面 - 横幅广告、为你推荐、更多会员权益、精选活动
 ^https:\/\/god\.gameyw\.netease\.com\/v\d\/app\/static\/conf\/getByModuleNameList$ reject-dict
 
-# 发现页面即游戏页面
-^https:\/\/god\.gameyw\.netease\.com\/v1\/app\/square\/(facade|list\/v\d) response-body-json-del result
+# 我的页面 - 近期游戏热点 [此条会导致页面加载缓慢]
+# ^https:\/\/god-act\.gameyw\.netease\.com\/v1\/act\/pageConf\/commonAppConfig$ response-body-json-del result.itemList[1].itemList[4].itemList[2]
 
 # 底栏游戏入口
-^https:\/\/app-conf\.ds\.163\.com\/v\d\/app\/base\/conf\/static\/start-config response-body-json-del result.updateConfig[1].itemList[93].itemList[2]
+^https:\/\/app-conf\.ds\.163\.com\/v\d\/app\/base\/conf\/static\/start-config\? response-body-json-del result.updateConfig[2].itemList[94].itemList[2]
 
 [MitM]
 hostname = god.gameyw.netease.com, app-conf.ds.163.com

@@ -1,5 +1,7 @@
 ### 可莉的 Loon 资源
 
+插件列表在页面下方，末尾附有新手配置图解。
+
 ------
 
 > [!CAUTION]
@@ -71,13 +73,11 @@
 #### 仓库地址
 
 > [!TIP]
-> 以下三个仓库内容完全一致，根据自己的网络情况择一即可。
+> 以下两个仓库内容完全一致，根据自己的网络情况择一即可。
 
-[GitLab 仓库](https://gitlab.com/lodepuly/vpn_tool) - 电信联通可直连访问
+[GitHub 仓库](https://github.com/luestr/ProxyResource/blob/main/README.md) - 需要代理访问
 
-[GitHub 仓库](https://github.com/luestr/ProxyResource) - 需要代理访问
-
-[Bitbucket 仓库](https://bitbucket.org/luestr/proxyresource) - 电信、联通、移动、广电均可直连访问
+[GitLab 仓库](https://gitlab.com/lodepuly/vpn_tool/-/blob/master/README.md/) - 电信联通可直连访问
 
 ------
 
@@ -185,7 +185,7 @@ Plus 流量 1024G 月付 120
     <th>名称</th>
   </tr>
   <tr>
-    <td rowspan="103"><strong>去广告插件</strong></td>
+    <td rowspan="109"><strong>去广告插件</strong></td>
   <tr>
     <td>001</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/BlockAdvertisers.plugin">广告平台拦截器</a></td>
@@ -412,11 +412,11 @@ Plus 流量 1024G 月付 120
   </tr>
   <tr>
     <td>057</td>
-    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/MailMaster_remove_ads.plugin">网易邮箱大师</a></td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/MailMaster_remove_ads.plugin">网易邮箱大师去广告</a></td>
   </tr>
   <tr>
     <td>058</td>
-    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/MiaoRead_remove_ads.plugin">小喵看书</a></td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/MiaoRead_remove_ads.plugin">小喵看书去广告</a></td>
   </tr>
   <tr>
     <td>059</td>
@@ -594,6 +594,30 @@ Plus 流量 1024G 月付 120
     <td>102</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/SF-Express_remove_ads.plugin">顺丰速运去广告</a></td>
   </tr>
+  <tr>
+    <td>103</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/91160_remove_ads.plugin">健康160去广告</a></td>
+  </tr>
+  <tr>
+    <td>104</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/NetEaseGodlike_remove_ads.plugin">网易大神去广告</a></td>
+  </tr>
+  <tr>
+    <td>105</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/SodaMusic_remove_ads.plugin">汽水音乐去广告</a></td>
+  </tr>
+  <tr>
+    <td>106</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/KuaiDi100_remove_ads.plugin">快递100去广告</a></td>
+  </tr>
+  <tr>
+    <td>107</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/ChengFenMiao_remove_ads.plugin">成分喵去广告</a></td>
+  </tr>
+  <tr>
+    <td>108</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/KGRing_remove_ads.plugin">酷狗铃声去广告</a></td>
+  </tr>
     <td></td>
     <td></td>
     <td></td>
@@ -603,7 +627,7 @@ Plus 流量 1024G 月付 120
     <th>名称</th>
   </tr>
   <tr>
-    <td rowspan="4"><strong>自签插件</strong></td>
+    <td rowspan="5"><strong>自签插件</strong></td>
   <tr>
     <td>01</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/UnionPay_remove_ads_with_ssl_unpinning.plugin">云闪付去广告</a></td>
@@ -616,6 +640,10 @@ Plus 流量 1024G 月付 120
     <td>03</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/BaiduMap_remove_ads.plugin">百度地图去广告</a></td>
   </tr>
+  <tr>
+    <td>04</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/FC_Box_remove_ads.plugin">丰巢去广告</a></td>
+  </tr>
     <td></td>
     <td></td>
     <td></td>
@@ -625,7 +653,7 @@ Plus 流量 1024G 月付 120
     <th>名称</th>
   </tr>
   <tr>
-    <td rowspan="27"><strong>功能插件</strong></td>
+    <td rowspan="26"><strong>功能插件</strong></td>
   <tr>
     <td>01</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/LoonGallery.plugin">插件仓库</a></td>
@@ -700,34 +728,35 @@ Plus 流量 1024G 月付 120
   </tr>
   <tr>
     <td>19</td>
-    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/Switch_repository_source.plugin">可莉仓库源切换</a></td>
-  </tr>
-  <tr>
-    <td>20</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/TikTok_redirect.plugin">TikTok多地区解锁</a></td>
   </tr>
   <tr>
-    <td>21</td>
+    <td>20</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/Spotify_lyrics_translation.plugin">Spotify歌词翻译</a></td>
   </tr>
   <tr>
-    <td>22</td>
+    <td>21</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://raw.githubusercontent.com/ClydeTime/BiliBili/master/modules/BiliBiliDailyBonus.plugin">BiliBili每日等级任务</a></td>
   </tr>
   <tr>
-    <td>23</td>
+    <td>22</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/NodeLinkCheck.Plugin">代理链路检测</a></td>
   </tr>
   <tr>
-    <td>24</td>
+    <td>23</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/QuickSearch.plugin">快捷搜索</a></td>
   </tr>
   <tr>
-    <td>25</td>
+    <td>24</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/UnnooQuan_remove_watermark.plugin">知识星球去水印</a></td>
   </tr>
   <tr>
-    <td>26</td>
+    <td>25</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Plugin/AppleWeatherEnhancer.plugin">Apple天气增强</a></td>
   </tr>
 </table>
+
+------
+
+#### 配置图解
+![ConfigurationDiagram](https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Tool/Loon/Config/zh-CN/Resource/ConfigurationDiagram.png)
