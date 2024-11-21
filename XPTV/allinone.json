@@ -427,7 +427,7 @@
       "name": "hdmoli",
       "type": 3,
       "api": "csp_hdmoli",
-      "ext": "https://ghp.ci/https://raw.githubusercontent.com/Yswag/xptv-extensions/main/js/hdmoli.js"
+      "ext": "https://ghp.ci/https://gist.githubusercontent.com/occupy-pluto/c4a7cbff909e2bfbdf6c239256f7ed3e/raw/06f634254f6b7a3d2756a81f6c00741e00c1bdf8/hdmoli.js"
     },
     {
       "name": "nmlive",
@@ -533,10 +533,10 @@
       "ext": "https://ghp.ci/https://raw.githubusercontent.com/fangkuia/XPTV/refs/heads/main/js/xzys.js"
     },
     {
-      "name": "正奕 | PAN",
+      "name": "雷鲸 | PAN",
       "type": 3,
-      "api": "csp_wobgg",
-      "ext": "https://ghp.ci/https://raw.githubusercontent.com/Yswag/xptv-extensions/main/js/wobg.js"
+      "api": "csp_leijing",
+      "ext": "https://ghp.ci/https://gist.githubusercontent.com/occupy-pluto/d9bd7dc541a10681870c7bc76fe8f12a/raw/b5866bf8430336cb8eedef269a752b61a8804645/lei_189.js"
     }
   ]
 }
