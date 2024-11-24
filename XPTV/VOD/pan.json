@@ -3,7 +3,8 @@
         { 
             "name": "玩偶哥哥 | PAN", 
             "type": 3, 
-            "api": "csp_WoGG" 
+            "api": "csp_wogg",
+            "ext": "https://ghp.ci/https://raw.githubusercontent.com/fangkuia/XPTV/refs/heads/main/js/wogg.js"
         },
         { 
             "name": "阿里小站 | PAN", 
