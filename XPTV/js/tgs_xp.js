@@ -12,7 +12,7 @@ const UA = 'MOBILE_UA'
 let appConfig = {
     ver: 1,
     title: 'tg搜索',
-    site: 'https://t.me/s/',
+    site: 'https://tgs.xptvhelper.link/s/',
     // tabs: [
     //     {
     //         name: '只能搜索',
@@ -136,7 +136,7 @@ async function getCards(ext) {
         })
 
         let nextPage = $('.js-messages_more_wrap a').attr('href')
-        nextPage = nextPage ? `https://t.me${nextPage}` : ''
+        nextPage = nextPage ? `https://tgs.xptvhelper.link${nextPage}` : ''
         if (nextPage) {
             let config = {
                 hasMore: true,
