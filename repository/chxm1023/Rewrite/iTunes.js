@@ -29,6 +29,7 @@ const yearlyid = `${bundle_id}.yearly`;
 const yearlysubscription = `${bundle_id}.yearlysubscription`;
 
 const list = {
+  'ECGANALYZER': { cm: 'timea', hx: 'hxpda', id: "com.wms.hrv.yearlyfamilysharing", latest: "ddm1023" }, //ECG+
   'com.casttv.remotetv': { cm: 'timeb', hx: 'hxpda', id: "liftetime2", latest: "chxm1023" }, //TVRemote电视遥控器
   'WallpaperWidget': { cm: 'timea', hx: 'hxpda', id: "com.widget.theme.yearly.3dayfree", latest: "chxm1023" }, //壁纸主题(需试用)
   'ProREC': { cm: 'timea', hx: 'hxpda', id: "ProAudioCamera_Annual", latest: "chxm1023" }, //ProREC-相机
