@@ -29,7 +29,7 @@ const bundle_id = headers['X-Client-Bundle-ID'] || headers['x-client-bundle-id']
 const forbiddenApps = ['Fileball', 'APTV'];
 const forbiddenAppFound = forbiddenApps.find(appName => (ua && ua.includes(appName)) || ($request.body && $request.body.includes(appName)));
 if (forbiddenAppFound) {
-  console.log(`发现禁止MITM的APP: ${forbiddenAppFound}，已停止运行脚本！\n叮当猫の分享频道: https://t.me/chxm1023`);
+  console.log(`发现禁止MITM的APP: ${forbiddenAppFound}，已停止运行脚本!`);
   $done({});
 }
 
